@@ -1521,6 +1521,14 @@ apollo-client@^2.4.7:
     tslib "^1.9.3"
     zen-observable "^0.8.0"
 
+apollo-hooks@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/apollo-hooks/-/apollo-hooks-2.1.2.tgz#1f986e443a493c3017ef8880c83d1aa8b5928652"
+  integrity sha512-y62yOpkM4qeEzptdvCs5KHCQefq5OLfqCbE1IkdBfTTuiVw0aLgdV43MwmqlRfxtv+ijHhDY8zOk6c2An0Q0jw==
+  dependencies:
+    lodash "^4.17.11"
+    react-fast-compare "^2.0.2"
+
 apollo-link-batch-http@^1.2.4:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/apollo-link-batch-http/-/apollo-link-batch-http-1.2.8.tgz#8549e1515a955afbd23c67a144cb045f3b0e85b2"
@@ -4809,6 +4817,11 @@ flat-cache@^1.2.1:
     del "^2.0.2"
     graceful-fs "^4.1.2"
     write "^0.2.1"
+
+flatpickr@^4.3.2, flatpickr@^4.5.6:
+  version "4.5.6"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.6.tgz#9afdcccf5ffd30445e047a605eb175cb8e00a115"
+  integrity sha512-PYeKKH+5Zm5iGu00SsQPJmXtivolF0goXl00Ced5pEGV6//mxG0pA9Z0aas+X3X4NWqnVNMQuHE8m/fTY86iAQ==
 
 flatten@^1.0.2:
   version "1.0.2"
@@ -9577,6 +9590,19 @@ react-error-overlay@^5.1.0, react-error-overlay@^5.1.3:
   version "5.1.3"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.3.tgz#16fcbde75ed4dc6161dc6dc959b48e92c6ffa9ad"
   integrity sha512-GoqeM3Xadie7XUApXOjkY3Qhs8RkwB/Za4WMedBGrOKH1eTuKGyoAECff7jiVonJchOx6KZ9i8ILO5XIoHB+Tg==
+
+react-fast-compare@^2.0.2:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
+  integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
+react-flatpickr@^3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/react-flatpickr/-/react-flatpickr-3.7.1.tgz#aaf0d79197f311a89c08c63b9d6a94735c451a73"
+  integrity sha512-VCIxJEyn2uPhwRsBtQL8FlXeaS6Rk/JNXGztqoayD2XFoJ1iMMWcXX318yHSdn0RKyYzsPTbWl/4DVd0toR03A==
+  dependencies:
+    flatpickr "^4.3.2"
+    prop-types "^15.5.10"
 
 react-hot-loader@4.7.2:
   version "4.7.2"
