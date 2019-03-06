@@ -8,7 +8,7 @@ import autobind from 'autobind-decorator'
 
 import 'flatpickr/dist/themes/material_blue.css'
 
-export default class DateTime extends React.Component {
+export default class Date extends React.Component {
   static propTypes = {
     value: PropTypes.any,
     onChange: PropTypes.func,

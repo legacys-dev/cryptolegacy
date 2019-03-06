@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './styles.css'
 import Container from 'orionsoft-parts/lib/components/Container'
+import Button from 'orionsoft-parts/lib/components/Button'
 
 export default class Home extends React.Component {
   static propTypes = {}
@@ -20,6 +21,9 @@ export default class Home extends React.Component {
             iudicem, e ipsum duis te pariatur. Amet e an velit quamquam. Iis quem commodo
             distinguantur e nulla occaecat sempiternum.
           </p>
+          <Button primary>este es un boton largo</Button>
+          <Button>este es un boton largo</Button>
+          <Button>pequeño</Button>
         </Container>
       </div>
     )

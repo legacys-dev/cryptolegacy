@@ -9,7 +9,7 @@ if (!numeral) {
   throw new Error('Numeral is required in global variable')
 }
 
-export default class NComponent extends React.Component {
+export default class Number extends React.Component {
   static propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.any,
