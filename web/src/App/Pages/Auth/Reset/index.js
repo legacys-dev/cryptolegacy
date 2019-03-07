@@ -1,15 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
-import Button from 'orionsoft-parts/lib/components/Button'
-import autobind from 'autobind-decorator'
-import PropTypes from 'prop-types'
-import withUserId from 'App/helpers/auth/withUserId'
+import Button from 'App/components/LargeButton'
+import Title from 'App/components/Auth/Title'
+import Translate from 'App/i18n'
 import LoggedIn from '../LoggedIn'
+import autobind from 'autobind-decorator'
+import withUserId from 'App/helpers/auth/withUserId'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import {setSession} from '@orion-js/graphql-client'
-import Translate from 'App/i18n'
 import translate from 'App/i18n/translate'
 
 @withUserId
@@ -48,21 +50,42 @@ export default class ResetPassword extends React.Component {
   @autobind
   async onSuccess(session) {
     await setSession(session)
-    this.props.showMessage(<Translate tr="auth.yourPasswordHasBeenChanged" />)
+    this.props.showMessage(translate('auth.yourPasswordHasBeenChanged'))
     this.props.onLogin()
   }
 
   @autobind
   onValidationError({token}) {
     if (token === 'tokenNotFound') {
-      this.props.showMessage(<Translate tr="auth.resetLinkExpired" />)
+      this.props.showMessage(translate('auth.resetLinkExpired'))
     }
+  }
+
+  renderDescription() {
+    return (
+      <div className={styles.description}>
+        <Translate tr="auth.passwordRequirements" />
+      </div>
+    )
+  }
+
+  renderButton() {
+    return (
+      <div className={styles.button}>
+        <Button
+          label={translate('auth.resetPassword')}
+          onClick={() => this.refs.form.submit()}
+          primary
+        />
+      </div>
+    )
   }
 
   render() {
     if (this.props.userId) return <LoggedIn />
     return (
       <div>
+        <Title text="auth.resetPassword" />
         <AutoForm
           doc={{token: this.props.token}}
           mutation="resetPassword"
@@ -70,34 +93,21 @@ export default class ResetPassword extends React.Component {
           schema={this.schema}
           onSuccess={this.onSuccess}
           onValidationError={this.onValidationError}>
-          <div className="label">
-            <Translate tr="auth.newPassword" />
-          </div>
           <Field
             fieldName="password"
             fieldType="password"
             placeholder={translate('auth.newPassword')}
             type={Text}
           />
-          <div className="description">
-            <Translate tr="auth.passwordRequirements" />
-          </div>
-          <div className="label">
-            <Translate tr="auth.confirmPassword" />
-          </div>
           <Field
             fieldName="confirm"
             fieldType="password"
-            placeholder={translate('auth.confirm')}
+            placeholder={translate('auth.confirmPassword')}
             type={Text}
           />
         </AutoForm>
-        <br />
-        <Button onClick={() => this.refs.form.submit()} primary>
-          <Translate tr="auth.resetPassword" />
-        </Button>
-        <br />
-        <br />
+        {this.renderDescription()}
+        {this.renderButton()}
       </div>
     )
   }

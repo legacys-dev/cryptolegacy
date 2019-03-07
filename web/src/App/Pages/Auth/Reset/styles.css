@@ -1,0 +1,9 @@
+:local(.description) {
+  margin-top: 0px;
+  font-size: 14px;
+  color: #999999;
+  margin-bottom: 30px;
+}
+
+:local(.button) {
+}
