@@ -1,0 +1,7 @@
+:local(.button) {
+  margin: 30px 0;
+}
+
+:local(.link) {
+  text-align: center;
+}

@@ -1,16 +1,18 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
-import Button from 'orionsoft-parts/lib/components/Button'
+import Button from 'App/components/LargeButton'
 import ObjectField from 'App/components/fields/ObjectField'
-import autobind from 'autobind-decorator'
-import PropTypes from 'prop-types'
-import withUserId from 'App/helpers/auth/withUserId'
 import LoggedIn from '../LoggedIn'
 import {Link} from 'react-router-dom'
-import {setSession} from '@orion-js/graphql-client'
+import Title from 'App/components/Auth/Title'
 import Translate from 'App/i18n'
+import autobind from 'autobind-decorator'
+import withUserId from 'App/helpers/auth/withUserId'
+import {setSession} from '@orion-js/graphql-client'
 import translate from 'App/i18n/translate'
 
 @withUserId
@@ -26,32 +28,46 @@ export default class Register extends React.Component {
     this.props.onLogin()
   }
 
+  renderLogInLink() {
+    return (
+      <div className={styles.link}>
+        <Translate tr="auth.ifYouHaveAnAccount" />{' '}
+        <Link to="/login" style={{color: '#07f'}}>
+          <Translate tr="auth.loginNow" />
+        </Link>
+      </div>
+    )
+  }
+
+  renderButton() {
+    return (
+      <div className={styles.button}>
+        <Button
+          label={translate('auth.createAccount')}
+          onClick={() => this.refs.form.submit()}
+          primary
+        />
+      </div>
+    )
+  }
+
   render() {
     if (this.props.userId) return <LoggedIn />
     return (
       <div>
+        <Title text="auth.register" />
         <AutoForm mutation="createUser" ref="form" onSuccess={this.onSuccess}>
           <Field fieldName="profile" type={ObjectField} style={null}>
             <div className="row">
               <div className="col-xs-12 col-sm-6">
-                <div className="label">
-                  <Translate tr="auth.name" />
-                </div>
                 <Field fieldName="firstName" type={Text} placeholder={translate('auth.name')} />
               </div>
               <div className="col-xs-12 col-sm-6">
-                <div className="label">
-                  <Translate tr="auth.lastName" />
-                </div>
                 <Field fieldName="lastName" type={Text} placeholder={translate('auth.lastName')} />
               </div>
             </div>
           </Field>
-          <div className="label">Email</div>
           <Field fieldName="email" type={Text} fieldType="email" placeholder="Email" />
-          <div className="label">
-            <Translate tr="auth.password" />
-          </div>
           <Field
             fieldName="password"
             type={Text}
@@ -59,18 +75,8 @@ export default class Register extends React.Component {
             placeholder={translate('auth.password')}
           />
         </AutoForm>
-        <br />
-        <Button onClick={() => this.refs.form.submit()} primary>
-          <Translate tr="auth.createAccount" />
-        </Button>
-        <br />
-        <br />
-        <div>
-          <Translate tr="auth.ifYouHaveAnAccount" />{' '}
-          <Link to="/login">
-            <Translate tr="auth.login" />
-          </Link>
-        </div>
+        {this.renderButton()}
+        {this.renderLogInLink()}
       </div>
     )
   }
