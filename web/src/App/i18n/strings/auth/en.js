@@ -8,6 +8,7 @@ export default {
   forgotMyPassword: 'Forgot my password',
   createAnAccount: 'Create an account',
   login: 'Log in',
+  loginNow: 'log in',
   name: 'Name',
   lastName: 'Last name',
   createAccount: 'Create account',
@@ -18,5 +19,7 @@ export default {
   passwordRequirements: 'Your password must be at least 8 characters long',
   confirmPassword: 'Confirm password',
   emailVerficationCodeExpired: 'The verification code expired',
-  weAreVerifyingYourEmail: 'We are verifying your email'
+  weAreVerifyingYourEmail: 'We are verifying your email',
+  register: 'Register',
+  forgotPassword: 'Forgot password?'
 }
