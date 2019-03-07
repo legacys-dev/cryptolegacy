@@ -1,16 +1,18 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
-import Button from 'orionsoft-parts/lib/components/Button'
-import autobind from 'autobind-decorator'
-import PropTypes from 'prop-types'
-import withUserId from 'App/helpers/auth/withUserId'
+import Button from 'App/components/LargeButton'
+import Title from 'App/components/Auth/Title'
 import LoggedIn from '../LoggedIn'
 import {Link} from 'react-router-dom'
-import {setSession} from '@orion-js/graphql-client'
 import Translate from 'App/i18n'
 import translate from 'App/i18n/translate'
+import autobind from 'autobind-decorator'
+import withUserId from 'App/helpers/auth/withUserId'
+import {setSession} from '@orion-js/graphql-client'
 
 @withUserId
 export default class Login extends React.Component {
@@ -26,35 +28,47 @@ export default class Login extends React.Component {
     this.props.onLogin()
   }
 
+  renderForgotLink() {
+    return (
+      <div className={styles.forgotLink}>
+        <Link to="/forgot" style={{color: '#07f'}}>
+          <Translate tr="auth.forgotMyPassword" />
+        </Link>
+      </div>
+    )
+  }
+
+  renderButtons() {
+    return (
+      <div className={styles.buttons}>
+        <Button
+          onClick={() => this.refs.form.submit()}
+          label={translate('auth.login')}
+          primary
+          loading={this.props.loading}
+        />
+        <div name="divider" style={{height: '20px'}} />
+        <Button primary={false} label={translate('auth.createAnAccount')} to="/register" />
+      </div>
+    )
+  }
+
   render() {
     if (!this.props.loading && this.props.userId) return <LoggedIn />
     return (
       <div>
+        <Title text="auth.login" />
         <AutoForm mutation="loginWithPassword" ref="form" onSuccess={this.onSuccess}>
-          <div className="label">Email</div>
           <Field fieldName="email" type={Text} fieldType="email" placeholder="Email" />
-          <div className="label">
-            <Translate tr="auth.password" />
-          </div>
           <Field
             fieldName="password"
             type={Text}
             fieldType="password"
             placeholder={translate('auth.password')}
           />
-          <div className="description">
-            <Link to="/forgot">
-              <Translate tr="auth.forgotMyPassword" />
-            </Link>
-          </div>
         </AutoForm>
-        <br />
-        <Button style={{marginRight: 10}} to="/register">
-          <Translate tr="auth.createAnAccount" />
-        </Button>
-        <Button onClick={() => this.refs.form.submit()} primary loading={this.props.loading}>
-          <Translate tr="auth.login" />
-        </Button>
+        {this.renderButtons()}
+        {this.renderForgotLink()}
       </div>
     )
   }

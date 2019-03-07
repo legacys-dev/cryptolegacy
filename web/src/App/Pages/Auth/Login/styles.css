@@ -1,0 +1,12 @@
+:local(.buttons) {
+  margin: 30px 0;
+}
+
+:local(.forgotLink) {
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+:local(.forgotLink):hover {
+  font-weight: bold;
+}
