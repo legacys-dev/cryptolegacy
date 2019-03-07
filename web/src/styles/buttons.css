@@ -1,3 +1,7 @@
+.orion_button {
+  padding: 25px 40px;
+}
+
 .orion_button,
 .orion_button:active,
 .orion_button:hover {
@@ -7,5 +11,5 @@
 .orion_primary,
 .orion_primary:active,
 .orion_primary:hover {
-  background-color: #0f2ff1;
+  background-color: #07f;
 }
