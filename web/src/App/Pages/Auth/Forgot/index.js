@@ -1,14 +1,18 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
-import Button from 'orionsoft-parts/lib/components/Button'
-import autobind from 'autobind-decorator'
-import PropTypes from 'prop-types'
-import withUserId from 'App/helpers/auth/withUserId'
+import Button from 'App/components/LargeButton'
 import LoggedIn from '../LoggedIn'
-import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import {Link} from 'react-router-dom'
+import Title from 'App/components/Auth/Title'
 import Translate from 'App/i18n'
+import translate from 'App/i18n/translate'
+import autobind from 'autobind-decorator'
+import withUserId from 'App/helpers/auth/withUserId'
+import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 
 @withUserId
 @withMessage
@@ -20,23 +24,42 @@ export default class ForgotPassword extends React.Component {
 
   @autobind
   onSuccess() {
-    this.props.showMessage(<Translate tr="auth.followInstructionsInEmail" />)
+    this.props.showMessage(translate('auth.followInstructionsInEmail'))
+  }
+
+  renderLogInLink() {
+    return (
+      <div className={styles.link}>
+        <Translate tr="auth.ifYouHaveAnAccount" />{' '}
+        <Link to="/login" style={{color: '#07f'}}>
+          <Translate tr="auth.loginNow" />
+        </Link>
+      </div>
+    )
+  }
+
+  renderButton() {
+    return (
+      <div className={styles.button}>
+        <Button
+          label={translate('auth.resetPassword')}
+          onClick={() => this.refs.form.submit()}
+          primary
+        />
+      </div>
+    )
   }
 
   render() {
     if (this.props.userId) return <LoggedIn />
     return (
       <div>
+        <Title text="auth.forgotPassword" />
         <AutoForm mutation="forgotPassword" ref="form" onSuccess={this.onSuccess}>
-          <div className="label">Email</div>
           <Field fieldName="email" type={Text} placeholder="Email" fieldType="email" />
         </AutoForm>
-        <br />
-        <Button onClick={() => this.refs.form.submit()} primary>
-          <Translate tr="auth.resetPassword" />
-        </Button>
-        <br />
-        <br />
+        {this.renderButton()}
+        {this.renderLogInLink()}
       </div>
     )
   }
