@@ -1,13 +1,13 @@
 import React from 'react'
-import withMutation from 'react-apollo-decorators/lib/withMutation'
-import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
-import autobind from 'autobind-decorator'
 import styles from './styles.css'
 import Loading from 'orionsoft-parts/lib/components/Loading'
+import Translate from 'App/i18n'
+import withMutation from 'react-apollo-decorators/lib/withMutation'
+import gql from 'graphql-tag'
+import autobind from 'autobind-decorator'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import {setSession} from '@orion-js/graphql-client'
-import Translate from 'App/i18n'
 
 @withMutation(gql`
   mutation verifyEmail($token: String) {
@@ -52,9 +52,8 @@ export default class VerifyEmail extends React.Component {
   }
 
   render() {
-    if (this.state.errorMessage) {
-      return <div className={styles.error}>{this.state.errorMessage}</div>
-    }
+    const {errorMessage} = this.state
+    if (this.state.errorMessage) return <div className={styles.error}>{errorMessage}</div>
     return (
       <div className={styles.loading}>
         <Loading size={40} />
