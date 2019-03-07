@@ -17,6 +17,7 @@
   font-family: inherit;
   border: 1px solid #c2c2c2;
   border-radius: 5px;
+  min-width: 30px;
   outline: none;
   transition: border 0.2s ease;
   box-shadow: 0 0 0 1px rgba(220, 220, 220, 0.2);
