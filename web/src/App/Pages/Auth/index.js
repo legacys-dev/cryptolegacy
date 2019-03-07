@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Logo from 'App/components/Logo'
 import {Route, Switch, withRouter} from 'react-router-dom'
-import autobind from 'autobind-decorator'
 import Login from './Login'
 import Register from './Register'
 import VerifyEmail from './VerifyEmail'
 import Forgot from './Forgot'
 import Reset from './Reset'
 import Enroll from './Enroll'
+import autobind from 'autobind-decorator'
 
 @withRouter
 export default class Auth extends React.Component {
@@ -25,11 +25,11 @@ export default class Auth extends React.Component {
 
   @autobind
   onLogin() {
-    const {location} = this.props
+    const {location, history} = this.props
     if (location.state && location.state.nextPathname) {
-      this.props.history.replace(location.state.nextPathname)
+      history.replace(location.state.nextPathname)
     } else {
-      this.props.history.replace('/dashboard')
+      history.replace('/dashboard')
     }
   }
 
@@ -39,7 +39,9 @@ export default class Auth extends React.Component {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.contentInner}>
-            <Logo imgName="twoColorsBW.jpg" size={'270px'} />
+            <div className={styles.logoContainer}>
+              <Logo imgName="twoColorsBT.png" size={'111px'} />
+            </div>
             <Switch>
               <Route path="/login" render={() => <Login {...otherProps} />} />
               <Route path="/register" render={() => <Register {...otherProps} />} />

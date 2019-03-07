@@ -25,3 +25,7 @@
   background-size: cover;
   background-position: center;
 }
+
+:local(.logoContainer) {
+  margin: 50px 0;
+}
