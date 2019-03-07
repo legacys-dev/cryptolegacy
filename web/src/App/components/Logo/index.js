@@ -19,7 +19,7 @@ export default class Logo extends React.Component {
     }
 
     return (
-      <a onClick={() => history.push('/')}>
+      <a style={logoStyle} onClick={() => history.push('/')}>
         <img style={logoStyle} src={`/logos/${imgName}`} />
       </a>
     )

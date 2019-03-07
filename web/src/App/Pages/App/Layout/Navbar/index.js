@@ -13,7 +13,7 @@ export default class Navbar extends React.Component {
         <Container>
           <div className={styles.flex}>
             <div className={styles.logo}>
-              <Logo imgName="white.png" size={'130px'} />
+              <Logo imgName="white.png" size={'50px'} />
             </div>
             <div className={styles.menu}>
               <Menu />
