@@ -1,0 +1,7 @@
+:local(.container) {
+  font-size: 21px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+  color: #223254;
+}
