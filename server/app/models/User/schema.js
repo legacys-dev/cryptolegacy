@@ -1,5 +1,6 @@
 import UserProfile from './UserProfile'
 import UserEmail from './UserEmail'
+import Keys from './Keys'
 
 export default {
   _id: {
@@ -26,6 +27,11 @@ export default {
   stripeCustomerId: {
     type: String,
     optional: true,
+    private: true
+  },
+  privateKeys: {
+    optional: true,
+    type: Keys,
     private: true
   }
 }

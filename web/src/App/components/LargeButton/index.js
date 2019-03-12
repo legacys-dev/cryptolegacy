@@ -8,18 +8,20 @@ export default class LargeButton extends React.Component {
     to: PropTypes.string,
     primary: PropTypes.bool,
     loading: PropTypes.bool,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    disabled: PropTypes.any
   }
 
   render() {
-    const {label, to, primary, loading, onClick} = this.props
+    const {label, to, primary, loading, onClick, disabled} = this.props
     return (
       <Button
         style={{width: '100%'}}
         onClick={onClick}
         to={to || null}
         primary={primary}
-        loading={loading}>
+        loading={loading}
+        disabled={disabled}>
         {label}
       </Button>
     )

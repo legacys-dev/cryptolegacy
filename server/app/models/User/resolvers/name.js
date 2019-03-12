@@ -5,6 +5,7 @@ export default resolver({
   async resolve(user, params, viewer) {
     if (!user.profile) return null
     if (!user.profile.firstName) return null
+
     return user.profile.firstName
   }
 })

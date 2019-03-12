@@ -1,65 +1,51 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import Loading from 'orionsoft-parts/lib/components/Loading'
-import Translate from 'App/i18n'
-import withMutation from 'react-apollo-decorators/lib/withMutation'
-import gql from 'graphql-tag'
+import AutoForm from 'App/components/AutoForm'
+import Button from 'App/components/LargeButton'
+import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
-import sleep from 'orionsoft-parts/lib/helpers/sleep'
-import {setSession} from '@orion-js/graphql-client'
+import {withRouter} from 'react-router'
 
-@withMutation(gql`
-  mutation verifyEmail($token: String) {
-    session: verifyEmail(token: $token) {
-      _id
-      userId
-      roles
-      publicKey
-      secretKey
-    }
-  }
-`)
+@withRouter
 export default class VerifyEmail extends React.Component {
   static propTypes = {
-    verifyEmail: PropTypes.func,
-    token: PropTypes.object,
-    onLogin: PropTypes.func
+    history: PropTypes.object,
+    match: PropTypes.object
   }
 
   state = {}
 
-  componentDidMount() {
-    this.verify()
+  @autobind
+  onSuccess(token) {
+    const {history} = this.props
+    history.push(`/password/${token}`)
   }
 
   @autobind
-  async verify() {
-    await sleep(2000)
-    try {
-      const {session} = await this.props.verifyEmail({
-        token: this.props.token
-      })
-      await setSession(session)
-      this.props.onLogin()
-    } catch (error) {
-      if (error.message.includes('Validation Error')) {
-        this.setState({errorMessage: <Translate tr="auth.emailVerficationCodeExpired" />})
-      } else {
-        this.setState({errorMessage: error.message})
-      }
-    }
+  onChange({code}) {
+    this.setState({code})
   }
 
   render() {
-    const {errorMessage} = this.state
-    if (this.state.errorMessage) return <div className={styles.error}>{errorMessage}</div>
+    const {params} = this.props.match
+    const {code} = this.state
     return (
-      <div className={styles.loading}>
-        <Loading size={40} />
-        <p>
-          <Translate tr="auth.weAreVerifyingYourEmail" />
-        </p>
+      <div className={styles.container}>
+        <AutoForm
+          mutation="confirmEmail"
+          onChange={this.onChange}
+          onSuccess={this.onSuccess}
+          ref="form"
+          doc={{token: params.token}}
+          omit={['token']}
+        />
+        <Button
+          label={translate('auth.confirmEmail')}
+          onClick={() => this.refs.form.submit()}
+          disabled={!code}
+          primary
+        />
       </div>
     )
   }

@@ -2,30 +2,29 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
-import {Field} from 'simple-react-form'
-import Text from 'App/components/fields/Text'
 import Button from 'App/components/LargeButton'
-import ObjectField from 'App/components/fields/ObjectField'
 import LoggedIn from '../LoggedIn'
 import {Link} from 'react-router-dom'
 import Title from 'App/components/Auth/Title'
 import Translate from 'App/i18n'
 import autobind from 'autobind-decorator'
 import withUserId from 'App/helpers/auth/withUserId'
-import {setSession} from '@orion-js/graphql-client'
 import translate from 'App/i18n/translate'
+import {withRouter} from 'react-router'
 
 @withUserId
+@withRouter
 export default class Register extends React.Component {
   static propTypes = {
+    history: PropTypes.object,
     onLogin: PropTypes.func,
     userId: PropTypes.string
   }
 
   @autobind
-  async onSuccess(session) {
-    await setSession(session)
-    this.props.onLogin()
+  async onSuccess(token) {
+    const {history} = this.props
+    history.push(`/verify-email/${token}`)
   }
 
   renderLogInLink() {
@@ -56,25 +55,7 @@ export default class Register extends React.Component {
     return (
       <div>
         <Title text="auth.register" />
-        <AutoForm mutation="createUser" ref="form" onSuccess={this.onSuccess}>
-          <Field fieldName="profile" type={ObjectField} style={null}>
-            <div className="row">
-              <div className="col-xs-12 col-sm-6">
-                <Field fieldName="firstName" type={Text} placeholder={translate('auth.name')} />
-              </div>
-              <div className="col-xs-12 col-sm-6">
-                <Field fieldName="lastName" type={Text} placeholder={translate('auth.lastName')} />
-              </div>
-            </div>
-          </Field>
-          <Field fieldName="email" type={Text} fieldType="email" placeholder="Email" />
-          <Field
-            fieldName="password"
-            type={Text}
-            fieldType="password"
-            placeholder={translate('auth.password')}
-          />
-        </AutoForm>
+        <AutoForm mutation="emailRegister" ref="form" onSuccess={this.onSuccess} />
         {this.renderButton()}
         {this.renderLogInLink()}
       </div>

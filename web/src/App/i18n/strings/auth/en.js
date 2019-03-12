@@ -21,5 +21,7 @@ export default {
   emailVerficationCodeExpired: 'The verification code expired',
   weAreVerifyingYourEmail: 'We are verifying your email',
   register: 'Register',
-  forgotPassword: 'Forgot password?'
+  forgotPassword: 'Forgot password?',
+  confirmEmail: 'Confirm email',
+  createPassword: 'Create password'
 }

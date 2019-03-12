@@ -4,12 +4,13 @@ import styles from './styles.css'
 import Logo from 'App/components/Logo'
 import {Route, Switch, withRouter} from 'react-router-dom'
 import Login from './Login'
-import Register from './Register'
-import VerifyEmail from './VerifyEmail'
+import RegisterEmail from './RegisterEmail'
 import Forgot from './Forgot'
 import Reset from './Reset'
 import Enroll from './Enroll'
 import autobind from 'autobind-decorator'
+import VerifyEmail from './VerifyEmail'
+import CreatePassword from './CreatePassword'
 
 @withRouter
 export default class Auth extends React.Component {
@@ -44,11 +45,11 @@ export default class Auth extends React.Component {
             </div>
             <Switch>
               <Route path="/login" render={() => <Login {...otherProps} />} />
-              <Route path="/register" render={() => <Register {...otherProps} />} />
-              <Route
-                path="/verify-email/:token"
-                render={({match}) => <VerifyEmail token={match.params.token} {...otherProps} />}
-              />
+
+              <Route path="/register" render={() => <RegisterEmail {...otherProps} />} />
+              <Route path="/verify-email/:token" render={() => <VerifyEmail {...otherProps} />} />
+              <Route path="/password/:token" render={() => <CreatePassword {...otherProps} />} />
+
               <Route path="/forgot" render={() => <Forgot {...otherProps} />} />
               <Route
                 path="/reset/:token"
