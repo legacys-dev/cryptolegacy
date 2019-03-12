@@ -1,6 +1,6 @@
 import React from 'react'
-import withSession from './withSession'
 import PropTypes from 'prop-types'
+import withSession from './withSession'
 
 export default function(ComposedComponent) {
   class WithUserId extends React.Component {

@@ -1,7 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import authRouteRegex from './Auth/routeRegex'
 import {withRouter} from 'react-router'
-import PropTypes from 'prop-types'
 import DynamicComponent from 'App/components/DynamicComponent'
 import App from './App'
 

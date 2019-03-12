@@ -1,7 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import withUserId from './withUserId'
 import withEnvironmentId from 'App/helpers/environment/withEnvironmentId'
-import PropTypes from 'prop-types'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import gql from 'graphql-tag'
 
