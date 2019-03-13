@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
 import Button from 'App/components/LargeButton'
+import withValidToken from 'App/helpers/registerTokens/withValidToken'
 import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 
 @withRouter
+@withValidToken
 export default class VerifyEmail extends React.Component {
   static propTypes = {
     history: PropTypes.object,

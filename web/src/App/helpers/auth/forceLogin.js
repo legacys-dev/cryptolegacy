@@ -17,7 +17,8 @@ export default function(ComposedComponent) {
         pathname: '/login',
         state: {nextPathname: window.location.pathname}
       })
-      return null
+
+      return <span />
     }
 
     render() {

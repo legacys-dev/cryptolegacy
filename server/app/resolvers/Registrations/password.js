@@ -23,6 +23,7 @@ export default resolver({
     const limitTime = DateTime.local()
       .minus({minutes: 4})
       .toJSDate()
+
     const registration = await Registrations.findOne({
       'confirmPassword.token': token,
       'confirmPassword.date': {$gte: limitTime}

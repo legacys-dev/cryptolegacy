@@ -3,14 +3,16 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
 import Button from 'App/components/LargeButton'
-import {withRouter} from 'react-router'
-import autobind from 'autobind-decorator'
-import translate from 'App/i18n/translate'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
+import withValidToken from 'App/helpers/registerTokens/withValidToken'
 import {setSession} from '@orion-js/graphql-client'
+import translate from 'App/i18n/translate'
+import autobind from 'autobind-decorator'
+import {withRouter} from 'react-router'
 
 @withRouter
+@withValidToken
 export default class CreatePassword extends React.Component {
   static propTypes = {
     history: PropTypes.object,
