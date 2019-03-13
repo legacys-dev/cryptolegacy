@@ -1,0 +1,8 @@
+.field-error {
+  font-size: 14px;
+  margin-top: 0px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: #ffccc1;
+  border: 1px solid #e6b6ac;
+}

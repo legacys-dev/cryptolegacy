@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './styles.css'
 
 export default class Text extends React.Component {
   static propTypes = {
@@ -36,10 +35,10 @@ export default class Text extends React.Component {
     return (
       <div>
         <div className="label">{label}</div>
-        <div className={styles.osInputContainer}>
+        <div className="os-input-container">
           <input
             ref="input"
-            className={styles.osInputText}
+            className="os-input-text"
             type={fieldType}
             value={value || ''}
             placeholder={placeholder}
@@ -48,8 +47,8 @@ export default class Text extends React.Component {
             {...passProps}
           />
         </div>
-        <div className={styles.description}>{description}</div>
-        <div className={styles.osInputError}>{errorMessage}</div>
+        <div className="description">{description}</div>
+        {errorMessage && <div className="field-error">{errorMessage}</div>}
       </div>
     )
   }

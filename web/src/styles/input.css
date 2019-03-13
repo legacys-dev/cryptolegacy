@@ -1,4 +1,30 @@
-.os-input-text {
+.os-input-container {
+  margin-bottom: 10px;
+  display: flex;
   width: 100%;
-  flex: none;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: inherit;
+  border: none;
+  border-radius: 5px;
+}
+
+.os-input-text {
+  flex: 1;
+  box-sizing: border-box;
+  font-size: 1rem;
+  padding: 12px 15px 12px;
+  font-family: inherit;
+  border: 1px solid #c2c2c2;
+  border-radius: 5px;
+  min-width: 30px;
+  outline: none;
+  transition: border 0.2s ease;
+  box-shadow: 0 0 0 1px rgba(220, 220, 220, 0.2);
+}
+
+.os-input-text:focus {
+  border: 2px solid #2684ff;
+  box-shadow: 0 0 0 0.5px rgba(49, 49, 93, 0.03), 0 2px 5px 0 rgba(49, 49, 93, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.08);
 }

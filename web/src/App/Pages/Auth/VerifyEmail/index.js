@@ -40,12 +40,14 @@ export default class VerifyEmail extends React.Component {
           doc={{token: params.token}}
           omit={['token']}
         />
-        <Button
-          label={translate('auth.confirmEmail')}
-          onClick={() => this.refs.form.submit()}
-          disabled={!code}
-          primary
-        />
+        <div className={styles.button}>
+          <Button
+            label={translate('auth.confirmEmail')}
+            onClick={() => this.refs.form.submit()}
+            disabled={!code}
+            primary
+          />
+        </div>
       </div>
     )
   }

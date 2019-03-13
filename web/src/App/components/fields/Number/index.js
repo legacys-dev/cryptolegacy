@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './styles.css'
 import autobind from 'autobind-decorator'
 import isNumber from 'lodash/isNumber'
 
@@ -106,9 +105,9 @@ export default class Number extends React.Component {
     return (
       <div>
         <div className="label">{label}</div>
-        <div className={styles.osInputContainer}>
+        <div className="os-input-container">
           <input
-            className={styles.osInputText}
+            className="os-input-text"
             ref="input"
             value={this.getValue()}
             onChange={this.onChange}
@@ -117,8 +116,8 @@ export default class Number extends React.Component {
             {...passProps}
           />
         </div>
-        <div className={styles.description}>{description}</div>
-        <div className={styles.osInputError}>{errorMessage}</div>
+        <div className="description">{description}</div>
+        {errorMessage && <div className="field-error">{errorMessage}</div>}
       </div>
     )
   }

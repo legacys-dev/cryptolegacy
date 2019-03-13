@@ -27,7 +27,6 @@ export default class SelectField extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     const {onChange} = this.props
-
     if (!isEqual(prevProps.options, this.props.options)) {
       if (!this.getValue()) {
         onChange(null)
@@ -38,7 +37,6 @@ export default class SelectField extends React.Component {
   @autobind
   onChange(params) {
     const {multi, onChange} = this.props
-
     if (multi) {
       onChange(params.map(item => item.value))
     } else {
@@ -52,7 +50,6 @@ export default class SelectField extends React.Component {
 
   getValue() {
     const {value, options, multi} = this.props
-
     if (multi) {
       const selectedOptions = (value || []).map(optionValue =>
         (options || []).find(option => option.value === optionValue)
@@ -91,7 +88,7 @@ export default class SelectField extends React.Component {
           {...passProps}
         />
         <div className="description">{description}</div>
-        <div className="os-input-error">{errorMessage}</div>
+        {errorMessage && <div className="field-error">{errorMessage}</div>}
       </div>
     )
   }

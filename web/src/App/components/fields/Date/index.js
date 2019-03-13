@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './styles.css'
 import Flatpickr from 'react-flatpickr'
 import {Spanish} from 'flatpickr/dist/l10n/es'
 import moment from 'moment'
@@ -16,7 +15,8 @@ export default class Date extends React.Component {
     format: PropTypes.string,
     enableTime: PropTypes.bool,
     locale: PropTypes.any,
-    label: PropTypes.string
+    label: PropTypes.string,
+    description: PropTypes.node
   }
 
   static defaultProps = {
@@ -45,14 +45,14 @@ export default class Date extends React.Component {
   }
 
   render() {
-    const {value, enableTime, label, errorMessage} = this.props
+    const {value, enableTime, label, errorMessage, description} = this.props
 
     return (
       <div>
         <div className="label">{label}</div>
-        <div className={styles.osInputContainer}>
+        <div className="os-input-container">
           <Flatpickr
-            className={styles.osInputText}
+            className="on-input-text"
             value={value}
             placeholder="Seleccionar..."
             onChange={this.onChange}
@@ -60,7 +60,8 @@ export default class Date extends React.Component {
             data-enable-time={enableTime}
           />
         </div>
-        <div className={styles.osInputError}>{errorMessage}</div>
+        <div className="description">{description}</div>
+        {errorMessage && <div className="field-error">{errorMessage}</div>}
       </div>
     )
   }
