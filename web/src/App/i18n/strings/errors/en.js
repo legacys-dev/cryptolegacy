@@ -1,22 +1,28 @@
+const message = (label, placeholder) => {
+  if (label !== 'This field') return label
+  return placeholder
+}
+
 export default {
-  stringTooShort: ({label}) => `${label} is too short`,
-  notInSchema: ({label}) => `${label} is not in the schema`,
-  required: ({label}) => `${label} is required`,
-  unknownFieldType: ({label}) => `${label} is an unkown field type`,
-  notAnArray: ({label}) => `${label} is not an array`,
-  notAnObject: ({label}) => `${label} is not an object`,
-  notAString: ({label}) => `${label} is not a string`,
-  notADate: ({label}) => `${label} is not a date`,
-  notAnInteger: ({label}) => `${label} is not an integer`,
-  notANumber: ({label}) => `${label} is not a number`,
-  notAnId: ({label}) => `${label} is not a valid ID`,
-  stringTooLong: ({label}) => `${label} is too long`,
-  numberTooSmall: ({label}) => `${label} is too small`,
-  numberTooBig: ({label}) => `${label} is too big`,
-  notABoolean: ({label}) => `${label} is not a boolean`,
-  notAnEmail: ({label}) => `${label} is not an email`,
-  notUnique: ({label}) => `${label} is not unique`,
-  notFound: ({label}) => `${label} not found`,
-  invalid: ({label}) => `${label} is not a valid value`,
+  stringTooShort: ({label, placeholder}) => `${message(label, placeholder)} is too short`,
+  notInSchema: ({label, placeholder}) => `${message(label, placeholder)} is not in the schema`,
+  required: ({label, placeholder}) => `${message(label, placeholder)} is required`,
+  unknownFieldType: ({label, placeholder}) =>
+    `${message(label, placeholder)} is an unkown field type`,
+  notAnArray: ({label, placeholder}) => `${message(label, placeholder)} is not an array`,
+  notAnObject: ({label, placeholder}) => `${message(label, placeholder)} is not an object`,
+  notAString: ({label, placeholder}) => `${message(label, placeholder)} is not a string`,
+  notADate: ({label, placeholder}) => `${message(label, placeholder)} is not a date`,
+  notAnInteger: ({label, placeholder}) => `${message(label, placeholder)} is not an integer`,
+  notANumber: ({label, placeholder}) => `${message(label, placeholder)} is not a number`,
+  notAnId: ({label, placeholder}) => `${message(label, placeholder)} is not a valid ID`,
+  stringTooLong: ({label, placeholder}) => `${message(label, placeholder)} is too long`,
+  numberTooSmall: ({label, placeholder}) => `${message(label, placeholder)} is too small`,
+  numberTooBig: ({label, placeholder}) => `${message(label, placeholder)} is too big`,
+  notABoolean: ({label, placeholder}) => `${message(label, placeholder)} is not a boolean`,
+  notAnEmail: ({label, placeholder}) => `${message(label, placeholder)} is not an email`,
+  notUnique: ({label, placeholder}) => `${message(label, placeholder)} is not unique`,
+  notFound: ({label, placeholder}) => `${message(label, placeholder)} not found`,
+  invalid: ({label, placeholder}) => `${message(label, placeholder)} is not a valid value`,
   mustStartWithPlus: 'The phone must start with +'
 }

@@ -23,7 +23,7 @@ export default {
   numberTooBig: ({label, placeholder}) => `${message(label, placeholder)} es un número muy grande`,
   notABoolean: ({label, placeholder}) =>
     `${message(label, placeholder)} no es un valor verdadero o falso`,
-  notAnEmail: ({label, placeholder}) => `${message(label, placeholder)} no es un email`,
+  notAnEmail: ({label, placeholder}) => `${message(label, placeholder)} no es válido`,
   notUnique: ({label, placeholder}) => `${message(label, placeholder)} no es único`,
   notFound: ({label, placeholder}) => `${message(label, placeholder)} no se encontró`,
   mustStartWithPlus: 'El teléfono debe empezar con +'
