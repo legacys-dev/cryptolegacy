@@ -7,7 +7,8 @@ export default resolver({
   params: {
     code: {
       type: String,
-      placeholder: 'Ingesa el código que enviamos a tu email'
+      placeholder: 'Código de 9 dígitos',
+      description: 'Tienes 4 minutos para ingresar el código o tendrás que empezar denuevo'
     },
     token: {
       type: String
@@ -17,15 +18,16 @@ export default resolver({
   mutation: true,
   async resolve({code, token}, viewer) {
     const limitTime = DateTime.local()
-      .minus({minutes: 15})
+      .minus({minutes: 4})
       .toJSDate()
+
     const registration = await Registrations.findOne({
       'confirmEmail.code': code,
       'confirmEmail.token': token,
       'confirmEmail.date': {$gte: limitTime}
     })
 
-    if (!registration) throw new Error('error confirming email')
+    if (!registration) throw new Error('error confirming email. (code error or expired token)')
 
     const updateDate = new Date()
     const confirmPassword = passwordRegistration()

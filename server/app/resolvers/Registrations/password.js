@@ -21,15 +21,15 @@ export default resolver({
   mutation: true,
   async resolve({password, confirmPassword, token}, viewer) {
     const limitTime = DateTime.local()
-      .minus({minutes: 15})
+      .minus({minutes: 4})
       .toJSDate()
     const registration = await Registrations.findOne({
       'confirmPassword.token': token,
       'confirmPassword.date': {$gte: limitTime}
     })
 
-    if (!registration) throw new Error('error creating password')
-    if (password !== confirmPassword) throw new Error('error creating password')
+    if (!registration) throw new Error('error creating password. (expired token)')
+    if (password !== confirmPassword) throw new Error('Error creating password')
 
     const {email, name, lastName} = registration.userData
     const profile = {firstName: name, lastName}
@@ -39,6 +39,14 @@ export default resolver({
 
     const newUser = await Users.findOne({'emails.address': email})
     if (!newUser) throw new Error('Error creating user')
+
+    await Users.update(
+      {_id: newUser._id, 'emails.address': email},
+      {
+        $set: {'emails.$.verified': true},
+        $unset: {'services.emailVerify': ''}
+      }
+    )
 
     return await createSession(newUser)
   }
