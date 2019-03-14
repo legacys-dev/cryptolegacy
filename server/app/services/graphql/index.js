@@ -3,7 +3,7 @@ import {startGraphQL} from '@orion-js/graphql'
 import resolvers from 'app/resolvers'
 
 // Activate Graphql IDE in browser
-let useGraphiql = null
+let useGraphiql = true
 
 startGraphQL({
   resolvers,

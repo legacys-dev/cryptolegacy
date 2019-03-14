@@ -9,13 +9,12 @@ export default resolver({
   returns: String,
   mutation: true,
   async resolve(params, viewer) {
-    const {email} = params
-    const user = await Users.findOne({'email.address': email})
+    const user = await Users.findOne({'email.address': params.email})
     if (user) throw new Error('email already exists')
 
     const dataForRegister = emailRegistration(params)
     await Registrations.updateOne(
-      {'userData.email': email},
+      {'userData.email': params.email},
       {$set: dataForRegister},
       {upsert: true}
     )
