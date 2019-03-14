@@ -1,17 +1,17 @@
 import {RSA} from 'App/helpers/hybridCryptoJs/functions'
 
 export default function() {
-  const BB = new RSA({
-    keySize: 4096,
+  const rsa = new RSA({
+    keySize: 2048,
     rsaStandard: 'RSA-OAEP' // RSA-OAEP - RSAES-PKCS1-V1_5
   })
 
   const keys = {}
 
-  BB.generateKeypair(function(keypair) {
-    keys.publicKey = keypair.publicKey
+  rsa.generateKeypair(function(keypair) {
     keys.privateKey = keypair.privateKey
-  }, 1024)
+    keys.publicKey = keypair.publicKey
+  })
 
   return keys
 }
