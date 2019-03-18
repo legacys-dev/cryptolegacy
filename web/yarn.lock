@@ -1508,9 +1508,9 @@ apollo-client@^2.4.7:
     zen-observable "^0.8.0"
 
 apollo-hooks@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/apollo-hooks/-/apollo-hooks-2.1.2.tgz#1f986e443a493c3017ef8880c83d1aa8b5928652"
-  integrity sha512-y62yOpkM4qeEzptdvCs5KHCQefq5OLfqCbE1IkdBfTTuiVw0aLgdV43MwmqlRfxtv+ijHhDY8zOk6c2An0Q0jw==
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/apollo-hooks/-/apollo-hooks-2.2.1.tgz#5bd8fe249a3e2d1dab8817b724de4cfcbd394c64"
+  integrity sha512-oWQ6wyMP1dstQWvpyHDuqBILAW2E0diQ2RWb1yidr/XZVsWRfMK79hFpDrlYhvv+ZShwRkXEnEMcaO6MM3JM+A==
   dependencies:
     lodash "^4.17.11"
     react-fast-compare "^2.0.2"
@@ -8064,13 +8064,14 @@ original@^1.0.0:
     url-parse "^1.4.3"
 
 orionjs-react-autoform@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/orionjs-react-autoform/-/orionjs-react-autoform-1.1.2.tgz#44770e18deabfe73cc188f28a259c7bc6860290e"
-  integrity sha512-nGNFX5k1seKWCuT3ECChdvhKQM3HxocdT0PsLpf5UKp3miFlIXhMhfKoSoL3PsNOlNiBb3ev7oRV7SgX9JgHzg==
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/orionjs-react-autoform/-/orionjs-react-autoform-1.2.1.tgz#4ecdab15f43af46c9437199c2cfa602bea28f8c1"
+  integrity sha512-OCI6JYkc5fjwb+pKyGlNn89vQctYOau8U9UjzxoH2UlvbcFXFUJjMzkHc34E31h5gDQtPnvVfQl/HtRt23CfFw==
   dependencies:
-    autobind-decorator "^2.1.0"
-    lodash "^4.17.10"
-    prop-types "^15.6.2"
+    "@orion-js/schema" "^0.10.0"
+    autobind-decorator "^2.4.0"
+    lodash "^4.17.11"
+    prop-types "^15.7.2"
 
 orionsoft-parts@^1.15.10:
   version "1.15.11"

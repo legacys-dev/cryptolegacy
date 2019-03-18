@@ -1,13 +1,24 @@
+import S3Data from './S3Data'
+import GlacierData from './GlacierData'
+
 export default {
   _id: {
     type: 'ID'
   },
-  archiveId: {
+  userId: {
     type: 'ID',
     private: true
   },
-  date: {
-    type: Date,
-    defaultValue: () => new Date()
+  s3Data: {
+    type: S3Data,
+    private: true
+  },
+  glacierData: {
+    type: GlacierData,
+    private: true,
+    optional: true
+  },
+  createdAt: {
+    type: Date
   }
 }
