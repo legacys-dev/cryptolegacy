@@ -10,7 +10,7 @@ export default resolver({
   returns: Boolean,
   mutation: true,
   async resolve({fileId}, viewer) {
-    const file = await Files.findOne({_id: fileId, createdBy: viewer.userId})
+    const file = await Files.findOne({userId: viewer.userId, _id: fileId})
     await file.update({$set: {'s3Data.status': 'uploaded'}})
 
     return true

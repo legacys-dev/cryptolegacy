@@ -1,8 +1,8 @@
 export default {
   externalUrl: {
     type: String,
-    optional: true,
-    private: true
+    private: true,
+    optional: true
   },
   key: {
     type: String,
