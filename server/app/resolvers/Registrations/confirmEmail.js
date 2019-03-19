@@ -32,7 +32,7 @@ export default resolver({
     const updateDate = new Date()
     const confirmPassword = passwordRegistration()
 
-    await Registrations.updateOne({_id: registration._id}, {$set: {confirmPassword, updateDate}})
+    await registration.update({$set: {confirmPassword, updateDate}})
 
     return confirmPassword.token
   }
