@@ -3,7 +3,6 @@ import {AWSCredentials} from './credentials'
 
 export default async function(file, vaultName, archiveDescription) {
   const s3Glacier = new AWS.Glacier(AWSCredentials)
-  // const buffer = Buffer.alloc(2.5 * 1024 * 1024) // 2.5MB buffer example
   const params = {
     vaultName,
     archiveDescription,
