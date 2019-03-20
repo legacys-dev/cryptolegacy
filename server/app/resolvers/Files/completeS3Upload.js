@@ -12,7 +12,6 @@ export default resolver({
   async resolve({fileId}, viewer) {
     const file = await Files.findOne({userId: viewer.userId, _id: fileId})
     await file.update({$set: {'s3Data.status': 'uploaded'}})
-
     return true
   }
 })
