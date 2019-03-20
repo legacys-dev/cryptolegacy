@@ -34,6 +34,7 @@
     "react-router-dom": "^4.3.1",
     "react-select": "^2.4.1",
     "react-transition-group": "^2.6.0",
+    "save-file": "^2.3.1",
     "simple-react-form": "^2.2.1"
   },
   "scripts": {
