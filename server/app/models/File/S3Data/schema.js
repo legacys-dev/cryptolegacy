@@ -21,11 +21,12 @@ export default {
   size: {
     type: Number
   },
+  status: {
+    type: String,
+    allowedValues: ['uploading', 'uploaded']
+  },
   updatedAt: {
     type: Date
-  },
-  status: {
-    type: String
   },
   deletedFromS3: {
     type: Boolean,

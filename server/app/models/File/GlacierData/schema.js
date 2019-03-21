@@ -1,15 +1,23 @@
 export default {
   archiveId: {
-    type: String
+    type: String,
+    private: true
   },
   location: {
     type: String
   },
   checksum: {
-    type: String
+    type: String,
+    optional: true
   },
-  uploaded: {
-    type: Boolean,
-    defaultValue: false
+  errorAtUpload: {
+    type: 'blackbox',
+    optional: true
+  },
+  status: {
+    type: String,
+    private: true,
+    defaultValue: 'pending',
+    allowedValues: ['pending', 'uploading', 'uploaded']
   }
 }
