@@ -2,12 +2,13 @@ import AWS from 'aws-sdk'
 import {AWSCredentials} from '../credentials'
 import getPartSize from './getPartSize'
 
-export default async function(file, vaultName, archiveDescription) {
-  let {partSize, numPartsLeft, fileSize} = getPartSize(file.length)
+export default async function({file, vaultName, archiveDescription}) {
+  const fileContent = file.Body
+  let {partSize, numPartsLeft, fileSize} = getPartSize(fileContent.length)
   const params = {vaultName, partSize: partSize.toString()}
 
   const glacier = new AWS.Glacier(AWSCredentials)
-  const treeHash = glacier.computeChecksums(file).treeHash
+  const treeHash = glacier.computeChecksums(fileContent).treeHash
 
   const startTime = new Date()
   const initiateUpload = await new Promise((resolve, reject) => {
@@ -24,7 +25,7 @@ export default async function(file, vaultName, archiveDescription) {
       vaultName: vaultName,
       uploadId: initiateUpload.uploadId,
       range: 'bytes ' + i + '-' + (end - 1) + '/*',
-      body: file.slice(i, end)
+      body: fileContent.slice(i, end)
     }
 
     uploadPart = await new Promise((resolve, reject) => {
@@ -41,7 +42,7 @@ export default async function(file, vaultName, archiveDescription) {
     const doneParams = {
       vaultName: vaultName,
       uploadId: initiateUpload.uploadId,
-      archiveSize: file.length.toString(),
+      archiveSize: fileContent.length.toString(),
       checksum: treeHash
     }
 
