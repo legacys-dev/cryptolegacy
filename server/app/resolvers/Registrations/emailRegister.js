@@ -13,7 +13,7 @@ export default resolver({
     if (user) throw new Error('email already exists')
 
     const dataForRegister = emailRegistration(params)
-    await Registrations.updateOne(
+    await Registrations.update(
       {'userData.email': params.email},
       {$set: dataForRegister},
       {upsert: true}
