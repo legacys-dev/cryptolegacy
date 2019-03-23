@@ -2,6 +2,7 @@ import {generateId} from '@orion-js/app'
 
 export default function({email, name, lastName}) {
   const registerData = {
+    _id: generateId(),
     userData: {
       email,
       name,
