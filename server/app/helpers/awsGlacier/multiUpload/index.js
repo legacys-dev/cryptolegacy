@@ -57,5 +57,8 @@ export default async function({file, vaultName, archiveDescription}) {
     })
   } else throw new Error('error uploading parts')
 
-  return archiveData
+  return {
+    vaultName,
+    ...archiveData
+  }
 }

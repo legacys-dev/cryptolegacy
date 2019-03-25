@@ -1,7 +1,7 @@
 import AWS from 'aws-sdk'
 import {AWSCredentials} from './credentials'
 
-export default async function({bucket, key}) {
+export default async function({key, bucket}) {
   const {accessKeyId, secretAccessKey, region} = AWSCredentials
   const s3 = new AWS.S3({
     accessKeyId,
@@ -12,7 +12,7 @@ export default async function({bucket, key}) {
   const params = {Bucket: bucket, Key: key}
 
   const result = await new Promise((resolve, reject) => {
-    s3.getObject(params, (error, data) => {
+    s3.getObject(params, function(error, data) {
       if (error) reject(error)
       else resolve(data)
     })

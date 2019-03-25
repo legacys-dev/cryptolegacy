@@ -17,5 +17,8 @@ export default async function({file, vaultName, archiveDescription}) {
     })
   })
 
-  return result
+  return {
+    vaultName,
+    ...result
+  }
 }

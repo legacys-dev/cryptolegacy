@@ -46,12 +46,13 @@ export default job({
 
     if (errorAtUpload) return
 
-    const {archiveId, location, checksum} = glacierResult
+    const {archiveId, location, checksum, vaultName} = glacierResult
     await file.update({
       $set: {
         'glacierData.archiveId': archiveId,
         'glacierData.location': location,
         'glacierData.checksum': checksum,
+        'glacierData.vaultName': vaultName,
         'glacierData.status': 'uploaded'
       }
     })

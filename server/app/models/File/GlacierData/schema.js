@@ -10,6 +10,10 @@ export default {
     type: String,
     optional: true
   },
+  vaultName: {
+    type: String,
+    private: true
+  },
   errorAtUpload: {
     type: 'blackbox',
     optional: true
