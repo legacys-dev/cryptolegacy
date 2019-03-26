@@ -11,7 +11,7 @@ export default function(ComposedComponent) {
 
     render() {
       const {params} = this.props.match
-      return <ComposedComponent regisToken={params.token} {...this.props} />
+      return <ComposedComponent registerToken={params.token} {...this.props} />
     }
   }
 

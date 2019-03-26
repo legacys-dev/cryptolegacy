@@ -5,12 +5,12 @@ import isEmpty from 'lodash/isEmpty'
 
 export default resolver({
   params: {
-    regisToken: {
+    registerToken: {
       type: String
     }
   },
   returns: Boolean,
-  async resolve({regisToken}, viewer) {
+  async resolve({registerToken}, viewer) {
     const limitTime = DateTime.local()
       .minus({minutes: 4})
       .toJSDate()
@@ -18,11 +18,11 @@ export default resolver({
     const registrations = await Registrations.find({
       $or: [
         {
-          'confirmEmail.token': regisToken,
+          'confirmEmail.token': registerToken,
           'confirmEmail.date': {$gte: limitTime}
         },
         {
-          'confirmPassword.token': regisToken,
+          'confirmPassword.token': registerToken,
           'confirmPassword.date': {$gte: limitTime}
         }
       ]

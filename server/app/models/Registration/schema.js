@@ -13,7 +13,8 @@ export default {
     type: ConfirmEmail
   },
   confirmPassword: {
-    type: ConfirmPassword
+    type: ConfirmPassword,
+    optional: true
   },
   updateDate: {
     type: Date

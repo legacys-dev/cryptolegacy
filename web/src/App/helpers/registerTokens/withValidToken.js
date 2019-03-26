@@ -7,13 +7,13 @@ import gql from 'graphql-tag'
 export default function(ComposedComponent) {
   @withRegisterToken
   @withGraphQL(gql`
-    query getToken($regisToken: String) {
-      itsValidToken(regisToken: $regisToken)
+    query getToken($registerToken: String) {
+      itsValidToken(registerToken: $registerToken)
     }
   `)
   class withValidToken extends React.Component {
     static propTypes = {
-      regisToken: PropTypes.string,
+      registerToken: PropTypes.string,
       itsValidToken: PropTypes.bool
     }
 

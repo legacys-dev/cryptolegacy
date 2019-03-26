@@ -2,9 +2,8 @@ import {generateId} from '@orion-js/app'
 
 export default function({email, name, lastName}) {
   const registerData = {
-    _id: generateId(17),
     userData: {
-      email,
+      email: email.toLowerCase(),
       name,
       lastName
     },
@@ -17,7 +16,6 @@ export default function({email, name, lastName}) {
         .toString(),
       date: new Date()
     },
-    confirmPassword: null,
     updateDate: new Date()
   }
 

@@ -21,7 +21,7 @@ export default {
   status: {
     type: String,
     private: true,
-    defaultValue: 'pending',
-    allowedValues: ['pending', 'uploading', 'uploaded']
+    allowedValues: ['pending', 'uploading', 'uploaded'],
+    defaultValue: 'pending'
   }
 }

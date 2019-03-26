@@ -5,9 +5,9 @@ import Registrations from './Registrations'
 import Files from './Files'
 
 export default {
+  ...resolversSchemas,
   ...Files,
   ...Registrations,
-  ...resolversSchemas,
   ...Auth,
   ...Users
 }

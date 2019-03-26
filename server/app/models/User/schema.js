@@ -26,12 +26,12 @@ export default {
   },
   stripeCustomerId: {
     type: String,
-    optional: true,
-    private: true
+    private: true,
+    optional: true
   },
   privateKeys: {
-    optional: true,
     type: Keys,
-    private: true
+    private: true,
+    optional: true
   }
 }
