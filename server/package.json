@@ -16,7 +16,7 @@
     "@orion-js/jobs": "^0.10.5",
     "@orion-js/mailing": "^0.10.5",
     "@orion-js/schema": "^0.10.0",
-    "aws-sdk": "^2.427.0",
+    "aws-sdk": "^2.429.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "hybrid-crypto-js": "^0.1.6",
     "luxon": "^1.12.0",
