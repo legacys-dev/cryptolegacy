@@ -4,16 +4,18 @@ import styles from './styles.css'
 import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withMutation from 'react-apollo-decorators/lib/withMutation'
+import sleep from 'orionsoft-parts/lib/helpers/sleep'
+import {Line} from 'App/components/LoadProgress'
+import awsCredentials from './awsCredentials'
+import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import AWS from 'aws-sdk'
 import gql from 'graphql-tag'
 import mime from 'mime-types'
-import fetch from 'unfetch'
 
 @withMutation(gql`
   mutation createS3Upload($name: String, $size: Float, $type: String) {
     result: createS3Upload(name: $name, size: $size, type: $type) {
       fileId
-      url
-      fields
       key
     }
   }
@@ -23,24 +25,29 @@ import fetch from 'unfetch'
     completeS3Upload(fileId: $fileId)
   }
 `)
+@withGraphQL(awsCredentials)
 @withMessage
 export default class Upload extends React.Component {
   static propTypes = {
     showMessage: PropTypes.func,
     createS3Upload: PropTypes.func,
-    completeS3Upload: PropTypes.func
+    completeS3Upload: PropTypes.func,
+    getUploadCredentials: PropTypes.object,
+    onUploadProgressChange: PropTypes.func,
+    progress: PropTypes.number,
+    close: PropTypes.func
   }
 
-  state = {}
+  state = {upload: 0}
 
   @autobind
   async onChange(event) {
     const file = this.refs.input.files[0]
     this.setState({loading: true})
     try {
-      const credentials = await this.requestCredentials(file)
-      await this.uploadFile(credentials, file)
-      await this.complete(credentials.fileId)
+      const {fileId, key} = await this.createUpload(file)
+      await this.uploadFile({key, file})
+      await this.complete({fileId})
       this.setState({loading: false})
     } catch (error) {
       this.props.showMessage(error)
@@ -49,38 +56,42 @@ export default class Upload extends React.Component {
   }
 
   @autobind
-  async requestCredentials(file) {
+  async createUpload(file) {
     const {result} = await this.props.createS3Upload({
       name: file.name,
       size: file.size,
       type: file.type || mime.lookup(file.name) || 'application/octet-stream'
     })
+
     return result
   }
 
-  async uploadFile({fields, key, url}, file) {
-    var formData = new FormData()
-    const data = {
-      ...fields,
-      key: key,
-      file: file
-    }
+  async uploadFile({key, file}) {
+    const {accessKeyId, secretAccessKey, region, bucket} = this.props.getUploadCredentials
+    AWS.config.update({accessKeyId, secretAccessKey, region})
 
-    for (const name in data) {
-      formData.append(name, data[name])
-    }
+    const uploadToS3 = new AWS.S3.ManagedUpload({params: {Key: key, Bucket: bucket, Body: file}})
+    uploadToS3.send() // Start upload
+    if (uploadToS3.failed) return
 
-    await fetch(url, {
-      mode: 'no-cors',
-      method: 'POST',
-      body: formData
-    })
+    let totalProgress = 0
+    while (totalProgress < 100) {
+      const result = await new Promise((resolve, reject) => {
+        uploadToS3.on('httpUploadProgress', function(progress) {
+          totalProgress = Number(((progress.loaded * 100) / progress.total).toFixed(0))
+          resolve(totalProgress)
+        })
+      })
+      this.props.onUploadProgressChange(result)
+    }
   }
 
   @autobind
-  async complete(fileId) {
+  async complete({fileId}) {
     await this.props.completeS3Upload({fileId}, {refetchQueries: ['getFiles']})
     this.props.showMessage('El archivo se cargó correctamente')
+    await sleep(1000)
+    this.props.close()
   }
 
   renderInput() {
@@ -103,7 +114,14 @@ export default class Upload extends React.Component {
 
   renderLoading() {
     if (!this.state.loading) return
-    return <div className={styles.loading}>Subiendo archivo...</div>
+    return (
+      <div>
+        <div className={styles.loading}>Subiendo archivo... ({this.props.progress}%)</div>
+        <div className={styles.progressLine}>
+          <Line percent={this.props.progress} />
+        </div>
+      </div>
+    )
   }
 
   render() {

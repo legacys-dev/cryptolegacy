@@ -12,7 +12,11 @@ export default class Manager extends React.Component {
     onChange: PropTypes.func
   }
 
-  state = {}
+  state = {progress: 0}
+
+  onUploadProgressChange = progress => {
+    this.setState({progress})
+  }
 
   @autobind
   selectFile(fileId) {
@@ -30,7 +34,11 @@ export default class Manager extends React.Component {
               <IconButton tooltip="Cerrar" icon={MdClose} onPress={this.props.close} />
             </div>
           </div>
-          <Upload />
+          <Upload
+            close={this.props.close}
+            progress={this.state.progress}
+            onUploadProgressChange={this.onUploadProgressChange}
+          />
         </div>
       </div>
     )

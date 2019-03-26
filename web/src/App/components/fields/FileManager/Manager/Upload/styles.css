@@ -16,3 +16,7 @@
 :local(.input) {
   display: none;
 }
+
+:local(.progressLine) {
+  padding: 0 20px;
+}

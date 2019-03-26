@@ -4,8 +4,10 @@ import files from './files'
 import file from './file'
 import glacierDownloadRequest from './glacierDownloadRequest'
 import getObject from './getObject'
+import getUploadCredentials from './getUploadCredentials'
 
 export default {
+  getUploadCredentials,
   glacierDownloadRequest,
   file,
   files,
