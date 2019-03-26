@@ -2,6 +2,7 @@ import {generateId} from '@orion-js/app'
 
 export default function({email, name, lastName}) {
   const registerData = {
+    _id: generateId(17),
     userData: {
       email,
       name,
@@ -9,7 +10,7 @@ export default function({email, name, lastName}) {
     },
     confirmEmail: {
       confirm: false,
-      token: `${generateId()}-${generateId()}-${generateId()}`,
+      token: generateId(151),
       code: Math.random()
         .toString()
         .slice(2, 11)

@@ -5,11 +5,11 @@ import Button from 'orionsoft-parts/lib/components/Button'
 export default class LargeButton extends React.Component {
   static propTypes = {
     label: PropTypes.string,
-    to: PropTypes.string,
     primary: PropTypes.bool,
     loading: PropTypes.bool,
     onClick: PropTypes.func,
-    disabled: PropTypes.any
+    disabled: PropTypes.any,
+    to: PropTypes.string
   }
 
   render() {

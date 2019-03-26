@@ -1,11 +1,11 @@
 import emailRegister from './emailRegister'
+import itsValidToken from './itsValidToken'
 import confirmEmail from './confirmEmail'
 import password from './password'
-import itsValidToken from './itsValidToken'
 
 export default {
-  itsValidToken,
-  password,
   confirmEmail,
-  emailRegister
+  emailRegister,
+  itsValidToken,
+  password
 }

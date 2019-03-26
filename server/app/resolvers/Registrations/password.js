@@ -41,13 +41,10 @@ export default resolver({
     const newUser = await Users.findOne({'emails.address': email})
     if (!newUser) throw new Error('Error creating user')
 
-    await Users.update(
-      {_id: newUser._id, 'emails.address': email},
-      {
-        $set: {'emails.$.verified': true},
-        $unset: {'services.emailVerify': ''}
-      }
-    )
+    await newUser.update({
+      $set: {'emails.$.verified': true},
+      $unset: {'services.emailVerify': ''}
+    })
 
     return await createSession(newUser)
   }
