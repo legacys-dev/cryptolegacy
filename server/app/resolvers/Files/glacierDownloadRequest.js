@@ -11,9 +11,9 @@ export default resolver({
   },
   returns: Boolean,
   mutation: true,
+  filePermissions: true,
   async resolve({fileId}, viewer) {
     const file = await Files.findOne(fileId)
-    if (!file) throw new Error('File not found')
 
     const params = {
       archiveId: file.glacierData.archiveId,

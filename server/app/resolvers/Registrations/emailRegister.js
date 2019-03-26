@@ -1,23 +1,19 @@
 import {resolver} from '@orion-js/app'
 import Registrations from 'app/collections/Registrations'
 import UserData from 'app/models/Registration/UserData'
-import Users from 'app/collections/Users'
 import emailRegistration from 'app/helpers/registration/emailRegistration'
 
 export default resolver({
   params: UserData.clone({omitFields: []}),
   returns: String,
   mutation: true,
+  emailRegisterPermission: true,
   async resolve(params, viewer) {
-    const user = await Users.findOne({'email.address': params.email})
-    if (user) throw new Error('email already exists')
-
     const dataForRegister = emailRegistration(params)
-    await Registrations.update(
-      {'userData.email': params.email},
-      {$set: dataForRegister},
-      {upsert: true}
-    )
+    const register = await Registrations.findOne({'userData.email': params.email.toLowerCase()})
+
+    if (register) await register.update({$set: dataForRegister})
+    else await Registrations.insert(dataForRegister)
 
     // send code by mail to confirm
     console.log('digits:', dataForRegister.confirmEmail.code)

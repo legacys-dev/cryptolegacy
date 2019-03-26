@@ -17,6 +17,7 @@ export default resolver({
   },
   returns: CreateS3Upload,
   mutation: true,
+  checkSession: true,
   async resolve(params, viewer) {
     const {bucket, basePath} = AWSCredentials
     const key = `${basePath}/${generateId(151)}`

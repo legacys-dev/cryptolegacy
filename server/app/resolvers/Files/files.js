@@ -11,6 +11,7 @@ export default paginatedResolver({
       optional: true
     }
   },
+  checkSession: true,
   async getCursor({filter}, viewer) {
     const query = {userId: viewer.userId}
 

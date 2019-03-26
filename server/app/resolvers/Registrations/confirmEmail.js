@@ -1,7 +1,6 @@
 import {resolver} from '@orion-js/app'
 import Registrations from 'app/collections/Registrations'
 import passwordRegistration from 'app/helpers/registration/passwordRegistration'
-import {DateTime} from 'luxon'
 
 export default resolver({
   params: {
@@ -16,18 +15,12 @@ export default resolver({
   },
   returns: String,
   mutation: true,
+  confirmEmailPermission: true,
   async resolve({code, token}, viewer) {
-    const limitTime = DateTime.local()
-      .minus({minutes: 4})
-      .toJSDate()
-
     const registration = await Registrations.findOne({
       'confirmEmail.code': code,
-      'confirmEmail.token': token,
-      'confirmEmail.date': {$gte: limitTime}
+      'confirmEmail.token': token
     })
-
-    if (!registration) throw new Error('error confirming email. (code error or expired token)')
 
     const updateDate = new Date()
     const confirmPassword = passwordRegistration()

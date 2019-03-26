@@ -9,6 +9,7 @@ export default resolver({
     }
   },
   returns: File,
+  filePermissions: true,
   async resolve({fileId}, viewer) {
     return await Files.findOne(fileId)
   }
