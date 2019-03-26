@@ -27,6 +27,7 @@ export default resolver({
 
     return {
       status: 'available',
+      name: file.s3DAta.name,
       type: await file.getType(),
       body: result.body.toString('hex')
     }

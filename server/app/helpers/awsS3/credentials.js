@@ -3,7 +3,7 @@ export const AWSCredentials = {
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   region: process.env.AWS_REGION,
   bucket: process.env.AWS_S3_BUCKET,
-  basePath: 'example',
+  basePath: process.env.AWS_S3_BASE_PATH_ID,
   canUpload: function(params, viewer) {
     return true
   }

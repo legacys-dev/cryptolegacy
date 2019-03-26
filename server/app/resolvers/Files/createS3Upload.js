@@ -1,6 +1,6 @@
-import {resolver} from '@orion-js/app'
-import UploadS3Credentials from 'app/models/File/UploadS3Credentials'
-import createUploadCredentials from 'app/helpers/awsS3/createUploadCredentials'
+import {resolver, generateId} from '@orion-js/app'
+import CreateS3Upload from 'app/models/File/CreateS3Upload'
+import {AWSCredentials} from 'app/helpers/awsS3/credentials'
 import Files from 'app/collections/Files'
 
 export default resolver({
@@ -15,11 +15,11 @@ export default resolver({
       type: String
     }
   },
-  returns: UploadS3Credentials,
+  returns: CreateS3Upload,
   mutation: true,
   async resolve(params, viewer) {
-    const result = await createUploadCredentials(params, viewer)
-    const {key, bucket} = result
+    const {bucket, basePath} = AWSCredentials
+    const key = `${basePath}/${generateId(151)}`
 
     const s3Data = {
       key,
@@ -39,7 +39,7 @@ export default resolver({
 
     return {
       fileId,
-      ...result
+      key
     }
   }
 })
