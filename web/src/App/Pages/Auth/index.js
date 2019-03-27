@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import Logo from 'App/components/Logo'
+import Logo from 'App/components/Parts/Logo'
 import {Route, Switch, withRouter} from 'react-router-dom'
 import Login from './Login'
 import RegisterEmail from './RegisterEmail'

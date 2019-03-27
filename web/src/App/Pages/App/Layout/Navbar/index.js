@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.css'
 import Container from 'orionsoft-parts/lib/components/Container'
-import Logo from 'App/components/Logo'
+import Logo from 'App/components/Parts/Logo'
 import Menu from './Menu'
 
 export default class Navbar extends React.Component {
