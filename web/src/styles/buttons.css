@@ -1,3 +1,70 @@
+.os_buttonLink {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.orion_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  min-width: 15px;
+  text-align: center;
+  cursor: pointer;
+  white-space: nowrap;
+  height: 40px;
+  line-height: 40px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: black;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.os_button_container {
+  margin-right: 10px;
+}
+
+.os_button_container:last-child {
+  margin-right: auto;
+}
+
+.orion_button * {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.orion_fullWidth {
+  width: 100%;
+}
+
+.orion_button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.orion_button:active {
+  background-color: #f6f9fc;
+  transform: translateY(1px);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.orion_big {
+  height: 45px;
+  line-height: 45px;
+  padding: 0 14px;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+}
+
 .orion_button {
   padding: 25px 40px;
 }
@@ -5,11 +72,39 @@
 .orion_button,
 .orion_button:active,
 .orion_button:hover {
+  margin: 10px 0;
   text-transform: none;
 }
 
 .orion_primary,
 .orion_primary:active,
 .orion_primary:hover {
+  color: #fff;
   background-color: #07f;
+}
+
+.orion_danger,
+.orion_danger:active,
+.orion_danger:hover {
+  color: #fff;
+  background-color: #f00;
+}
+
+.orion_disabled,
+.orion_disalbed:active,
+.orion_disabled:hover {
+  color: #888888;
+  background-color: #d9d9d9;
+  box-shadow: none;
+  transform: none;
+  cursor: default;
+}
+
+.orion_loading,
+.orion_loading:hover {
+  color: #888888;
+  background-color: #f8f8f8;
+  box-shadow: none;
+  transform: none;
+  cursor: default;
 }
