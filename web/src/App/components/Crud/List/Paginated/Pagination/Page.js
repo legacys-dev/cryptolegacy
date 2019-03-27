@@ -1,7 +1,6 @@
 import React from 'react'
 import formatNumber from '../formatNumber'
-import BeforeIcon from 'react-icons/lib/md/chevron-left'
-import NextIcon from 'react-icons/lib/md/chevron-right'
+import {MdChevronLeft, MdChevronRight} from 'react-icons/md'
 import autobind from 'autobind-decorator'
 import PropTypes from 'prop-types'
 
@@ -14,7 +13,7 @@ export default class Page extends React.Component {
 
   state = {page: 1}
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.page !== this.props.page) {
       this.setState({page: nextProps.page})
     }
@@ -43,8 +42,9 @@ export default class Page extends React.Component {
               : 'paginated-pagination-page-icon-disabled'
           }
           onClick={() =>
-            this.props.result.hasPreviousPage && this.props.setPage(this.props.page - 1)}>
-          <BeforeIcon size={25} />
+            this.props.result.hasPreviousPage && this.props.setPage(this.props.page - 1)
+          }>
+          <MdChevronLeft size={25} />
         </div>
         <div className="paginated-pagination-page-input-container">
           page{' '}
@@ -65,7 +65,7 @@ export default class Page extends React.Component {
               : 'paginated-pagination-page-icon-disabled'
           }
           onClick={() => this.props.result.hasNextPage && this.props.setPage(this.props.page + 1)}>
-          <NextIcon size={25} />
+          <MdChevronRight size={25} />
         </div>
       </div>
     )

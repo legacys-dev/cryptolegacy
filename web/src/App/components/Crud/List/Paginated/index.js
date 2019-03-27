@@ -123,7 +123,7 @@ export default class Fetch extends React.Component {
     return this.refs.child.refs.child.queryObservable.refetch()
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const newVariables = this.getVariables(nextProps)
     const currentVariables = this.getVariables(this.props)
     if (!isEqual(newVariables, currentVariables) && this.state.page !== 1) {
