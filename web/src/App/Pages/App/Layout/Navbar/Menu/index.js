@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import {MdVpnKey, MdExitToApp, MdMenu, MdSettingsApplications} from 'react-icons/md'
+import {MdVpnKey, MdExitToApp, MdMenu, MdBuild, MdWork} from 'react-icons/md'
 import autobind from 'autobind-decorator'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import gql from 'graphql-tag'
@@ -67,11 +67,21 @@ export default class User extends React.Component {
     this.props.history.push('/login')
   }
 
+  renderAdmin() {
+    const {me} = this.props
+    if (!me || !me.roles || !me.roles.includes('admin')) return
+    return (
+      <Link to="/admin">
+        {this.renderOption(styles.options, <MdWork size={20} />, 'Admin panel')}
+      </Link>
+    )
+  }
+
   renderOption(style, icon, title) {
     return (
       <div className={style}>
         <div>{icon}</div>
-        <div>{title}</div>
+        <div style={{width: '150px'}}>{title}</div>
       </div>
     )
   }
@@ -86,8 +96,9 @@ export default class User extends React.Component {
           <div className={styles.email}>{this.props.me.email}</div>
         </Link>
         <Link to="/settings">
-          {this.renderOption(styles.options, <MdSettingsApplications size={25} />, 'Mi cuenta')}
+          {this.renderOption(styles.options, <MdBuild size={20} />, 'Mi cuenta')}
         </Link>
+        {this.renderAdmin()}
         <div className={styles.logoutIcons}>
           <a onClick={this.logout} className={styles.menuLink}>
             <MdExitToApp size={25} />

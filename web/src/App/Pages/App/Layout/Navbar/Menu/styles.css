@@ -69,7 +69,7 @@
 
 :local(.options) {
   color: #454545;
-  max-width: 100px;
+  height: 25px;
   display: flex;
   justify-content: space-between;
 }
