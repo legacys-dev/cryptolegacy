@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {lazy} from 'react'
 import PropTypes from 'prop-types'
 import authRouteRegex from './Auth/routeRegex'
 import {withRouter} from 'react-router'
-import DynamicComponent from 'App/components/DynamicComponent'
+import SuspenseLoading from 'App/components/Parts/SuspenseLoading'
 import App from './App'
 
 @withRouter
@@ -11,11 +11,23 @@ export default class Pages extends React.Component {
     location: PropTypes.object
   }
 
-  render() {
+  renderComponents() {
+    const {pathname} = this.props.location
+
     if (authRouteRegex.test(this.props.location.pathname)) {
-      const Component = DynamicComponent(() => import('./Auth'))
-      return <Component />
+      const Auth = lazy(() => import('./Auth'))
+      return <Auth />
     }
+
+    if (pathname.startsWith('/admin')) {
+      const Admin = lazy(() => import('./Admin'))
+      return <Admin />
+    }
+
     return <App />
+  }
+
+  render() {
+    return <SuspenseLoading height="100vh">{this.renderComponents()}</SuspenseLoading>
   }
 }
