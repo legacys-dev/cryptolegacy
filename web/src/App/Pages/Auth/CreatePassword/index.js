@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
-import Button from 'App/components/LargeButton'
+import Button from 'App/components/Parts/Button'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 import withValidToken from 'App/helpers/registerTokens/withValidToken'
 import {setSession} from '@orion-js/graphql-client'
-import translate from 'App/i18n/translate'
+import Translate from 'App/i18n'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 
@@ -58,11 +58,12 @@ export default class CreatePassword extends React.Component {
           />
         </AutoForm>
         <Button
-          label={translate('auth.createPassword')}
-          onClick={() => this.refs.form.submit()}
-          disabled={!password || !confirmPassword}
           primary
-        />
+          fullWidth
+          onClick={() => this.refs.form.submit()}
+          disabled={!password || !confirmPassword}>
+          <Translate tr="auth.createPassword" />
+        </Button>
       </div>
     )
   }

@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
-import Button from 'App/components/LargeButton'
+import Button from 'App/components/Parts/Button'
 import withValidToken from 'App/helpers/registerTokens/withValidToken'
-import translate from 'App/i18n/translate'
+import Translate from 'App/i18n'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 
@@ -43,12 +43,9 @@ export default class VerifyEmail extends React.Component {
           omit={['token']}
         />
         <div className={styles.button}>
-          <Button
-            label={translate('auth.confirmEmail')}
-            onClick={() => this.refs.form.submit()}
-            disabled={!code}
-            primary
-          />
+          <Button primary fullWidth onClick={() => this.refs.form.submit()} disabled={!code}>
+            <Translate tr="auth.confirmEmail" />
+          </Button>
         </div>
       </div>
     )

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './styles.css'
-import Button from 'orionsoft-parts/lib/components/Button'
+import Button from 'App/components/Parts/Button'
 import logout from 'App/helpers/auth/logout'
 import {withRouter} from 'react-router'
 import PropTypes from 'prop-types'

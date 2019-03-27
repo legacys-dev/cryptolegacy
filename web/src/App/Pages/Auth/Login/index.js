@@ -4,7 +4,7 @@ import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
-import Button from 'App/components/LargeButton'
+import Button from 'App/components/Parts/Button'
 import Title from 'App/components/Auth/Title'
 import LoggedIn from '../LoggedIn'
 import {Link} from 'react-router-dom'
@@ -42,13 +42,15 @@ export default class Login extends React.Component {
     return (
       <div className={styles.buttons}>
         <Button
-          onClick={() => this.refs.form.submit()}
-          label={translate('auth.login')}
           primary
-          loading={this.props.loading}
-        />
-        <div name="divider" style={{height: '20px'}} />
-        <Button primary={false} label={translate('auth.createAnAccount')} to="/register" />
+          fullWidth
+          onClick={() => this.refs.form.submit()}
+          loading={this.props.loading}>
+          <Translate tr="auth.login" />
+        </Button>
+        <Button fullWidth to="/register">
+          <Translate tr="auth.createAnAccount" />
+        </Button>
       </div>
     )
   }

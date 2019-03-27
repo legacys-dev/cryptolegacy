@@ -1,7 +1,7 @@
 import React from 'react'
 import withModal from 'orionsoft-parts/lib/decorators/withModal'
 import PropTypes from 'prop-types'
-import Button from 'orionsoft-parts/lib/components/Button'
+import Button from 'App/components/Parts/Button'
 import autobind from 'autobind-decorator'
 import AutoForm from 'App/components/AutoForm'
 

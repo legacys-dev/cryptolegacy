@@ -2,14 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
-import Button from 'App/components/LargeButton'
+import Button from 'App/components/Parts/Button'
 import LoggedIn from '../LoggedIn'
 import {Link} from 'react-router-dom'
 import Title from 'App/components/Auth/Title'
 import Translate from 'App/i18n'
 import autobind from 'autobind-decorator'
 import withUserId from 'App/helpers/auth/withUserId'
-import translate from 'App/i18n/translate'
 import {withRouter} from 'react-router'
 
 @withUserId
@@ -41,11 +40,9 @@ export default class Register extends React.Component {
   renderButton() {
     return (
       <div className={styles.button}>
-        <Button
-          label={translate('auth.createAccount')}
-          onClick={() => this.refs.form.submit()}
-          primary
-        />
+        <Button primary fullWidth onClick={() => this.refs.form.submit()}>
+          <Translate tr="auth.createAccount" />
+        </Button>
       </div>
     )
   }

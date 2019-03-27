@@ -4,7 +4,7 @@ import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
-import Button from 'App/components/LargeButton'
+import Button from 'App/components/Parts/Button'
 import Title from 'App/components/Auth/Title'
 import Translate from 'App/i18n'
 import LoggedIn from '../LoggedIn'
@@ -72,11 +72,9 @@ export default class ResetPassword extends React.Component {
   renderButton() {
     return (
       <div className={styles.button}>
-        <Button
-          label={translate('auth.resetPassword')}
-          onClick={() => this.refs.form.submit()}
-          primary
-        />
+        <Button onClick={() => this.refs.form.submit()} primary>
+          <Translate tr="auth.resetPassword" />
+        </Button>
       </div>
     )
   }

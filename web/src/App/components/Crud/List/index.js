@@ -5,8 +5,8 @@ import {withRouter} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import autobind from 'autobind-decorator'
 import WithParams from './WithParams'
-import Button from 'orionsoft-parts/lib/components/Button'
-import CreateIcon from 'react-icons/lib/md/add'
+import Button from 'App/components/Parts/Button'
+import {MdAdd} from 'react-icons/md'
 
 @withRouter
 export default class List extends React.Component {
@@ -51,7 +51,7 @@ export default class List extends React.Component {
     return (
       <div>
         <Button
-          icon={CreateIcon}
+          icon={MdAdd}
           onClick={() => this.props.history.push(`${this.props.basePath}/create`)}>
           Create {this.props.singular}
         </Button>
