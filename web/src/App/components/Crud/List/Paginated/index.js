@@ -5,7 +5,6 @@ import getQueryFields from './getQueryFields'
 import {getArguments, getParams} from './getParams'
 import Head from './Head'
 import autobind from 'autobind-decorator'
-import isEqual from 'lodash/isEqual'
 import PropTypes from 'prop-types'
 import LoadingIndicator from './LoadingIndicator'
 import {Query} from 'react-apollo'
@@ -121,14 +120,6 @@ export default class Fetch extends React.Component {
   // public reload function
   async reload() {
     return this.refs.child.refs.child.queryObservable.refetch()
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const newVariables = this.getVariables(nextProps)
-    const currentVariables = this.getVariables(this.props)
-    if (!isEqual(newVariables, currentVariables) && this.state.page !== 1) {
-      this.setState({page: 1})
-    }
   }
 
   getQuery(props) {

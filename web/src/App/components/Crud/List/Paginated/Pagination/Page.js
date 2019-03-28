@@ -13,10 +13,11 @@ export default class Page extends React.Component {
 
   state = {page: 1}
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.page !== this.props.page) {
-      this.setState({page: nextProps.page})
+  static getDerivedStateFromProps(props, nextProps) {
+    if (nextProps.page !== props.page) {
+      return {page: nextProps.page}
     }
+    return null
   }
 
   @autobind

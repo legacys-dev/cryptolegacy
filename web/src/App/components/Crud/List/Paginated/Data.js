@@ -38,6 +38,7 @@ export default class Data extends React.Component {
     ) {
       return {props}
     }
+    return null
   }
 
   renderLoading() {
