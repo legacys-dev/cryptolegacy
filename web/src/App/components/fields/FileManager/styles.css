@@ -1,6 +1,9 @@
 :local(.container) {
 }
 
+:local(.upload) {
+}
+
 :local(.error) {
   margin: 10px 0;
   color: #ff3030;

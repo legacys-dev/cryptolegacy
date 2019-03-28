@@ -2,7 +2,9 @@ import React from 'react'
 import styles from './styles.css'
 import PropTypes from 'prop-types'
 import Manager from './Manager'
-import Value from './Value'
+import {MdFileUpload} from 'react-icons/md/'
+import Button from 'App/components/Parts/Button'
+import sleep from 'orionsoft-parts/lib/helpers/sleep'
 
 export default class FileManager extends React.Component {
   static propTypes = {
@@ -14,8 +16,24 @@ export default class FileManager extends React.Component {
 
   state = {open: false}
 
+  async click() {
+    this.setState({loading: true})
+    await sleep(2000)
+    this.setState({loading: false})
+  }
+
   renderValue() {
-    return <Value {...this.props} openManager={() => this.setState({open: true})} />
+    return (
+      <div className={styles.upload}>
+        <Button
+          fullWidth
+          icon={MdFileUpload}
+          onClick={() => this.click()}
+          loading={this.state.loading}>
+          Start upload
+        </Button>
+      </div>
+    )
   }
 
   renderManager() {
