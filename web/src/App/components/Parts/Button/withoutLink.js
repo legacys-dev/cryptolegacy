@@ -70,7 +70,6 @@ export default class Button extends React.Component {
     } else if (this.props.loading || this.state.loading) {
       classes.push('orion_loading')
     } else if (this.props.danger) {
-      console.log('danger')
       classes.push('orion_danger')
     } else if (this.props.primary) {
       classes.push('orion_primary')

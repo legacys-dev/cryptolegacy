@@ -8,7 +8,7 @@ export default resolver({
       type: String,
       label: 'Nombre de la bóveda en glacier',
       description:
-        'El nombre es de uso local, la bóveda en glacier se crea con un nombre encryptado'
+        'El nombre es de uso local, la bóveda en glacier se crea con un nombre encryptado.'
     }
   },
   returns: Boolean,
@@ -17,7 +17,7 @@ export default resolver({
   requireAdminRole: true,
   checkVaultName: true,
   async resolve({name}, viewer) {
-    const vaultName = generateId(29)
+    const vaultName = generateId(19)
 
     let hasError
     try {

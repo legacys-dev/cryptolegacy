@@ -7,9 +7,9 @@ import Vaults from './Vaults'
 
 export default {
   ...Vaults,
-  ...resolversSchemas,
   ...Files,
   ...Registrations,
   ...Auth,
-  ...Users
+  ...Users,
+  ...resolversSchemas
 }

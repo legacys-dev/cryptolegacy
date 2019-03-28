@@ -8,6 +8,7 @@ import Button from 'orionsoft-parts/lib/components/Button'
 import Container from 'orionsoft-parts/lib/components/Container'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import {withRouter} from 'react-router'
+import autobind from 'autobind-decorator'
 
 @withMessage
 @withRouter
@@ -17,17 +18,20 @@ export default class Create extends React.Component {
     showMessage: PropTypes.func
   }
 
+  @autobind
+  onSuccess() {
+    const {showMessage, history} = this.props
+    showMessage('Bóveda creada con éxito')
+    history.push(`/admin/vaults`)
+  }
+
   render() {
     return (
       <div className={styles.container}>
         <Breadcrumbs past={{'/admin/vaults': 'Bóvedas'}}>Nueva bóveda</Breadcrumbs>
         <Container>
           <Section top title="Crear bóveda" description="Crea una nueva bóveda">
-            <AutoForm
-              mutation="createVault"
-              ref="form"
-              onSuccess={company => this.props.history.push(`/admin/vaults/${company._id}`)}
-            />
+            <AutoForm mutation="createVault" ref="form" onSuccess={this.onSuccess} />
             <br />
             <Button primary fullWidth onClick={() => this.refs.form.submit()}>
               Crear
