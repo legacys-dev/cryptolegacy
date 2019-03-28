@@ -89,8 +89,7 @@ export default class Button extends React.Component {
     }
 
     if (this.props.icon) {
-      const {fullWidth} = this.props
-      const iconStyle = fullWidth ? null : {display: 'flex', alignItems: 'center'}
+      const iconStyle = {display: 'flex', alignItems: 'center'}
       return (
         <span style={iconStyle}>
           {this.renderIcon()}

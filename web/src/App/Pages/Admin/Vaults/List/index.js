@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import Button from 'orionsoft-parts/lib/components/Button'
+import Button from 'App/components/Parts/Button'
 import PaginatedList from 'App/components/Crud/List'
-import {withRouter} from 'react-router'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import Container from 'orionsoft-parts/lib/components/Container'
+import {withRouter} from 'react-router'
 import fields from './fields'
 
 @withRouter

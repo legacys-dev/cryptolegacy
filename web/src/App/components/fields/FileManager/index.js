@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import Manager from './Manager'
 import {MdFileUpload} from 'react-icons/md/'
 import Button from 'App/components/Parts/Button'
-import sleep from 'orionsoft-parts/lib/helpers/sleep'
 
 export default class FileManager extends React.Component {
   static propTypes = {
@@ -16,19 +15,13 @@ export default class FileManager extends React.Component {
 
   state = {open: false}
 
-  async click() {
-    this.setState({loading: true})
-    await sleep(2000)
-    this.setState({loading: false})
-  }
-
   renderValue() {
     return (
       <div className={styles.upload}>
         <Button
-          fullWidth
+          primary
           icon={MdFileUpload}
-          onClick={() => this.click()}
+          onClick={() => this.setState({open: true})}
           loading={this.state.loading}>
           Start upload
         </Button>

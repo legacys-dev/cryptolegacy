@@ -8,6 +8,7 @@ import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import {Line} from 'App/components/Parts/LoadProgress'
 import awsCredentials from './awsCredentials'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import {MdCloudUpload} from 'react-icons/md'
 import AWS from 'aws-sdk'
 import gql from 'graphql-tag'
 import mime from 'mime-types'
@@ -78,7 +79,7 @@ export default class Upload extends React.Component {
     while (totalProgress < 100) {
       const result = await new Promise((resolve, reject) => {
         uploadToS3.on('httpUploadProgress', function(progress) {
-          totalProgress = Number(((progress.loaded * 100) / progress.total).toFixed(0))
+          totalProgress = Number(((progress.loaded * 100) / progress.total).toFixed(3))
           resolve(totalProgress)
         })
       })
@@ -97,9 +98,10 @@ export default class Upload extends React.Component {
   renderInput() {
     if (this.state.loading) return
     return (
-      <div>
+      <div className={styles.inputContainer}>
         <label htmlFor="file-upload" className={styles.label}>
-          Subir un archivo...
+          <div>Click para subir un archivo</div>
+          <MdCloudUpload size={25} />
         </label>
         <input
           ref="input"
@@ -116,7 +118,7 @@ export default class Upload extends React.Component {
     if (!this.state.loading) return
     return (
       <div>
-        <div className={styles.loading}>Subiendo archivo... ({this.props.progress}%)</div>
+        <div className={styles.loading}>Subiendo archivo ({this.props.progress}%)</div>
         <div className={styles.progressLine}>
           <Line percent={this.props.progress} />
         </div>

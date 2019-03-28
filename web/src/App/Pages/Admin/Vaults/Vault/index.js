@@ -4,11 +4,11 @@ import styles from './styles.css'
 import Section from 'App/components/Section'
 import AutoForm from 'App/components/AutoForm'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
-import Button from 'orionsoft-parts/lib/components/Button'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import gql from 'graphql-tag'
 import Container from 'orionsoft-parts/lib/components/Container'
 import Breadcrumbs from 'App/components/Breadcrumbs'
+import Button from 'App/components/Parts/Button'
+import gql from 'graphql-tag'
 
 @withGraphQL(gql`
   query vault($vaultId: ID) {

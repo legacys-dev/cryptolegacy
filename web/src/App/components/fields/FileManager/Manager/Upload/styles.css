@@ -1,16 +1,30 @@
 :local(.container) {
 }
 
+:local(.inputContainer) {
+  margin: 10px 0;
+}
+
 :local(.loading) {
-  background: #eee;
-  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  vertical-align: middle;
+  color: #000;
+  margin: 0 20px;
 }
 
 :local(.label) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  vertical-align: middle;
   cursor: pointer;
-  display: block;
-  background: #eee;
-  padding: 20px;
+  padding: 10px;
+  background-color: #07f;
+  color: #fff;
+  margin: 0 20px;
+  border-radius: 6px;
 }
 
 :local(.input) {
@@ -18,5 +32,6 @@
 }
 
 :local(.progressLine) {
+  margin-top: 20px;
   padding: 0 20px;
 }
