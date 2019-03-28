@@ -9,6 +9,7 @@ export default resolver({
   },
   returns: Boolean,
   mutation: true,
+  requireLogin: true,
   filePermissions: true,
   async resolve({fileId}, viewer) {
     const file = await Files.findOne({userId: viewer.userId, _id: fileId})

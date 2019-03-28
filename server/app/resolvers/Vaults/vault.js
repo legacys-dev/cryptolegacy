@@ -9,6 +9,8 @@ export default resolver({
     }
   },
   returns: Vault,
+  requireLogin: true,
+  requireAdminRole: true,
   async resolve({vaultId}, viewer) {
     return await Vaults.findOne(vaultId)
   }

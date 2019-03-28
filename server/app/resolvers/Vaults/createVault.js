@@ -13,8 +13,11 @@ export default resolver({
   },
   returns: Boolean,
   mutation: true,
+  requireLogin: true,
+  requireAdminRole: true,
+  checkVaultName: true,
   async resolve({name}, viewer) {
-    const vaultName = generateId(27)
+    const vaultName = generateId(29)
 
     let hasError
     try {

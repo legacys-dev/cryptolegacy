@@ -14,11 +14,15 @@ export default resolver({
     },
     useAsDefault: {
       type: Boolean,
-      label: 'Que esta bóveda guarde los archivos de la app'
+      label: 'Que esta bóveda guarde los archivos de la app',
+      optional: true
     }
   },
   returns: Vault,
   mutation: true,
+  requireLogin: true,
+  requireAdminRole: true,
+  checkVaultName: true,
   async resolve({vaultId, name, useAsDefault}, viewer) {
     const vault = await Vaults.findOne(vaultId)
 

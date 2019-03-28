@@ -11,6 +11,8 @@ export default paginatedResolver({
       optional: true
     }
   },
+  requireLogin: true,
+  requireAdminRole: true,
   async getCursor({filter}, viewer) {
     const query = {}
 
