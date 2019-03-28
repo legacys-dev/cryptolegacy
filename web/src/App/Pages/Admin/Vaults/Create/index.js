@@ -29,7 +29,7 @@ export default class Create extends React.Component {
               onSuccess={company => this.props.history.push(`/admin/vaults/${company._id}`)}
             />
             <br />
-            <Button onClick={() => this.refs.form.submit()} primary>
+            <Button primary fullWidth onClick={() => this.refs.form.submit()}>
               Crear
             </Button>
           </Section>

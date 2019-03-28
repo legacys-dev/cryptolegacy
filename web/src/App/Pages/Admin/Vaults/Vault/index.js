@@ -28,6 +28,7 @@ export default class Vault extends React.Component {
 
   render() {
     const {vault} = this.props
+    const {name, useAsDefault} = vault
     return (
       <div className={styles.container}>
         <Breadcrumbs past={{'/admin/vaults': 'Bóvedas'}}>{vault.name}</Breadcrumbs>
@@ -36,12 +37,12 @@ export default class Vault extends React.Component {
             <AutoForm
               mutation="updateVault"
               ref="form"
-              doc={{vaultId: vault._id, vault}}
+              doc={{vaultId: vault._id, name, useAsDefault}}
               omit="vaultId"
               onSuccess={user => this.props.showMessage('Bóveda guardada correctamente')}
             />
             <br />
-            <Button onClick={() => this.refs.form.submit()} primary>
+            <Button primary fullWidth onClick={() => this.refs.form.submit()}>
               Guardar
             </Button>
           </Section>

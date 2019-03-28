@@ -6,16 +6,13 @@ import PaginatedList from 'App/components/Crud/List'
 import {withRouter} from 'react-router'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import Container from 'orionsoft-parts/lib/components/Container'
+import fields from './fields'
 
 @withRouter
 export default class List extends React.Component {
   static propTypes = {
     history: PropTypes.object,
     match: PropTypes.object
-  }
-
-  getFields() {
-    return [{name: '_id', title: 'ID'}, {name: 'name', title: 'Nombre de la bóveda'}]
   }
 
   render() {
@@ -34,7 +31,7 @@ export default class List extends React.Component {
             title="Bóvedas de Glacier"
             name="vaults"
             canUpdate
-            fields={this.getFields()}
+            fields={fields}
             allowSearch
             basePath="/admin/vaults"
           />

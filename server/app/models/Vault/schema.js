@@ -11,6 +11,7 @@ export default {
   },
   useAsDefault: {
     type: Boolean,
+    optional: true,
     defaultValue: false
   },
   createdAt: {
