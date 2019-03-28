@@ -7,6 +7,6 @@ export default resolver({
   returns: User,
   mutation: false,
   async resolve(params, viewer) {
-    return await Users.findOne(viewer.userId)
+    return await Users.findOne({_id: viewer.userId})
   }
 })
