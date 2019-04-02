@@ -1,6 +1,6 @@
 export default {
   archiveId: {
-    type: String,
+    type: 'ID',
     private: true
   },
   location: {
