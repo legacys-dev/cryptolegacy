@@ -1,7 +1,7 @@
 import B2 from 'backblaze-b2'
 import {B2Credentials} from './credentials'
 
-export default async function({file}) {
+export default async function({fileId, fileName}) {
   const {accountId, applicationKey} = B2Credentials
   const b2 = new B2({
     accountId,
@@ -10,12 +10,11 @@ export default async function({file}) {
 
   await b2.authorize()
 
-  const {fileId, name} = file
   let result, hasError
   try {
     result = await b2.deleteFileVersion({
       fileId,
-      fileName: name
+      fileName
     })
   } catch (error) {
     hasError = !!error

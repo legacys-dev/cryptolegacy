@@ -3,7 +3,7 @@ import {B2Credentials} from '../credentials'
 import getPartSize from './getPartSize'
 import crypto from 'crypto'
 
-export default async function({file}) {
+export default async function({file, fileName}) {
   const {accountId, applicationKey, bucketId} = B2Credentials
   const b2 = new B2({
     accountId,
@@ -11,17 +11,14 @@ export default async function({file}) {
   })
 
   await b2.authorize()
-
-  const fileContent = file.Body
-  const fileName = file.name
   const start = await b2.startLargeFile({bucketId, fileName})
   const {fileId} = start.data
-  let {partSize, fileSize} = getPartSize(fileContent.length)
+  let {partSize, fileSize} = getPartSize(file.Body.length)
 
   let partNumber = 1
   const fileParts = []
-  for (let i = 0; i < fileSize; i += partSize) {
-    const end = Math.min(i + partSize, fileSize)
+  for (let start = 0; start < fileSize; start += partSize) {
+    const end = Math.min(start + partSize, fileSize)
     const uploadPartResponse = await b2.getUploadPartUrl({fileId})
     const {uploadUrl, authorizationToken} = uploadPartResponse.data
 
@@ -30,12 +27,12 @@ export default async function({file}) {
         partNumber,
         uploadUrl,
         uploadAuthToken: authorizationToken,
-        data: fileContent.slice(i, end)
+        data: file.Body.slice(start, end)
       })
     } catch (error) {
       console.log('Error:', error)
     }
-    fileParts.push(fileContent.slice(i, end))
+    fileParts.push(file.Body.slice(start, end))
     partNumber++
   }
 
@@ -57,5 +54,5 @@ export default async function({file}) {
 
   if (hasError) throw new Error('Error finishing large file upload')
 
-  return result
+  return result.data
 }

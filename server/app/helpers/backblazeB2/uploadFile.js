@@ -2,7 +2,7 @@ import B2 from 'backblaze-b2'
 import {B2Credentials} from './credentials'
 import crypto from 'crypto'
 
-export default async function({file}) {
+export default async function({file, fileName, type}) {
   const {accountId, applicationKey, bucketId} = B2Credentials
   const b2 = new B2({
     accountId,
@@ -16,21 +16,20 @@ export default async function({file}) {
   })
 
   const {authorizationToken, uploadUrl} = responseData.data
-  const {body, name, type} = file
   const hash = crypto
     .createHash('sha1')
-    .update(file.body)
+    .update(file.Body)
     .digest('hex')
 
   let result, hasError
   try {
     result = await b2.uploadFile({
       uploadUrl,
-      fileName: name,
       hash,
+      fileName,
       uploadAuthToken: authorizationToken,
       mime: type,
-      data: body
+      data: file.Body
     })
   } catch (error) {
     hasError = !!error
@@ -38,5 +37,5 @@ export default async function({file}) {
 
   if (hasError) throw new Error('Error uploading archive ', name)
 
-  return result
+  return result.data
 }

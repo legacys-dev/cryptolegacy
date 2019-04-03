@@ -27,7 +27,8 @@ export default {
   },
   storage: {
     type: String,
-    allowedValues: ['b2', 'glacier']
+    allowedValues: ['b2', 'glacier'],
+    private: true
   },
   createdAt: {
     type: Date
