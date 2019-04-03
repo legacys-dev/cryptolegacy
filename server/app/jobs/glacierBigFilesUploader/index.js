@@ -12,10 +12,11 @@ export default job({
     const limitSize = 1024 * 1024 * 1000 // 1GB
 
     const oldestFile = await Files.find({
+      storage: 'glacier',
       's3Data.status': 'uploaded',
+      'glacierData.status': 'pending',
       's3Data.deletedFromS3': false,
-      $and: [{'s3Data.size': {$gte: startSize}}, {'s3Data.size': {$lte: limitSize}}],
-      'glacierData.status': 'pending'
+      $and: [{'s3Data.size': {$gte: startSize}}, {'s3Data.size': {$lte: limitSize}}]
     })
       .sort({createdAt: 1})
       .limit(1)
@@ -56,7 +57,5 @@ export default job({
         'glacierData.status': 'uploaded'
       }
     })
-
-    return true
   }
 })

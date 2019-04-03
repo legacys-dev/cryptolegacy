@@ -30,7 +30,5 @@ export default job({
     if (hasError) return
 
     await file.update({$set: {'s3Data.deletedFromS3': true, 's3Data.updatedAt': new Date()}})
-
-    return true
   }
 })

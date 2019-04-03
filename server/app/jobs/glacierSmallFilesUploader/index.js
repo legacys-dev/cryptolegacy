@@ -1,21 +1,20 @@
 import {job} from '@orion-js/jobs'
 import Files from 'app/collections/Files'
 import downloadFromS3 from 'app/helpers/awsS3/downloadElement'
-import multiUploadToGlacier from 'app/helpers/awsGlacier/multiUpload'
+import singleUploadToGlacier from 'app/helpers/awsGlacier/singleUpload'
 import isEmpty from 'lodash/isEmpty'
 
 export default job({
   type: 'recurrent',
   runEvery: 1000 * 60,
   async run(params) {
-    const startSize = 1024 * 1024 * 99.00000000000001
-    const limitSize = 1024 * 1024 * 500 // 1GB
-
+    const limitSize = 1024 * 1024 * 99 // 99MB
     const oldestFile = await Files.find({
+      storage: 'glacier',
       's3Data.status': 'uploaded',
+      'glacierData.status': 'pending',
       's3Data.deletedFromS3': false,
-      $and: [{'s3Data.size': {$gte: startSize}}, {'s3Data.size': {$lte: limitSize}}],
-      'glacierData.status': 'pending'
+      's3Data.size': {$lte: limitSize}
     })
       .sort({createdAt: 1})
       .limit(1)
@@ -31,7 +30,7 @@ export default job({
     await file.update({$set: {'glacierData.status': 'uploading'}})
 
     try {
-      glacierResult = await multiUploadToGlacier({
+      glacierResult = await singleUploadToGlacier({
         file: s3Element,
         vaultName: 'Test',
         archiveDescription: file.userId
@@ -56,7 +55,5 @@ export default job({
         'glacierData.status': 'uploaded'
       }
     })
-
-    return true
   }
 })
