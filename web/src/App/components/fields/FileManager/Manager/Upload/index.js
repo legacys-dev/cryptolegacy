@@ -12,10 +12,11 @@ import {MdCloudUpload} from 'react-icons/md'
 import AWS from 'aws-sdk'
 import gql from 'graphql-tag'
 import mime from 'mime-types'
+import SelectStorage from './SelectStorage'
 
 @withMutation(gql`
-  mutation createS3Upload($name: String, $size: Float, $type: String) {
-    result: createS3Upload(name: $name, size: $size, type: $type) {
+  mutation createS3Upload($name: String, $size: Float, $type: String, $storage: String) {
+    result: createS3Upload(name: $name, size: $size, type: $type, storage: $storage) {
       fileId
       key
     }
@@ -39,7 +40,12 @@ export default class Upload extends React.Component {
     close: PropTypes.func
   }
 
-  state = {upload: 0}
+  state = {upload: 0, storage: null}
+
+  selectStorage = value => {
+    if (!value) return
+    this.setState({storage: value})
+  }
 
   @autobind
   async onChange(event) {
@@ -57,11 +63,12 @@ export default class Upload extends React.Component {
   }
 
   @autobind
-  async createUpload(file) {
+  async createUpload(file, storage) {
     const {result} = await this.props.createS3Upload({
       name: file.name,
       size: file.size,
-      type: file.type || mime.lookup(file.name) || 'application/octet-stream'
+      type: file.type || mime.lookup(file.name) || 'application/octet-stream',
+      storage: this.state.storage
     })
 
     return result
@@ -90,17 +97,25 @@ export default class Upload extends React.Component {
   @autobind
   async complete({fileId}) {
     await this.props.completeS3Upload({fileId}, {refetchQueries: ['getFiles']})
-    this.props.showMessage('El archivo se cargó correctamente')
+    this.props.showMessage('The file was successfully loaded')
     await sleep(1000)
     this.props.close()
   }
 
+  renderSelectStorage() {
+    return (
+      <div className={styles.select}>
+        <SelectStorage onChange={this.selectStorage} value={this.state.storage} />
+      </div>
+    )
+  }
+
   renderInput() {
-    if (this.state.loading) return
+    if (this.state.loading || !this.state.storage) return
     return (
       <div className={styles.inputContainer}>
         <label htmlFor="file-upload" className={styles.label}>
-          <div>Click para subir un archivo</div>
+          <div>click here to upload the file</div>
           <MdCloudUpload size={25} />
         </label>
         <input
@@ -118,7 +133,7 @@ export default class Upload extends React.Component {
     if (!this.state.loading) return
     return (
       <div>
-        <div className={styles.loading}>Subiendo archivo ({this.props.progress}%)</div>
+        <div className={styles.loading}>Uploading file ({this.props.progress}%)</div>
         <div className={styles.progressLine}>
           <Line percent={this.props.progress} />
         </div>
@@ -129,6 +144,7 @@ export default class Upload extends React.Component {
   render() {
     return (
       <div className={styles.container}>
+        {this.renderSelectStorage()}
         {this.renderLoading()}
         {this.renderInput()}
       </div>

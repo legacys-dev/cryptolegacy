@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #000000b8;
   max-height: 100%;
 }
 
@@ -16,7 +16,7 @@
   composes: shadow from global;
   background-color: #fff;
   height: 90%;
-  max-height: 180px;
+  max-height: 330px;
   max-width: 550px;
   margin: 20px;
   flex: 1;
