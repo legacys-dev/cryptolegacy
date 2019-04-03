@@ -13,7 +13,17 @@ export default resolver({
   filePermissions: true,
   async resolve({fileId}, viewer) {
     const file = await Files.findOne({userId: viewer.userId, _id: fileId})
-    await file.update({$set: {'s3Data.status': 'uploaded', 'glacierData.status': 'pending'}})
+    const status = file.storage.includes('b2')
+      ? {'b2Data.status': 'pending'}
+      : {'glacierData.status': 'pending'}
+
+    const updateData = {
+      ...{'s3Data.status': 'uploaded'},
+      ...status
+    }
+
+    await file.update({$set: updateData})
+
     return true
   }
 })

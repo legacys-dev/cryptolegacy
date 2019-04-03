@@ -13,6 +13,9 @@ export default resolver({
     },
     type: {
       type: String
+    },
+    storage: {
+      type: String
     }
   },
   returns: CreateS3Upload,
@@ -35,7 +38,8 @@ export default resolver({
     const fileId = await Files.insert({
       s3Data,
       userId: viewer.userId,
-      createdAt: new Date()
+      createdAt: new Date(),
+      storage: params.storage
     })
 
     return {

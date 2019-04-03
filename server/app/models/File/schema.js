@@ -15,7 +15,7 @@ export default {
     private: true,
     optional: true
   },
-  B2Data: {
+  b2Data: {
     type: B2Data,
     private: true,
     optional: true

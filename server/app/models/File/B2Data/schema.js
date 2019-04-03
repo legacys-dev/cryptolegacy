@@ -10,5 +10,11 @@ export default {
   contentSha1: {
     type: String,
     private: true
+  },
+  status: {
+    type: String,
+    private: true,
+    allowedValues: ['pending', 'uploading', 'uploaded'],
+    defaultValue: 'pending'
   }
 }
