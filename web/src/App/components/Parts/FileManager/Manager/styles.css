@@ -35,12 +35,3 @@
   font-size: 20px;
   font-weight: bold;
 }
-
-:local(.header2) {
-  display: flex;
-  margin: 0 20px 20px 20px;
-}
-
-:local(.search) {
-  flex: 1;
-}

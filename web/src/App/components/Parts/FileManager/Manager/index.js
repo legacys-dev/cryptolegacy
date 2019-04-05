@@ -14,8 +14,8 @@ export default class Manager extends React.Component {
 
   state = {progress: 0}
 
-  onUploadProgressChange = progress => {
-    this.setState({progress})
+  onUploadProgressChange = (progress, loaded, total) => {
+    this.setState({progress, loaded, total})
   }
 
   @autobind
@@ -37,6 +37,8 @@ export default class Manager extends React.Component {
           <Upload
             close={this.props.close}
             progress={this.state.progress}
+            loaded={this.state.loaded}
+            total={this.state.total}
             onUploadProgressChange={this.onUploadProgressChange}
           />
         </div>

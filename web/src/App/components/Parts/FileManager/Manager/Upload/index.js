@@ -8,11 +8,12 @@ import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import {Line} from 'App/components/Parts/LoadProgress'
 import awsCredentials from './awsCredentials'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import SelectStorage from './SelectStorage'
 import {MdCloudUpload} from 'react-icons/md'
 import AWS from 'aws-sdk'
 import gql from 'graphql-tag'
 import mime from 'mime-types'
-import SelectStorage from './SelectStorage'
+import numeral from 'numeral'
 
 @withMutation(gql`
   mutation createS3Upload($name: String, $size: Float, $type: String, $storage: String) {
@@ -37,6 +38,8 @@ export default class Upload extends React.Component {
     getUploadCredentials: PropTypes.object,
     onUploadProgressChange: PropTypes.func,
     progress: PropTypes.number,
+    loaded: PropTypes.number,
+    total: PropTypes.number,
     close: PropTypes.func
   }
 
@@ -83,14 +86,18 @@ export default class Upload extends React.Component {
     if (uploadToS3.failed) return
 
     let totalProgress = 0
+    let loaded
+    let total
     while (totalProgress < 100) {
       const result = await new Promise((resolve, reject) => {
         uploadToS3.on('httpUploadProgress', function(progress) {
           totalProgress = Number(((progress.loaded * 100) / progress.total).toFixed(3))
+          loaded = progress.loaded
+          total = progress.total
           resolve(totalProgress)
         })
       })
-      this.props.onUploadProgressChange(result)
+      this.props.onUploadProgressChange(result, loaded, total)
     }
   }
 
@@ -131,9 +138,13 @@ export default class Upload extends React.Component {
 
   renderLoading() {
     if (!this.state.loading) return
+    const {progress, loaded, total} = this.props
     return (
       <div>
-        <div className={styles.loading}>Uploading file ({this.props.progress}%)</div>
+        <div className={styles.loading}>
+          Uploading file ({progress}%)
+          <br />[{numeral(loaded).format('0,0')}/{numeral(total).format('0,0')}] Bytes
+        </div>
         <div className={styles.progressLine}>
           <Line percent={this.props.progress} />
         </div>
