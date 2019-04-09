@@ -1,6 +1,6 @@
 import React from 'react'
-import styles from './styles.css'
 import PropTypes from 'prop-types'
+import styles from './styles.css'
 import Manager from './Manager'
 import {MdFileUpload} from 'react-icons/md/'
 import Button from 'App/components/Parts/Button'
