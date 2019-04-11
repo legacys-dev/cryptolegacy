@@ -78,9 +78,9 @@
     to-fast-properties "^2.0.0"
 
 "@orion-js/app@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@orion-js/app/-/app-0.12.0.tgz#aa252584ebc20fef645e175d3590c26d19c773d5"
-  integrity sha512-NQ0nKKyMXoBbqsYRQzqqa14nB7uwVq8OhIjasgW6chGbsqDE7esHFVzzQdu9So8to0jo/ThvIkRBw3wbILS4ng==
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@orion-js/app/-/app-0.12.1.tgz#e585508814869289a58ca926b37b8293bfd3ab0b"
+  integrity sha512-8HVJ/A+fhChaxWyDbgUwhY1Gb4/FupkqVEX3RU9zvaN/H97RX3pHZNk5KWjTULrnSOMbG5M7FXAHDX280qe2Tw==
   dependencies:
     "@orion-js/schema" "^0.12.0"
     async-exit-hook "^2.0.1"
@@ -94,9 +94,9 @@
     path-to-regexp "^3.0.0"
 
 "@orion-js/auth@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@orion-js/auth/-/auth-0.12.0.tgz#aa3bb0b63d31988cb1b527242ace7dc8c1ea1635"
-  integrity sha512-vM1VGFT/LZfWdW/Bi8wlWLzTY+tzrChd0x5a0fpxpvPyQCiEWSbvIsz50WDacenE7BD5KcGb3ypaQbFp0B2e4g==
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@orion-js/auth/-/auth-0.12.1.tgz#0177fdb89aa8253b927c827a10682a76a6dbb8e1"
+  integrity sha512-EHMxG5FS3OcY8uQ8BqGW5FbXNCpPMQ4L27xQdMZ1Q5E7njUp8x+K0r14vy298fD63FQs3gCrJ7GvMS3WHw8bNA==
   dependencies:
     bcryptjs "^2.4.3"
     jssha "^2.3.1"
@@ -106,9 +106,9 @@
     speakeasy "^2.0.0"
 
 "@orion-js/graphql@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@orion-js/graphql/-/graphql-0.12.0.tgz#775ea1d3f794433df7ca374a0d0930e42054f9b3"
-  integrity sha512-UB3cR5iBCPkNYiZl3M1dx8T8zG0CWGRjoRsF+nDNz0rZKa2anKV+JPJERkbm5AzSkhg3BlmwlncswBLvLrQM0A==
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@orion-js/graphql/-/graphql-0.12.1.tgz#fdbd5d5697385c20f30c945b5310e9a4b3967551"
+  integrity sha512-0qBB/SJCGHliJNiFntCfCYdBPEfWuuKheRjrV8WIzYfvNhXVSToiYyMCFkax6oR6glaV3cKvt7d3v91Nlmp9Jg==
   dependencies:
     "@orion-js/schema" "^0.12.0"
     apollo-server-core "^1.3.6"
@@ -120,17 +120,17 @@
     subscriptions-transport-ws "^0.9.12"
 
 "@orion-js/jobs@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@orion-js/jobs/-/jobs-0.12.0.tgz#6a0f944262b5db60e34cfab9c785ed9aa2ee4972"
-  integrity sha512-H8Ui35Qyd4xDqBbxXpwEZP/wUW7I6TEBvZyK9XFU5R0F8OqB0C70RKn4+UryxEEiWLdRYaG5AHaeVWVRiQz/aQ==
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@orion-js/jobs/-/jobs-0.12.1.tgz#4471392f90c797561cb1ae8d623d57aa2c3aef64"
+  integrity sha512-w39qbM/g+sjpPcVGO5BO8BfV68rmPRym2oVCQF2+s7KIqoGghvmln7oSNWwGsadE0Uc0AKBZ76OM2dS9AMmczA==
   dependencies:
     lodash "^4.17.10"
     luxon "^1.2.0"
 
 "@orion-js/mailing@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@orion-js/mailing/-/mailing-0.12.0.tgz#b1f3ca480628a8ce9476eb8ecf7cd413b2ec6ddd"
-  integrity sha512-389oy8WRJaO+7q+nOWipR34gylW3AJ+fIZmaVsTVsWgI7B6h0vfZNLp64m79/FxoLW0u+xkDsuVKsu6qTrKzIg==
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/@orion-js/mailing/-/mailing-0.12.1.tgz#af124fe62b662c2503536473f9e1e11eb8582b51"
+  integrity sha512-BDL9FSw+bOHYuID2N3Whq990jl53vayjuZwm7o7XzR0J2oOX5NyrRpDEBK0nMGhx46pqTg688poAYukGeFuodw==
   dependencies:
     lodash "^4.17.10"
     luxon "^1.2.0"
@@ -1111,9 +1111,9 @@ browserslist@^3.2.6:
     electron-to-chromium "^1.3.47"
 
 bson@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/bson/-/bson-1.1.0.tgz#bee57d1fb6a87713471af4e32bcae36de814b5b0"
-  integrity sha512-9Aeai9TacfNtWXOYarkFJRW2CWo+dRon+fuLZYJmvLV3+MiUp0bEI6IAZfXEIg7/Pl/7IWlLaDnhzTsD81etQA==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/bson/-/bson-1.1.1.tgz#4330f5e99104c4e751e7351859e2d408279f2f13"
+  integrity sha512-jCGVYLoYMHDkOsbwJZBCqwMHyH4c+wzgI9hG7Z6SZJRXWr+x58pdIbm2i9a/jFGCkRJqRUr8eoI7lDWa0hTkxg==
 
 buffer-from@^1.0.0:
   version "1.1.1"
@@ -1295,10 +1295,15 @@ combined-stream@^1.0.6, combined-stream@~1.0.6:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@^2.11.0, commander@^2.19.0:
+commander@^2.11.0:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
   integrity sha512-6tvAOO+D6OENvRAh524Dh9jcfKTYDQAqvqezbCW82xj5X0pSrcpxtvRKHLG0yBY6SD7PSDrJaj+0AiOcKVd1Xg==
+
+commander@^2.19.0:
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
+  integrity sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==
 
 component-emitter@^1.2.1:
   version "1.2.1"
@@ -2783,15 +2788,10 @@ lru-cache@2:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-2.7.3.tgz#6d4524e8b955f95d4f5b58851ce21dd72fb4e952"
   integrity sha1-bUUk6LlV+V1PW1iFHOId1y+06VI=
 
-luxon@^1.12.0:
+luxon@^1.12.0, luxon@^1.2.0, luxon@^1.3.3:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.12.1.tgz#924bd61404f70b0cc5168918cb0ac108e52aacc4"
   integrity sha512-Zv/qJb2X1ESTrlniAViWx2aqGwi2cVpeoZFTbPdPiCu4EsadKsmb/QCH8HQjMUpDZKKJIHKHsJxV5Rwpq47HKQ==
-
-luxon@^1.2.0, luxon@^1.3.3:
-  version "1.11.4"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.11.4.tgz#c5d8c1f795cee26c162e95a4686632abcec50442"
-  integrity sha512-zTQ1DCShOGHIdNpa56yjDpUCowKDsBqeFVuEG2XBcrAM2udxN0g3N5RTZzbw94OkDiBgECsuDgLNnQTo73yghw==
 
 lzutf8@^0.5.5:
   version "0.5.5"
@@ -3741,10 +3741,15 @@ scrypt-js@2.0.4:
   resolved "https://registry.yarnpkg.com/scrypt-js/-/scrypt-js-2.0.4.tgz#32f8c5149f0797672e551c07e230f834b6af5f16"
   integrity sha512-4KsaGcPnuhtCZQCxFxN3GVYIhKFPTdLd8PLC552XwbMndtD0cjRFAhDuuydXQ0h08ZfPgzqe6EKHozpuH74iDw==
 
-"semver@2 || 3 || 4 || 5", semver@^5.1.0, semver@^5.3.0, semver@^5.5.0, semver@^5.5.1:
+"semver@2 || 3 || 4 || 5", semver@^5.3.0, semver@^5.5.0, semver@^5.5.1:
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.6.0.tgz#7e74256fbaa49c75aa7c7a205cc22799cac80004"
   integrity sha512-RS9R6R35NYgQn++fkDWaOmqGoj4Ek9gGs+DPxNUZKuwE183xjJroKvyo1IzVFeXvUrvmALy6FWD5xrdJT25gMg==
+
+semver@^5.1.0:
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.0.tgz#790a7cf6fea5459bac96110b29b60412dc8ff96b"
+  integrity sha512-Ya52jSX2u7QKghxeoFGpLwCtGlt7j0oY9DYb5apt9nPlJ42ID+ulTXESnt/qAQcoSERyZ5sl3LDIOw0nAn/5DA==
 
 set-blocking@~2.0.0:
   version "2.0.0"
@@ -3864,9 +3869,9 @@ source-map-support@^0.4.15:
     source-map "^0.5.6"
 
 source-map-support@^0.5.1:
-  version "0.5.10"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.10.tgz#2214080bc9d51832511ee2bab96e3c2f9353120c"
-  integrity sha512-YfQ3tQFTK/yzlGJuX8pTwa4tifQj4QS2Mj7UegOu8jAz59MqIiMGPXxQhVQiIMNzayuUSF/jEuVnfFF5JqybmQ==
+  version "0.5.12"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.12.tgz#b4f3b10d51857a5af0138d3ce8003b201613d599"
+  integrity sha512-4h2Pbvyy15EE02G+JOZpUCmqWJuqrs+sEkzewTm++BPi7Hvn/HwcqLAcNxYAyI0x13CpPPn+kMjl+hplXMHITQ==
   dependencies:
     buffer-from "^1.0.0"
     source-map "^0.6.0"
@@ -4027,9 +4032,9 @@ strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
 
 subscriptions-transport-ws@^0.9.12:
-  version "0.9.15"
-  resolved "https://registry.yarnpkg.com/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.15.tgz#68a8b7ba0037d8c489fb2f5a102d1494db297d0d"
-  integrity sha512-f9eBfWdHsePQV67QIX+VRhf++dn1adyC/PZHP6XI5AfKnZ4n0FW+v5omxwdHVpd4xq2ZijaHEcmlQrhBY79ZWQ==
+  version "0.9.16"
+  resolved "https://registry.yarnpkg.com/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.16.tgz#90a422f0771d9c32069294c08608af2d47f596ec"
+  integrity sha512-pQdoU7nC+EpStXnCfh/+ho0zE0Z+ma+i7xvj7bkXKb1dvYHSZxgRPaU6spRP+Bjzow67c/rRDoix5RT0uU9omw==
   dependencies:
     backo2 "^1.0.2"
     eventemitter3 "^3.1.0"
