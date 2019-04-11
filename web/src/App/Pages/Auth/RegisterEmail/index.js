@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
 import Button from 'App/components/Parts/Button'
+import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import LoggedIn from '../LoggedIn'
 import {Link} from 'react-router-dom'
 import Title from 'App/components/Auth/Title'
@@ -22,6 +23,7 @@ export default class Register extends React.Component {
 
   @autobind
   async onSuccess(token) {
+    await sleep(1000)
     const {history} = this.props
     history.push(`/verify-email/${token}`)
   }

@@ -4,9 +4,10 @@ import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
 import Button from 'App/components/Parts/Button'
 import withValidToken from 'App/helpers/registerTokens/withValidToken'
-import Translate from 'App/i18n'
+import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
+import Translate from 'App/i18n'
 
 @withRouter
 @withValidToken
@@ -19,7 +20,8 @@ export default class VerifyEmail extends React.Component {
   state = {}
 
   @autobind
-  onSuccess(token) {
+  async onSuccess(token) {
+    await sleep(1000)
     const {history} = this.props
     history.push(`/password/${token}`)
   }

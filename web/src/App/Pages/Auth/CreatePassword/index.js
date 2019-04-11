@@ -5,16 +5,20 @@ import AutoForm from 'App/components/AutoForm'
 import Button from 'App/components/Parts/Button'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
+import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withValidToken from 'App/helpers/registerTokens/withValidToken'
+import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import {setSession} from '@orion-js/graphql-client'
-import Translate from 'App/i18n'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
+import Translate from 'App/i18n'
 
 @withRouter
 @withValidToken
+@withMessage
 export default class CreatePassword extends React.Component {
   static propTypes = {
+    showMessage: PropTypes.func,
     history: PropTypes.object,
     match: PropTypes.object,
     onLogin: PropTypes.func
@@ -23,9 +27,15 @@ export default class CreatePassword extends React.Component {
   state = {}
 
   @autobind
-  async onSuccess(session) {
-    await setSession(session)
-    this.props.onLogin()
+  async onSuccess({session, ums, umi}) {
+    await sleep(1000)
+    try {
+      await setSession(session)
+      this.props.showMessage('Account created successfully')
+      this.props.onLogin()
+    } catch (error) {
+      console.log('Error:', error)
+    }
   }
 
   @autobind

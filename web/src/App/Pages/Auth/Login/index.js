@@ -8,6 +8,8 @@ import Button from 'App/components/Parts/Button'
 import Title from 'App/components/Auth/Title'
 import LoggedIn from '../LoggedIn'
 import {Link} from 'react-router-dom'
+import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import Translate from 'App/i18n'
 import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
@@ -15,17 +17,25 @@ import withUserId from 'App/helpers/auth/withUserId'
 import {setSession} from '@orion-js/graphql-client'
 
 @withUserId
+@withMessage
 export default class Login extends React.Component {
   static propTypes = {
+    showMessage: PropTypes.func,
     onLogin: PropTypes.func,
     userId: PropTypes.string,
     loading: PropTypes.bool
   }
 
   @autobind
-  async onSuccess(session) {
-    await setSession(session)
-    this.props.onLogin()
+  async onSuccess({session, ums, umi}) {
+    await sleep(1000)
+    try {
+      await setSession(session)
+      this.props.showMessage('Login successfully')
+      this.props.onLogin()
+    } catch (error) {
+      console.log('Error:', error)
+    }
   }
 
   renderForgotLink() {
@@ -60,8 +70,9 @@ export default class Login extends React.Component {
     return (
       <div>
         <Title text="auth.login" />
-        <AutoForm mutation="loginWithPassword" ref="form" onSuccess={this.onSuccess}>
+        <AutoForm mutation="appLogin" ref="form" onSuccess={this.onSuccess}>
           <Field fieldName="email" type={Text} fieldType="email" placeholder="Email" />
+          <Field fieldName="masterKey" type={Text} placeholder="Master key" />
           <Field
             fieldName="password"
             type={Text}
