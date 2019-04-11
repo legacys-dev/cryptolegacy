@@ -19,7 +19,6 @@ export default resolver({
     confirmPassword: {
       type: String,
       async custom(confirmPassword, doc) {
-        console.log({doc})
         if (!isEmpty(confirmPassword.localeCompare(doc.password))) return 'passwordNotMatch'
         const result = passwordValidator(confirmPassword)
         if (result) return result.message
