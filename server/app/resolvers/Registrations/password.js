@@ -3,16 +3,27 @@ import {createSession} from '@orion-js/auth'
 import Registrations from 'app/collections/Registrations'
 import Users from 'app/collections/Users'
 import authResolvers from 'app/resolvers/Auth'
-import createHash from 'app/helpers/keys/createMasterHash'
-import createKeys from 'app/helpers/keys/createUserKeys'
+import {createMasterHash, generateUserKeys} from 'app/helpers/keys'
+import {passwordValidator} from 'app/helpers/registration'
+import isEmpty from 'lodash/isEmpty'
 
 export default resolver({
   params: {
     password: {
-      type: String
+      type: String,
+      async custom(password) {
+        const result = passwordValidator(password)
+        if (result) return result.message
+      }
     },
     confirmPassword: {
-      type: String
+      type: String,
+      async custom(confirmPassword, doc) {
+        console.log({doc})
+        if (!isEmpty(confirmPassword.localeCompare(doc.password))) return 'passwordNotMatch'
+        const result = passwordValidator(confirmPassword)
+        if (result) return result.message
+      }
     },
     token: {
       type: String
@@ -27,8 +38,8 @@ export default resolver({
     const {email, name, lastName} = registration.userData
     const profile = {firstName: name, lastName}
 
-    const userMasterHash = createHash()
-    const userMasterKeys = await createKeys(userMasterHash.masterKey)
+    const userMasterHash = createMasterHash()
+    const userMasterKeys = await generateUserKeys(userMasterHash.masterKey)
 
     const createUser = authResolvers.createUser
     await createUser({email, password, profile})

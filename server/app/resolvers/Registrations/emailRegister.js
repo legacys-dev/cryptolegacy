@@ -1,10 +1,25 @@
 import {resolver} from '@orion-js/app'
 import Registrations from 'app/collections/Registrations'
-import UserData from 'app/models/Registration/UserData'
-import emailRegistration from 'app/helpers/registration/emailRegistration'
+import {emailRegistration, emailTest} from 'app/helpers/registration'
 
 export default resolver({
-  params: UserData.clone({omitFields: []}),
+  params: {
+    email: {
+      type: String,
+      placeholder: 'Email',
+      async custom(email) {
+        if (!emailTest(email)) return 'invalidEmail'
+      }
+    },
+    name: {
+      type: String,
+      placeholder: 'Nombre'
+    },
+    lastName: {
+      type: String,
+      placeholder: 'Apellido'
+    }
+  },
   returns: String,
   mutation: true,
   emailRegisterPermission: true,

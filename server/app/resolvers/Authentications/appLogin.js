@@ -1,13 +1,14 @@
 import {resolver} from '@orion-js/app'
 import {createSession} from '@orion-js/auth'
 import {hasPassword, checkPassword} from 'app/helpers/authentication'
+import {generateUserKeys} from 'app/helpers/keys'
 import Users from 'app/collections/Users'
-import getUserKeys from 'app/helpers/keys/createUserKeys'
 
 export default resolver({
   params: {
     email: {
       type: 'email',
+      label: 'Email',
       async custom(email) {
         const user = await Users.findOne({'emails.address': email})
         if (!user) return 'userNotFound'
@@ -15,28 +16,29 @@ export default resolver({
     },
     password: {
       type: String,
+      label: 'Password',
       async custom(password, {doc}) {
         const user = await Users.findOne({'emails.address': doc.email})
-        if (!user) return 'userNotFound'
+        if (!user) return
         if (!hasPassword(user)) return 'noPassword'
         if (!checkPassword(user, password)) return 'incorrectPassword'
       }
     },
     masterKey: {
-      type: 'ID',
+      type: String,
+      label: 'Master Key',
       async custom(masterKey, {doc}) {
         if (!masterKey) return 'masterKeyNotFound'
         if (masterKey.length !== 32) return 'invalidMasterKey'
 
         const user = await Users.findOne({'emails.address': doc.email})
-        if (!user) return 'userNotFound'
-        if (!user.privateKeys) return 'error'
+        if (!user.privateKeys) return 'errorNotKeysFound'
 
-        const {secret, iv} = await getUserKeys(masterKey)
+        const {secret, iv} = await generateUserKeys(masterKey)
         const {masterHash, secretKey, secretIv} = user.privateKeys
-        if (masterHash !== masterKey) return 'error'
-        if (secretKey !== secret) return 'error'
-        if (secretIv !== iv) return 'error'
+
+        const compare = masterHash !== masterKey || secretKey !== secret || secretIv !== iv
+        if (compare) return 'incorrectMasterKey'
       }
     }
   },
