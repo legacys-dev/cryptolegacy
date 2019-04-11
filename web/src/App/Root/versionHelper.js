@@ -44,4 +44,3 @@ const saveVersion = function(newVersion) {
 
 checkVersion()
 setInterval(checkVersion, 30000)
-

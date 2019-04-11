@@ -9,10 +9,11 @@ export default resolver({
   mutation: true,
   emailRegisterPermission: true,
   async resolve(params, viewer) {
+    const query = {'userData.email': params.email.toLowerCase()}
     const dataForRegister = emailRegistration(params)
-    const register = await Registrations.findOne({'userData.email': params.email.toLowerCase()})
+    const register = await Registrations.findOne(query)
 
-    if (register) await register.update({$set: dataForRegister})
+    if (register) await Registrations.update(query, {$set: dataForRegister})
     else await Registrations.insert(dataForRegister)
 
     // send code by mail to confirm

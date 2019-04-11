@@ -14,6 +14,7 @@ export default function LocaleProvider(props) {
     numeral.locale(locale)
     // forceUpdate()
   }
+
   return (
     <LocaleContext.Provider value={{locale: getLocale(), setLocale}}>
       {props.children}

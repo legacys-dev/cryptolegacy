@@ -1,8 +1,10 @@
 import {resolver} from '@orion-js/app'
+import {createSession} from '@orion-js/auth'
 import Registrations from 'app/collections/Registrations'
 import Users from 'app/collections/Users'
 import authResolvers from 'app/resolvers/Auth'
-import {createSession} from '@orion-js/auth'
+import createHash from 'app/helpers/keys/createMasterHash'
+import createKeys from 'app/helpers/keys/createUserKeys'
 
 export default resolver({
   params: {
@@ -25,6 +27,9 @@ export default resolver({
     const {email, name, lastName} = registration.userData
     const profile = {firstName: name, lastName}
 
+    const userMasterHash = createHash()
+    const userMasterKeys = await createKeys(userMasterHash.masterKey)
+
     const createUser = authResolvers.createUser
     await createUser({email, password, profile})
 
@@ -35,11 +40,22 @@ export default resolver({
     await Users.update(
       {_id: newUser._id, 'emails.address': email},
       {
-        $set: {'emails.$.verified': true},
+        $set: {
+          'privateKeys.masterHash': userMasterHash.masterKey,
+          'privateKeys.secretKey': userMasterKeys.secret,
+          'privateKeys.secretIv': userMasterKeys.iv,
+          'emails.$.verified': true
+        },
         $unset: {'services.emailVerify': ''}
       }
     )
 
-    return await createSession(newUser)
+    const session = await createSession(newUser)
+
+    return {
+      ums: userMasterKeys.secret,
+      umi: userMasterKeys.iv,
+      session
+    }
   }
 })
