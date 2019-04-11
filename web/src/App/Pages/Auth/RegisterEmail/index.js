@@ -24,8 +24,7 @@ export default class Register extends React.Component {
   @autobind
   async onSuccess(token) {
     await sleep(1000)
-    const {history} = this.props
-    history.push(`/verify-email/${token}`)
+    this.props.history.push(`/verify-email/${token}`)
   }
 
   renderLogInLink() {

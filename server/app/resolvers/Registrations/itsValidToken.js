@@ -28,7 +28,6 @@ export default resolver({
       ]
     }).toArray()
 
-    if (isEmpty(registrations)) return false
-    return true
+    return !isEmpty(registrations)
   }
 })

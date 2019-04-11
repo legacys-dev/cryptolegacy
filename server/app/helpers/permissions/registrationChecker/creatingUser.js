@@ -9,8 +9,6 @@ export default async function({viewer, password, confirmPassword, token}) {
 
   if (!token) throw new Error('Error creating password')
 
-  if (password !== confirmPassword) throw new Error('Error, passwords dont march')
-
   const limitTime = DateTime.local()
     .minus({minutes: 4})
     .toJSDate()
