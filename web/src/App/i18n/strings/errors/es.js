@@ -26,5 +26,22 @@ export default {
   notAnEmail: ({label, placeholder}) => `${message(label, placeholder)} no es válido`,
   notUnique: ({label, placeholder}) => `${message(label, placeholder)} no es único`,
   notFound: ({label, placeholder}) => `${message(label, placeholder)} no se encontró`,
-  mustStartWithPlus: 'El teléfono debe empezar con +'
+  mustStartWithPlus: 'El teléfono debe empezar con +',
+  userNotFound: ({label, placeholder}) => `No se encontró un usuario registrado con este email`,
+  noPassword: ({label, placeholder}) => `El email ingresado no posee contraseña`,
+  incorrectPassword: ({label, placeholder}) => `La contraseña es incorrecta`,
+  masterKeyNotFound: ({label, placeholder}) => `La master key es necesaria`,
+  invalidMasterKey: ({label, placeholder}) => `La master key ingresada es inválida`,
+  errorNotKeysFound: ({label, placeholder}) => `Usuario inhabilitado`,
+  incorrectMasterKey: ({label, placeholder}) => `La master key ingresada es incorrecta`,
+  invalidCode: ({label, placeholder}) => `El código ingresado es inválido`,
+  invalidEmail: ({label, placeholder}) => `${message(label, placeholder)} no es válido`,
+  passwordNotMatch: ({label, placeholder}) => `Contraseña de confirmación incorrecta`,
+  passwordInvalidLength: ({label, placeholder}) =>
+    `La contraseña debe tener un largo de al menos 8 caracteres`,
+  passwordLowerCaseRequired: ({label, placeholder}) =>
+    `La contraseña debe tener al menos una letra en minúscula`,
+  passwordUpperCaseRequired: ({label, placeholder}) =>
+    `La contraseña debe tener al menos una letra en mayúscula`,
+  passwordNumberRequired: ({label, placeholder}) => `La contraseña debe tener al menos un número`
 }

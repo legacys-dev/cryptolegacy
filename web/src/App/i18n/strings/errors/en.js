@@ -24,5 +24,23 @@ export default {
   notUnique: ({label, placeholder}) => `${message(label, placeholder)} is not unique`,
   notFound: ({label, placeholder}) => `${message(label, placeholder)} not found`,
   invalid: ({label, placeholder}) => `${message(label, placeholder)} is not a valid value`,
-  mustStartWithPlus: 'The phone must start with +'
+  mustStartWithPlus: 'The phone must start with +',
+  userNotFound: ({label, placeholder}) => `User not found with this email`,
+  noPassword: ({label, placeholder}) => `The email hasn't password`,
+  incorrectPassword: ({label, placeholder}) => `Incorrect password`,
+  masterKeyNotFound: ({label, placeholder}) => `Master key is required`,
+  invalidMasterKey: ({label, placeholder}) => `The master key is invalid`,
+  errorNotKeysFound: ({label, placeholder}) => `Disabled user`,
+  incorrectMasterKey: ({label, placeholder}) => `The master key is incorrect`,
+  invalidCode: ({label, placeholder}) => `Invalid code`,
+  invalidEmail: ({label, placeholder}) => `${message(label, placeholder)} in invalid`,
+  passwordNotMatch: ({label, placeholder}) => `Incorrect password`,
+  passwordInvalidLength: ({label, placeholder}) =>
+    `The password must be at least 8 characters long`,
+  passwordLowerCaseRequired: ({label, placeholder}) =>
+    `The password must be at least one lowercase letter`,
+  passwordUpperCaseRequired: ({label, placeholder}) =>
+    `The password must be at least one uppercase letter`,
+  passwordNumberRequired: ({label, placeholder}) =>
+    `The password must be at least one character number`
 }
