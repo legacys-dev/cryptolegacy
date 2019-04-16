@@ -21,6 +21,7 @@ export default function(encryptedItem, userSecret, userIv, type) {
     encryptionIv = cloneDeep(Buffer.from(hashArray[0], 'hex'))
   }
 
+  // other option aes-192-cbc
   const algorithm = 'aes-256-ctr'
 
   const decipher = crypto.createDecipheriv(algorithm, userSecret, encryptionIv)

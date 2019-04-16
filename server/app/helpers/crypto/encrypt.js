@@ -12,6 +12,7 @@ export default function(item, userSecret, userIv, type) {
 
   if (!encryptionIv || encryptionIv.length !== 16) throw new Error('Invalid IV key')
 
+  // other option aes-192-cbc
   const algorithm = 'aes-256-ctr'
 
   const cipher = crypto.createCipheriv(algorithm, userSecret, encryptionIv)
