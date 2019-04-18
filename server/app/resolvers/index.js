@@ -1,15 +1,19 @@
 import {resolversSchemas} from '@orion-js/graphql'
 import Auth from './Auth'
-import Users from './Users'
-import Registrations from './Registrations'
+import Authentications from './Authentications'
 import Files from './Files'
+import Registrations from './Registrations'
+import Users from './Users'
 import Vaults from './Vaults'
+import PersonalVaults from './PersonalVaults'
 
 export default {
-  ...Vaults,
+  ...PersonalVaults,
+  ...resolversSchemas,
+  ...Auth,
+  ...Authentications,
   ...Files,
   ...Registrations,
-  ...Auth,
   ...Users,
-  ...resolversSchemas
+  ...Vaults
 }

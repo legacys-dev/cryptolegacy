@@ -1,7 +1,17 @@
 export default {
+  masterHash: {
+    type: String
+  },
+  secretKey: {
+    type: String
+  },
+  secretIv: {
+    type: String
+  },
   encryptedContent: {
     type: String,
-    private: true
+    private: true,
+    optional: true
   },
   createdAt: {
     type: Date,

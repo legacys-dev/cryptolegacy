@@ -1,16 +1,28 @@
 import {resolver} from '@orion-js/app'
+import {createSession} from '@orion-js/auth'
 import Registrations from 'app/collections/Registrations'
 import Users from 'app/collections/Users'
 import authResolvers from 'app/resolvers/Auth'
-import {createSession} from '@orion-js/auth'
+import {createMasterHash, generateUserKeys} from 'app/helpers/keys'
+import {passwordValidator} from 'app/helpers/registration'
+import isEmpty from 'lodash/isEmpty'
 
 export default resolver({
   params: {
     password: {
-      type: String
+      type: String,
+      async custom(password) {
+        const result = passwordValidator(password)
+        if (result) return result.message
+      }
     },
     confirmPassword: {
-      type: String
+      type: String,
+      async custom(confirmPassword, doc) {
+        if (!isEmpty(confirmPassword.localeCompare(doc.password))) return 'passwordNotMatch'
+        const result = passwordValidator(confirmPassword)
+        if (result) return result.message
+      }
     },
     token: {
       type: String
@@ -25,6 +37,9 @@ export default resolver({
     const {email, name, lastName} = registration.userData
     const profile = {firstName: name, lastName}
 
+    const userMasterHash = createMasterHash()
+    const userMasterKeys = await generateUserKeys(userMasterHash.masterKey)
+
     const createUser = authResolvers.createUser
     await createUser({email, password, profile})
 
@@ -35,11 +50,22 @@ export default resolver({
     await Users.update(
       {_id: newUser._id, 'emails.address': email},
       {
-        $set: {'emails.$.verified': true},
+        $set: {
+          'privateKeys.masterHash': userMasterHash.masterKey,
+          'privateKeys.secretKey': userMasterKeys.secret,
+          'privateKeys.secretIv': userMasterKeys.iv,
+          'emails.$.verified': true
+        },
         $unset: {'services.emailVerify': ''}
       }
     )
 
-    return await createSession(newUser)
+    const session = await createSession(newUser)
+
+    return {
+      ums: userMasterKeys.secret,
+      umi: userMasterKeys.iv,
+      session
+    }
   }
 })

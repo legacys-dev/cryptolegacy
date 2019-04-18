@@ -1,7 +1,7 @@
 import {resolver} from '@orion-js/app'
 import Registrations from 'app/collections/Registrations'
-import {DateTime} from 'luxon'
 import isEmpty from 'lodash/isEmpty'
+import {DateTime} from 'luxon'
 
 export default resolver({
   params: {
@@ -28,7 +28,6 @@ export default resolver({
       ]
     }).toArray()
 
-    if (isEmpty(registrations)) return false
-    return true
+    return !isEmpty(registrations)
   }
 })
