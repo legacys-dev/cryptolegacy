@@ -1,0 +1,35 @@
+:local(.container) {
+  margin: 10px 40px;
+}
+
+:local(.content) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #626262;
+}
+
+:local(.left) {
+  display: flex;
+  flex-direction: row;
+}
+
+:local(.right) {
+}
+
+:locala(.icon) {
+}
+
+:local(.storage) {
+  margin-left: 15px;
+  font-weight: 700;
+}
+
+:local(.percentage) {
+  color: #91a2b0;
+}
+
+:local(.button) {
+  text-align: center;
+  margin: 10px 0;
+}
