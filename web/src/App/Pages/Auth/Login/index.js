@@ -41,7 +41,7 @@ export default class Login extends React.Component {
   renderForgotLink() {
     return (
       <div className={styles.forgotLink}>
-        <Link to="/forgot" style={{color: '#07f'}}>
+        <Link to="/forgot" style={{color: '#0077FF'}}>
           <Translate tr="auth.forgotMyPassword" />
         </Link>
       </div>
