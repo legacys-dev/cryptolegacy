@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import {MdVpnKey, MdExitToApp, MdMenu, MdBuild, MdWork} from 'react-icons/md'
+import {MdVpnKey, MdExitToApp, MdBuild, MdWork} from 'react-icons/md'
 import autobind from 'autobind-decorator'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import gql from 'graphql-tag'
@@ -10,6 +10,7 @@ import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import {withRouter, Link} from 'react-router-dom'
 import logout from 'App/helpers/auth/logout'
 import withUserId from 'App/helpers/auth/withUserId'
+import MenuButton from './MenuButton'
 
 @withGraphQL(
   gql`
@@ -52,8 +53,7 @@ export default class User extends React.Component {
     this.setState({open: false})
   }
 
-  @autobind
-  toggleMenu() {
+  toggleMenu = () => {
     this.setState({open: !this.state.open})
   }
 
@@ -110,15 +110,9 @@ export default class User extends React.Component {
   }
 
   renderIcon() {
-    if (this.props.me) {
-      return (
-        <div className={styles.menuText} onClick={this.toggleMenu}>
-          <div> {this.props.me.name || 'Cuenta'} </div>
-          <div>
-            <MdMenu size={25} />
-          </div>
-        </div>
-      )
+    const {me} = this.props
+    if (me) {
+      return <MenuButton user={me} toggleMenu={this.toggleMenu} />
     } else if (!this.props.userId) {
       return <MdVpnKey className={styles.icon} size={25} onClick={this.login} />
     }

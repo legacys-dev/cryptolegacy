@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import Navbar from './Navbar'
+import Sidebar from './Sidebar'
+import Container from 'orionsoft-parts/lib/components/Container'
 
 export default class Layout extends React.Component {
   static propTypes = {
@@ -11,8 +12,12 @@ export default class Layout extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Navbar />
-        <div className={styles.content}> {this.props.children}</div>
+        <div className={styles.navbar}>
+          <Sidebar />
+        </div>
+        <div className={styles.content}>
+          <Container>{this.props.children}</Container>
+        </div>
       </div>
     )
   }

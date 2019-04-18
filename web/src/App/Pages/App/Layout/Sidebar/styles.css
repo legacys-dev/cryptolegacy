@@ -1,0 +1,24 @@
+:local(.container) {
+  width: 300px;
+  padding: 50px 0;
+  background-color: #fff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+:local(.middle) {
+}
+
+:local(.user) {
+  margin: 10px 0;
+}
+
+:local(.options) {
+  margin: 10px 0;
+}
+
+:local(.storage) {
+  margin: 10px 0;
+}
