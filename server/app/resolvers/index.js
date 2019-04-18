@@ -6,8 +6,10 @@ import Registrations from './Registrations'
 import Users from './Users'
 import Vaults from './Vaults'
 import PersonalVaults from './PersonalVaults'
+import Activities from './Activities'
 
 export default {
+  ...Activities,
   ...PersonalVaults,
   ...resolversSchemas,
   ...Auth,

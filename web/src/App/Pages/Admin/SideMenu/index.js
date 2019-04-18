@@ -1,6 +1,6 @@
 import React from 'react'
-import styles from './styles.css'
 import PropTypes from 'prop-types'
+import styles from './styles.css'
 import Menu from './Menu'
 
 export default class SideMenu extends React.Component {

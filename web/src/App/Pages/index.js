@@ -14,7 +14,7 @@ export default class Pages extends React.Component {
   renderComponents() {
     const {pathname} = this.props.location
 
-    if (authRouteRegex.test(this.props.location.pathname)) {
+    if (authRouteRegex.test(pathname)) {
       const Auth = lazy(() => import('./Auth'))
       return <Auth />
     }
