@@ -5,6 +5,7 @@ import PersonalVaults from 'app/collections/PersonalVaults'
 
 export default paginatedResolver({
   returns: PersonalVault,
+  requireLogin: true,
   params: {
     filter: {
       type: String,
