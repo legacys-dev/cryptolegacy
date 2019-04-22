@@ -44,6 +44,14 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@babel/polyfill@^7.4.3":
+  version "7.4.3"
+  resolved "https://registry.yarnpkg.com/@babel/polyfill/-/polyfill-7.4.3.tgz#332dc6f57b718017c3a8b37b4eea8aa6eeac1187"
+  integrity sha512-rkv8WIvJshA5Ev8iNMGgz5WZkRtgtiPexiT7w5qevGTuT7ZBfM3de9ox1y9JR5/OXb/sWGBbWlHNa7vQKqku3Q==
+  dependencies:
+    core-js "^2.6.5"
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@7.0.0-beta.31":
   version "7.0.0-beta.31"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.0.0-beta.31.tgz#577bb29389f6c497c3e7d014617e7d6713f68bda"
@@ -78,13 +86,13 @@
     to-fast-properties "^2.0.0"
 
 "@orion-js/app@^0.12.0":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@orion-js/app/-/app-0.12.1.tgz#e585508814869289a58ca926b37b8293bfd3ab0b"
-  integrity sha512-8HVJ/A+fhChaxWyDbgUwhY1Gb4/FupkqVEX3RU9zvaN/H97RX3pHZNk5KWjTULrnSOMbG5M7FXAHDX280qe2Tw==
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/@orion-js/app/-/app-0.12.5.tgz#0c7e28c53b09bca60d16c56cfa96d8904df6fb35"
+  integrity sha512-M4+fGHEmX3FyTTQq24Bj1ygFSbHT05/LWHKKfRWlxCzpzZ2+sVPdEei5AFd9UqEU92hulIelZcyCMZdjILNRRA==
   dependencies:
+    "@babel/polyfill" "^7.4.3"
     "@orion-js/schema" "^0.12.0"
     async-exit-hook "^2.0.1"
-    babel-polyfill "^6.26.0"
     colors "^1.3.3"
     dot-object "^1.7.1"
     micro "^9.3.3"
@@ -94,9 +102,9 @@
     path-to-regexp "^3.0.0"
 
 "@orion-js/auth@^0.12.0":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@orion-js/auth/-/auth-0.12.1.tgz#0177fdb89aa8253b927c827a10682a76a6dbb8e1"
-  integrity sha512-EHMxG5FS3OcY8uQ8BqGW5FbXNCpPMQ4L27xQdMZ1Q5E7njUp8x+K0r14vy298fD63FQs3gCrJ7GvMS3WHw8bNA==
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/@orion-js/auth/-/auth-0.12.5.tgz#7c78b9f4d47f9428fc3701b54bb7bd58dbb102e3"
+  integrity sha512-sEN5iMBg2y0oeeosZ+HKVNbMQml2gxUOVK/+G/9S50ci+Q4rDdBUqQKYj7B92rnzXbfKN69PKpCVrP9b6LWD5w==
   dependencies:
     bcryptjs "^2.4.3"
     jssha "^2.3.1"
@@ -106,9 +114,9 @@
     speakeasy "^2.0.0"
 
 "@orion-js/graphql@^0.12.0":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@orion-js/graphql/-/graphql-0.12.1.tgz#fdbd5d5697385c20f30c945b5310e9a4b3967551"
-  integrity sha512-0qBB/SJCGHliJNiFntCfCYdBPEfWuuKheRjrV8WIzYfvNhXVSToiYyMCFkax6oR6glaV3cKvt7d3v91Nlmp9Jg==
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/@orion-js/graphql/-/graphql-0.12.5.tgz#d171e76de8f3aab1eca65e621f7a8e4ad168934b"
+  integrity sha512-1FuBWSE9w/qnVwbITvd65RzPdjo3+QjJSpE+ijcbw7YtYQL3BuAeADHbf7fR4tk02uC7ZjRgglGZYgkzHPdtPA==
   dependencies:
     "@orion-js/schema" "^0.12.0"
     apollo-server-core "^1.3.6"
@@ -120,17 +128,17 @@
     subscriptions-transport-ws "^0.9.12"
 
 "@orion-js/jobs@^0.12.0":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@orion-js/jobs/-/jobs-0.12.1.tgz#4471392f90c797561cb1ae8d623d57aa2c3aef64"
-  integrity sha512-w39qbM/g+sjpPcVGO5BO8BfV68rmPRym2oVCQF2+s7KIqoGghvmln7oSNWwGsadE0Uc0AKBZ76OM2dS9AMmczA==
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/@orion-js/jobs/-/jobs-0.12.5.tgz#6c1e899182d58c9cd772d32de8d7685c36025d96"
+  integrity sha512-vx/QoyACA6yfP9zjyJJTvhWo4Qfji4INGOYf01UBIX3ZqsPQ/NKdn4rFk0gubE+uyAbN2HKZ/raY0cLmQ2IXvw==
   dependencies:
     lodash "^4.17.10"
     luxon "^1.2.0"
 
 "@orion-js/mailing@^0.12.0":
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/@orion-js/mailing/-/mailing-0.12.1.tgz#af124fe62b662c2503536473f9e1e11eb8582b51"
-  integrity sha512-BDL9FSw+bOHYuID2N3Whq990jl53vayjuZwm7o7XzR0J2oOX5NyrRpDEBK0nMGhx46pqTg688poAYukGeFuodw==
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/@orion-js/mailing/-/mailing-0.12.5.tgz#b543b7bd91a901cb23f047a74a4d0422c2cc6523"
+  integrity sha512-CVScIy9H6yX4AxtRrLH08ONlqeA+MvxnVPbY9hW+YlG4kEDerkeIFfXKir5jB5useettr1TqK/6W/lFjBiSqHQ==
   dependencies:
     lodash "^4.17.10"
     luxon "^1.2.0"
@@ -365,9 +373,9 @@ atob@^2.1.1:
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 aws-sdk@^2.436.0:
-  version "2.437.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.437.0.tgz#94e41a2ff112aa020ddbe4950dd5f73187889b8b"
-  integrity sha512-sDZb5QBOO6FOMvuKDEdO16YQRk0WUhnQd38EaSt0yUCi4Gev8uypODyYONgODZcXe8Cr1GMwC8scUKr00S/I5w==
+  version "2.441.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.441.0.tgz#40d4854aae132ab7a8d42e492669ff28db79f59d"
+  integrity sha512-PnS2lih7p6sPJYUeUSxab7VNsldcHEsCJddHXnnAZRxd2nVa8pAAbPSAauJIN9E6Z4DBhvX3nuQjj+roP/KBTg==
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
@@ -1342,7 +1350,7 @@ copy-descriptor@^0.1.0:
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
 
-core-js@^2.4.0, core-js@^2.5.0, core-js@^2.5.3:
+core-js@^2.4.0, core-js@^2.5.0, core-js@^2.5.3, core-js@^2.6.5:
   version "2.6.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.5.tgz#44bc8d249e7fb2ff5d00e0341a7ffb94fbf67895"
   integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
@@ -3509,6 +3517,11 @@ regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
+
+regenerator-runtime@^0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.2.tgz#32e59c9a6fb9b1a4aff09b4930ca2d4477343447"
+  integrity sha512-S/TQAZJO+D3m9xeN1WTI8dLKBBiRgXBlTJvbWjCThHWZj9EvHK70Ff50/tYj2J/fvBY6JtFVwRuazHN2E7M9BA==
 
 regenerator-transform@^0.10.0:
   version "0.10.1"
