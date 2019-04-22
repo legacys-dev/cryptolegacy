@@ -10,6 +10,10 @@ export default {
     type: 'ID',
     private: true
   },
+  userVaultId: {
+    type: 'ID',
+    private: true
+  },
   s3Data: {
     type: S3Data,
     private: true,

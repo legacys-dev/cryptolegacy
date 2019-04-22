@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {Route, Switch} from 'react-router-dom'
 import Tabs from 'orionsoft-parts/lib/components/Tabs'
-import Container from 'orionsoft-parts/lib/components/Container'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import forceLogin from 'App/helpers/auth/forceLogin'
 import Security from './Security'
@@ -31,12 +30,10 @@ export default class Layout extends React.Component {
             ]}
           />
         </div>
-        <Container>
-          <Switch>
-            <Route exact path="/settings" component={Profile} />
-            <Route path="/settings/security" component={Security} />
-          </Switch>
-        </Container>
+        <Switch>
+          <Route exact path="/settings" component={Profile} />
+          <Route path="/settings/security" component={Security} />
+        </Switch>
       </div>
     )
   }

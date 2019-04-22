@@ -3,7 +3,6 @@ import styles from './styles.css'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {MdKeyboardArrowRight} from 'react-icons/md'
-import Container from 'orionsoft-parts/lib/components/Container'
 
 export default class Breadcrumbs extends React.Component {
   static propTypes = {
@@ -49,15 +48,13 @@ export default class Breadcrumbs extends React.Component {
 
   render() {
     return (
-      <Container>
-        <div className={styles.container}>
-          <div className={styles.content}>
-            {this.renderPast()}
-            {this.props.children ? <span className="last">{this.props.children}</span> : null}
-          </div>
-          <div className={styles.right}>{this.renderRight()}</div>
+      <div className={styles.container}>
+        <div className={styles.content}>
+          {this.renderPast()}
+          {this.props.children ? <span className="last">{this.props.children}</span> : null}
         </div>
-      </Container>
+        <div className={styles.right}>{this.renderRight()}</div>
+      </div>
     )
   }
 }
