@@ -1,0 +1,14 @@
+:local(.container) {
+  margin: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:local(.icon) {
+  margin-right: 10px;
+}
+
+:local(.message) {
+  margin-left: 10px;
+}

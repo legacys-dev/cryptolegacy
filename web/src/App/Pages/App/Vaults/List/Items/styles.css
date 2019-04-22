@@ -1,0 +1,72 @@
+:local(.container) {
+  padding: 20px;
+  color: #626262;
+  margin-top: 20px;
+}
+
+:local(.vaults) {
+}
+
+:local(.table) {
+  margin-bottom: 15px;
+  width: 100%;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+  border-collapse: separate;
+  border-spacing: 0 1em;
+}
+
+:local(.table) > table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+:local(.table) > tbody {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+:local(.table) > tr > th > td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+:local(.table) > thead {
+  color: #a7b0c7;
+  font-size: 15px;
+}
+
+:local(.table) > tbody > tr {
+  background: #0000000d;
+}
+
+:local(.table) > tbody > tr > td {
+  padding: 18px;
+  border-bottom: 1px solid #f5f8ff;
+  vertical-align: middle;
+}
+
+:local(.table) > thead > tr > td {
+  width: 12%;
+  padding: 18px;
+  border-bottom: 1px solid #f5f8ff;
+  vertical-align: middle;
+}
+
+:local(.options) {
+  color: #91a2b0;
+}
+
+:local(.settings) {
+  -webkit-transition-property: color;
+  -webkit-transition-duration: 300ms;
+  display: flex;
+  justify-content: center;
+}
+
+:local(.settings):hover {
+  cursor: pointer;
+  color: #0077ff;
+}
