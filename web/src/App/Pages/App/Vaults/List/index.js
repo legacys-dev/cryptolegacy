@@ -5,10 +5,10 @@ import {withApollo} from 'react-apollo'
 import vaultsQuery from './vaultsQuery'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import Button from 'App/components/Parts/Button'
-import {withRouter} from 'react-router'
 import Pagination from 'App/components/Parts/Pagination'
-import Items from './Items'
 import autobind from 'autobind-decorator'
+import {withRouter} from 'react-router'
+import Items from './Items'
 
 @withApollo
 @withRouter

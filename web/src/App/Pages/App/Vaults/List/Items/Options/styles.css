@@ -1,0 +1,22 @@
+:local(.container) {
+  color: #91a2b0;
+  display: flex;
+  justify-content: center;
+  max-height: 25px;
+}
+
+:local(.setting) {
+  height: auto;
+}
+
+:local(.item) {
+  -webkit-transition-property: color;
+  -webkit-transition-duration: 300ms;
+  margin-right: 10px;
+  height: auto;
+}
+
+:local(.item):hover {
+  cursor: pointer;
+  color: #0077ff;
+}
