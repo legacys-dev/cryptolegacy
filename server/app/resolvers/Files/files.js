@@ -9,11 +9,15 @@ export default paginatedResolver({
     filter: {
       type: String,
       optional: true
+    },
+    personalVaultId: {
+      type: 'ID'
     }
   },
   requireLogin: true,
-  async getCursor({filter}, viewer) {
-    const query = {userId: viewer.userId}
+  vaultOwner: true,
+  async getCursor({filter, personalVaultId}, viewer) {
+    const query = {userId: viewer.userId, userVaultId: personalVaultId}
 
     if (filter) {
       query.name = {$regex: new RegExp(`^${escape(filter)}`)}
