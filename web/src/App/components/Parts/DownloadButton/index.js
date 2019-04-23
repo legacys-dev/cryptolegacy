@@ -7,6 +7,7 @@ import autobind from 'autobind-decorator'
 import {saveAs} from './downloadFile'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import {MdCloudDownload} from 'react-icons/md'
 
 @withMessage
 export default class DownloadButton extends React.Component {
@@ -16,7 +17,8 @@ export default class DownloadButton extends React.Component {
     downloadExtension: PropTypes.string,
     fileId: PropTypes.string,
     fileName: PropTypes.string,
-    extension: PropTypes.string
+    extension: PropTypes.string,
+    button: PropTypes.bool
   }
 
   static defaultProps = {
@@ -57,13 +59,22 @@ export default class DownloadButton extends React.Component {
     return <Progress total={total} loaded={loaded} close={() => this.setState({open: false})} />
   }
 
+  renderDownload() {
+    if (this.props.button) {
+      return (
+        <Button primary onClick={this.onClick} loading={this.state.loading}>
+          Download archive
+        </Button>
+      )
+    }
+    return <MdCloudDownload size={25} onClick={this.onClick} />
+  }
+
   render() {
     return (
       <div className={styles.container}>
         {this.renderDownloading()}
-        <Button primary onClick={this.onClick} loading={this.state.loading}>
-          Download archive
-        </Button>
+        {this.renderDownload()}
       </div>
     )
   }
