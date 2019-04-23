@@ -39,7 +39,8 @@
 }
 
 :local(.table) > tbody > tr {
-  background: #0000000d;
+  background: #00000008;
+  box-shadow: rgba(0, 0, 0, 0.75) 0px 0px 7px -2px;
 }
 
 :local(.table) > tbody > tr > td {
@@ -53,20 +54,4 @@
   padding: 18px;
   border-bottom: 1px solid #f5f8ff;
   vertical-align: middle;
-}
-
-:local(.options) {
-  color: #91a2b0;
-}
-
-:local(.settings) {
-  -webkit-transition-property: color;
-  -webkit-transition-duration: 300ms;
-  display: flex;
-  justify-content: center;
-}
-
-:local(.settings):hover {
-  cursor: pointer;
-  color: #0077ff;
 }

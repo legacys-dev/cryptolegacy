@@ -11,12 +11,10 @@ export default {
     private: true
   },
   userVaultId: {
-    type: 'ID',
-    private: true
+    type: 'ID'
   },
   s3Data: {
     type: S3Data,
-    private: true,
     optional: true
   },
   b2Data: {
@@ -31,8 +29,7 @@ export default {
   },
   storage: {
     type: String,
-    allowedValues: ['b2', 'glacier'],
-    private: true
+    allowedValues: ['b2', 'glacier']
   },
   createdAt: {
     type: Date

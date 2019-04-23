@@ -5,8 +5,7 @@ export default {
     optional: true
   },
   key: {
-    type: String,
-    private: true
+    type: String
   },
   bucket: {
     type: String,

@@ -21,10 +21,10 @@
   vertical-align: middle;
   cursor: pointer;
   padding: 10px;
-  background-color: #0077FF;
+  background-color: #0077ff;
   color: #fff;
   margin: 0 20px;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 :local(.input) {

@@ -20,8 +20,8 @@ export default class SelectStorage extends React.Component {
     description:
       'There are two types of storage. simple, where you will have quick access to your files and high security, where your files are stored in a high security vault but access to files is slower.',
     options: [
-      {label: 'Simple Storage', value: 'b2'},
-      {label: 'high security storage', value: 'glacier'}
+      {label: 'Simple storage', value: 'b2'},
+      {label: 'High security storage', value: 'glacier'}
     ]
   }
 

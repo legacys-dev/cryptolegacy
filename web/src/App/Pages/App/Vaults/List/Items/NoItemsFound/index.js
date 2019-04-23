@@ -13,9 +13,7 @@ export default class NoItemsFound extends React.Component {
           <Alert active size={50} />
         </div>
         <div className={styles.message}>
-          <h1>
-            <Translate tr="files.notFound" />
-          </h1>
+          <Translate tr="vaults.notFound" />
         </div>
       </div>
     )

@@ -9,6 +9,7 @@ export default resolver({
     }
   },
   requireLogin: true,
+  personalVNameChecker: true,
   returns: String,
   mutation: true,
   async resolve({name}, viewer) {

@@ -12,6 +12,7 @@ export default resolver({
       label: 'Nombre de la bóveda'
     }
   },
+  vaultOwner: true,
   requireLogin: true,
   returns: Boolean,
   mutation: true,

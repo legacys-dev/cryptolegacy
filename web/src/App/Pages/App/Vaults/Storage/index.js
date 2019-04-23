@@ -9,8 +9,8 @@ export default class Storage extends React.Component {
   render() {
     return (
       <Switch>
-        <Route path="/vaults/storage/:vaultId" exact component={Files} />
-        <Route path="/vaults/storage/:vaultId/file/:fileId" exact component={File} />
+        <Route path="/vaults/storage/:personalVaultId" exact component={Files} />
+        <Route path="/vaults/storage/:personalVaultId/file/:fileId" exact component={File} />
       </Switch>
     )
   }

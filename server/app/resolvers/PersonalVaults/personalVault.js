@@ -8,6 +8,7 @@ export default resolver({
       type: 'ID'
     }
   },
+  vaultOwner: true,
   requireLogin: true,
   returns: PersonalVault,
   async resolve({personalVaultId}, viewer) {

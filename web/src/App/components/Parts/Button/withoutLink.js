@@ -1,10 +1,10 @@
 import React from 'react'
-import Loading from 'orionsoft-parts/lib/components/Loading'
-import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 import PropTypes from 'prop-types'
+import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 import autobind from 'autobind-decorator'
 import keys from 'lodash/keys'
 import omit from 'lodash/omit'
+import BounceLoading from 'orionsoft-parts/lib/components/BounceLoading'
 
 export default class Button extends React.Component {
   static propTypes = {
@@ -85,7 +85,7 @@ export default class Button extends React.Component {
 
   renderInner() {
     if (this.props.loading || this.state.loading) {
-      return <Loading size={25} />
+      return <BounceLoading />
     }
 
     if (this.props.icon) {
