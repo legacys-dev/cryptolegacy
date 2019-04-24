@@ -1,0 +1,14 @@
+:local(.container) {
+}
+
+:local(.icon) {
+  -webkit-transition-property: color;
+  -webkit-transition-duration: 300ms;
+  margin-right: 10px;
+  height: auto;
+}
+
+:local(.icon):hover {
+  cursor: pointer;
+  color: #ff0000;
+}
