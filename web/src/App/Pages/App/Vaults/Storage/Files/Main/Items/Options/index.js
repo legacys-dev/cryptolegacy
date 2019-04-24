@@ -2,30 +2,36 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {withRouter} from 'react-router'
-import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
-import {MdInsertDriveFile} from 'react-icons/md'
+import FileView from './FileView'
+import DeleteFile from 'App/components/Parts/DeleteFile'
+import autobind from 'autobind-decorator'
+import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 
 @withRouter
+@withMessage
 export default class Options extends React.Component {
   static propTypes = {
+    showMessage: PropTypes.func,
     history: PropTypes.object,
     file: PropTypes.object,
     userVaultId: PropTypes.string
   }
 
+  @autobind
+  onDeleteSuccess() {
+    this.props.showMessage('Archivo eliminado correctamente')
+  }
+
   renderOptions() {
-    const {userVaultId, file} = this.props
+    const {userVaultId, file, history} = this.props
     return (
       <div className={styles.setting}>
-        <Tooltip content="información del archivo" place="top">
-          <MdInsertDriveFile
-            className={styles.item}
-            size={25}
-            onClick={() =>
-              this.props.history.push(`/vaults/storage/${userVaultId}/file/${file._id}`)
-            }
-          />
-        </Tooltip>
+        <FileView history={history} userVaultId={userVaultId} fileId={file._id} />
+        <DeleteFile
+          fileId={file._id}
+          personalVaultId={userVaultId}
+          onDeleteSuccess={this.onDeleteSuccess}
+        />
       </div>
     )
   }
