@@ -17,7 +17,7 @@ export default paginatedResolver({
   requireLogin: true,
   vaultOwner: true,
   async getCursor({filter, personalVaultId}, viewer) {
-    const query = {userId: viewer.userId, userVaultId: personalVaultId}
+    const query = {userId: viewer.userId, userVaultId: personalVaultId, status: 'active'}
 
     if (filter) {
       query.name = {$regex: new RegExp(`^${escape(filter)}`)}

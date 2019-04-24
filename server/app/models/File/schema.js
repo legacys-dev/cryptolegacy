@@ -31,6 +31,15 @@ export default {
     type: String,
     allowedValues: ['b2', 'glacier']
   },
+  status: {
+    type: String,
+    allowedValues: ['active', 'deleted'],
+    defaultValue: 'active'
+  },
+  updateAt: {
+    type: Date,
+    optional: true
+  },
   createdAt: {
     type: Date
   }
