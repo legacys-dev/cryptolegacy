@@ -1,10 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import isEmpty from 'lodash/isEmpty'
-import NoItemsFound from './NoItemsFound'
-import Loading from 'orionsoft-parts/lib/components/Loading'
 import {VaultConsumer} from 'App/helpers/contexts/personalVaultContext'
+import LargeName from 'App/components/User/LargeName'
 import {Vault} from 'App/components/Parts/Icons'
 import getSize from 'App/helpers/files/getSize'
 import moment from 'moment'
@@ -33,7 +31,9 @@ export default class Items extends React.Component {
             <Vault size={25} />
           </td>
           <td style={{textAlign: 'left'}}>
-            <strong>{file.s3Data.name}</strong>
+            <strong>
+              <LargeName name={file.s3Data.name} />
+            </strong>
           </td>
           <td>{mime.extension(file.s3Data.type)}</td>
           <td>{getSize(file.s3Data.size)}</td>
@@ -71,8 +71,6 @@ export default class Items extends React.Component {
   }
 
   render() {
-    if (!this.props.items) return <Loading />
-    if (isEmpty(this.props.items)) return <NoItemsFound />
     return <div className={styles.container}>{this.renderFiles()}</div>
   }
 }

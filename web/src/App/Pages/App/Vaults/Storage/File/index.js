@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import Breadcrumbs from 'App/components/Breadcrumbs'
-import gql from 'graphql-tag'
 import Information from './Information'
+import gql from 'graphql-tag'
 
 @withGraphQL(gql`
   query file($fileId: ID) {

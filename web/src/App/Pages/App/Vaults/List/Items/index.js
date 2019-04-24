@@ -3,11 +3,12 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import isEmpty from 'lodash/isEmpty'
 import NoItemsFound from './NoItemsFound'
-import Loading from 'orionsoft-parts/lib/components/Loading'
+import Loading from 'App/components/Parts/Loading'
+import LargeName from 'App/components/User/LargeName'
 import {Vault} from 'App/components/Parts/Icons'
-import moment from 'moment'
-import Options from './Options'
 import getSize from 'App/helpers/files/getSize'
+import Options from './Options'
+import moment from 'moment'
 
 export default class Items extends React.Component {
   static propTypes = {
@@ -26,9 +27,11 @@ export default class Items extends React.Component {
             <Vault size={25} />
           </td>
           <td style={{textAlign: 'left'}}>
-            <strong>{vault.name}</strong>
+            <strong>
+              <LargeName name={vault.name} />
+            </strong>
           </td>
-          <td>{vault.fileCount || 0}</td>
+          <td>{vault.fileCount || '0'}</td>
           <td>{getSize(vault.storageUsed)}</td>
           <td>{moment(vault.createdAt).format('LL')}</td>
           <td>
@@ -60,9 +63,8 @@ export default class Items extends React.Component {
   }
 
   render() {
-    const {items} = this.props
-    if (!items) return <Loading />
-    if (isEmpty(items)) return <NoItemsFound />
+    if (!this.props.items) return <Loading />
+    if (isEmpty(this.props.items)) return <NoItemsFound />
     return <div className={styles.container}>{this.renderVaults()}</div>
   }
 }

@@ -7,17 +7,21 @@ import {VaultProvider} from 'App/helpers/contexts/personalVaultContext'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import gql from 'graphql-tag'
 import Main from './Main'
+import Loading from 'App/components/Parts/Loading'
 
-@withGraphQL(gql`
-  query personalVault($personalVaultId: ID) {
-    personalVault(personalVaultId: $personalVaultId) {
-      _id
-      name
-      fileCount
-      storageUsed
+@withGraphQL(
+  gql`
+    query personalVault($personalVaultId: ID) {
+      personalVault(personalVaultId: $personalVaultId) {
+        _id
+        name
+        fileCount
+        storageUsed
+      }
     }
-  }
-`)
+  `,
+  {loading: <Loading />}
+)
 export default class Files extends React.Component {
   static propTypes = {
     match: PropTypes.object,

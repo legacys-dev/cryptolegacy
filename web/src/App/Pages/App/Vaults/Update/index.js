@@ -5,12 +5,12 @@ import {withRouter} from 'react-router'
 import AutoForm from 'App/components/AutoForm'
 import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import Button from 'App/components/Parts/Button'
-import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import Section from 'App/components/Section'
 import gql from 'graphql-tag'
 import Delete from './Delete'
-import Section from 'App/components/Section'
 
 @withGraphQL(gql`
   query personalVault($personalVaultId: ID) {

@@ -11,8 +11,7 @@ export default function Delete(props) {
       mutation="deletePersonalVault"
       danger
       params={{personalVaultId: props.personalVaultId}}
-      onSuccess={() => props.onDeleteSuccess()}>
-      Eliminar
-    </MutationButton>
+      onSuccess={() => props.onDeleteSuccess()}
+    />
   )
 }

@@ -4,6 +4,9 @@ import styles from './styles.css'
 import {withApollo} from 'react-apollo'
 import Pagination from 'App/components/Parts/Pagination'
 import {VaultProvider} from 'App/helpers/contexts/personalVaultContext'
+import isEmpty from 'lodash/isEmpty'
+import NoItemsFound from './Items/NoItemsFound'
+import Loading from 'App/components/Parts/Loading'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 import filesQuery from './filesQuery'
@@ -50,7 +53,7 @@ export default class Main extends React.Component {
     })
   }
 
-  render() {
+  renderItems() {
     const {personalVaultId} = this.props.match.params
     const {items, currentPage, totalPages, hasNextPage, hasPreviousPage} = this.state
     return (
@@ -67,5 +70,11 @@ export default class Main extends React.Component {
         />
       </div>
     )
+  }
+
+  render() {
+    if (!this.state.items) return <Loading />
+    if (isEmpty(this.state.items)) return <NoItemsFound />
+    return this.renderItems()
   }
 }

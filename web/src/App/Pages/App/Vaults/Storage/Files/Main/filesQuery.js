@@ -12,6 +12,8 @@ export default gql`
           key
           deletedFromS3
         }
+        getFromS3
+        getFromB2
         storage
         createdAt
       }
