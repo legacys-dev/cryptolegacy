@@ -25,7 +25,8 @@ export default class FormModal extends React.Component {
     danger: PropTypes.bool,
     fragment: PropTypes.any,
     disabled: PropTypes.bool,
-    renderChildren: PropTypes.func
+    renderChildren: PropTypes.func,
+    children: PropTypes.any
   }
 
   static defaultProps = {
@@ -86,6 +87,7 @@ export default class FormModal extends React.Component {
   }
 
   renderButton() {
+    const {children} = this.props
     return (
       <WithParams name={this.props.mutation}>
         {({name, result, basicResultQuery, params}) => (
@@ -93,15 +95,19 @@ export default class FormModal extends React.Component {
             params={params}
             fragment={this.getFragment({name, result, basicResultQuery, params})}
             mutation={this.props.mutation}>
-            {mutate => (
-              <Button
-                disabled={this.props.disabled}
-                danger={this.props.danger}
-                primary={this.props.primary}
-                onClick={() => this.open(mutate)}>
-                {this.props.label}
-              </Button>
-            )}
+            {mutate =>
+              children ? (
+                React.cloneElement(children, {onClick: () => this.open(mutate)})
+              ) : (
+                <Button
+                  disabled={this.props.disabled}
+                  danger={this.props.danger}
+                  primary={this.props.primary}
+                  onClick={() => this.open(mutate)}>
+                  {this.props.label}
+                </Button>
+              )
+            }
           </WithMutation>
         )}
       </WithParams>
