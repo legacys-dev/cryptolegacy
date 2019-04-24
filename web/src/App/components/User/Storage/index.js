@@ -11,13 +11,13 @@ import numeral from 'numeral'
 
 @forceLogin
 @withGraphQL(gql`
-  query storageUsed {
-    storageUsed
+  query totalStorageUsed {
+    totalStorageUsed
   }
 `)
 export default class Storage extends React.Component {
   static propTypes = {
-    storageUsed: PropTypes.object
+    totalStorageUsed: PropTypes.object
   }
 
   renderUpgradeButton() {
@@ -33,7 +33,7 @@ export default class Storage extends React.Component {
   }
 
   render() {
-    const {percentageUsed} = this.props.storageUsed
+    const {percentageUsed} = this.props.totalStorageUsed
     return (
       <div className={styles.container}>
         <div className={styles.content}>
