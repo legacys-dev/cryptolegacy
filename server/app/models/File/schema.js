@@ -19,7 +19,6 @@ export default {
   },
   b2Data: {
     type: B2Data,
-    private: true,
     optional: true
   },
   glacierData: {

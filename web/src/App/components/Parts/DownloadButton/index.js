@@ -1,81 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './styles.css'
-import Button from 'App/components/Parts/Button'
-import Progress from './Progress'
-import autobind from 'autobind-decorator'
-import {saveAs} from './downloadFile'
-import sleep from 'orionsoft-parts/lib/helpers/sleep'
-import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
-import {MdCloudDownload} from 'react-icons/md'
+// import styles from './styles.css'
+import S3Download from './S3Download'
+import B2Download from './B2Download'
 
-@withMessage
 export default class DownloadButton extends React.Component {
   static propTypes = {
-    showMessage: PropTypes.func,
-    downloadUrl: PropTypes.string,
-    downloadExtension: PropTypes.string,
-    fileId: PropTypes.string,
-    fileName: PropTypes.string,
-    extension: PropTypes.string,
+    file: PropTypes.object,
     button: PropTypes.bool
   }
 
-  static defaultProps = {
-    downloadExtension: '/b2api/v2/b2_download_file_by_id?fileId='
+  renderS3Download() {
+    const {getFromS3, s3Data} = this.props.file
+    return <S3Download downloadUrl={getFromS3} fileName={s3Data.name} button={this.props.button} />
   }
 
-  state = {open: false, loading: false}
-
-  downloadProgress = event => {
-    const {loaded, total} = event
-    if (loaded === total) {
-      this.props.showMessage('Descarga completa')
-      this.setState({loading: false, open: false})
-    }
-    this.setState({loaded, total})
-  }
-
-  @autobind
-  async onClick() {
-    this.setState({open: true, loading: true})
-    const {downloadUrl, downloadExtension, fileId, fileName, extension} = this.props
-    await sleep(1000)
-    try {
-      await saveAs(
-        `${downloadUrl}${downloadExtension}${fileId}`,
-        `${fileName}.${extension}`,
-        this.downloadProgress
-      )
-    } catch (error) {
-      this.setState({loading: false})
-      console.log('Error:', error)
-    }
-  }
-
-  renderDownloading() {
-    if (!this.state.open) return
-    const {total, loaded} = this.state
-    return <Progress total={total} loaded={loaded} close={() => this.setState({open: false})} />
-  }
-
-  renderDownload() {
-    if (this.props.button) {
-      return (
-        <Button primary onClick={this.onClick} loading={this.state.loading}>
-          Download archive
-        </Button>
-      )
-    }
-    return <MdCloudDownload size={25} onClick={this.onClick} />
+  renderB2Download() {
+    const {getFromB2, s3Data} = this.props.file
+    const {fileId} = this.props.file.b2Data
+    return (
+      <B2Download
+        downloadUrl={getFromB2}
+        fileId={fileId}
+        fileName={s3Data.name}
+        button={this.props.button}
+      />
+    )
   }
 
   render() {
-    return (
-      <div className={styles.container}>
-        {this.renderDownloading()}
-        {this.renderDownload()}
-      </div>
-    )
+    const {file} = this.props
+    if (file.getFromS3) return this.renderS3Download()
+    if (file.storage === 'b2') return this.renderB2Download()
+    return <span />
   }
 }

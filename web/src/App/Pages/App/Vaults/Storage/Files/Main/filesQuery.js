@@ -12,6 +12,9 @@ export default gql`
           key
           deletedFromS3
         }
+        b2Data {
+          fileId
+        }
         getFromS3
         getFromB2
         storage

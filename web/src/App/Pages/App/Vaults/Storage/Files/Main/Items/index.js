@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {VaultConsumer} from 'App/helpers/contexts/personalVaultContext'
 import LargeName from 'App/components/User/LargeName'
-import {Vault} from 'App/components/Parts/Icons'
 import getSize from 'App/helpers/files/getSize'
+import FileIcon, {defaultStyles} from 'react-file-icon'
 import moment from 'moment'
 import mime from 'mime-types'
 import Options from './Options'
@@ -28,7 +28,13 @@ export default class Items extends React.Component {
       return (
         <tr className={styles.cell} key={index}>
           <td>
-            <Vault size={25} />
+            <div className={styles.iconType}>
+              <FileIcon
+                extension={mime.extension(file.s3Data.type)}
+                size={25}
+                {...defaultStyles[mime.extension(file.s3Data.type)]}
+              />
+            </div>
           </td>
           <td style={{textAlign: 'left'}}>
             <strong>
@@ -55,7 +61,7 @@ export default class Items extends React.Component {
         <table className={styles.table}>
           <thead>
             <tr>
-              <td style={{width: '1%'}} />
+              <td style={{width: '5%'}} />
               <td style={{textAlign: 'left'}}>Nombre</td>
               <td>Tipo</td>
               <td>Peso</td>

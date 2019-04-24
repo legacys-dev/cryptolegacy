@@ -6,6 +6,7 @@ import FileView from './FileView'
 import DeleteFile from 'App/components/Parts/DeleteFile'
 import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import DownloadButton from 'App/components/Parts/DownloadButton'
 
 @withRouter
 @withMessage
@@ -27,6 +28,7 @@ export default class Options extends React.Component {
     return (
       <div className={styles.setting}>
         <FileView history={history} userVaultId={userVaultId} fileId={file._id} />
+        <DownloadButton file={file} />
         <DeleteFile
           fileId={file._id}
           personalVaultId={userVaultId}

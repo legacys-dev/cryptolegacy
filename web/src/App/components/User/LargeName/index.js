@@ -8,7 +8,7 @@ export default function LargeName(props) {
   const largeName = name.length > 20
   return (
     <div className={largeName ? styles.large : styles.container}>
-      <Tooltip content={acceptedName && name} place="top">
+      <Tooltip content={largeName && name} place="top">
         {acceptedName}
       </Tooltip>
     </div>

@@ -1,7 +1,6 @@
 export default {
   fileId: {
-    type: 'ID',
-    private: true
+    type: 'ID'
   },
   bucketId: {
     type: String,

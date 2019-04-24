@@ -10,18 +10,17 @@ export default resolver({
       fileName: file.s3Data.name
     }
 
-    let fromB2
+    let b2DownloadStartUrl
     let b2Error
     try {
-      fromB2 = await getDownloadUrl(b2Params)
+      b2DownloadStartUrl = await getDownloadUrl(b2Params)
     } catch (error) {
       b2Error = !!error
       console.log(error)
     }
 
     if (b2Error) return
-    console.log({fromB2})
 
-    return fromB2
+    return b2DownloadStartUrl
   }
 })

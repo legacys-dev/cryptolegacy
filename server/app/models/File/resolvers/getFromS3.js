@@ -1,5 +1,6 @@
 import {resolver} from '@orion-js/app'
 import getDownloadUrl from 'app/helpers/awsS3/getDownloadUrl'
+import rp from 'request-promise'
 
 export default resolver({
   params: {},
@@ -10,17 +11,27 @@ export default resolver({
       key: file.s3Data.key
     }
 
-    let fromS3
+    let s3DownloadUrl
     let s3Error
     try {
-      fromS3 = await getDownloadUrl(s3Params)
+      s3DownloadUrl = await getDownloadUrl(s3Params)
     } catch (error) {
       s3Error = !!error
       console.log(error)
     }
 
     if (s3Error) return
-    console.log({fromS3})
-    return fromS3
+
+    let requestError
+    try {
+      await rp(s3DownloadUrl)
+    } catch (error) {
+      requestError = !!error
+      console.log(error)
+    }
+
+    if (requestError) return
+
+    return s3DownloadUrl
   }
 })
