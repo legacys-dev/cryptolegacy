@@ -85,11 +85,10 @@ export default class Upload extends React.Component {
     const {result} = await this.props.createS3Upload({
       name: file.name,
       size: file.size,
-      type: file.type || mime.lookup(file.name) || 'application/octet-stream',
+      type: mime.lookup(file.name) || 'application/octet-stream',
       storage: this.state.storage,
       userVaultId
     })
-
     return result
   }
 
@@ -158,7 +157,7 @@ export default class Upload extends React.Component {
     return (
       <div>
         <div className={styles.loading}>
-          Uploading file ({progress}%)
+          Uploading file ({progress.toFixed(2)}%)
           <br />[{getSize(loaded)} of {getSize(total)}]
         </div>
         <div className={styles.progressLine}>

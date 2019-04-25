@@ -26,10 +26,8 @@ export default class Items extends React.Component {
           <td>
             <Vault size={25} />
           </td>
-          <td style={{textAlign: 'left'}}>
-            <strong>
-              <LargeName name={vault.name} />
-            </strong>
+          <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
+            <LargeName name={vault.name} />
           </td>
           <td>{vault.fileCount || '0'}</td>
           <td>{getSize(vault.storageUsed)}</td>
@@ -53,7 +51,7 @@ export default class Items extends React.Component {
               <td>Archivos</td>
               <td>Almacenamiento</td>
               <td>Fecha de creación</td>
-              <td>Opciones</td>
+              <td>Acciones</td>
             </tr>
           </thead>
           <tbody>{this.renderTable()}</tbody>

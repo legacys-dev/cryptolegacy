@@ -4,7 +4,7 @@
   margin-top: 20px;
 }
 
-:local(.vaults) {
+:local(.files) {
 }
 
 :local(.table) {
@@ -23,6 +23,19 @@
   width: 100%;
 }
 
+:local(.table) > thead {
+  color: #a7b0c7;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+:local(.table) > thead > tr > td {
+  width: 12%;
+  padding: 18px;
+  border-bottom: 1px solid #f5f8ff;
+  vertical-align: middle;
+}
+
 :local(.table) > tbody {
   border: 1px solid #ddd;
   padding: 8px;
@@ -33,24 +46,12 @@
   padding: 8px;
 }
 
-:local(.table) > thead {
-  color: #a7b0c7;
-  font-size: 15px;
-}
-
 :local(.table) > tbody > tr {
-  background: #00000008;
+  background: #00000007;
   box-shadow: rgba(0, 0, 0, 0.75) 0px 0px 7px -2px;
 }
 
 :local(.table) > tbody > tr > td {
   padding: 18px;
-  vertical-align: middle;
-}
-
-:local(.table) > thead > tr > td {
-  width: 12%;
-  padding: 18px;
-  border-bottom: 1px solid #f5f8ff;
   vertical-align: middle;
 }

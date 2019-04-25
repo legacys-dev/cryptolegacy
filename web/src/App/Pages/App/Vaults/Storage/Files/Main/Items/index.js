@@ -67,7 +67,7 @@ export default class Items extends React.Component {
               <td>Peso</td>
               <td>Storage</td>
               <td>Fecha de creación</td>
-              <td>Opciones</td>
+              <td>Acciones</td>
             </tr>
           </thead>
           <tbody>{this.renderTable()}</tbody>

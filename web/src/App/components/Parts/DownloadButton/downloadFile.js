@@ -97,7 +97,7 @@ const saveAs =
           // Support regular links
           a.href = blob
           if (a.origin !== location.origin) {
-            corsEnabled(a.href) ? download(blob, name, opts) : click(a, (a.target = '_blank'))
+            download(blob, name, opts)
           } else {
             click(a)
           }
