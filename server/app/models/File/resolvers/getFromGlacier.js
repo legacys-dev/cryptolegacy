@@ -1,6 +1,6 @@
 import {resolver} from '@orion-js/app'
 import DownloadRequests from 'app/collections/DownloadRequests'
-import getJobOutput from 'app/helpers/awsGlacier/getJobOutput'
+import {getJobOutput} from 'app/helpers/awsGlacier'
 
 export default resolver({
   params: {},

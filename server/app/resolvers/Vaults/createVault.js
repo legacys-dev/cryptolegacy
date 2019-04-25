@@ -1,6 +1,6 @@
 import {resolver, generateId} from '@orion-js/app'
 import Vaults from 'app/collections/Vaults'
-import createGlacierVault from 'app/helpers/awsGlacier/createVault'
+import {createVault} from 'app/helpers/awsGlacier'
 
 export default resolver({
   params: {
@@ -21,7 +21,7 @@ export default resolver({
 
     let hasError
     try {
-      await createGlacierVault({vaultName})
+      await createVault({vaultName})
     } catch (error) {
       hasError = !!error
     }

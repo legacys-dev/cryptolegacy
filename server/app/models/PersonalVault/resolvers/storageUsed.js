@@ -7,6 +7,6 @@ export default resolver({
   async resolve(personalVault, params, viewer) {
     const query = {userVaultId: personalVault._id, userId: viewer.userId}
     const files = await Files.find(query).toArray()
-    return files.reduce((sum, item) => sum + item.s3Data.size, 0)
+    return files.reduce((sum, file) => sum + file.s3Data.size, 0)
   }
 })

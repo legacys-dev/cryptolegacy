@@ -1,6 +1,6 @@
 import {resolver} from '@orion-js/app'
 import Files from 'app/collections/Files'
-import initiateRetrievalArchiveJob from 'app/helpers/awsGlacier/initiateRetrievalArchiveJob'
+import {initiateRetrievalArchiveJob} from 'app/helpers/awsGlacier'
 import DownloadRequests from 'app/collections/DownloadRequests'
 
 export default resolver({

@@ -1,5 +1,5 @@
 import {resolver} from '@orion-js/app'
-import getDownloadUrl from 'app/helpers/backblazeB2/getDownloadUrl'
+import {getDownloadUrl} from 'app/helpers/backblazeB2'
 
 export default resolver({
   params: {},
@@ -16,7 +16,6 @@ export default resolver({
       b2DownloadStartUrl = await getDownloadUrl(b2Params)
     } catch (error) {
       b2Error = !!error
-      console.log(error)
     }
 
     if (b2Error) return

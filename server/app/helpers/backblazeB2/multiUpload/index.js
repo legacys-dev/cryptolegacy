@@ -30,7 +30,7 @@ export default async function({file, fileName}) {
         data: file.Body.slice(start, end)
       })
     } catch (error) {
-      console.log('Error:', error)
+      console.log(error)
     }
     fileParts.push(file.Body.slice(start, end))
     partNumber++
