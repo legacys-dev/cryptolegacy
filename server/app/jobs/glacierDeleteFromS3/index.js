@@ -1,7 +1,7 @@
 import {job} from '@orion-js/jobs'
 import Files from 'app/collections/Files'
 import isEmpty from 'lodash/isEmpty'
-import deleteFormS3 from 'app/helpers/awsS3/deleteData'
+import {deleteData} from 'app/helpers/awsS3'
 
 export default job({
   type: 'recurrent',
@@ -21,7 +21,7 @@ export default job({
     let hasError
     const file = oldestFile[0]
     try {
-      await deleteFormS3({key: file.s3Data.key, bucket: file.s3Data.bucket})
+      await deleteData({key: file.s3Data.key, bucket: file.s3Data.bucket})
     } catch (error) {
       hasError = !!error
       console.log(error)

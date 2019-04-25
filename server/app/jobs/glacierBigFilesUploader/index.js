@@ -1,7 +1,7 @@
 import {job} from '@orion-js/jobs'
 import Files from 'app/collections/Files'
-import downloadFromS3 from 'app/helpers/awsS3/downloadElement'
-import multiUploadToGlacier from 'app/helpers/awsGlacier/multiUpload'
+import {downloadElement} from 'app/helpers/awsS3'
+import {multiUpload} from 'app/helpers/awsGlacier'
 import isEmpty from 'lodash/isEmpty'
 
 export default job({
@@ -26,13 +26,13 @@ export default job({
 
     const file = oldestFile[0]
     const {bucket, key} = file.s3Data
-    const s3Element = await downloadFromS3({bucket, key})
+    const s3Element = await downloadElement({bucket, key})
 
     let glacierResult, errorAtUpload
     await file.update({$set: {'glacierData.status': 'uploading'}})
 
     try {
-      glacierResult = await multiUploadToGlacier({
+      glacierResult = await multiUpload({
         file: s3Element,
         vaultName: 'Test',
         archiveDescription: file.userId
