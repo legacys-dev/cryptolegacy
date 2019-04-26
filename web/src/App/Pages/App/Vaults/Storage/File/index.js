@@ -10,14 +10,7 @@ import gql from 'graphql-tag'
   query file($fileId: ID) {
     file(fileId: $fileId) {
       _id
-      userVaultId
-      s3Data {
-        name
-        type
-        size
-        status
-      }
-      storage
+      data
       createdAt
       vaultName
     }
@@ -33,8 +26,9 @@ export default class File extends React.Component {
     if (!file) return <span />
     return (
       <div className={styles.container}>
-        <Breadcrumbs past={{[`/vaults/storage/${file.userVaultId}`]: `Bóveda - ${file.vaultName}`}}>
-          Archivo - {file.s3Data.name}
+        <Breadcrumbs
+          past={{[`/vaults/storage/${file.data.vaultId}`]: `Bóveda - ${file.vaultName}`}}>
+          Archivo - {file.data.name}
         </Breadcrumbs>
         <Information file={file} />
       </div>

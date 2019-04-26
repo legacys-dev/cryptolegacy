@@ -25,26 +25,22 @@ export default class Items extends React.Component {
   renderTable() {
     const files = this.props.items || []
     return files.map((file, index) => {
+      const {data, createdAt} = file
+      const type = mime.extension(data.type)
       return (
         <tr className={styles.cell} key={index}>
           <td>
             <div className={styles.iconType}>
-              <FileIcon
-                extension={mime.extension(file.s3Data.type)}
-                size={25}
-                {...defaultStyles[mime.extension(file.s3Data.type)]}
-              />
+              <FileIcon extension={type} size={25} {...defaultStyles[type]} />
             </div>
           </td>
-          <td style={{textAlign: 'left'}}>
-            <strong>
-              <LargeName name={file.s3Data.name} />
-            </strong>
+          <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
+            <LargeName name={data.name} />
           </td>
-          <td>{mime.extension(file.s3Data.type)}</td>
-          <td>{getSize(file.s3Data.size)}</td>
-          <td>{storage[file.storage]}</td>
-          <td>{moment(file.createdAt).format('LL')}</td>
+          <td>{type}</td>
+          <td>{getSize(data.size)}</td>
+          <td>{storage[data.storageType]}</td>
+          <td>{moment(createdAt).format('LL')}</td>
           <td>
             <VaultConsumer>
               {providerProps => <Options file={file} userVaultId={providerProps.userVaultId} />}

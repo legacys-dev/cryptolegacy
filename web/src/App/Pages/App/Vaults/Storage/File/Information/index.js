@@ -35,11 +35,11 @@ export default class Information extends React.Component {
       <div className={styles.container}>
         <Section title="Archivo" description="description">
           <div className={styles.file}>
-            {this.renderInformation('Nombre:', file.s3Data.name)}
-            {this.renderInformation('Tipo:', file.s3Data.type)}
-            {this.renderInformation('Peso:', getSize(file.s3Data.size))}
+            {this.renderInformation('Nombre:', file.data.name)}
+            {this.renderInformation('Tipo:', file.data.type)}
+            {this.renderInformation('Peso:', getSize(file.data.size))}
             {this.renderInformation('Bóveda:', file.vaultName)}
-            {this.renderInformation('Tipo de almacenamiento:', storage[file.storage])}
+            {this.renderInformation('Tipo de almacenamiento:', storage[file.data.storageType])}
             {this.renderInformation('Creado:', moment(file.createdAt).format('LL'))}
           </div>
         </Section>

@@ -1,7 +1,6 @@
 export default {
   archiveId: {
-    type: 'ID',
-    private: true
+    type: 'ID'
   },
   location: {
     type: String
@@ -11,8 +10,7 @@ export default {
     optional: true
   },
   vaultName: {
-    type: String,
-    private: true
+    type: String
   },
   errorAtUpload: {
     type: 'blackbox',
@@ -20,7 +18,6 @@ export default {
   },
   status: {
     type: String,
-    private: true,
     allowedValues: ['pending', 'uploading', 'uploaded'],
     defaultValue: 'pending'
   }

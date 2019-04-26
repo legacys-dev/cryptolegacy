@@ -1,15 +1,9 @@
 export default {
-  externalUrl: {
-    type: String,
-    private: true,
-    optional: true
-  },
   key: {
     type: String
   },
   bucket: {
-    type: String,
-    private: true
+    type: String
   },
   name: {
     type: String
@@ -23,6 +17,10 @@ export default {
   status: {
     type: String,
     allowedValues: ['uploading', 'uploaded']
+  },
+  externalUrl: {
+    type: String,
+    optional: true
   },
   updatedAt: {
     type: Date

@@ -11,14 +11,17 @@ export default {
     private: true
   },
   userVaultId: {
-    type: 'ID'
+    type: 'ID',
+    private: true
   },
   s3Data: {
     type: S3Data,
+    private: true,
     optional: true
   },
   b2Data: {
     type: B2Data,
+    private: true,
     optional: true
   },
   glacierData: {
@@ -28,10 +31,12 @@ export default {
   },
   storage: {
     type: String,
+    private: true,
     allowedValues: ['b2', 'glacier']
   },
   status: {
     type: String,
+    private: true,
     allowedValues: ['active', 'deleted'],
     defaultValue: 'active'
   },

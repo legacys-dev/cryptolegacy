@@ -40,7 +40,7 @@ export default resolver({
     const userMasterHash = createMasterHash()
     const userMasterKeys = await generateUserKeys(userMasterHash.masterKey)
 
-    const createUser = authResolvers.createUser
+    const {createUser} = authResolvers
     await createUser({email, password, profile})
 
     const newUser = await Users.findOne({'emails.address': email})

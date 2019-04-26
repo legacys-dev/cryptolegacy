@@ -5,19 +5,9 @@ export default gql`
     files(filter: $filter, personalVaultId: $personalVaultId, page: $page, limit: $limit) {
       items {
         _id
-        s3Data {
-          name
-          type
-          size
-          key
-          deletedFromS3
-        }
-        b2Data {
-          fileId
-        }
+        data
         getFromS3
         getFromB2
-        storage
         createdAt
       }
       totalPages

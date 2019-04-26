@@ -4,8 +4,10 @@ import getType from './getType'
 import url from './url'
 import vaultName from './vaultName'
 import getFromB2 from './getFromB2'
+import data from './data'
 
 export default {
+  data,
   getFromB2,
   vaultName,
   getFromGlacier,
