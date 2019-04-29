@@ -3,7 +3,8 @@ import {createSession} from '@orion-js/auth'
 import Registrations from 'app/collections/Registrations'
 import Users from 'app/collections/Users'
 import authResolvers from 'app/resolvers/Auth'
-import {createMasterHash, generateUserKeys} from 'app/helpers/keys'
+import {createMasterHash, generateUserCipherKeys, createKeyPairs} from 'app/helpers/keys'
+import {cipherEncrypt} from 'app/helpers/crypto'
 import {passwordValidator} from 'app/helpers/registration'
 import isEmpty from 'lodash/isEmpty'
 
@@ -38,7 +39,8 @@ export default resolver({
     const profile = {firstName: name, lastName}
 
     const userMasterHash = createMasterHash()
-    const userMasterKeys = await generateUserKeys(userMasterHash.masterKey)
+    const userMasterKeys = await generateUserCipherKeys(userMasterHash.masterKey)
+    const userPrivateInformation = createKeyPairs()
 
     const {createUser} = authResolvers
     await createUser({email, password, profile})
@@ -47,13 +49,20 @@ export default resolver({
 
     if (!newUser) throw new Error('Error creating user')
 
+    userPrivateInformation.userId = newUser._id
+    const {secret} = userMasterKeys
+    const encryptedContent = cipherEncrypt(
+      JSON.stringify(userPrivateInformation),
+      secret,
+      null,
+      'meta-data'
+    )
+
     await Users.update(
       {_id: newUser._id, 'emails.address': email},
       {
         $set: {
-          'privateKeys.masterHash': userMasterHash.masterKey,
-          'privateKeys.secretKey': userMasterKeys.secret,
-          'privateKeys.secretIv': userMasterKeys.iv,
+          privateData: encryptedContent,
           'emails.$.verified': true
         },
         $unset: {'services.emailVerify': ''}
@@ -63,8 +72,6 @@ export default resolver({
     const session = await createSession(newUser)
 
     return {
-      ums: userMasterKeys.secret,
-      umi: userMasterKeys.iv,
       session
     }
   }

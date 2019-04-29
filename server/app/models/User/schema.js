@@ -33,5 +33,10 @@ export default {
     type: Keys,
     private: true,
     optional: true
+  },
+  privateData: {
+    type: String,
+    private: true,
+    optional: true
   }
 }
