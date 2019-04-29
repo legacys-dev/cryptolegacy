@@ -1,4 +1,5 @@
 :local(.container) {
+  max-height: 25px;
 }
 
 :local(.icon) {

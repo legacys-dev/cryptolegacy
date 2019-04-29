@@ -17,7 +17,7 @@ export default class DownloadButton extends React.Component {
 
   renderB2Download() {
     const {getFromB2, data} = this.props.file
-    const {fileId} = this.props.file.b2Data
+    const {fileId} = data
     return (
       <B2Download
         downloadUrl={getFromB2}
