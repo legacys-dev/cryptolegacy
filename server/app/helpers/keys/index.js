@@ -1,5 +1,6 @@
 import createMasterHash from './createMasterHash'
-import generateUserKeys from './generateUserKeys'
+import generateUserCipherKeys from './generateUserCipherKeys'
 import getHashItems from './getHashItems'
+import createKeyPairs from './createKeyPairs'
 
-export {createMasterHash, generateUserKeys, getHashItems}
+export {createMasterHash, generateUserCipherKeys, getHashItems, createKeyPairs}
