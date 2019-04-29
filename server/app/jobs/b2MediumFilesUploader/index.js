@@ -28,7 +28,8 @@ export default job({
     const {bucket, key} = file.s3Data
     const s3Element = await downloadElement({bucket, key})
 
-    let b2Result, errorAtUpload
+    let b2Result
+    let errorAtUpload
     await file.update({$set: {'b2Data.status': 'uploading'}})
 
     try {

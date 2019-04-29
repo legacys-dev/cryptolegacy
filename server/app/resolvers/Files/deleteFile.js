@@ -18,6 +18,7 @@ export default resolver({
   async resolve({fileId, personalVaultId}, viewer) {
     const file = await Files.findOne(fileId)
     await file.update({$set: {status: 'deleted', updateAt: new Date()}})
+    await file.updateVault()
     return true
   }
 })

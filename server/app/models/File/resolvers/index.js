@@ -5,8 +5,10 @@ import url from './url'
 import vaultName from './vaultName'
 import getFromB2 from './getFromB2'
 import data from './data'
+import updateVault from './updateVault'
 
 export default {
+  updateVault,
   data,
   getFromB2,
   vaultName,

@@ -23,6 +23,7 @@ export default resolver({
     }
 
     await file.update({$set: updateData})
+    await file.updateVault()
 
     return true
   }

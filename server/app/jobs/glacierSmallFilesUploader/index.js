@@ -26,7 +26,8 @@ export default job({
     const {bucket, key} = file.s3Data
     const s3Element = await downloadElement({bucket, key})
 
-    let glacierResult, errorAtUpload
+    let glacierResult
+    let errorAtUpload
     await file.update({$set: {'glacierData.status': 'uploading'}})
 
     try {
