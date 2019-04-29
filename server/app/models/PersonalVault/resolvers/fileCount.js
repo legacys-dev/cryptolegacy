@@ -6,6 +6,7 @@ export default resolver({
   returns: Number,
   async resolve(personalVault, params, viewer) {
     const query = {userVaultId: personalVault._id, userId: viewer.userId}
-    return await Files.find(query).toArray().length
+    const result = await Files.find(query).toArray()
+    return result.length
   }
 })

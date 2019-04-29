@@ -6,7 +6,7 @@
 }
 
 :local(.setting) {
-  height: auto;
+  max-height: 25px !important;
 }
 
 :local(.item) {
