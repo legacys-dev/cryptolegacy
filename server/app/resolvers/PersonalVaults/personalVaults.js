@@ -1,5 +1,4 @@
 import {paginatedResolver} from '@orion-js/app'
-import escape from 'escape-string-regexp'
 import PersonalVault from 'app/models/PersonalVault'
 import PersonalVaults from 'app/collections/PersonalVaults'
 
@@ -16,7 +15,7 @@ export default paginatedResolver({
     const query = {userId: viewer.userId}
 
     if (filter) {
-      query.name = {$regex: new RegExp(`^${escape(filter)}`)}
+      query.searchSlug = {$regex: filter + '.*', $options: 'i'}
     }
 
     return await PersonalVaults.find(query)

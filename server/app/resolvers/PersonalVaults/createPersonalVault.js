@@ -1,5 +1,6 @@
 import {resolver} from '@orion-js/app'
 import PersonalVaults from 'app/collections/PersonalVaults'
+import {slugify} from 'app/helpers/parts'
 
 export default resolver({
   params: {
@@ -16,6 +17,7 @@ export default resolver({
     const params = {
       name,
       userId: viewer.userId,
+      searchSlug: slugify(name),
       createdAt: new Date()
     }
 

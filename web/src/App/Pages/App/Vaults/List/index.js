@@ -2,13 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {withApollo} from 'react-apollo'
-import vaultsQuery from './vaultsQuery'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import Button from 'App/components/Parts/Button'
-import Pagination from 'App/components/Parts/Pagination'
-import autobind from 'autobind-decorator'
+import Text from 'App/components/fields/Text'
 import {withRouter} from 'react-router'
-import Items from './Items'
+import Main from './Main'
 
 @withApollo
 @withRouter
@@ -19,34 +17,20 @@ export default class List extends React.Component {
     location: PropTypes.object
   }
 
-  state = {filter: null}
+  state = {}
 
-  componentDidMount() {
-    this.search()
+  onFilterChange(searchValue) {
+    this.setState({searchValue})
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.filter !== this.state.filter) {
-      this.search()
-    }
-  }
-
-  @autobind
-  async search(page = 1) {
-    const {filter} = this.state
-    const result = await this.props.client.query({
-      query: vaultsQuery,
-      variables: {filter, page, limit: 6},
-      fetchPolicy: 'network-only'
-    })
-    const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.personalVaults
-    this.setState({
-      items,
-      currentPage: page,
-      totalPages,
-      hasNextPage,
-      hasPreviousPage
-    })
+  renderSearch() {
+    return (
+      <Text
+        placeholder="Search"
+        value={this.state.searchValue}
+        onChange={searchValue => this.onFilterChange(searchValue)}
+      />
+    )
   }
 
   renderCreateButton() {
@@ -58,18 +42,15 @@ export default class List extends React.Component {
   }
 
   render() {
-    const {items, currentPage, totalPages, hasNextPage, hasPreviousPage} = this.state
     return (
       <div className={styles.container}>
-        <Breadcrumbs right={this.renderCreateButton()}>Bóvedas</Breadcrumbs>
-        <Items items={items} />
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          search={this.search}
-          hasNextPage={hasNextPage}
-          hasPreviousPage={hasPreviousPage}
-        />
+        <Breadcrumbs right={this.renderCreateButton()}>
+          <div className={styles.title}>
+            <div className={styles.subTitle}>Bóvedas</div>
+            <div className={styles.searchBar}>{this.renderSearch()}</div>
+          </div>
+        </Breadcrumbs>
+        <Main filter={this.state.searchValue} />
       </div>
     )
   }

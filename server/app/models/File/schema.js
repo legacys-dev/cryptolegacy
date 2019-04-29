@@ -14,6 +14,9 @@ export default {
     type: 'ID',
     private: true
   },
+  searchSlug: {
+    type: String
+  },
   s3Data: {
     type: S3Data,
     private: true,

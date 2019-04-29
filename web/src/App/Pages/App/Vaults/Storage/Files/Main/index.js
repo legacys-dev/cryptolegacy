@@ -19,7 +19,9 @@ export default class Main extends React.Component {
     history: PropTypes.object,
     client: PropTypes.object,
     location: PropTypes.object,
-    match: PropTypes.object
+    match: PropTypes.object,
+    personalVault: PropTypes.object,
+    filter: PropTypes.string
   }
 
   state = {filter: null}
@@ -29,16 +31,16 @@ export default class Main extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.filter !== this.state.filter) {
-      this.search()
-    }
+    if (prevProps.filter !== this.props.filter) this.search()
+    if (prevProps !== this.props) this.search(this.state.currentPage)
   }
 
   @autobind
   async search(page = 1) {
-    const {filter} = this.state
-    const {personalVaultId} = this.props.match.params
-    const result = await this.props.client.query({
+    const {client, filter, match} = this.props
+    const {personalVaultId} = match.params
+    this.setState({loading: true})
+    const result = await client.query({
       query: filesQuery,
       variables: {filter, personalVaultId, page, limit: 6},
       fetchPolicy: 'network-only'
@@ -49,17 +51,18 @@ export default class Main extends React.Component {
       currentPage: page,
       totalPages,
       hasNextPage,
-      hasPreviousPage
+      hasPreviousPage,
+      loading: false
     })
   }
 
   renderItems() {
     const {personalVaultId} = this.props.match.params
-    const {items, currentPage, totalPages, hasNextPage, hasPreviousPage} = this.state
+    const {items, currentPage, totalPages, hasNextPage, hasPreviousPage, filter} = this.state
     return (
       <div className={styles.container}>
         <VaultProvider value={{userVaultId: personalVaultId}}>
-          <Items items={items} />
+          <Items items={items} searchValue={filter} onSearch={this.onSearch} />
         </VaultProvider>
         <Pagination
           currentPage={currentPage}
@@ -73,7 +76,7 @@ export default class Main extends React.Component {
   }
 
   render() {
-    if (!this.state.items) return <Loading />
+    if (!this.state.items || this.state.loading) return <Loading />
     if (isEmpty(this.state.items)) return <NoItemsFound />
     return this.renderItems()
   }

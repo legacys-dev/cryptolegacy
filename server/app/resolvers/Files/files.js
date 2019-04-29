@@ -1,5 +1,4 @@
 import {paginatedResolver} from '@orion-js/app'
-import escape from 'escape-string-regexp'
 import Files from 'app/collections/Files'
 import File from 'app/models/File'
 
@@ -20,7 +19,7 @@ export default paginatedResolver({
     const query = {userId: viewer.userId, userVaultId: personalVaultId, status: 'active'}
 
     if (filter) {
-      query.name = {$regex: new RegExp(`^${escape(filter)}`)}
+      query.searchSlug = {$regex: filter + '.*', $options: 'i'}
     }
 
     return Files.find(query)
