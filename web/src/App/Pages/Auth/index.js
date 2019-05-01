@@ -30,6 +30,7 @@ export default class Auth extends React.Component {
     if (location.state && location.state.nextPathname) {
       history.replace(location.state.nextPathname)
     } else {
+      console.log('here')
       history.replace('/dashboard')
     }
   }
