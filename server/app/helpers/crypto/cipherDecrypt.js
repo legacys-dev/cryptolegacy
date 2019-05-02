@@ -26,11 +26,11 @@ export default function(encryptedItem, userSecret, userIv, type) {
 
   const decipher = crypto.createDecipheriv(algorithm, userSecret, encryptionIv)
   const decrypted = decipher.update(encrypted)
-  const finalBuffer = Buffer.concat([decrypted, decipher.final()])
+  const finalBuffer = cloneDeep(Buffer.concat([decrypted, decipher.final()]))
 
   const result =
     type === 'meta-data'
-      ? cloneDeep(Buffer.concat([decrypted, decipher.final()]).toString())
+      ? finalBuffer.toString()
       : type === 'archive'
       ? cloneDeep(finalBuffer)
       : null

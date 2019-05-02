@@ -1,11 +1,12 @@
 import {resolver} from '@orion-js/app'
 import {createSession} from '@orion-js/auth'
-import Registrations from 'app/collections/Registrations'
-import Users from 'app/collections/Users'
 import authResolvers from 'app/resolvers/Auth'
+import Users from 'app/collections/Users'
+import Registrations from 'app/collections/Registrations'
 import {createMasterHash, generateUserCipherKeys, createKeyPairs} from 'app/helpers/keys'
-import {cipherEncrypt} from 'app/helpers/crypto'
 import {passwordValidator} from 'app/helpers/registration'
+import {cipherEncrypt} from 'app/helpers/crypto'
+import createEmergencyKit from './createEmergencyKit'
 import isEmpty from 'lodash/isEmpty'
 
 export default resolver({
@@ -71,8 +72,16 @@ export default resolver({
 
     const session = await createSession(newUser)
 
+    const {emergencyKitId, emergencyKey} = await createEmergencyKit({
+      userMasterHash,
+      userId: newUser._id,
+      email
+    })
+
     return {
-      session
+      session,
+      emergencyKitId,
+      emergencyKey
     }
   }
 })

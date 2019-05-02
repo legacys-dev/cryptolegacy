@@ -1,3 +1,3 @@
-import verifyEmail from './verifyEmail'
-
-export {verifyEmail}
+// import verifyEmail from './verifyEmail'
+//
+// export {verifyEmail}

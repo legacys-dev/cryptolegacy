@@ -10,7 +10,7 @@ export default async function(user) {
       }
     })
   } catch (error) {
-    console.log('Error:', error)
+    console.log(error)
   }
 
   await user.update({$set: {stripeCustomerId: customer.id}})

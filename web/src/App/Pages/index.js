@@ -24,6 +24,11 @@ export default class Pages extends React.Component {
       return <Admin />
     }
 
+    if (pathname.startsWith('/emergency-kit')) {
+      const EmergencyKit = lazy(() => import('./Emergency'))
+      return <EmergencyKit />
+    }
+
     return <App />
   }
 

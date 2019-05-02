@@ -2,7 +2,7 @@ import {resolver} from '@orion-js/app'
 import {createSession} from '@orion-js/auth'
 import {hasPassword, checkPassword} from 'app/helpers/authentication'
 import {cipherDecrypt} from 'app/helpers/crypto'
-import {generateUserKeys} from 'app/helpers/keys'
+import {generateUserCipherKeys} from 'app/helpers/keys'
 import Users from 'app/collections/Users'
 
 export default resolver({
@@ -35,7 +35,7 @@ export default resolver({
         const user = await Users.findOne({'emails.address': doc.email})
         if (!user.privateData) return 'errorNotKeysFound'
 
-        const {secret} = await generateUserKeys(masterKey)
+        const {secret} = await generateUserCipherKeys(masterKey)
         const userData = JSON.parse(cipherDecrypt(user.privateData, secret, null, 'meta-data'))
 
         if (!userData) throw new Error('User private data not found')

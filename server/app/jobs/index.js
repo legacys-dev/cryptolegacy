@@ -7,6 +7,7 @@ import b2SmallFilesUploader from './b2SmallFilesUploader'
 import b2MediumFilesUploader from './b2MediumFilesUploader'
 import b2BigFilesUploader from './b2BigFilesUploader'
 import b2DeleteFromS3 from './b2DeleteFromS3'
+import emergencyKitsDeleter from './emergencyKitsDeleter'
 
 start({
   b2DeleteFromS3,
@@ -16,5 +17,6 @@ start({
   glacierDeleteFromS3,
   glacierBigFilesUploader,
   glacierMediumFilesUploader,
-  glacierSmallFilesUploader
+  glacierSmallFilesUploader,
+  emergencyKitsDeleter
 })
