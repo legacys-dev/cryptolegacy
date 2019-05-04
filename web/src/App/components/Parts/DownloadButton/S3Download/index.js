@@ -21,13 +21,15 @@ export default class S3Download extends React.Component {
 
   state = {open: false, loading: false}
 
-  downloadProgress = event => {
+  @autobind
+  async downloadProgress(event) {
     const {loaded, total} = event
     if (loaded === total) {
       this.props.showMessage('Descarga completa')
-      this.setState({loading: false, open: false})
+      this.setState({loading: false, open: false, loaded: 0})
+    } else {
+      this.setState({loaded, total})
     }
-    this.setState({loaded, total})
   }
 
   @autobind
@@ -39,7 +41,7 @@ export default class S3Download extends React.Component {
       await saveAs(downloadUrl, fileName, this.downloadProgress)
     } catch (error) {
       this.setState({loading: false})
-      console.log('Error:', error)
+      console.log(error)
     }
   }
 

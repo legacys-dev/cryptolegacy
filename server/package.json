@@ -24,6 +24,7 @@
     "hybrid-crypto-js": "^0.1.6",
     "luxon": "^1.12.0",
     "lzutf8": "^0.5.5",
+    "micro": "^9.3.4",
     "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

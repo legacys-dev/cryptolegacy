@@ -18,7 +18,5 @@ export default job({
     for (const kit of kits) {
       await EmergencyKits.remove({_id: kit._id})
     }
-
-    console.log('done')
   }
 })

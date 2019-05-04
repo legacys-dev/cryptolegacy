@@ -15,37 +15,38 @@ export default class B2Download extends React.Component {
   static propTypes = {
     showMessage: PropTypes.func,
     downloadUrl: PropTypes.string,
-    downloadExtension: PropTypes.string,
-    fileId: PropTypes.string,
     fileName: PropTypes.string,
     button: PropTypes.bool
   }
 
-  static defaultProps = {
-    downloadExtension: '/b2api/v2/b2_download_file_by_id?fileId='
-  }
-
   state = {open: false, loading: false}
 
-  downloadProgress = event => {
+  @autobind
+  async downloadProgress(event) {
     const {loaded, total} = event
     if (loaded === total) {
       this.props.showMessage('Descarga completa')
-      this.setState({loading: false, open: false})
+      await sleep(1000)
+      this.setState({loading: false, open: false, loaded: 0})
+    } else {
+      this.setState({loaded, total})
     }
-    this.setState({loaded, total})
   }
 
   @autobind
   async onClick() {
     this.setState({open: true, loading: true})
-    const {downloadUrl, downloadExtension, fileId, fileName} = this.props
+    const {downloadUrl, fileName} = this.props
     await sleep(1000)
     try {
-      await saveAs(`${downloadUrl}${downloadExtension}${fileId}`, fileName, this.downloadProgress)
+      await saveAs(
+        'http://localhost:3000/asd/AScsSDsDfHTt55783G4f2fklr78bA345hk87WF4g456',
+        'foto.jpg',
+        this.downloadProgress
+      )
     } catch (error) {
       this.setState({loading: false})
-      console.log('Error:', error)
+      console.log(error)
     }
   }
 

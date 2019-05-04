@@ -8,7 +8,13 @@ export default async function({bucketId, fileName}) {
     applicationKey
   })
 
-  const authorize = await b2.authorize()
+  const logInb2 = await b2.authorize()
 
-  return authorize.data.downloadUrl
+  const authorization = await b2.getDownloadAuthorization({
+    bucketId,
+    fileNamePrefix: fileName.split('.')[0],
+    validDurationInSeconds: 350
+  })
+
+  return {url: logInb2.data.downloadUrl, authorizationToken: authorization.data.authorizationToken}
 }

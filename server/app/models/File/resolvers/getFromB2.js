@@ -3,23 +3,36 @@ import {getDownloadUrl} from 'app/helpers/backblazeB2'
 
 export default resolver({
   params: {},
-  returns: String,
+  returns: 'blackbox',
   async resolve(file, params, viewer) {
+    if (file.storage !== 'b2') return
+
     const b2Params = {
       bucketId: file.b2Data.bucketId,
       fileName: file.s3Data.name
     }
 
-    let b2DownloadStartUrl
+    let downloadData
     let b2Error
     try {
-      b2DownloadStartUrl = await getDownloadUrl(b2Params)
+      downloadData = await getDownloadUrl(b2Params)
     } catch (error) {
+      console.log(error)
       b2Error = !!error
     }
 
     if (b2Error) return
 
-    return b2DownloadStartUrl
+    const downloadUrl =
+      downloadData.url +
+      '/file' +
+      '/' +
+      process.env.B2_BUCKET_NAME +
+      '/' +
+      file.s3Data.name +
+      '?Authorization=' +
+      downloadData.authorizationToken
+
+    return downloadUrl
   }
 })
