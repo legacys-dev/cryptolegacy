@@ -14,10 +14,6 @@ export default {
     type: String,
     private: true
   },
-  status: {
-    type: String,
-    allowedValues: ['active', 'inactive']
-  },
   createdAt: {
     type: Date
   }

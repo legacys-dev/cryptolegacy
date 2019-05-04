@@ -6,8 +6,6 @@ export default gql`
       items {
         _id
         data
-        getFromS3
-        getFromB2
         createdAt
       }
       totalPages

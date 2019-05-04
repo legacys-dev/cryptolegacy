@@ -19,6 +19,7 @@ export default resolver({
     const file = await Files.findOne(fileId)
     await file.update({$set: {status: 'deleted', updateAt: new Date()}})
     await file.updateVault()
+
     return true
   }
 })

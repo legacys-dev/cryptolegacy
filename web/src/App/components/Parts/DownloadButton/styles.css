@@ -1,3 +1,22 @@
 :local(.container) {
+}
 
+:local(.loading) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3px;
+  margin-right: 10px;
+}
+
+:local(.icon) {
+  -webkit-transition-property: color;
+  -webkit-transition-duration: 300ms;
+  margin-right: 10px;
+  height: auto;
+}
+
+:local(.icon):hover {
+  cursor: pointer;
+  color: #0077ff;
 }

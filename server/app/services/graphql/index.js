@@ -13,5 +13,6 @@ startGraphQL({
 })
 
 setCorsOptions({
-  origin: '*'
+  origin: '*',
+  allowMethods: ['GET']
 })

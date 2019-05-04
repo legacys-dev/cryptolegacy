@@ -6,8 +6,10 @@ import vaultName from './vaultName'
 import getFromB2 from './getFromB2'
 import data from './data'
 import updateVault from './updateVault'
+import getGlacierJobStatus from './getGlacierJobStatus'
 
 export default {
+  getGlacierJobStatus,
   updateVault,
   data,
   getFromB2,

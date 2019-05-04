@@ -4,7 +4,6 @@ import Container from 'orionsoft-parts/lib/components/Container'
 import Button from 'orionsoft-parts/lib/components/Button'
 import fetch from 'unfetch'
 import autobind from 'autobind-decorator'
-import toBlob from 'stream-to-blob'
 
 export default class Home extends React.Component {
   static propTypes = {}
