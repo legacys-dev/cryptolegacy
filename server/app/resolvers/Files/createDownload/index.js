@@ -43,8 +43,13 @@ export default resolver({
           if (!createGlacierJob) return {status: 'error'}
           return {status: 'glacierJobCreated', minutesToWait: 5}
         } else {
-          console.log({jobStatus})
-          return {}
+          if (jobStatus.Completed) {
+            const downloadUrlFromGlacier = await file.getFromGlacier()
+            if (downloadUrlFromGlacier.includes('undefined')) return {status: 'notAvailable'}
+
+            return {status: 'available', fileName, downloadUrl: downloadUrlFromGlacier}
+          }
+          console.log('aca no pasa nada')
         }
       }
     }
