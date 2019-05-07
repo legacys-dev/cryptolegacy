@@ -22,6 +22,7 @@ export default async function({file, type}) {
   const requestParams = {
     jobId: result.jobId,
     location: result.location,
+    status: 'pending',
     createdAt: new Date(),
     completionDate: null
   }
@@ -52,6 +53,6 @@ export default async function({file, type}) {
 
   return {
     status: 'done',
-    minutesToWait: params.tier === 'Standard' ? '3 - 5 horas' : '1 - 5 minutos'
+    minutesToWait: params.tier === 'Standard' ? '3 - 5 hours' : '1 - 5 minutes'
   }
 }

@@ -12,6 +12,7 @@ import autobind from 'autobind-decorator'
 import {saveAs} from './downloadFile'
 import Progress from './Progress'
 import gql from 'graphql-tag'
+import messages from './messages'
 
 @withMutation(gql`
   mutation createDownload($fileId: ID) {
@@ -29,22 +30,6 @@ export default class DownloadButton extends React.Component {
 
   state = {open: false, loading: false}
 
-  errorOnDownload() {
-    this.props.showMessage('File is not available for download', {level: 'error'})
-  }
-
-  notAvailable() {
-    this.props.showMessage('File is not available for download', {level: 'error'})
-  }
-
-  glacierCreateMessage(minutesToWait) {
-    this.props.showMessage(`Your glacier download was created, please wait ${minutesToWait}`)
-  }
-
-  glacierWaitMessage() {
-    this.props.showMessage('Your glacier download is not ready')
-  }
-
   @autobind
   async downloadProgress(event) {
     const {loaded, total} = event
@@ -57,12 +42,10 @@ export default class DownloadButton extends React.Component {
   }
 
   downloadStatusHandler(status, minutesToWait) {
-    console.log({status})
     this.setState({open: false, loading: false, loaded: 0})
-    if (status === 'notAvailable') this.notAvailable()
-    if (status === 'error') this.errorOnDownload()
-    if (status === 'glacierJobCreated') this.glacierCreateMessage(minutesToWait)
-    console.log('no hay nada')
+    const event = messages[status]
+    const message = event.minutes ? event.message + minutesToWait : event.message
+    this.props.showMessage(message, event.error && {level: 'error'})
   }
 
   @autobind

@@ -5,7 +5,7 @@ import isEmpty from 'lodash/isEmpty'
 
 export default job({
   type: 'recurrent',
-  runEvery: 1000 * 60,
+  runEvery: 1000 * 60 * 30,
   async run(params) {
     const glacierDownloads = await DownloadRequests.find({status: 'pending'}).toArray()
 
@@ -28,12 +28,13 @@ export default job({
 
       if (errorOnRequest) continue
 
-      const completionDate = new Date(result.CompletionDate)
+      const updateData = {
+        status: 'completed',
+        completionDate: new Date(result.CompletionDate)
+      }
 
       if (result.Completed) {
-        await downloadRequest.update({
-          $set: {status: 'completed', completionDate}
-        })
+        await downloadRequest.update({$set: updateData})
       }
     }
   }
