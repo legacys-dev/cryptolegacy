@@ -18,7 +18,7 @@ export default async function({fileId}) {
     })
   } catch (error) {
     hasError = !!error
-    console.log('Error:', error)
+    console.log(error)
   }
 
   if (hasError) throw new Error('Error downloading file')

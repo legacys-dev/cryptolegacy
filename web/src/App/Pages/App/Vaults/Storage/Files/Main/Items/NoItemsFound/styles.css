@@ -1,0 +1,16 @@
+:local(.container) {
+  margin: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 350px;
+}
+
+:local(.icon) {
+  margin-right: 10px;
+}
+
+:local(.message) {
+  font-size: 20px;
+  margin-left: 10px;
+}

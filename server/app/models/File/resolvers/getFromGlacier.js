@@ -1,6 +1,5 @@
 import {resolver} from '@orion-js/app'
 import DownloadRequests from 'app/collections/DownloadRequests'
-import getJobOutput from 'app/helpers/awsGlacier/getJobOutput'
 
 export default resolver({
   params: {},
@@ -10,26 +9,18 @@ export default resolver({
 
     if (!downloadRequest) return {status: 'not available'}
 
-    const downloadParams = {
-      jobId: downloadRequest.jobId,
-      vaultName: file.glacierData.vaultName
-    }
+    const {jobId} = downloadRequest
+    const {vaultName} = file.glacierData
 
-    let result, retrievalError
-    try {
-      result = await getJobOutput(downloadParams)
-    } catch (error) {
-      retrievalError = !!error
-      console.log(error)
-    }
+    const local = process.env.ORION_DEV
+    const beta = process.env.ORION_BETA
 
-    if (retrievalError) return {status: 'not available'}
+    const donwloadUrl = local
+      ? `http://localhost:3000/get-aws-job-output/${vaultName}/${jobId}`
+      : beta
+      ? 'beta_url'
+      : 'prod_url'
 
-    return {
-      status: 'available',
-      name: file.s3DAta.name,
-      type: await file.getType(),
-      body: result.body.toString('hex')
-    }
+    return donwloadUrl
   }
 })

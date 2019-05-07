@@ -12,7 +12,7 @@ export default class Layout extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <div className={styles.navbar}>
+        <div className={styles.sidebar}>
           <Sidebar />
         </div>
         <div className={styles.content}>

@@ -1,7 +1,8 @@
 import {resolver} from '@orion-js/app'
 import {createSession} from '@orion-js/auth'
 import {hasPassword, checkPassword} from 'app/helpers/authentication'
-import {generateUserKeys} from 'app/helpers/keys'
+import {cipherDecrypt} from 'app/helpers/crypto'
+import {generateUserCipherKeys} from 'app/helpers/keys'
 import Users from 'app/collections/Users'
 
 export default resolver({
@@ -32,13 +33,13 @@ export default resolver({
         if (masterKey.length !== 32) return 'invalidMasterKey'
 
         const user = await Users.findOne({'emails.address': doc.email})
-        if (!user.privateKeys) return 'errorNotKeysFound'
+        if (!user.privateData) return 'errorNotKeysFound'
 
-        const {secret, iv} = await generateUserKeys(masterKey)
-        const {masterHash, secretKey, secretIv} = user.privateKeys
+        const {secret} = await generateUserCipherKeys(masterKey)
+        const userData = JSON.parse(cipherDecrypt(user.privateData, secret, null, 'meta-data'))
 
-        const compare = masterHash !== masterKey || secretKey !== secret || secretIv !== iv
-        if (compare) return 'incorrectMasterKey'
+        if (!userData) throw new Error('User private data not found')
+        if (userData.userId !== user._id) return 'incorrectMasterKey'
       }
     }
   },
@@ -47,12 +48,9 @@ export default resolver({
   async resolve({email, password}, viewer) {
     const user = await Users.findOne({'emails.address': email})
     const session = await createSession(user)
-    const {secretKey, secretIv} = user.privateKeys
 
     return {
-      session,
-      umk: secretKey,
-      umi: secretIv
+      session
     }
   }
 })

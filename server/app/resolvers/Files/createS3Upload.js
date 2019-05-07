@@ -1,6 +1,7 @@
 import {resolver, generateId} from '@orion-js/app'
 import CreateS3Upload from 'app/models/File/CreateS3Upload'
 import {AWSCredentials} from 'app/helpers/awsS3/credentials'
+import {slugify} from 'app/helpers/parts'
 import Files from 'app/collections/Files'
 
 export default resolver({
@@ -16,6 +17,9 @@ export default resolver({
     },
     storage: {
       type: String
+    },
+    userVaultId: {
+      type: 'ID'
     }
   },
   returns: CreateS3Upload,
@@ -38,6 +42,8 @@ export default resolver({
     const fileId = await Files.insert({
       s3Data,
       userId: viewer.userId,
+      userVaultId: params.userVaultId,
+      searchSlug: slugify(params.name),
       createdAt: new Date(),
       storage: params.storage
     })

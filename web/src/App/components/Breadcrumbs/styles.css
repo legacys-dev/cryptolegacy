@@ -2,7 +2,7 @@
   margin-left: -10px;
   display: flex;
   align-items: center;
-  padding-top: 20px;
+  padding: 20px;
 }
 
 :local(.content) {
@@ -16,12 +16,12 @@
 
 :local(.content) a {
   color: #111;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 5px 10px;
 }
 
 :local(.content) .last {
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 5px 10px;
 }
 

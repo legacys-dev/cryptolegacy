@@ -1,27 +1,34 @@
 import {resolver} from '@orion-js/app'
-import downloadElement from 'app/helpers/awsS3/downloadElement'
+import {getDownloadUrl, getHeadersElement} from 'app/helpers/awsS3'
 
 export default resolver({
   params: {},
-  returns: 'blackbox',
+  returns: String,
   async resolve(file, params, viewer) {
-    const {key, bucket} = file.s3Data
-    let fromS3, s3Error
+    const s3Params = {
+      bucket: file.s3Data.bucket,
+      key: file.s3Data.key
+    }
 
+    let headerError
     try {
-      fromS3 = await downloadElement({key, bucket})
+      await getHeadersElement(s3Params)
+    } catch (error) {
+      headerError = !!error
+    }
+
+    if (headerError) return
+
+    let s3DownloadUrl
+    let s3Error
+    try {
+      s3DownloadUrl = await getDownloadUrl(s3Params)
     } catch (error) {
       s3Error = !!error
-      console.log(error)
     }
 
-    if (s3Error) return {status: 'not available'}
+    if (s3Error) return
 
-    return {
-      status: 'available',
-      name: file.s3Data.name,
-      type: await file.getType(),
-      body: fromS3.Body.toString('hex')
-    }
+    return s3DownloadUrl
   }
 })

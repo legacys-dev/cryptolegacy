@@ -4,7 +4,7 @@ export const defaultProps = {
   className: '',
   percent: 0,
   prefixCls: 'rc-progress',
-  strokeColor: '#0077FF',
+  strokeColor: '#0053b3',
   strokeLinecap: 'round',
   strokeWidth: 2,
   style: {},

@@ -1,19 +1,15 @@
 export default {
   fileId: {
-    type: 'ID',
-    private: true
+    type: 'ID'
   },
   bucketId: {
-    type: String,
-    private: true
+    type: String
   },
   contentSha1: {
-    type: String,
-    private: true
+    type: String
   },
   status: {
     type: String,
-    private: true,
     allowedValues: ['pending', 'uploading', 'uploaded'],
     defaultValue: 'pending'
   }

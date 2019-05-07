@@ -1,0 +1,10 @@
+:local(.container) {
+  padding: 20px;
+}
+
+:local(.file) {
+}
+
+:local(.content) {
+  margin-bottom: 5px;
+}

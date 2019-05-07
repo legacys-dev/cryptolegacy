@@ -10,6 +10,13 @@ export default {
     type: 'ID',
     private: true
   },
+  userVaultId: {
+    type: 'ID',
+    private: true
+  },
+  searchSlug: {
+    type: String
+  },
   s3Data: {
     type: S3Data,
     private: true,
@@ -27,8 +34,18 @@ export default {
   },
   storage: {
     type: String,
-    allowedValues: ['b2', 'glacier'],
-    private: true
+    private: true,
+    allowedValues: ['b2', 'glacier']
+  },
+  status: {
+    type: String,
+    private: true,
+    allowedValues: ['active', 'deleted'],
+    defaultValue: 'active'
+  },
+  updateAt: {
+    type: Date,
+    optional: true
   },
   createdAt: {
     type: Date

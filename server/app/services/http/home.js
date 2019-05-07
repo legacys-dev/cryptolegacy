@@ -1,5 +1,5 @@
 import {route} from '@orion-js/app'
 
-route('/', async function() {
-  return 'Hello world'
+route('/', async function({params, query, pathname, request, headers, response, getBody}) {
+  return 'hello world'
 })

@@ -5,5 +5,7 @@ import Download from './Download'
 import Trash from './Trash'
 import Options from './Options'
 import UserIcon from './UserIcon'
+import Alert from './Alert'
+import Vault from './Vault'
 
-export {Cloud, Configuration, DataStorage, Download, Options, Trash, UserIcon}
+export {Alert, Cloud, Configuration, DataStorage, Download, Options, Trash, UserIcon, Vault}

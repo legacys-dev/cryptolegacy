@@ -10,14 +10,26 @@ import awsCredentials from './awsCredentials'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import SelectStorage from './SelectStorage'
 import {MdCloudUpload} from 'react-icons/md'
+import getSize from 'App/helpers/files/getSize'
 import AWS from 'aws-sdk'
 import gql from 'graphql-tag'
 import mime from 'mime-types'
-import numeral from 'numeral'
 
 @withMutation(gql`
-  mutation createS3Upload($name: String, $size: Float, $type: String, $storage: String) {
-    result: createS3Upload(name: $name, size: $size, type: $type, storage: $storage) {
+  mutation createS3Upload(
+    $name: String
+    $size: Float
+    $type: String
+    $storage: String
+    $userVaultId: ID
+  ) {
+    result: createS3Upload(
+      name: $name
+      size: $size
+      type: $type
+      storage: $storage
+      userVaultId: $userVaultId
+    ) {
       fileId
       key
     }
@@ -37,6 +49,7 @@ export default class Upload extends React.Component {
     completeS3Upload: PropTypes.func,
     getUploadCredentials: PropTypes.object,
     onUploadProgressChange: PropTypes.func,
+    userVaultId: PropTypes.string,
     progress: PropTypes.number,
     loaded: PropTypes.number,
     total: PropTypes.number,
@@ -67,13 +80,15 @@ export default class Upload extends React.Component {
 
   @autobind
   async createUpload(file, storage) {
+    const {userVaultId} = this.props
+    if (!userVaultId) return
     const {result} = await this.props.createS3Upload({
       name: file.name,
       size: file.size,
-      type: file.type || mime.lookup(file.name) || 'application/octet-stream',
-      storage: this.state.storage
+      type: mime.lookup(file.name) || 'application/octet-stream',
+      storage: this.state.storage,
+      userVaultId
     })
-
     return result
   }
 
@@ -142,8 +157,8 @@ export default class Upload extends React.Component {
     return (
       <div>
         <div className={styles.loading}>
-          Uploading file ({progress}%)
-          <br />[{numeral(loaded).format('0,0')}/{numeral(total).format('0,0')}] Bytes
+          Uploading file ({progress.toFixed(2)}%)
+          <br />[{getSize(loaded)} of {getSize(total)}]
         </div>
         <div className={styles.progressLine}>
           <Line percent={this.props.progress} />

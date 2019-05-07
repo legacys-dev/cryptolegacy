@@ -6,7 +6,7 @@
   font-size: 16px;
   font-family: inherit;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .os-input-text {
@@ -16,7 +16,7 @@
   padding: 12px 15px 12px;
   font-family: inherit;
   border: 1px solid #c2c2c2;
-  border-radius: 5px;
+  border-radius: 4px;
   min-width: 30px;
   outline: none;
   transition: border 0.2s ease;

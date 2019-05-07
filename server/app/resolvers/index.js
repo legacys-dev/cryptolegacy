@@ -7,8 +7,10 @@ import Users from './Users'
 import Vaults from './Vaults'
 import PersonalVaults from './PersonalVaults'
 import Activities from './Activities'
+import EmergencyKits from './EmergencyKits'
 
 export default {
+  ...EmergencyKits,
   ...Activities,
   ...PersonalVaults,
   ...resolversSchemas,

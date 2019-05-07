@@ -8,6 +8,9 @@ export default {
   name: {
     type: String
   },
+  searchSlug: {
+    type: String
+  },
   createdAt: {
     type: Date
   }

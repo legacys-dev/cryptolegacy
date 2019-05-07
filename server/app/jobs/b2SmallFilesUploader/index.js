@@ -1,7 +1,7 @@
 import {job} from '@orion-js/jobs'
 import Files from 'app/collections/Files'
-import downloadFromS3 from 'app/helpers/awsS3/downloadElement'
-import singleUploadToB2 from 'app/helpers/backblazeB2/uploadFile'
+import {downloadElement} from 'app/helpers/awsS3'
+import {uploadFile} from 'app/helpers/backblazeB2'
 import isEmpty from 'lodash/isEmpty'
 
 export default job({
@@ -24,13 +24,14 @@ export default job({
 
     const file = oldestFile[0]
     const {bucket, key} = file.s3Data
-    const s3Element = await downloadFromS3({bucket, key})
+    const s3Element = await downloadElement({bucket, key})
 
-    let b2Result, errorAtUpload
+    let b2Result
+    let errorAtUpload
     await file.update({$set: {'b2Data.status': 'uploading'}})
 
     try {
-      b2Result = await singleUploadToB2({
+      b2Result = await uploadFile({
         file: s3Element,
         fileName: file.s3Data.name,
         type: file.s3Data.type

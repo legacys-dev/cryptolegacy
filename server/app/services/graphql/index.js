@@ -1,15 +1,18 @@
 import {setCorsOptions} from '@orion-js/app'
 import {startGraphQL} from '@orion-js/graphql'
 import resolvers from 'app/resolvers'
+import subscriptions from 'app/subscriptions'
 
 // Activate Graphql IDE in browser
-let useGraphiql = true
+let useGraphiql = false
 
 startGraphQL({
   resolvers,
-  useGraphiql
+  useGraphiql,
+  subscriptions
 })
 
 setCorsOptions({
-  origin: '*'
+  origin: '*',
+  allowMethods: ['GET']
 })

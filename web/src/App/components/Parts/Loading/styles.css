@@ -1,0 +1,13 @@
+:local(.container) {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+@media only screen and (max-width: 400px) {
+  :local(.container) {
+    height: 100vh;
+  }
+}

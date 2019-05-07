@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {MdClose} from 'react-icons/md'
 import IconButton from 'orionsoft-parts/lib/components/IconButton'
+import {VaultConsumer} from 'App/helpers/contexts/personalVaultContext'
 import Upload from './Upload'
 import autobind from 'autobind-decorator'
 
@@ -34,13 +35,18 @@ export default class Manager extends React.Component {
               <IconButton tooltip="Cerrar" icon={MdClose} onPress={this.props.close} />
             </div>
           </div>
-          <Upload
-            close={this.props.close}
-            progress={this.state.progress}
-            loaded={this.state.loaded}
-            total={this.state.total}
-            onUploadProgressChange={this.onUploadProgressChange}
-          />
+          <VaultConsumer>
+            {providerProps => (
+              <Upload
+                close={this.props.close}
+                progress={this.state.progress}
+                loaded={this.state.loaded}
+                total={this.state.total}
+                userVaultId={providerProps.userVaultId}
+                onUploadProgressChange={this.onUploadProgressChange}
+              />
+            )}
+          </VaultConsumer>
         </div>
       </div>
     )

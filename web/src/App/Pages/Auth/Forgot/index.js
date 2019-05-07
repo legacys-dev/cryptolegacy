@@ -31,7 +31,7 @@ export default class ForgotPassword extends React.Component {
     return (
       <div className={styles.link}>
         <Translate tr="auth.ifYouHaveAnAccount" />{' '}
-        <Link to="/login" style={{color: '#0077FF'}}>
+        <Link to="/login" style={{color: '#0053b3'}}>
           <Translate tr="auth.loginNow" />
         </Link>
       </div>

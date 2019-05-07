@@ -1,5 +1,5 @@
 :local(.container) {
   composes: loadingGlow from global;
   background-color: #eee;
-  border-radius: 5px;
+  border-radius: 8px;
 }

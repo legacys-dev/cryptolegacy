@@ -1,0 +1,10 @@
+:local(.container) {
+  color: #91a2b0;
+  display: flex;
+  justify-content: center;
+  max-height: 25px;
+}
+
+:local(.setting) {
+  display: flex;
+}

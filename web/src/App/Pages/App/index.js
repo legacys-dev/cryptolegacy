@@ -1,10 +1,9 @@
 import React from 'react'
-// import styles from './styles.css'
 import {Route, Switch} from 'react-router-dom'
 import Home from './Home'
 import Settings from './Settings'
 import Layout from './Layout'
-import UploadFile from './UploadFile'
+import Vaults from './Vaults'
 
 export default class MainHome extends React.Component {
   static propTypes = {}
@@ -14,7 +13,7 @@ export default class MainHome extends React.Component {
       <Layout>
         <Switch>
           <Route path="/settings" component={Settings} />
-          <Route path="/upload-file" component={UploadFile} />
+          <Route path="/vaults" component={Vaults} />
           <Route path="/" component={Home} />
         </Switch>
       </Layout>

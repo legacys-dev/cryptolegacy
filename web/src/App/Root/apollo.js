@@ -5,11 +5,11 @@ import TwoFactorPromptProvider from './TwoFactorPromptProvider'
 // use unique session key per project to avoid
 // loging in and out every time you change projects
 // in localhost
-const sessionKey = 'orionjs.session'
+const sessionKey = 'cryptolegacy.session'
 
 export default createClient({
   endpointURL: url,
-  useSubscriptions: false,
+  useSubscriptions: true,
   promptTwoFactorCode: TwoFactorPromptProvider.promptTwoFactor,
   saveSession(session) {
     localStorage.setItem(sessionKey, JSON.stringify(session, null, 2))

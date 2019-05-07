@@ -25,12 +25,14 @@ export default class Auth extends React.Component {
   }
 
   @autobind
-  onLogin() {
+  onLogin(params) {
     const {location, history} = this.props
     if (location.state && location.state.nextPathname) {
       history.replace(location.state.nextPathname)
     } else {
-      history.replace('/dashboard')
+      const {emergencyKitId, emergencyKey} = params
+      if (!emergencyKitId || !emergencyKey) return
+      history.replace(`/emergency-kit/${emergencyKitId}/${emergencyKey}`)
     }
   }
 
