@@ -18,7 +18,7 @@ export default class LoadingComponent extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.loading}>
-          <Loading color="#0077ff" size={this.props.size} thickness={this.props.thickness} />
+          <Loading color="#0053b3" size={this.props.size} thickness={this.props.thickness} />
         </div>
       </div>
     )

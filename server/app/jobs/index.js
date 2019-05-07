@@ -8,8 +8,12 @@ import b2MediumFilesUploader from './b2MediumFilesUploader'
 import b2BigFilesUploader from './b2BigFilesUploader'
 import b2DeleteFromS3 from './b2DeleteFromS3'
 import emergencyKitsDeleter from './emergencyKitsDeleter'
+import glacierUpdatePendingDownloads from './glacierUpdatePendingDownloads'
+import glacierUpdateDeletedJobs from './glacierUpdateDeletedJobs'
 
 start({
+  glacierUpdateDeletedJobs,
+  glacierUpdatePendingDownloads,
   b2DeleteFromS3,
   b2BigFilesUploader,
   b2MediumFilesUploader,

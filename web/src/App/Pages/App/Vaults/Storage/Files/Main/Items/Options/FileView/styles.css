@@ -5,11 +5,11 @@
 :local(.icon) {
   -webkit-transition-property: color;
   -webkit-transition-duration: 300ms;
-  margin-right: 10px;
+  margin: 0 5px;
   height: auto;
 }
 
 :local(.icon):hover {
   cursor: pointer;
-  color: #0077ff;
+  color: #0053b3;
 }

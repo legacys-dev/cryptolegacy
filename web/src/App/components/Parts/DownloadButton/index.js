@@ -29,23 +29,19 @@ export default class DownloadButton extends React.Component {
 
   state = {open: false, loading: false}
 
-  @autobind
   errorOnDownload() {
     this.props.showMessage('File is not available for download', {level: 'error'})
   }
 
-  @autobind
   notAvailable() {
     this.props.showMessage('File is not available for download', {level: 'error'})
   }
 
-  @autobind
-  glacierCreateMessage(response) {
-    this.props.showMessage('Your glacier download was created, please wait 5 minutes')
+  glacierCreateMessage(minutesToWait) {
+    this.props.showMessage(`Your glacier download was created, please wait ${minutesToWait}`)
   }
 
-  @autobind
-  glacierWaitMessage(response) {
+  glacierWaitMessage() {
     this.props.showMessage('Your glacier download is not ready')
   }
 
@@ -60,11 +56,12 @@ export default class DownloadButton extends React.Component {
     }
   }
 
-  downloadStatusHandler(status) {
+  downloadStatusHandler(status, minutesToWait) {
+    console.log({status})
     this.setState({open: false, loading: false, loaded: 0})
-    if (status === 'notAvailable') return this.notAvailable
-    if (status === 'error') return this.errorOnDownload
-    if (status === 'glacierJobCreated') return this.glacierCreateMessage
+    if (status === 'notAvailable') this.notAvailable()
+    if (status === 'error') this.errorOnDownload()
+    if (status === 'glacierJobCreated') this.glacierCreateMessage(minutesToWait)
     console.log('no hay nada')
   }
 
@@ -74,9 +71,8 @@ export default class DownloadButton extends React.Component {
     const {file, createDownload, showMessage} = this.props
     try {
       const response = await createDownload({fileId: file._id})
-      const {status, fileName, downloadUrl} = response.createDownload
-      if (status !== 'available') return this.downloadStatusHandler(status)
-      console.log({status, fileName, downloadUrl})
+      const {status, fileName, downloadUrl, minutesToWait} = response.createDownload
+      if (status !== 'available') return this.downloadStatusHandler(status, minutesToWait)
       this.setState({open: true})
       await saveAs(downloadUrl, fileName, this.downloadProgress)
     } catch (error) {
@@ -102,7 +98,7 @@ export default class DownloadButton extends React.Component {
     if (this.state.loading) {
       return (
         <div className={styles.loading}>
-          <Loading size={22} thickness={2} color="#0077ff" />
+          <Loading size={22} thickness={2} color="#0053b3" />
         </div>
       )
     }

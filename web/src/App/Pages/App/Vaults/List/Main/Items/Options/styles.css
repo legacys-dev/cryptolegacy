@@ -12,11 +12,11 @@
 :local(.item) {
   -webkit-transition-property: color;
   -webkit-transition-duration: 300ms;
-  margin-right: 10px;
+  margin: 0 5px;
   height: auto;
 }
 
 :local(.item):hover {
   cursor: pointer;
-  color: #0077ff;
+  color: #0053b3;
 }

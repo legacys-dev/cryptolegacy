@@ -1,10 +1,11 @@
 import {initiateRetrievalArchiveJob} from 'app/helpers/awsGlacier'
 import DownloadRequests from 'app/collections/DownloadRequests'
 
-export default async function({file}) {
+export default async function({file, type}) {
   const params = {
+    vaultName: file.glacierData.vaultName,
     archiveId: file.glacierData.archiveId,
-    vaultName: file.glacierData.vaultName
+    tier: 'Standard' // file size, expedited only if the size is 0 - 250 mb
   }
 
   let result
@@ -19,20 +20,38 @@ export default async function({file}) {
   if (retrievalError) return
 
   const requestParams = {
-    fileId: file._id,
     jobId: result.jobId,
     location: result.location,
-    createdAt: new Date()
+    createdAt: new Date(),
+    completionDate: null
   }
 
-  try {
-    await DownloadRequests.insert(requestParams)
-  } catch (error) {
-    retrievalError = !!error
-    console.log('Error:', error)
+  if (type === 'create') {
+    const insertParams = {fileId: file._id, vaultName: params.vaultName, ...requestParams}
+
+    try {
+      await DownloadRequests.insert(insertParams)
+    } catch (error) {
+      retrievalError = !!error
+      console.log(error)
+    }
+
+    if (retrievalError) return
+  } else if (type === 'update') {
+    const downloadRequest = await DownloadRequests.findOne({fileId: file._id})
+
+    try {
+      await downloadRequest.update({$set: requestParams})
+    } catch (error) {
+      retrievalError = !!error
+      console.log(error)
+    }
+
+    if (retrievalError) return
   }
 
-  if (retrievalError) return
-
-  return {status: 'done'}
+  return {
+    status: 'done',
+    minutesToWait: params.tier === 'Standard' ? '3 - 5 horas' : '1 - 5 minutos'
+  }
 }

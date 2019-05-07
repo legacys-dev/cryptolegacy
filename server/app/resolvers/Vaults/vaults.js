@@ -20,6 +20,6 @@ export default paginatedResolver({
       query.name = {$regex: new RegExp(`^${escape(filter)}`)}
     }
 
-    return Vaults.find(query)
+    return Vaults.find(query).sort({createdAt: -1})
   }
 })

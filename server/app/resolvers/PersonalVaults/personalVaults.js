@@ -18,6 +18,6 @@ export default paginatedResolver({
       query.searchSlug = {$regex: filter + '.*', $options: 'i'}
     }
 
-    return await PersonalVaults.find(query)
+    return await PersonalVaults.find(query).sort({createdAt: -1})
   }
 })

@@ -13,12 +13,12 @@
 
 :local(.item):hover {
   cursor: pointer;
-  border-color: #0077ff;
+  border-color: #0053b3;
   background-color: #53caff12;
 }
 
 :local(.itemActive) {
-  border-color: #0077ff;
+  border-color: #0053b3;
   background-color: #53caff12;
 }
 

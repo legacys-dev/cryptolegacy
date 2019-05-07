@@ -22,6 +22,6 @@ export default paginatedResolver({
       query.searchSlug = {$regex: filter + '.*', $options: 'i'}
     }
 
-    return Files.find(query)
+    return Files.find(query).sort({createdAt: -1})
   }
 })
