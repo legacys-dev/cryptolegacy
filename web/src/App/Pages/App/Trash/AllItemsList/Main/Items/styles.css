@@ -54,3 +54,7 @@
   padding: 18px;
   vertical-align: middle;
 }
+
+:local(.iconType) {
+  max-height: 25px;
+}

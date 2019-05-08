@@ -7,7 +7,6 @@ import Button from 'App/components/Parts/Button'
 
 export default class FileManager extends React.Component {
   static propTypes = {
-    onChange: PropTypes.func,
     value: PropTypes.object,
     label: PropTypes.string,
     errorMessage: PropTypes.node

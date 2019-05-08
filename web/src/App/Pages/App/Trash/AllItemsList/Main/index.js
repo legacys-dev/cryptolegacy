@@ -1,54 +1,48 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import {withApollo} from 'react-apollo'
-import Pagination from 'App/components/Parts/Pagination'
-import {VaultProvider} from 'App/helpers/contexts/personalVaultContext'
+import autobind from 'autobind-decorator'
 import Loading from 'App/components/Parts/Loading'
 import NoItemsFound from 'App/components/Parts/NoItemsFound'
-import autobind from 'autobind-decorator'
-import {withRouter} from 'react-router'
+import Pagination from 'App/components/Parts/Pagination'
+import {withApollo} from 'react-apollo'
 import filesQuery from './filesQuery'
 import isEmpty from 'lodash/isEmpty'
 import Items from './Items'
 
 @withApollo
-@withRouter
 export default class Main extends React.Component {
   static propTypes = {
-    history: PropTypes.object,
     client: PropTypes.object,
-    location: PropTypes.object,
-    match: PropTypes.object,
-    personalVault: PropTypes.object,
     filter: PropTypes.string
   }
 
-  state = {filter: null}
+  state = {}
 
   componentDidMount() {
     this.search()
   }
 
-  @autobind
-  onDeleteFile(fileDeleted) {
-    this.setState({fileDeleted})
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.filter !== this.props.filter) {
+      this.search()
+    }
+    if (prevState.fileId !== this.state.fileId) {
+      this.search(this.state.currentPage)
+    }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.filter !== this.props.filter) this.search()
-    if (prevProps !== this.props) this.search(this.state.currentPage)
-    if (prevState.fileDeleted !== this.state.fileDeleted) this.search(this.state.currentPage)
+  @autobind
+  onUpdateArchive(fileId) {
+    this.setState({fileId})
   }
 
   @autobind
   async search(page = 1) {
-    const {client, filter, match} = this.props
-    const {personalVaultId} = match.params
-    this.setState({loading: true})
+    const {filter, client} = this.props
     const result = await client.query({
       query: filesQuery,
-      variables: {filter, personalVaultId, page, limit: 6},
+      variables: {filter, deletedFiles: true, page, limit: 6},
       fetchPolicy: 'network-only'
     })
     const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.files
@@ -57,19 +51,15 @@ export default class Main extends React.Component {
       currentPage: page,
       totalPages,
       hasNextPage,
-      hasPreviousPage,
-      loading: false
+      hasPreviousPage
     })
   }
 
   renderItems() {
-    const {personalVaultId} = this.props.match.params
-    const {items, currentPage, totalPages, hasNextPage, hasPreviousPage, filter} = this.state
+    const {items, currentPage, totalPages, hasNextPage, hasPreviousPage} = this.state
     return (
       <div className={styles.container}>
-        <VaultProvider value={{userVaultId: personalVaultId, onDeleteFile: this.onDeleteFile}}>
-          <Items items={items} searchValue={filter} onSearch={this.onSearch} />
-        </VaultProvider>
+        <Items items={items} onUpdateArchive={this.onUpdateArchive} />
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

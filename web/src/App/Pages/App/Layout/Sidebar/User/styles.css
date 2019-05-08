@@ -27,17 +27,18 @@
 
 :local(.menu) a {
   display: inline-block;
-  padding: 15px;
+  padding: 15px 35px;
   flex: 1;
   cursor: pointer;
 }
 
 :local(.menu) a:hover {
-  background-color: #f2f0f0;
+  background-color: #53caff30;
 }
 
 :local(.account) {
   text-align: center;
+  border-bottom: 1px solid #eee;
 }
 
 :local(.name) {
@@ -59,7 +60,8 @@
   color: #454545;
   height: 25px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
 }
 
 :local(.menuLink) span {

@@ -1,10 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Translate from 'App/i18n'
 import {Alert} from 'App/components/Parts/Icons'
 
 export default class NoItemsFound extends React.Component {
-  static propTypes = {}
+  static propTypes = {
+    message: PropTypes.string
+  }
 
   render() {
     return (
@@ -13,7 +16,7 @@ export default class NoItemsFound extends React.Component {
           <Alert active size={50} />
         </div>
         <div className={styles.message}>
-          <Translate tr="vaults.notFound" />
+          <Translate tr={this.props.message} />
         </div>
       </div>
     )

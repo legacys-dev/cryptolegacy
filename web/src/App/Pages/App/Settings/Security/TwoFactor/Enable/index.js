@@ -1,14 +1,15 @@
 import React from 'react'
-import styles from './styles.css'
-import withMutation from 'react-apollo-decorators/lib/withMutation'
-import gql from 'graphql-tag'
 import PropTypes from 'prop-types'
-import autobind from 'autobind-decorator'
-import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import styles from './styles.css'
 import Button from 'App/components/Parts/Button'
-import {Form, Field} from 'simple-react-form'
+import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import withMutation from 'react-apollo-decorators/lib/withMutation'
 import SixDigitInput from 'App/components/fields/SixDigitInput'
+import {Form, Field} from 'simple-react-form'
+import autobind from 'autobind-decorator'
+import translate from 'App/i18n/translate'
 import Translate from 'App/i18n'
+import gql from 'graphql-tag'
 
 @withMutation(gql`
   mutation generateTwoFactorSecret {
@@ -40,7 +41,7 @@ export default class Enable extends React.Component {
   async generate() {
     try {
       const {result} = await this.props.generateTwoFactorSecret()
-      this.props.showMessage(<Translate tr="settings.twoFactorNowYouMustConfirm" />)
+      this.props.showMessage(translate('settings.twoFactorNowYouMustConfirm'))
       this.setState(result)
     } catch (error) {
       this.props.showMessage(error)
@@ -51,7 +52,7 @@ export default class Enable extends React.Component {
   async activate() {
     try {
       await this.props.activateTwoFactor({code: this.state.code})
-      this.props.showMessage(<Translate tr="settings.twoFactorEnabled" />)
+      this.props.showMessage(translate('settings.twoFactorEnabled'))
     } catch (error) {
       this.props.showMessage(error)
     }

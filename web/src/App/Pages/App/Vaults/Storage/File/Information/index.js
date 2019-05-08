@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Section from 'App/components/Section'
 import getSize from 'App/helpers/files/getSize'
+import mime from 'mime-types'
 import moment from 'moment'
 
 const storage = {
@@ -33,10 +34,10 @@ export default class Information extends React.Component {
     if (!file) return <span />
     return (
       <div className={styles.container}>
-        <Section title="Archivo" description="description">
+        <Section top title="Archivo" description="description">
           <div className={styles.file}>
             {this.renderInformation('Nombre:', file.data.name)}
-            {this.renderInformation('Tipo:', file.data.type)}
+            {this.renderInformation('Tipo:', mime.extension(file.data.type))}
             {this.renderInformation('Peso:', getSize(file.data.size))}
             {this.renderInformation('Bóveda:', file.vaultName)}
             {this.renderInformation('Tipo de almacenamiento:', storage[file.data.storageType])}
