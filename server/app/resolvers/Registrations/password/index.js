@@ -8,6 +8,7 @@ import {passwordValidator} from 'app/helpers/registration'
 import {cipherEncrypt} from 'app/helpers/crypto'
 import createEmergencyKit from './createEmergencyKit'
 import isEmpty from 'lodash/isEmpty'
+import {accountCreated} from 'app/helpers/emails'
 
 export default resolver({
   params: {
@@ -77,6 +78,9 @@ export default resolver({
       userId: newUser._id,
       email
     })
+
+    const {userData} = registration
+    await accountCreated({userData})
 
     return {
       session,
