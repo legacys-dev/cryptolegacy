@@ -1,6 +1,7 @@
 import {resolver} from '@orion-js/app'
 import Registrations from 'app/collections/Registrations'
 import {emailRegistration, emailTest} from 'app/helpers/registration'
+import {verifyEmail} from 'app/helpers/emails'
 
 export default resolver({
   params: {
@@ -33,6 +34,7 @@ export default resolver({
 
     // send code by mail to confirm
     console.log('digits:', dataForRegister.confirmEmail.code)
+    await verifyEmail({registerData: dataForRegister})
 
     return dataForRegister.confirmEmail.token
   }

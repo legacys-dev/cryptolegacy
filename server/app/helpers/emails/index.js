@@ -1,3 +1,4 @@
-// import verifyEmail from './verifyEmail'
-//
-// export {verifyEmail}
+import verifyEmail from './verifyEmail'
+import accountCreated from './accountCreated'
+
+export {verifyEmail, accountCreated}
