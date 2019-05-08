@@ -27,14 +27,14 @@ export default class Main extends React.Component {
     if (prevProps.filter !== this.props.filter) {
       this.search()
     }
-    if (prevState.fileId !== this.state.fileId) {
+    if (prevState.updateDate !== this.state.updateDate) {
       this.search(this.state.currentPage)
     }
   }
 
   @autobind
-  onUpdateArchive(fileId) {
-    this.setState({fileId})
+  onUpdateArchive(updateDate) {
+    this.setState({updateDate})
   }
 
   @autobind

@@ -26,9 +26,9 @@ export default class Items extends React.Component {
   state = {}
 
   @autobind
-  onRestoreSuccess(fileId) {
+  onRestoreSuccess(updateDate) {
     this.props.showMessage('Archivo restaurado correctamente')
-    this.props.onUpdateArchive(fileId)
+    this.props.onUpdateArchive(updateDate)
   }
 
   renderTable() {

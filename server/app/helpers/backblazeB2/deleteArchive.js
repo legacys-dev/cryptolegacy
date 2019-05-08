@@ -20,7 +20,7 @@ export default async function({fileId, fileName}) {
     hasError = !!error
   }
 
-  if (hasError) throw new Error('Error deleting archive ', name)
+  if (hasError) return
 
   return result
 }

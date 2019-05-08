@@ -13,12 +13,21 @@ export default async function({archiveId, vaultName, tier}) {
     }
   }
 
-  const result = await new Promise((resolve, reject) => {
-    glacier.initiateJob(params, function(error, data) {
-      if (error) reject(error)
-      else resolve(data)
+  let result
+  let hasError
+
+  try {
+    result = await new Promise((resolve, reject) => {
+      glacier.initiateJob(params, function(error, data) {
+        if (error) reject(error)
+        else resolve(data)
+      })
     })
-  })
+  } catch (error) {
+    hasError = !!error
+  }
+
+  if (hasError) return
 
   return result
 }

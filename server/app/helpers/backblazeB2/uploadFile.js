@@ -35,7 +35,7 @@ export default async function({file, fileName, type}) {
     hasError = !!error
   }
 
-  if (hasError) throw new Error('Error uploading archive ', name)
+  if (hasError) throw new Error('Error uploading file')
 
   return result.data
 }

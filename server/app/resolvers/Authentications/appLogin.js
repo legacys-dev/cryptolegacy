@@ -1,8 +1,8 @@
 import {resolver} from '@orion-js/app'
 import {createSession} from '@orion-js/auth'
 import {hasPassword, checkPassword} from 'app/helpers/authentication'
-import {cipherDecrypt} from 'app/helpers/crypto'
 import {generateUserCipherKeys} from 'app/helpers/keys'
+import {cipherDecrypt} from 'app/helpers/crypto'
 import Users from 'app/collections/Users'
 
 export default resolver({

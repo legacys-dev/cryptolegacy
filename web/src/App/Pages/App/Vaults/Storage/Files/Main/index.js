@@ -31,14 +31,14 @@ export default class Main extends React.Component {
   }
 
   @autobind
-  onDeleteFile(fileDeleted) {
-    this.setState({fileDeleted})
+  onDeleteFile(deletedTime) {
+    this.setState({deletedTime})
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.filter !== this.props.filter) this.search()
     if (prevProps !== this.props) this.search(this.state.currentPage)
-    if (prevState.fileDeleted !== this.state.fileDeleted) this.search(this.state.currentPage)
+    if (prevState.deletedTime !== this.state.deletedTime) this.search(this.state.currentPage)
   }
 
   @autobind

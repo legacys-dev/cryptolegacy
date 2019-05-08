@@ -12,9 +12,9 @@ export default resolver({
   },
   returns: Boolean,
   mutation: true,
-  filePermissions: true,
   vaultOwner: true,
   requireLogin: true,
+  filePermissions: true,
   async resolve({fileId, personalVaultId}, viewer) {
     const file = await Files.findOne(fileId)
     await file.update({$set: {status: 'deleted', updateAt: new Date()}})

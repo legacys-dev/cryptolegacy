@@ -18,9 +18,9 @@ export default class Options extends React.Component {
     onDeleteFile: PropTypes.func
   }
 
-  onDeleteSuccess(fileId) {
+  onDeleteSuccess(deletedTime) {
     this.props.showMessage('Archivo eliminado correctamente')
-    this.props.onDeleteFile(fileId)
+    this.props.onDeleteFile(deletedTime)
   }
 
   renderOptions() {
@@ -32,7 +32,7 @@ export default class Options extends React.Component {
         <DeleteFile
           fileId={file._id}
           personalVaultId={userVaultId}
-          onDeleteSuccess={() => this.onDeleteSuccess(file._id)}
+          onDeleteSuccess={() => this.onDeleteSuccess(new Date())}
         />
       </div>
     )

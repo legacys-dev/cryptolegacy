@@ -7,12 +7,21 @@ export default async function({key, bucket}) {
 
   const params = {Bucket: bucket, Key: key}
 
-  const result = await new Promise((resolve, reject) => {
-    s3.headObject(params, function(error, data) {
-      if (error) reject(error)
-      else resolve(data)
+  let result
+  let hasError
+
+  try {
+    result = await new Promise((resolve, reject) => {
+      s3.headObject(params, function(error, data) {
+        if (error) reject(error)
+        else resolve(data)
+      })
     })
-  })
+  } catch (error) {
+    hasError = !!error
+  }
+
+  if (hasError) throw new Error('Error getting headers')
 
   return result
 }

@@ -15,7 +15,7 @@ export default function DeleteFile(props) {
           mutation="restoreFile"
           primary
           params={{fileId: props.fileId, personalVaultId: props.personalVaultId}}
-          onSuccess={() => props.onRestoreSuccess(props.fileId)}>
+          onSuccess={() => props.onRestoreSuccess(new Date())}>
           <MdRestorePage className={styles.icon} size={25} />
         </MutationButton>
       </Tooltip>
