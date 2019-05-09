@@ -34,7 +34,7 @@ export default function() {
   const secretkeyInterval = Math.floor(Math.random() * 10)
   const secretIvInterval = Math.floor(Math.random() * 10)
 
-  const masterKey = `${secretkeyInterval}:${hashOne}-${hashTwo}-${hashThree}:${secretIvInterval}`
+  const masterKey = `${secretkeyInterval}:${hashOne}-${hashTwo}-${hashThree}:${secretIvInterval}`.toUpperCase()
 
   if (masterKey.length !== 32) throw new Error('Error creating new master key')
 

@@ -4,10 +4,11 @@ import styles from './styles.css'
 import {MdLock} from 'react-icons/md'
 import Button from 'App/components/Parts/Button'
 import withMutation from 'react-apollo-decorators/lib/withMutation'
-import gql from 'graphql-tag'
-import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import autobind from 'autobind-decorator'
+import translate from 'App/i18n/translate'
 import Translate from 'App/i18n'
+import gql from 'graphql-tag'
 
 @withMutation(gql`
   mutation disableTwoFactor {
@@ -28,7 +29,7 @@ export default class Disable extends React.Component {
   async disableTwoFactor() {
     try {
       await this.props.disableTwoFactor()
-      this.props.showMessage(<Translate tr="settings.twoFactorDisabled" />)
+      this.props.showMessage(translate('settings.twoFactorDisabled'))
     } catch (error) {
       this.props.showMessage(error)
     }

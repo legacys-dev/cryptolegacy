@@ -1,4 +1,7 @@
 :local(.container) {
+}
+
+:local(.all) {
   margin-left: -10px;
   display: flex;
   align-items: center;
@@ -8,14 +11,14 @@
 :local(.content) {
   flex: 1;
   font-size: 25px;
-  color: #000;
+  color: #393939;
   font-weight: bold;
   display: flex;
   align-items: center;
 }
 
 :local(.content) a {
-  color: #111;
+  color: #393939;
   border-radius: 8px;
   padding: 5px 10px;
 }
@@ -26,10 +29,16 @@
 }
 
 :local(.content) a:hover {
-  background: #f3f3f3;
+  background: #53caff30;
 }
 
 :local(.right) {
   display: flex;
   align-items: center;
+}
+
+:local(.divider) {
+  height: 1px;
+  background: #00000017;
+  margin: 0 20px;
 }

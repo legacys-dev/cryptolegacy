@@ -43,7 +43,13 @@ export default class Items extends React.Component {
           <td>{moment(createdAt).format('LL')}</td>
           <td>
             <VaultConsumer>
-              {providerProps => <Options file={file} userVaultId={providerProps.userVaultId} />}
+              {providerProps => (
+                <Options
+                  file={file}
+                  userVaultId={providerProps.userVaultId}
+                  onDeleteFile={providerProps.onDeleteFile}
+                />
+              )}
             </VaultConsumer>
           </td>
         </tr>

@@ -21,7 +21,7 @@ export default async function({fileId}) {
     console.log(error)
   }
 
-  if (hasError) throw new Error('Error downloading file')
+  if (hasError) return
 
   return result.data
 }

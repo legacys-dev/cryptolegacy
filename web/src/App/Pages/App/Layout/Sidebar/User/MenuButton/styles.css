@@ -12,7 +12,7 @@
 }
 
 :local(.container):hover {
-  background-color: #53caff12;
+  background-color: #53caff30;
 }
 
 :local(.pic) {

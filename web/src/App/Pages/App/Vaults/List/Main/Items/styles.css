@@ -1,7 +1,6 @@
 :local(.container) {
   padding: 20px;
   color: #626262;
-  margin-top: 20px;
 }
 
 :local(.files) {

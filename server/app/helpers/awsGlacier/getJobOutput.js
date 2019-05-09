@@ -9,12 +9,10 @@ export default async function({vaultName, jobId}) {
     range: ''
   }
 
-  const result = await new Promise((resolve, reject) => {
+  return await new Promise((resolve, reject) => {
     glacier.getJobOutput(params, function(error, data) {
       if (error) reject(error)
       else resolve(data)
     })
   })
-
-  return result
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import autobind from 'autobind-decorator'
-import NoItemsFound from './Items/NoItemsFound'
+import NoItemsFound from 'App/components/Parts/NoItemsFound'
 import Loading from 'App/components/Parts/Loading'
 import Pagination from 'App/components/Parts/Pagination'
 import {withApollo} from 'react-apollo'
@@ -24,9 +24,7 @@ export default class Main extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.filter !== this.props.filter) {
-      this.search()
-    }
+    if (prevProps.filter !== this.props.filter) this.search()
   }
 
   @autobind
@@ -65,7 +63,7 @@ export default class Main extends React.Component {
 
   render() {
     if (!this.state.items || this.state.loading) return <Loading />
-    if (isEmpty(this.state.items)) return <NoItemsFound />
+    if (isEmpty(this.state.items)) return <NoItemsFound message="vaults.notFound" />
     return this.renderItems()
   }
 }

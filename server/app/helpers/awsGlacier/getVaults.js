@@ -8,12 +8,10 @@ export default async function() {
     marker: null
   }
 
-  const result = await new Promise((resolve, reject) => {
+  return await new Promise((resolve, reject) => {
     glacier.listVaults(params, function(error, data) {
       if (error) reject(error)
       else resolve(data)
     })
   })
-
-  return result
 }

@@ -5,8 +5,12 @@ import files from './files'
 import file from './file'
 import deleteFile from './deleteFile'
 import createDownload from './createDownload'
+import restoreFile from './restoreFile'
+import emptyTrash from './emptyTrash'
 
 export default {
+  emptyTrash,
+  restoreFile,
   createDownload,
   deleteFile,
   getUploadCredentials,

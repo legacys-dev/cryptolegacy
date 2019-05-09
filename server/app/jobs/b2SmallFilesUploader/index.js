@@ -8,7 +8,7 @@ export default job({
   type: 'recurrent',
   runEvery: 1000 * 60,
   async run(params) {
-    const limitSize = 1024 * 1024 * 9900 // 99MB
+    const limitSize = 1024 * 1024 * 99 // 99MB
     const oldestFile = await Files.find({
       storage: 'b2',
       's3Data.status': 'uploaded',
@@ -20,7 +20,8 @@ export default job({
       .limit(1)
       .toArray()
 
-    if (isEmpty(oldestFile)) return
+    return
+    // if (isEmpty(oldestFile)) return
 
     const file = oldestFile[0]
     const {bucket, key} = file.s3Data

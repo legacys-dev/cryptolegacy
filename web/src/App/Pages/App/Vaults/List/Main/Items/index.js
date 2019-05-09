@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import isEmpty from 'lodash/isEmpty'
-import NoItemsFound from './NoItemsFound'
+import NoItemsFound from 'App/components/Parts/NoItemsFound'
 import Loading from 'App/components/Parts/Loading'
 import LargeName from 'App/components/User/LargeName'
 import {Vault} from 'App/components/Parts/Icons'
@@ -62,7 +62,7 @@ export default class Items extends React.Component {
 
   render() {
     if (!this.props.items) return <Loading />
-    if (isEmpty(this.props.items)) return <NoItemsFound />
+    if (isEmpty(this.props.items)) return <NoItemsFound message="vaults.notFound" />
     return <div className={styles.container}>{this.renderVaults()}</div>
   }
 }

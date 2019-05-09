@@ -1,7 +1,7 @@
 import credentials from './credentials'
-import deleteData from './deleteData'
+import deleteArchive from './deleteArchive'
 import downloadElement from './downloadElement'
 import getDownloadUrl from './getDownloadUrl'
 import getHeadersElement from './getHeadersElement'
 
-export {credentials, deleteData, downloadElement, getDownloadUrl, getHeadersElement}
+export {credentials, deleteArchive, downloadElement, getDownloadUrl, getHeadersElement}

@@ -5,24 +5,16 @@ import {MdClose} from 'react-icons/md'
 import IconButton from 'orionsoft-parts/lib/components/IconButton'
 import {VaultConsumer} from 'App/helpers/contexts/personalVaultContext'
 import Upload from './Upload'
-import autobind from 'autobind-decorator'
 
 export default class Manager extends React.Component {
   static propTypes = {
-    close: PropTypes.func,
-    onChange: PropTypes.func
+    close: PropTypes.func
   }
 
   state = {progress: 0}
 
   onUploadProgressChange = (progress, loaded, total) => {
     this.setState({progress, loaded, total})
-  }
-
-  @autobind
-  selectFile(fileId) {
-    this.props.onChange({_id: fileId})
-    this.props.close()
   }
 
   render() {

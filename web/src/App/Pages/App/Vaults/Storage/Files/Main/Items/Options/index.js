@@ -2,11 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {withRouter} from 'react-router'
-import FileView from './FileView'
-import DeleteFile from 'App/components/Parts/DeleteFile'
-import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import DownloadButton from 'App/components/Parts/DownloadButton'
+import DeleteFile from 'App/components/Parts/DeleteFile'
+import FileView from './FileView'
 
 @withRouter
 @withMessage
@@ -15,12 +14,13 @@ export default class Options extends React.Component {
     showMessage: PropTypes.func,
     history: PropTypes.object,
     file: PropTypes.object,
-    userVaultId: PropTypes.string
+    userVaultId: PropTypes.string,
+    onDeleteFile: PropTypes.func
   }
 
-  @autobind
-  onDeleteSuccess() {
+  onDeleteSuccess(deletedTime) {
     this.props.showMessage('Archivo eliminado correctamente')
+    this.props.onDeleteFile(deletedTime)
   }
 
   renderOptions() {
@@ -32,7 +32,7 @@ export default class Options extends React.Component {
         <DeleteFile
           fileId={file._id}
           personalVaultId={userVaultId}
-          onDeleteSuccess={this.onDeleteSuccess}
+          onDeleteSuccess={() => this.onDeleteSuccess(new Date())}
         />
       </div>
     )

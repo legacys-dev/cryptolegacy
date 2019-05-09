@@ -7,12 +7,10 @@ export default async function({key, bucket}) {
 
   const params = {Bucket: bucket, Key: key}
 
-  const result = await new Promise((resolve, reject) => {
+  return await new Promise((resolve, reject) => {
     s3.deleteObject(params, function(error, data) {
       if (error) reject(error)
       else resolve(data)
     })
   })
-
-  return result
 }

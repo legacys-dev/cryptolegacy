@@ -7,5 +7,17 @@ import Options from './Options'
 import UserIcon from './UserIcon'
 import Alert from './Alert'
 import Vault from './Vault'
+import MagnifyingGlass from './MagnifyingGlass'
 
-export {Alert, Cloud, Configuration, DataStorage, Download, Options, Trash, UserIcon, Vault}
+export {
+  Alert,
+  Cloud,
+  Configuration,
+  DataStorage,
+  Download,
+  MagnifyingGlass,
+  Options,
+  Trash,
+  UserIcon,
+  Vault
+}

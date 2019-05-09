@@ -3,7 +3,7 @@ import {cipherEncrypt} from 'app/helpers/crypto'
 import EmergencyKits from 'app/collections/EmergencyKits'
 
 export default async function({userMasterHash, userId, email}) {
-  const _id = generateId(71)
+  const _id = generateId(201)
   const key = generateId(32)
 
   const toEncrypt = {userId, userMasterHash, email}

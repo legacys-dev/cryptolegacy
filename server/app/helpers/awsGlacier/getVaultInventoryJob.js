@@ -14,12 +14,10 @@ export default async function(vaultName) {
     }
   }
 
-  const result = await new Promise((resolve, reject) => {
+  return await new Promise((resolve, reject) => {
     glacier.initiateJob(params, function(error, data) {
       if (error) reject(error)
       else resolve(data)
     })
   })
-
-  return result
 }

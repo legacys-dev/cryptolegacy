@@ -2,15 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import {MdVpnKey, MdExitToApp, MdBuild, MdWork} from 'react-icons/md'
-import autobind from 'autobind-decorator'
+import {MdVpnKey, MdExitToApp, MdWork} from 'react-icons/md'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import gql from 'graphql-tag'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
+import withUserId from 'App/helpers/auth/withUserId'
 import {withRouter, Link} from 'react-router-dom'
 import logout from 'App/helpers/auth/logout'
-import withUserId from 'App/helpers/auth/withUserId'
+import {Configuration} from 'App/components/Parts/Icons'
+import autobind from 'autobind-decorator'
 import MenuButton from './MenuButton'
+import gql from 'graphql-tag'
 
 @withGraphQL(
   gql`
@@ -81,7 +82,7 @@ export default class User extends React.Component {
     return (
       <div className={style}>
         <div>{icon}</div>
-        <div style={{width: '150px'}}>{title}</div>
+        <div style={{width: '150px', marginLeft: '60px'}}>{title}</div>
       </div>
     )
   }
@@ -96,7 +97,7 @@ export default class User extends React.Component {
           <div className={styles.email}>{this.props.me.email}</div>
         </Link>
         <Link to="/settings">
-          {this.renderOption(styles.options, <MdBuild size={20} />, 'Mi cuenta')}
+          {this.renderOption(styles.options, <Configuration size={20} />, 'Mi cuenta')}
         </Link>
         {this.renderAdmin()}
         <div className={styles.logoutIcons}>

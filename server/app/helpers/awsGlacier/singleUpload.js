@@ -10,12 +10,21 @@ export default async function({file, vaultName, archiveDescription}) {
     checksum: s3Glacier.computeChecksums(file.Body).treeHash
   }
 
-  const result = await new Promise((resolve, reject) => {
-    s3Glacier.uploadArchive(params, function(error, data) {
-      if (error) reject(error)
-      else resolve(data)
+  let result
+  let hasError
+
+  try {
+    result = await new Promise((resolve, reject) => {
+      s3Glacier.uploadArchive(params, function(error, data) {
+        if (error) reject(error)
+        else resolve(data)
+      })
     })
-  })
+  } catch (error) {
+    hasError = !!error
+  }
+
+  if (hasError) throw new Error('Error uploading file to glacier')
 
   return {
     vaultName,

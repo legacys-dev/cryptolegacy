@@ -1,20 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import {withApollo} from 'react-apollo'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import Button from 'App/components/Parts/Button'
 import Text from 'App/components/fields/Text'
 import {withRouter} from 'react-router'
 import Main from './Main'
 
-@withApollo
 @withRouter
 export default class List extends React.Component {
   static propTypes = {
-    history: PropTypes.object,
-    client: PropTypes.object,
-    location: PropTypes.object
+    history: PropTypes.object
   }
 
   state = {}

@@ -1,6 +1,6 @@
 import multiUpload from './multiUpload'
 import credentials from './credentials'
-import deleteFile from './deleteFile'
+import deleteArchive from './deleteArchive'
 import downloadFileById from './downloadFileById'
 import getDownloadUrl from './getDownloadUrl'
 import uploadFile from './uploadFile'
@@ -9,7 +9,7 @@ import getBucket from './getBucket'
 export {
   multiUpload,
   credentials,
-  deleteFile,
+  deleteArchive,
   getBucket,
   downloadFileById,
   getDownloadUrl,
