@@ -26,11 +26,8 @@ export default class SelectField extends React.Component {
   state = {}
 
   componentDidUpdate(prevProps, prevState) {
-    const {onChange} = this.props
     if (!isEqual(prevProps.options, this.props.options)) {
-      if (!this.getValue()) {
-        onChange(null)
-      }
+      if (!this.getValue()) this.props.onChange(null)
     }
   }
 

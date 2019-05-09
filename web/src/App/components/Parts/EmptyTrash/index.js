@@ -11,6 +11,7 @@ export default function DeleteFile(props) {
         message="¿Confirmas que quieres eliminar todos los archivos de esta sección?"
         confirmText="Eliminar"
         mutation="emptyTrash"
+        disabled={!props.filesCount}
         danger
         params={{userId: props.userId}}
         onSuccess={() => props.onDeleteSuccess()}

@@ -14,7 +14,9 @@ import Items from './Items'
 export default class Main extends React.Component {
   static propTypes = {
     client: PropTypes.object,
-    filter: PropTypes.string
+    filter: PropTypes.string,
+    emptyTrashDate: PropTypes.date,
+    onQueryItems: PropTypes.func
   }
 
   state = {}
@@ -24,12 +26,9 @@ export default class Main extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.filter !== this.props.filter) {
-      this.search()
-    }
-    if (prevState.updateDate !== this.state.updateDate) {
-      this.search(this.state.currentPage)
-    }
+    if (prevProps.filter !== this.props.filter) this.search()
+    if (prevProps.emptyTrashDate !== this.props.emptyTrashDate) this.search()
+    if (prevState.updateDate !== this.state.updateDate) this.search(this.state.currentPage)
   }
 
   @autobind
@@ -39,13 +38,16 @@ export default class Main extends React.Component {
 
   @autobind
   async search(page = 1) {
-    const {filter, client} = this.props
+    const {filter, client, onQueryItems} = this.props
     const result = await client.query({
       query: filesQuery,
       variables: {filter, deletedFiles: true, page, limit: 6},
       fetchPolicy: 'network-only'
     })
     const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.files
+
+    onQueryItems(items.length)
+
     this.setState({
       items,
       currentPage: page,

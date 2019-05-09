@@ -30,7 +30,13 @@ export default class AllItemsList extends React.Component {
   state = {}
 
   @autobind
+  onQueryItems(filesCount) {
+    this.setState({filesCount})
+  }
+
+  @autobind
   onDeleteSuccess() {
+    this.setState({emptyTrashDate: new Date()})
     this.props.showMessage('Se han eliminado los archivos correctamente')
   }
 
@@ -49,16 +55,27 @@ export default class AllItemsList extends React.Component {
   }
 
   render() {
+    const {searchValue, emptyTrashDate, filesCount} = this.state
     return (
       <div className={styles.container}>
         <Breadcrumbs
-          right={<EmptyTrash onDeleteSuccess={this.onDeleteSuccess} userId={this.props.me._id} />}>
+          right={
+            <EmptyTrash
+              onDeleteSuccess={this.onDeleteSuccess}
+              userId={this.props.me._id}
+              filesCount={filesCount}
+            />
+          }>
           <div className={styles.title}>
             <div className={styles.subTitle}>Archivos en eliminación</div>
             <div className={styles.searchBar}>{this.renderSearch()}</div>
           </div>
         </Breadcrumbs>
-        <Main filter={this.state.searchValue} />
+        <Main
+          filter={searchValue}
+          emptyTrashDate={emptyTrashDate}
+          onQueryItems={this.onQueryItems}
+        />
       </div>
     )
   }

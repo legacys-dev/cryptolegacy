@@ -24,9 +24,7 @@ export default class Main extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.filter !== this.props.filter) {
-      this.search()
-    }
+    if (prevProps.filter !== this.props.filter) this.search()
   }
 
   @autobind
