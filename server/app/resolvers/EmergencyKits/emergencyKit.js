@@ -1,8 +1,8 @@
 import {resolver, PermissionsError} from '@orion-js/app'
 import EmergencyKits from 'app/collections/EmergencyKits'
 import {cipherDecrypt} from 'app/helpers/crypto'
-import {DateTime} from 'luxon'
 import isEmpty from 'lodash/isEmpty'
+import {DateTime} from 'luxon'
 
 export default resolver({
   params: {
@@ -18,7 +18,7 @@ export default resolver({
   returns: 'blackbox',
   async resolve({emergencyKitId, emergencyKey}, viewer) {
     const limitTime = DateTime.local()
-      .minus({minutes: 30})
+      .minus({minutes: 2})
       .toJSDate()
 
     const kit = await EmergencyKits.findOne({
@@ -38,6 +38,10 @@ export default resolver({
       throw new PermissionsError('unauthorized', {message: 'Unauthorized kit access'})
     }
 
-    return {userMasterKey: userMasterHash.masterKey, userEmail: email}
+    return {
+      userMasterKey: userMasterHash.masterKey,
+      userEmail: email,
+      createdAt: kit.createdAt
+    }
   }
 })

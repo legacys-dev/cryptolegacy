@@ -5,7 +5,7 @@ import EmergencyKits from 'app/collections/EmergencyKits'
 
 export default job({
   type: 'recurrent',
-  runEvery: 1000 * 60,
+  runEvery: 1000 * 60 * 10,
   async run(params) {
     const limitTime = DateTime.local()
       .minus({minutes: 30})

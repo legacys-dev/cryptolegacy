@@ -12,7 +12,7 @@ export default function KeyPdfGenerator(props) {
           keywords="Secret"
           subject="This document shown only once"
           title="CryptoLegacy secret user kit">
-          <Resume size="B6" />
+          <Resume userData={props.userData} />
         </Document>
       </PDFViewer>
     </div>

@@ -1,0 +1,22 @@
+:local(.container) {
+  color: #393939;
+}
+
+:local(.icon) {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+:local(.title) {
+  font-size: 18px;
+}
+
+:local(.danger) {
+  margin: 15px 0;
+}
+
+:local(.downloadTip) {
+  font-size: 13px;
+  text-align: center;
+}

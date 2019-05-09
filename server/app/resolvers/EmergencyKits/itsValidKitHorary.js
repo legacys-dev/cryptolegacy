@@ -1,7 +1,7 @@
 import {resolver} from '@orion-js/app'
-import {DateTime} from 'luxon'
 import EmergencyKits from 'app/collections/EmergencyKits'
 import isEmpty from 'lodash/isEmpty'
+import {DateTime} from 'luxon'
 
 export default resolver({
   params: {
@@ -17,7 +17,7 @@ export default resolver({
   emergencyKitPermissions: true,
   async resolve({emergencyKitId, emergencyKey}, viewer) {
     const limitTime = DateTime.local()
-      .minus({minutes: 30})
+      .minus({minutes: 2})
       .toJSDate()
 
     const kit = await EmergencyKits.findOne({
