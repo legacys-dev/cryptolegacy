@@ -4,7 +4,7 @@ body, p, a, h1, h2, h3 {
   font-family: 'Titillium Web', 'Helvetica Neue', Helvetica, sans-serif;
 }
 p, button, a, body {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6em;
   margin: 0;
   padding: 0;
@@ -39,29 +39,30 @@ ol li {
   list-style-position: inside;
 }
 .email {
-  background-image: url('https://images.unsplash.com/photo-1551210414-da18c36186cb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80');
-  background-size: cover;
-  background-position: center;
+  background-color: #00000008;
+  height: auto;
 }
 img.logo {
   width: 280px;
-  height: 35px;
+  height: 85px;
   max-width: 100%;
   margin-top: 40px;
   margin-bottom: 20px;
 }
 body {
-
+  height: auto;
 }
 .header {
-
   text-align: center;
+}
+.title {
+  margin-bottom: 15px;
 }
 .content {
   padding: 10px;
 }
 .content-inner {
-  padding: 10px;
+  padding: 25px;
   max-width: 600px;
   background-color: #fff;
   border-radius: 4px;
@@ -71,23 +72,26 @@ body {
   text-decoration: none;
   color: #42a5f5;
 }
+.space {
+  margin: 10px 0;
+}
 .footer {
   max-width: 500px;
-  margin: 0 auto;
+  margin: 20px auto;
   text-align: center;
   padding: 20px;
 }
 .footer p {
-  color: #fff;
+  color: #616161;
 }
 .footer a {
   font-size: 16px;
-  color: #fff !important;
+  color: #39b8ee !important;
 }
 .content a.button {
   font-size: 16px;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 8px;
   text-decoration: none;
   color: #fff;
   background-color: #0f2ff1;

@@ -1,22 +1,15 @@
 import React from 'react'
 import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
 
-export default async function({registerData}) {
-  const {email, name, lastName} = registerData.userData
-  const {code} = registerData.confirmEmail
+export default async function({userData}) {
+  const {email, name, lastName} = userData
 
   const emailContent = (
     <div>
       <p className="title">
         Hola {name} {lastName}
       </p>
-      <p className="space">
-        Escribe este código de verificación para continuar con el registro de tu cuenta en
-        Cryptolegacy:
-      </p>
-      <p>
-        <strong>{code}</strong>
-      </p>
+      <p className="space">Has finalizado con la creación de tu cuenta de CryptoLegacy</p>
     </div>
   )
 
