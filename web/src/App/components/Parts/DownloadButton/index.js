@@ -19,11 +19,17 @@ import messages from './messages'
     createDownload(fileId: $fileId)
   }
 `)
+@withMutation(gql`
+  mutation finishDownload($activityId: String, $status: Boolean) {
+    finishDownload(activityId: $activityId, status: $status)
+  }
+`)
 @withMessage
 export default class DownloadButton extends React.Component {
   static propTypes = {
     file: PropTypes.object,
     createDownload: PropTypes.func,
+    finishDownload: PropTypes.func,
     button: PropTypes.bool,
     showMessage: PropTypes.func
   }
@@ -51,13 +57,17 @@ export default class DownloadButton extends React.Component {
   @autobind
   async download() {
     this.setState({loading: true})
-    const {file, createDownload, showMessage} = this.props
+    const {file, createDownload, finishDownload, showMessage} = this.props
     try {
       const response = await createDownload({fileId: file._id})
-      const {status, fileName, downloadUrl, minutesToWait} = response.createDownload
-      if (status !== 'available') return this.downloadStatusHandler(status, minutesToWait)
+      const {status, fileName, downloadUrl, minutesToWait, activityId} = response.createDownload
+      if (status !== 'available') {
+        await finishDownload({activityId, status: false})
+        return this.downloadStatusHandler(status, minutesToWait)
+      }
       this.setState({open: true})
       await saveAs(downloadUrl, fileName, this.downloadProgress)
+      await finishDownload({activityId, status: true})
     } catch (error) {
       showMessage(error, {level: 'error'})
     }

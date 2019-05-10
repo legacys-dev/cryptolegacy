@@ -14,6 +14,10 @@ export default {
   data: {
     type: ActivityData
   },
+  status: {
+    type: String,
+    allowedValues: ['pending', 'finished']
+  },
   createdAt: {
     type: Date
   }

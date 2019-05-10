@@ -3,9 +3,11 @@ import styles from './styles.css'
 import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 
 export default function LargeName(props) {
-  const {name} = props
-  const acceptedName = name.length > 20 ? name.substring(0, 17) + '...' : name
-  const largeName = name.length > 20
+  const {name, large, subString} = props
+  const largeAccepted = large || 20
+  const stringCut = subString || 17
+  const acceptedName = name.length > largeAccepted ? name.substring(0, stringCut) + '... ' : name
+  const largeName = name.length > largeAccepted
   return (
     <div className={largeName ? styles.large : styles.container}>
       <Tooltip content={largeName && name} place="top">

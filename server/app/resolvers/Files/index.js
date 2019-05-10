@@ -7,8 +7,10 @@ import deleteFile from './deleteFile'
 import createDownload from './createDownload'
 import restoreFile from './restoreFile'
 import emptyTrash from './emptyTrash'
+import finishDownload from './finishDownload'
 
 export default {
+  finishDownload,
   emptyTrash,
   restoreFile,
   createDownload,

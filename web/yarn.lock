@@ -1983,9 +1983,9 @@ autoprefixer@^9.3.1:
     postcss-value-parser "^3.3.1"
 
 aws-sdk@^2.436.0:
-  version "2.449.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.449.0.tgz#213432e3492fa5bb3d83b818f1c91506dda8b042"
-  integrity sha512-ywvqLoBUlibAkud+A3eXZbGv6pBZwqb/DolYvJJR834E8Dvp8+bYZY1+gCDe9a5hp15ICb2jD+vOM2W6ljUlHw==
+  version "2.452.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.452.0.tgz#b33c29c4250d45a803f9b8b26dedacc96f60699d"
+  integrity sha512-l6J2NmUg12xpDKG9YdlPje5+Z+nNvqyWMA85ookzPqwx8RcD28D3vg4K1aGi27/oo/3NsngR3XfKUBPSqUpUMA==
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
@@ -2813,9 +2813,9 @@ camelcase@^4.1.0:
   integrity sha1-1UVjW+HjPFQmScaRc+Xeas+uNN0=
 
 camelcase@^5.0.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.1.0.tgz#29e83b9cfaf7ad478f401a187ae089cf83c257ea"
-  integrity sha512-WP9f9OBL/TAbwOFBJL79FoS9UKUmnp82RWnhlwTgrAJeMq7lytHhe0Jzc6/P7Zq0+2oviXJuPlvkZalWUug9gg==
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.3.1.tgz#e3c9b31569e106811df242f715725a1f4c494320"
+  integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
 camelize@^1.0.0:
   version "1.0.0"
@@ -5048,12 +5048,7 @@ flat-cache@^1.2.1:
     graceful-fs "^4.1.2"
     write "^0.2.1"
 
-flatpickr@^4.3.2:
-  version "4.5.6"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.6.tgz#9afdcccf5ffd30445e047a605eb175cb8e00a115"
-  integrity sha512-PYeKKH+5Zm5iGu00SsQPJmXtivolF0goXl00Ced5pEGV6//mxG0pA9Z0aas+X3X4NWqnVNMQuHE8m/fTY86iAQ==
-
-flatpickr@^4.5.6:
+flatpickr@^4.5.6, flatpickr@^4.5.7:
   version "4.5.7"
   resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.5.7.tgz#6efc0d93c65547aa77294205c67830ebabe3565c"
   integrity sha512-JqPfihUc9A/j9QAsh6otoARmMyUauPE17vRBEG+ThJwbl8zAq4ssGpxlPK3wWM/i8EFxkHg9UuVo0ds7XluKxw==
@@ -5520,9 +5515,9 @@ graphql@^0.13.2:
     iterall "^1.2.1"
 
 graphql@^14.2.1:
-  version "14.2.1"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.2.1.tgz#779529bf9a01e7207b977a54c20670b48ca6e95c"
-  integrity sha512-2PL1UbvKeSjy/lUeJqHk+eR9CvuErXoCNwJI4jm3oNFEeY+9ELqHNKO1ZuSxAkasPkpWbmT/iMRMFxd3cEL3tQ==
+  version "14.3.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.3.0.tgz#34dd36faa489ff642bcd25df6c3b4f988a1a2f3e"
+  integrity sha512-MdfI4v7kSNC3NhB7cF8KNijDsifuWO2XOtzpyququqaclO8wVuChYv+KogexDwgP5sp7nFI9Z6N4QHgoLkfjrg==
   dependencies:
     iterall "^1.2.2"
 
@@ -9935,11 +9930,11 @@ react-file-reader-input@^2.0.0:
   integrity sha512-1XgkCpwMnNQsuOIy938UCntz8Xzwt9ECwHaH3cCfIQK1SPpH+y7gCYtqEcb6Rm0hAUq7Lp9+Ljoti9zGMswYrQ==
 
 react-flatpickr@^3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/react-flatpickr/-/react-flatpickr-3.7.1.tgz#aaf0d79197f311a89c08c63b9d6a94735c451a73"
-  integrity sha512-VCIxJEyn2uPhwRsBtQL8FlXeaS6Rk/JNXGztqoayD2XFoJ1iMMWcXX318yHSdn0RKyYzsPTbWl/4DVd0toR03A==
+  version "3.9.0"
+  resolved "https://registry.yarnpkg.com/react-flatpickr/-/react-flatpickr-3.9.0.tgz#25f3b1ad5f86915bed74f62a71cfe4b57f8b74df"
+  integrity sha512-9dWAg0zxBQa4lDnUx6nANZXRWCWgFjeMXI+Y3Itn907B/Kj0GHdSr7dP/XK9nQELL+Lz4Zk5Qq7rnpTEV+gQ1w==
   dependencies:
-    flatpickr "^4.3.2"
+    flatpickr "^4.5.7"
     prop-types "^15.5.10"
 
 react-hot-loader@4.8.4:
@@ -9970,9 +9965,9 @@ react-icons@^2.2.7:
     react-icon-base "2.1.0"
 
 react-icons@^3.4.0:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.6.1.tgz#794da15fff7788907e0390237e13a50692bffd00"
-  integrity sha512-TpdkxqS2zohHjMjO58AfMB3aW4HE6Hn2FWX2HhIbfCptHpPzW3fIrXRBSOhkzsm59CZUr7M5v2F/j3eBwws95Q==
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.7.0.tgz#64fe46231fabfeea27895edeae6c3b78114b8c8f"
+  integrity sha512-7MyPwjIhuyW0D2N3s4DEd0hGPGFf0sK+IIRKhc1FvSpZNVmnUoGvHbmAwzGJU+3my+fvihVWgwU5SDtlAri56Q==
   dependencies:
     camelcase "^5.0.0"
 

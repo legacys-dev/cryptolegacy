@@ -1,0 +1,10 @@
+:local(.message) {
+  display: inline-flex;
+}
+
+:local(.name) {
+  margin-left: 15px;
+  margin-right: 10px;
+  font-weight: 700;
+  font-size: 17px;
+}
