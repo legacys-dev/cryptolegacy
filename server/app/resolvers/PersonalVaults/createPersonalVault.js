@@ -1,5 +1,6 @@
 import {resolver} from '@orion-js/app'
 import PersonalVaults from 'app/collections/PersonalVaults'
+import createActivity from 'app/resolvers/Activities/createActivity'
 import {slugify} from 'app/helpers/parts'
 
 export default resolver({
@@ -22,6 +23,15 @@ export default resolver({
     }
 
     const _id = await PersonalVaults.insert(params)
+
+    const activityTypeParams = {
+      activityType: 'vault',
+      actionType: 'createVault',
+      vaultName: name,
+      status: 'finished'
+    }
+
+    await createActivity(activityTypeParams, viewer)
 
     return _id
   }

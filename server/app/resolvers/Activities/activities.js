@@ -13,12 +13,12 @@ export default paginatedResolver({
   },
   requireLogin: true,
   async getCursor({filter}, viewer) {
-    const query = {userId: viewer.userId}
+    const query = {userId: viewer.userId, status: 'finished'}
 
     if (filter) {
       query.name = {$regex: new RegExp(`^${escape(filter)}`)}
     }
 
-    return await Activities.find(query)
+    return await Activities.find(query).sort({createdAt: -1})
   }
 })

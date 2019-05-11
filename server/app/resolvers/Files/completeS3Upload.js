@@ -1,5 +1,6 @@
 import {resolver} from '@orion-js/app'
 import Files from 'app/collections/Files'
+import createActivity from 'app/resolvers/Activities/createActivity'
 
 export default resolver({
   params: {
@@ -24,6 +25,16 @@ export default resolver({
 
     await file.update({$set: updateData})
     await file.updateVault()
+
+    const activityTypeParams = {
+      activityType: 'file',
+      actionType: 'uploadFile',
+      fileName: file.s3Data.name,
+      vaultName: await file.vaultName(),
+      status: 'finished'
+    }
+
+    await createActivity(activityTypeParams, viewer)
 
     return true
   }

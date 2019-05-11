@@ -64,7 +64,6 @@ export default class Auth extends React.Component {
             </Switch>
           </div>
         </div>
-        <div className={styles.photo} />
       </div>
     )
   }

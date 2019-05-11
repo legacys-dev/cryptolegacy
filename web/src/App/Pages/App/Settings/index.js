@@ -4,12 +4,10 @@ import styles from './styles.css'
 import {Route, Switch} from 'react-router-dom'
 import Tabs from 'orionsoft-parts/lib/components/Tabs'
 import Breadcrumbs from 'App/components/Breadcrumbs'
-import forceLogin from 'App/helpers/auth/forceLogin'
 import Security from './Security'
 import Profile from './Profile'
 import Translate from 'App/i18n'
 
-@forceLogin
 export default class Layout extends React.Component {
   static propTypes = {
     children: PropTypes.node

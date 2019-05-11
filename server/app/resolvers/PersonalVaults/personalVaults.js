@@ -4,13 +4,13 @@ import PersonalVaults from 'app/collections/PersonalVaults'
 
 export default paginatedResolver({
   returns: PersonalVault,
-  requireLogin: true,
   params: {
     filter: {
       type: String,
       optional: true
     }
   },
+  requireLogin: true,
   async getCursor({filter}, viewer) {
     const query = {userId: viewer.userId}
 

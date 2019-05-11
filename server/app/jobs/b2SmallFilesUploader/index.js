@@ -20,8 +20,7 @@ export default job({
       .limit(1)
       .toArray()
 
-    return
-    // if (isEmpty(oldestFile)) return
+    if (isEmpty(oldestFile)) return
 
     const file = oldestFile[0]
     const {bucket, key} = file.s3Data

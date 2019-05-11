@@ -15,27 +15,37 @@ export default resolver({
     },
     vaultName: {
       type: String
+    },
+    newVaultName: {
+      type: String,
+      optional: true
+    },
+    status: {
+      type: String
     }
   },
-  returns: Boolean,
+  returns: String,
   mutation: true,
   async resolve(params, viewer) {
     if (!viewer.userId) throw new Error('User is not loged in')
 
-    const {activityType, actionType, fileName, vaultName} = params
+    const {activityType, actionType, fileName, vaultName, newVaultName, status} = params
+
     const insertParams = {
       userId: viewer.userId,
       activityType,
       data: {
         action: actionType,
         fileName,
-        fileType: fileName && fileName.split()[1],
-        vaultName
+        vaultName,
+        newVaultName
       },
+      status,
       createdAt: new Date()
     }
 
-    await Activities.insert(insertParams)
-    return true
+    const activityId = await Activities.insert(insertParams)
+
+    return activityId
   }
 })

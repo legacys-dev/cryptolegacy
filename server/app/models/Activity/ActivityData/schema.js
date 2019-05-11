@@ -5,6 +5,7 @@ export default {
       'uploadFile',
       'downloadFile',
       'deleteFile',
+      'restoreFile',
       'createVault',
       'updateVault',
       'deleteVault'
@@ -14,11 +15,11 @@ export default {
     type: String,
     optional: true
   },
-  fileType: {
-    type: String,
-    optional: true
-  },
   vaultName: {
     type: String
+  },
+  newVaultName: {
+    type: String,
+    optional: true
   }
 }

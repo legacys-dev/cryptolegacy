@@ -4,14 +4,10 @@ import styles from './styles.css'
 import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withMutation from 'react-apollo-decorators/lib/withMutation'
-import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import {Line} from 'App/components/Parts/LoadProgress'
-import awsCredentials from './awsCredentials'
-import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import SelectStorage from './SelectStorage'
 import {MdCloudUpload} from 'react-icons/md'
 import getSize from 'App/helpers/files/getSize'
-import AWS from 'aws-sdk'
 import gql from 'graphql-tag'
 import mime from 'mime-types'
 
@@ -32,6 +28,8 @@ import mime from 'mime-types'
     ) {
       fileId
       key
+      url
+      fields
     }
   }
 `)
@@ -40,7 +38,6 @@ import mime from 'mime-types'
     completeS3Upload(fileId: $fileId)
   }
 `)
-@withGraphQL(awsCredentials)
 @withMessage
 export default class Upload extends React.Component {
   static propTypes = {
@@ -68,8 +65,8 @@ export default class Upload extends React.Component {
     const file = this.refs.input.files[0]
     this.setState({loading: true})
     try {
-      const {fileId, key} = await this.createUpload(file)
-      await this.uploadFile({key, file})
+      const {fileId, key, url, fields} = await this.createUpload(file)
+      await this.uploadFile({key, file, url, fields})
       await this.complete({fileId})
       this.setState({loading: false})
     } catch (error) {
@@ -92,35 +89,46 @@ export default class Upload extends React.Component {
     return result
   }
 
-  async uploadFile({key, file}) {
-    const {accessKeyId, secretAccessKey, region, bucket} = this.props.getUploadCredentials
-    AWS.config.update({accessKeyId, secretAccessKey, region})
+  @autobind
+  onUploadProgress(progress) {
+    if (!progress || !progress.isTrusted) return
+    const result = Number(((progress.loaded * 100) / progress.total).toFixed(3))
+    const loaded = progress.loaded
+    const total = progress.total
+    this.props.onUploadProgressChange(result, loaded, total)
+  }
 
-    const uploadToS3 = new AWS.S3.ManagedUpload({params: {Key: key, Bucket: bucket, Body: file}})
-    uploadToS3.send() // Start upload
-    if (uploadToS3.failed) return
+  async uploadFile({key, file, url, fields}) {
+    var formData = new FormData()
 
-    let totalProgress = 0
-    let loaded
-    let total
-    while (totalProgress < 100) {
-      const result = await new Promise((resolve, reject) => {
-        uploadToS3.on('httpUploadProgress', function(progress) {
-          totalProgress = Number(((progress.loaded * 100) / progress.total).toFixed(3))
-          loaded = progress.loaded
-          total = progress.total
-          resolve(totalProgress)
-        })
-      })
-      this.props.onUploadProgressChange(result, loaded, total)
+    const data = {
+      ...fields,
+      key,
+      file
     }
+
+    for (const name in data) {
+      formData.append(name, data[name])
+    }
+
+    await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest()
+      xhr.upload.addEventListener('progress', this.onUploadProgress)
+      xhr.open('POST', url)
+      xhr.onload = () => {
+        resolve('upload complete')
+      }
+      xhr.onerror = error => {
+        reject(error)
+      }
+      xhr.send(formData)
+    })
   }
 
   @autobind
   async complete({fileId}) {
     await this.props.completeS3Upload({fileId}, {refetchQueries: ['getFiles']})
     this.props.showMessage('The file was successfully loaded')
-    await sleep(1000)
     this.props.close()
   }
 

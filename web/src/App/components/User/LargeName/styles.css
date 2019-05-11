@@ -1,4 +1,5 @@
 :local(.container) {
+  margin-right: 5px;
 }
 
 :local(.large) {
