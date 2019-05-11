@@ -8,7 +8,7 @@ export default class Vaults extends React.Component {
   render() {
     return (
       <Switch>
-        <Route path="/all-trash" exact component={AllItemsList} />
+        <Route path="/trash" exact component={AllItemsList} />
       </Switch>
     )
   }

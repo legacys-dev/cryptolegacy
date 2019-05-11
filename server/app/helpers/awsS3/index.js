@@ -3,5 +3,13 @@ import deleteArchive from './deleteArchive'
 import downloadElement from './downloadElement'
 import getDownloadUrl from './getDownloadUrl'
 import getHeadersElement from './getHeadersElement'
+import presignedPost from './presignedPost'
 
-export {credentials, deleteArchive, downloadElement, getDownloadUrl, getHeadersElement}
+export {
+  credentials,
+  deleteArchive,
+  downloadElement,
+  getDownloadUrl,
+  getHeadersElement,
+  presignedPost
+}

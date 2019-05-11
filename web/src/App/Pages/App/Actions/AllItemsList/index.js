@@ -4,11 +4,9 @@ import styles from './styles.css'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import forceLogin from 'App/helpers/auth/forceLogin'
 import gql from 'graphql-tag'
 import Main from './Main'
 
-@forceLogin
 @withGraphQL(gql`
   query me {
     me {

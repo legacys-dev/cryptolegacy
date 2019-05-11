@@ -5,7 +5,7 @@ import isEmpty from 'lodash/isEmpty'
 
 export default job({
   type: 'recurrent',
-  runEvery: 1000 * 60,
+  runEvery: 1000 * 60 * 30,
   async run(params) {
     const glacierDownloads = await DownloadRequests.find({status: 'pending'}).toArray()
 

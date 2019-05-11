@@ -27,7 +27,7 @@ export default class Login extends React.Component {
   }
 
   @autobind
-  async onSuccess({session, ums, umi}) {
+  async onSuccess({session}) {
     await sleep(1000)
     try {
       await setSession(session)

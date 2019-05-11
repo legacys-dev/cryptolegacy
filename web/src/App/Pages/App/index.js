@@ -1,12 +1,13 @@
 import React from 'react'
 import {Route, Switch, Redirect} from 'react-router-dom'
-import Home from './Home'
+import forceLogin from 'App/helpers/auth/forceLogin'
+import Actions from './Actions'
 import Settings from './Settings'
 import Layout from './Layout'
 import Vaults from './Vaults'
 import Trash from './Trash'
-import Actions from './Actions'
 
+@forceLogin
 export default class MainHome extends React.Component {
   static propTypes = {}
 
@@ -15,11 +16,10 @@ export default class MainHome extends React.Component {
       <Layout>
         <Switch>
           <Route path="/settings" component={Settings} />
-          <Route path="/all-trash" component={Trash} />
+          <Route path="/trash" component={Trash} />
           <Route path="/actions" component={Actions} />
           <Route path="/vaults" component={Vaults} />
           <Redirect from="/" to="vaults" />
-          <Route path="/" component={Home} />
         </Switch>
       </Layout>
     )

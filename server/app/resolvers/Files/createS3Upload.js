@@ -1,6 +1,7 @@
 import {resolver, generateId} from '@orion-js/app'
 import CreateS3Upload from 'app/models/File/CreateS3Upload'
 import {AWSCredentials} from 'app/helpers/awsS3/credentials'
+import {presignedPost} from 'app/helpers/awsS3'
 import {slugify} from 'app/helpers/parts'
 import Files from 'app/collections/Files'
 
@@ -48,9 +49,12 @@ export default resolver({
       storage: params.storage
     })
 
+    const result = await presignedPost({key, bucket, params})
+
     return {
       fileId,
-      key
+      key,
+      ...result
     }
   }
 })

@@ -14,6 +14,7 @@ import getSize from 'App/helpers/files/getSize'
 import AWS from 'aws-sdk'
 import gql from 'graphql-tag'
 import mime from 'mime-types'
+import axios from 'axios'
 
 @withMutation(gql`
   mutation createS3Upload(
@@ -68,9 +69,9 @@ export default class Upload extends React.Component {
     const file = this.refs.input.files[0]
     this.setState({loading: true})
     try {
-      const {fileId, key} = await this.createUpload(file)
-      await this.uploadFile({key, file})
-      await this.complete({fileId})
+      const {fileId, key, url, fields} = await this.createUpload(file)
+      await this.uploadFile({key, file, url, fields})
+      // await this.complete({fileId})
       this.setState({loading: false})
     } catch (error) {
       this.props.showMessage(error)
@@ -92,28 +93,59 @@ export default class Upload extends React.Component {
     return result
   }
 
-  async uploadFile({key, file}) {
-    const {accessKeyId, secretAccessKey, region, bucket} = this.props.getUploadCredentials
-    AWS.config.update({accessKeyId, secretAccessKey, region})
-
-    const uploadToS3 = new AWS.S3.ManagedUpload({params: {Key: key, Bucket: bucket, Body: file}})
-    uploadToS3.send() // Start upload
-    if (uploadToS3.failed) return
-
-    let totalProgress = 0
-    let loaded
-    let total
-    while (totalProgress < 100) {
-      const result = await new Promise((resolve, reject) => {
-        uploadToS3.on('httpUploadProgress', function(progress) {
-          totalProgress = Number(((progress.loaded * 100) / progress.total).toFixed(3))
-          loaded = progress.loaded
-          total = progress.total
-          resolve(totalProgress)
-        })
-      })
-      this.props.onUploadProgressChange(result, loaded, total)
+  async uploadFile({key, file, url, fields}) {
+    var formData = new FormData()
+    const data = {
+      ...fields,
+      key: key,
+      file: file
     }
+
+    for (const name in data) {
+      formData.append(name, data[name])
+    }
+    console.log({url})
+    return new Promise((resolve, reject) => {
+      var xhr = new XMLHttpRequest()
+      xhr.open('POST', url)
+      for (const name in data) {
+        xhr.setRequestHeader(name, data[name])
+      }
+      xhr.onload = e => resolve(e.target.responseText)
+      xhr.onerror = reject
+      if (xhr.upload && xhr.upload.onProgress) {
+        console.log(xhr.upload.onProgress)
+      }
+      xhr.send(data.file)
+    })
+
+    // await fetch(url, {
+    //   method: 'POST',
+    //   body: formData,
+    //
+    // })
+
+    // const {accessKeyId, secretAccessKey, region, bucket} = this.props.getUploadCredentials
+    // AWS.config.update({accessKeyId, secretAccessKey, region})
+    //
+    // const uploadToS3 = new AWS.S3.ManagedUpload({params: {Key: key, Bucket: bucket, Body: file}})
+    // uploadToS3.send() // Start upload
+    // if (uploadToS3.failed) return
+    //
+    // let totalProgress = 0
+    // let loaded
+    // let total
+    // while (totalProgress < 100) {
+    //   const result = await new Promise((resolve, reject) => {
+    //     uploadToS3.on('httpUploadProgress', function(progress) {
+    //       totalProgress = Number(((progress.loaded * 100) / progress.total).toFixed(3))
+    //       loaded = progress.loaded
+    //       total = progress.total
+    //       resolve(totalProgress)
+    //     })
+    //   })
+    //   this.props.onUploadProgressChange(result, loaded, total)
+    // }
   }
 
   @autobind
