@@ -21,15 +21,25 @@ export default paginatedResolver({
   requireLogin: true,
   filesVaultOwner: true,
   async getCursor({filter, personalVaultId, deletedFiles}, viewer) {
-    const query = deletedFiles
-      ? personalVaultId
-        ? {userId: viewer.userId, userVaultId: personalVaultId, status: 'deleted'}
-        : {userId: viewer.userId, status: 'deleted'}
-      : {userId: viewer.userId, userVaultId: personalVaultId, status: 'active'}
-
-    if (filter) {
-      query.searchSlug = {$regex: filter + '.*', $options: 'i'}
+    const files = {
+      $or: [
+        {'s3Data.status': 'uploaded'},
+        {'b2Data.status': 'uploaded'},
+        {'glacierData.status': 'uploaded'}
+      ]
     }
+
+    const typeFiles = deletedFiles
+      ? personalVaultId
+        ? {userVaultId: personalVaultId, status: 'deleted'}
+        : {status: 'deleted'}
+      : {userVaultId: personalVaultId, status: 'active'}
+
+    const query = {...files, ...typeFiles}
+
+    if (filter) query.searchSlug = {$regex: filter + '.*', $options: 'i'}
+
+    query.userId = viewer.userId
 
     return Files.find(query).sort({createdAt: -1})
   }

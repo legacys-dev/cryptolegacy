@@ -13,9 +13,8 @@ export default class Manager extends React.Component {
 
   state = {progress: 0}
 
-  onUploadProgressChange = event => {
-    console.log({event})
-    // this.setState({progress, loaded, total})
+  onUploadProgressChange = (progress, loaded, total) => {
+    this.setState({progress, loaded, total})
   }
 
   render() {

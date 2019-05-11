@@ -4,5 +4,11 @@ export default {
   },
   key: {
     type: String
+  },
+  url: {
+    type: String
+  },
+  fields: {
+    type: 'blackbox'
   }
 }
