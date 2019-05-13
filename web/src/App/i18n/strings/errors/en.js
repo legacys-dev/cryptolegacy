@@ -42,5 +42,6 @@ export default {
   passwordUpperCaseRequired: ({label, placeholder}) =>
     `The password must be at least one uppercase letter`,
   passwordNumberRequired: ({label, placeholder}) =>
-    `The password must be at least one character number`
+    `The password must be at least one character number`,
+  emailAlreadyExists: ({label, placeholder}) => `This email already exists`
 }

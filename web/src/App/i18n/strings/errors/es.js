@@ -43,5 +43,6 @@ export default {
     `La contraseña debe tener al menos una letra en minúscula`,
   passwordUpperCaseRequired: ({label, placeholder}) =>
     `La contraseña debe tener al menos una letra en mayúscula`,
-  passwordNumberRequired: ({label, placeholder}) => `La contraseña debe tener al menos un número`
+  passwordNumberRequired: ({label, placeholder}) => `La contraseña debe tener al menos un número`,
+  emailAlreadyExists: ({label, placeholder}) => `Este email ya está registrado en la plataforma`
 }

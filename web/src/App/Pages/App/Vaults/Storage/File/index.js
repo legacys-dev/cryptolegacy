@@ -4,24 +4,29 @@ import styles from './styles.css'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import Information from './Information'
+import Loading from 'App/components/Parts/Loading'
 import gql from 'graphql-tag'
 
-@withGraphQL(gql`
-  query file($fileId: ID) {
-    file(fileId: $fileId) {
-      _id
-      data
-      createdAt
-      vaultName
+@withGraphQL(
+  gql`
+    query file($fileId: ID) {
+      file(fileId: $fileId) {
+        _id
+        data
+        createdAt
+        vaultName
+      }
     }
-  }
-`)
+  `,
+  {loading: <Loading />}
+)
 export default class File extends React.Component {
   static propTypes = {
     file: PropTypes.object
   }
 
   render() {
+    console.log(this.props)
     const {file} = this.props
     if (!file) return <span />
     return (
