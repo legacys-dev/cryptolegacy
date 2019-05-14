@@ -15,11 +15,13 @@ export default resolver({
     const local = process.env.ORION_DEV
     const beta = process.env.ORION_BETA
 
+    const extension = `get-aws-job-output/${vaultName}/${jobId}`
+
     const donwloadUrl = local
-      ? `http://localhost:3000/get-aws-job-output/${vaultName}/${jobId}`
+      ? `http://localhost:3000/${extension}`
       : beta
-      ? 'beta_url'
-      : 'prod_url'
+      ? `https://apidev.cryptolegacy.io/${extension}`
+      : `https://apidev.cryptolegacy.io/${extension}`
 
     return donwloadUrl
   }

@@ -66,6 +66,7 @@ export default class DownloadButton extends React.Component {
         return this.downloadStatusHandler(status, minutesToWait)
       }
       this.setState({open: true})
+      console.log({downloadUrl})
       await saveAs(downloadUrl, fileName, this.downloadProgress)
       await finishDownload({activityId, status: true})
     } catch (error) {
