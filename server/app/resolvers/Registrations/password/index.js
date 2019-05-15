@@ -1,15 +1,14 @@
 import {resolver} from '@orion-js/app'
 import {createSession, hashPassword} from '@orion-js/auth'
+import {createMasterHash, generateUserCipherKeys, createKeyPairs} from 'app/helpers/keys'
+import {passwordValidator} from 'app/helpers/registration'
+import {accountCreated} from 'app/helpers/emails'
+import {cipherEncrypt} from 'app/helpers/crypto'
+import Registrations from 'app/collections/Registrations'
+import createEmergencyKit from './createEmergencyKit'
 import authResolvers from 'app/resolvers/Auth'
 import Users from 'app/collections/Users'
-import Registrations from 'app/collections/Registrations'
-import {createMasterHash} from 'app/helpers/keys'
-// {generateUserCipherKeys, createKeyPairs} from 'app/helpers/keys'
-import {passwordValidator} from 'app/helpers/registration'
-// import {cipherEncrypt} from 'app/helpers/crypto'
-import createEmergencyKit from './createEmergencyKit'
 import isEmpty from 'lodash/isEmpty'
-import {accountCreated} from 'app/helpers/emails'
 
 export default resolver({
   params: {
@@ -42,12 +41,12 @@ export default resolver({
     const profile = {firstName: name, lastName}
 
     const userMasterHash = createMasterHash()
-    // const userMasterKeys = await generateUserCipherKeys(userMasterHash.masterKey)
-    // const userPrivateInformation = createKeyPairs()
+    const userMasterKeys = await generateUserCipherKeys(userMasterHash.masterKey)
+    const userPrivateInformation = createKeyPairs()
 
-    // const invalidKeys =
-    //   isEmpty(userMasterHash) || isEmpty(userMasterKeys) || isEmpty(userPrivateInformation)
-    // if (invalidKeys) throw new Error('Error creating user')
+    const invalidKeys =
+      isEmpty(userMasterHash) || isEmpty(userMasterKeys) || isEmpty(userPrivateInformation)
+    if (invalidKeys) throw new Error('Error creating user')
 
     if (isEmpty(userMasterHash) || isEmpty(userMasterHash.masterKey)) {
       throw new Error('Error creating user')
@@ -60,20 +59,21 @@ export default resolver({
 
     if (!newUser) throw new Error('Error creating user')
 
-    // userPrivateInformation.userId = newUser._id
-    // const {secret} = userMasterKeys
-    // const encryptedContent = cipherEncrypt(
-    //   JSON.stringify(userPrivateInformation),
-    //   secret,
-    //   null,
-    //   'meta-data'
-    // )
+    userPrivateInformation.userId = newUser._id
+    const {secret} = userMasterKeys
+    const encryptedContent = cipherEncrypt(
+      JSON.stringify(userPrivateInformation),
+      secret,
+      null,
+      'meta-data'
+    )
 
     await Users.update(
       {_id: newUser._id, 'emails.address': email},
       {
         $set: {
-          privateData: hashPassword(userMasterHash.masterKey),
+          'accountSecret.masterBcrypt': hashPassword(userMasterHash.masterKey),
+          'accountSecret.data': encryptedContent,
           'emails.$.verified': true
         },
         $unset: {'services.emailVerify': ''}

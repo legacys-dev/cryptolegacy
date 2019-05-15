@@ -14,6 +14,7 @@ export default resolver({
         if (!emailTest(email)) return 'invalidEmail'
         const user = await Users.findOne({'emails.address': email})
         if (user) return 'emailAlreadyExists'
+        if (email !== 'dev.cryptolegacy@gmail.com') return 'error'
       }
     },
     name: {
@@ -33,7 +34,7 @@ export default resolver({
     const dataForRegister = emailRegistration(params)
     const register = await Registrations.findOne(query)
 
-    if (register) await Registrations.update(query, {$set: dataForRegister})
+    if (register) await register.update({$set: dataForRegister})
     else await Registrations.insert(dataForRegister)
 
     // send code by mail to confirm

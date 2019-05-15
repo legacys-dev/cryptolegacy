@@ -1,8 +1,8 @@
 import {resolver} from '@orion-js/app'
 import {createSession} from '@orion-js/auth'
 import {hasPassword, checkPassword} from 'app/helpers/authentication'
-// import {generateUserCipherKeys} from 'app/helpers/keys'
-// import {cipherDecrypt} from 'app/helpers/crypto'
+import {generateUserCipherKeys} from 'app/helpers/keys'
+import {cipherDecrypt} from 'app/helpers/crypto'
 import Users from 'app/collections/Users'
 import bcrypt from 'bcryptjs'
 
@@ -35,12 +35,15 @@ export default resolver({
 
         const user = await Users.findOne({'emails.address': doc.email})
         if (!user.privateData) return 'errorNotKeysFound'
-        if (!bcrypt.compareSync(masterKey, user.privateData)) return 'invalidMasterKey'
-        // const {secret} = await generateUserCipherKeys(masterKey)
-        // const userData = JSON.parse(cipherDecrypt(user.privateData, secret, null, 'meta-data'))
-        //
-        // if (!userData) throw new Error('User private data not found')
-        // if (userData.userId !== user._id) return 'incorrectMasterKey'
+        if (!bcrypt.compareSync(masterKey, user.accountSecret.masterBcrypt)) { return 'invalidMasterKey' }
+
+        const {secret} = await generateUserCipherKeys(masterKey)
+        const userData = JSON.parse(
+          cipherDecrypt(user.accountSecret.data, secret, null, 'meta-data')
+        )
+
+        if (!userData) throw new Error('User private data not found')
+        if (userData.userId !== user._id) return 'incorrectMasterKey'
       }
     }
   },
