@@ -11,6 +11,9 @@ import autobind from 'autobind-decorator'
 import gql from 'graphql-tag'
 import Main from './Main'
 
+import crypto from 'crypto'
+import Button from 'App/components/Parts/Button'
+
 @forceLogin
 @withGraphQL(gql`
   query me {
@@ -42,6 +45,34 @@ export default class AllItemsList extends React.Component {
 
   onFilterChange(searchValue) {
     this.setState({searchValue})
+  }
+
+  @autobind
+  encrypt() {
+    const key = crypto.randomBytes(32)
+    const iv = crypto.randomBytes(16)
+
+    // const message = Buffer.alloc(1024 * 1024 * 10)
+    const message = '1 2 3 4 5 6 - /'
+
+    let cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(key), iv)
+    let encrypted = cipher.update(message)
+
+    encrypted = Buffer.concat([encrypted, cipher.final()])
+    const encryptedFinal = {iv: iv.toString('hex'), encryptedData: encrypted}
+
+    let newIv = Buffer.from(encryptedFinal.iv, 'hex')
+    let encryptedText = encryptedFinal.encryptedData
+
+    let decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(key), newIv)
+    let decrypted = decipher.update(encryptedText)
+    decrypted = Buffer.concat([decrypted, decipher.final()]).toString()
+
+    console.log('here')
+    console.log(encryptedText.toString('hex'))
+    console.log(decrypted)
+    // console.log(message.length)
+    // console.log(decrypted.length)
   }
 
   renderSearch() {
@@ -76,6 +107,7 @@ export default class AllItemsList extends React.Component {
           emptyTrashDate={emptyTrashDate}
           onQueryItems={this.onQueryItems}
         />
+        <Button onClick={this.encrypt}>encrypt</Button>
       </div>
     )
   }
