@@ -22,9 +22,6 @@ export default function(hash) {
   return {
     secretKeyInterval,
     ivKeyInterval,
-    hashOne: keyHashes[0],
-    hashTwo: keyHashes[1],
-    hashThree: keyHashes[2],
     original: hash
   }
 }

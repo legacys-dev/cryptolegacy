@@ -14,7 +14,6 @@ export default resolver({
         if (!emailTest(email)) return 'invalidEmail'
         const user = await Users.findOne({'emails.address': email})
         if (user) return 'emailAlreadyExists'
-        if (email !== 'dev.cryptolegacy@gmail.com') return 'error'
       }
     },
     name: {

@@ -1,10 +1,9 @@
 import {ethers} from './function'
+import verifyHash from './verifyHash'
 
-export default async function(hash) {
-  if (!hash) return
-  if (hash.length !== 32) return
-
-  const dataInHex = Buffer.from(hash).toString('hex')
+export default async function(masterHash) {
+  const hash = verifyHash(masterHash)
+  const dataInHex = Buffer.from(hash.original).toString('hex')
 
   const mnemonic = await ethers.utils.HDNode.entropyToMnemonic('0x' + dataInHex)
   const copyMNemonic = await ethers.utils.HDNode.entropyToMnemonic('0x' + dataInHex)
@@ -30,8 +29,17 @@ export default async function(hash) {
 
   if (compare) throw new Error('Error creating keys')
 
+  const {secretKeyInterval, ivKeyInterval} = hash
+  const secretEnd = parseInt(secretKeyInterval) + 32
+  const ivEnd = parseInt(ivKeyInterval) + 16
+
+  const secret = privateKey.slice(secretKeyInterval, secretEnd)
+  const iv = publicKey.slice(ivKeyInterval, ivEnd)
+
+  if (secret.length !== 32 || iv.length !== 16) throw new Error('Error creating keys')
+
   return {
-    privateKey,
-    publicKey
+    secret,
+    iv
   }
 }

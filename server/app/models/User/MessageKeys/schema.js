@@ -1,8 +1,11 @@
 export default {
-  masterBcrypt: {
+  publicKey: {
     type: String
   },
-  data: {
+  privateKey: {
+    type: String
+  },
+  passphrase: {
     type: String
   },
   createdAt: {

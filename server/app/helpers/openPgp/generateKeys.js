@@ -1,12 +1,12 @@
 import * as openpgp from 'openpgp'
 import {generateId} from '@orion-js/app'
 
-export default async function({passphrase}) {
-  const newPassphrase = passphrase || generateId(51)
+export default async function() {
+  const passphrase = generateId(51)
   const keyOptions = {
-    numBits: 2048,
-    userIds: [{id: newPassphrase, date: new Date()}],
-    passphrase: newPassphrase
+    numBits: 2048, // Take some seconds
+    userIds: [{id: passphrase, date: new Date()}],
+    passphrase: passphrase
   }
 
   const secretKeys = await new Promise(resolve => {
@@ -17,10 +17,10 @@ export default async function({passphrase}) {
         resolve({privateKey, publicKey})
       }
     })
-
-    return {
-      passphrase: newPassphrase,
-      ...secretKeys
-    }
   })
+
+  return {
+    passphrase,
+    ...secretKeys
+  }
 }
