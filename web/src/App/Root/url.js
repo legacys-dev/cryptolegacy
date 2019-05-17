@@ -2,7 +2,7 @@ import getEnv from './getEnv'
 
 const urls = {
   local: `http://${window.location.hostname}:3000`,
-  dev: 'https://cryptolegacy-dev-beta.nfycbwvxyb.us-west-2.elasticbeanstalk.com',
+  dev: 'https://apidev.cryptolegacy.io',
   prod: ''
 }
 

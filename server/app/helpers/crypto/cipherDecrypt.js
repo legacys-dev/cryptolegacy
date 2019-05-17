@@ -22,7 +22,7 @@ export default function(encryptedItem, userSecret, userIv, type) {
   }
 
   // other option aes-192-cbc
-  const algorithm = 'aes-256-ctr'
+  const algorithm = 'aes-256-cbc'
 
   const decipher = crypto.createDecipheriv(algorithm, userSecret, encryptionIv)
   const decrypted = decipher.update(encrypted)

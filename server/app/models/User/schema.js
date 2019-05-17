@@ -1,6 +1,6 @@
 import UserProfile from './UserProfile'
 import UserEmail from './UserEmail'
-import Keys from './Keys'
+import PrivateData from './PrivateData'
 
 export default {
   _id: {
@@ -16,6 +16,11 @@ export default {
     type: 'blackbox',
     private: true
   },
+  accountSecret: {
+    type: PrivateData,
+    private: true,
+    optional: true
+  },
   profile: {
     type: UserProfile,
     label: 'Profile'
@@ -25,16 +30,6 @@ export default {
     optional: true
   },
   stripeCustomerId: {
-    type: String,
-    private: true,
-    optional: true
-  },
-  privateKeys: {
-    type: Keys,
-    private: true,
-    optional: true
-  },
-  privateData: {
     type: String,
     private: true,
     optional: true

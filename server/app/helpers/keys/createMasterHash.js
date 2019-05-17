@@ -31,8 +31,15 @@ export default function() {
   const hashTwo = cloneDeep(newIdentificator.slice(rangeTwo, rangeTwo + 10))
   const hashThree = cloneDeep(newIdentificator.slice(rangeThree, rangeThree + 8))
 
-  const secretkeyInterval = Math.floor(Math.random() * 10)
-  const secretIvInterval = Math.floor(Math.random() * 10)
+  let acceptedIntervals
+  let secretkeyInterval
+  let secretIvInterval
+
+  do {
+    secretkeyInterval = Math.floor(Math.random() * 10)
+    secretIvInterval = Math.floor(Math.random() * 10)
+    acceptedIntervals = secretkeyInterval !== secretIvInterval
+  } while (!acceptedIntervals)
 
   const masterKey = `${secretkeyInterval}:${hashOne}-${hashTwo}-${hashThree}:${secretIvInterval}`.toUpperCase()
 

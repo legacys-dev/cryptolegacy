@@ -15,7 +15,7 @@ export default class Main extends React.Component {
   static propTypes = {
     client: PropTypes.object,
     filter: PropTypes.string,
-    emptyTrashDate: PropTypes.date,
+    emptyTrashDate: PropTypes.func,
     onQueryItems: PropTypes.func
   }
 

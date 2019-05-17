@@ -1,14 +1,14 @@
 import {resolver} from '@orion-js/app'
-import {createSession} from '@orion-js/auth'
-import authResolvers from 'app/resolvers/Auth'
-import Users from 'app/collections/Users'
-import Registrations from 'app/collections/Registrations'
+import {createSession, hashPassword} from '@orion-js/auth'
 import {createMasterHash, generateUserCipherKeys, createKeyPairs} from 'app/helpers/keys'
 import {passwordValidator} from 'app/helpers/registration'
-import {cipherEncrypt} from 'app/helpers/crypto'
-import createEmergencyKit from './createEmergencyKit'
-import isEmpty from 'lodash/isEmpty'
 import {accountCreated} from 'app/helpers/emails'
+import {cipherEncrypt} from 'app/helpers/crypto'
+import Registrations from 'app/collections/Registrations'
+import createEmergencyKit from './createEmergencyKit'
+import authResolvers from 'app/resolvers/Auth'
+import Users from 'app/collections/Users'
+import isEmpty from 'lodash/isEmpty'
 
 export default resolver({
   params: {
@@ -44,6 +44,14 @@ export default resolver({
     const userMasterKeys = await generateUserCipherKeys(userMasterHash.masterKey)
     const userPrivateInformation = createKeyPairs()
 
+    const invalidKeys =
+      isEmpty(userMasterHash) || isEmpty(userMasterKeys) || isEmpty(userPrivateInformation)
+    if (invalidKeys) throw new Error('Error creating user')
+
+    if (isEmpty(userMasterHash) || isEmpty(userMasterHash.masterKey)) {
+      throw new Error('Error creating user')
+    }
+
     const {createUser} = authResolvers
     await createUser({email, password, profile})
 
@@ -64,7 +72,8 @@ export default resolver({
       {_id: newUser._id, 'emails.address': email},
       {
         $set: {
-          privateData: encryptedContent,
+          'accountSecret.masterBcrypt': hashPassword(userMasterHash.masterKey),
+          'accountSecret.data': encryptedContent,
           'emails.$.verified': true
         },
         $unset: {'services.emailVerify': ''}

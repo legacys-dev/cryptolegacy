@@ -4,7 +4,7 @@ import resolvers from 'app/resolvers'
 import subscriptions from 'app/subscriptions'
 
 // Activate Graphql IDE in browser
-let useGraphiql = false
+let useGraphiql = true
 
 startGraphQL({
   resolvers,

@@ -22,6 +22,7 @@
     "graphql-tag": "^2.10.1",
     "moment": "^2.24.0",
     "numeral": "^2.0.6",
+    "openpgp": "^4.5.1",
     "orionjs-react-autoform": "^1.1.2",
     "orionsoft-parts": "^1.15.14",
     "prop-types": "^15.7.2",
