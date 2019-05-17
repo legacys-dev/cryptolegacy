@@ -26,7 +26,6 @@ export default class File extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const {file} = this.props
     if (!file) return <span />
     return (
