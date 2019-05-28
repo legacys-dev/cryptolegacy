@@ -14,11 +14,11 @@ export default class Section extends React.Component {
     return (
       <div className={this.props.top ? styles.containerNoBorder : styles.container}>
         <div className="row">
-          <div className="col-xs-12 col-sm-4">
+          <div className="col-xs-12 col-sm-3">
             <h3 className={styles.title}>{this.props.title}</h3>
             <div className={styles.description}>{this.props.description}</div>
           </div>
-          <div className="col-xs-12 col-sm-8">
+          <div className="col-xs-12 col-sm-9">
             <div className={styles.children}>{this.props.children}</div>
           </div>
         </div>

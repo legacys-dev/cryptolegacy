@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import {VaultConsumer} from 'App/helpers/contexts/personalVaultContext'
+import {VaultConsumer} from 'App/helpers/contexts/vaultContext'
 import LargeName from 'App/components/User/LargeName'
 import getSize from 'App/helpers/files/getSize'
 import FileIcon, {defaultStyles} from 'react-file-icon'
@@ -46,7 +46,7 @@ export default class Items extends React.Component {
               {providerProps => (
                 <Options
                   file={file}
-                  userVaultId={providerProps.userVaultId}
+                  vaultId={providerProps.vaultId}
                   onDeleteFile={providerProps.onDeleteFile}
                 />
               )}

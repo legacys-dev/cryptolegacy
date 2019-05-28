@@ -19,13 +19,14 @@ export default resolver({
     storage: {
       type: String
     },
-    userVaultId: {
+    vaultId: {
       type: 'ID'
     }
   },
   returns: CreateS3Upload,
   mutation: true,
   requireLogin: true,
+  vaultOwner: true,
   async resolve(params, viewer) {
     const {bucket, basePath} = AWSCredentials
     const key = `${basePath}/${generateId(151)}`
@@ -42,8 +43,7 @@ export default resolver({
 
     const fileId = await Files.insert({
       s3Data,
-      userId: viewer.userId,
-      userVaultId: params.userVaultId,
+      vaultId: params.vaultId,
       searchSlug: slugify(params.name),
       createdAt: new Date(),
       storage: params.storage

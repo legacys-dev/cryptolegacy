@@ -55,7 +55,7 @@ export default class Items extends React.Component {
           <td>
             <RestoreFile
               fileId={file._id}
-              personalVaultId={data.vaultId}
+              vaultId={data.vaultId}
               onRestoreSuccess={this.onRestoreSuccess}
             />
           </td>

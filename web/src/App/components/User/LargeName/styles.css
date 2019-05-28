@@ -3,6 +3,8 @@
 }
 
 :local(.large) {
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 :local(.large):hover {

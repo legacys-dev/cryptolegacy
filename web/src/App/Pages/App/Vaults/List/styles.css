@@ -14,5 +14,7 @@
 }
 
 :local(.searchBar) {
+  font-size: 17px;
+  font-weight: 400;
   margin-left: 20px;
 }

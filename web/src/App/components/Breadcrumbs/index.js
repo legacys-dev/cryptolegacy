@@ -8,7 +8,8 @@ export default class Breadcrumbs extends React.Component {
   static propTypes = {
     past: PropTypes.object,
     children: PropTypes.node,
-    right: PropTypes.object
+    right: PropTypes.object,
+    divider: PropTypes.bool
   }
 
   getPast() {
@@ -56,7 +57,7 @@ export default class Breadcrumbs extends React.Component {
           </div>
           <div className={styles.right}>{this.renderRight()}</div>
         </div>
-        <div className={styles.divider} />
+        {this.props.divider && <div className={styles.divider} />}
       </div>
     )
   }

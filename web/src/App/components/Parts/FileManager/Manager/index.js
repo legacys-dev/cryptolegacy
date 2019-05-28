@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {MdClose} from 'react-icons/md'
 import IconButton from 'orionsoft-parts/lib/components/IconButton'
-import {VaultConsumer} from 'App/helpers/contexts/personalVaultContext'
+import {VaultConsumer} from 'App/helpers/contexts/vaultContext'
 import Upload from './Upload'
 
 export default class Manager extends React.Component {
@@ -34,7 +34,7 @@ export default class Manager extends React.Component {
                 progress={this.state.progress}
                 loaded={this.state.loaded}
                 total={this.state.total}
-                userVaultId={providerProps.userVaultId}
+                vaultId={providerProps.vaultId}
                 onUploadProgressChange={this.onUploadProgressChange}
               />
             )}

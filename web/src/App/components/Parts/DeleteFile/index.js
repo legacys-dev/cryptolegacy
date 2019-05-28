@@ -14,7 +14,7 @@ export default function DeleteFile(props) {
           confirmText="Eliminar"
           mutation="deleteFile"
           danger
-          params={{fileId: props.fileId, personalVaultId: props.personalVaultId}}
+          params={{fileId: props.fileId, vaultId: props.vaultId}}
           onSuccess={() => props.onDeleteSuccess()}>
           <MdDelete className={styles.icon} size={25} />
         </MutationButton>

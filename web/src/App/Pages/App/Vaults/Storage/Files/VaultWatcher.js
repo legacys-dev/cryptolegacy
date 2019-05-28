@@ -5,9 +5,9 @@ import fragment from './fragment'
 
 @withSubscription(
   gql`
-    subscription onEnvironmentUpdated($personalVaultId: ID) {
-      filesVaultUpdated(personalVaultId: $personalVaultId) {
-        ...personalVaultData
+    subscription onEnvironmentUpdated($vaultId: ID) {
+      filesVaultUpdated(vaultId: $vaultId) {
+        ...vaultData
       }
     }
     ${fragment}

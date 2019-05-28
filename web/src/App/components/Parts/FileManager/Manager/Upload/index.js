@@ -17,14 +17,14 @@ import mime from 'mime-types'
     $size: Float
     $type: String
     $storage: String
-    $userVaultId: ID
+    $vaultId: ID
   ) {
     result: createS3Upload(
       name: $name
       size: $size
       type: $type
       storage: $storage
-      userVaultId: $userVaultId
+      vaultId: $vaultId
     ) {
       fileId
       key
@@ -46,7 +46,7 @@ export default class Upload extends React.Component {
     completeS3Upload: PropTypes.func,
     getUploadCredentials: PropTypes.object,
     onUploadProgressChange: PropTypes.func,
-    userVaultId: PropTypes.string,
+    vaultId: PropTypes.string,
     progress: PropTypes.number,
     loaded: PropTypes.number,
     total: PropTypes.number,
@@ -77,14 +77,14 @@ export default class Upload extends React.Component {
 
   @autobind
   async createUpload(file, storage) {
-    const {userVaultId} = this.props
-    if (!userVaultId) return
+    const {vaultId} = this.props
+    if (!vaultId) return
     const {result} = await this.props.createS3Upload({
       name: file.name,
       size: file.size,
       type: mime.lookup(file.name) || 'application/octet-stream',
       storage: this.state.storage,
-      userVaultId
+      vaultId
     })
     return result
   }

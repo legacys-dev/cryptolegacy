@@ -1,11 +1,11 @@
 import {resolver} from '@orion-js/app'
-import PersonalVaults from 'app/collections/PersonalVaults'
+import Vaults from 'app/collections/Vaults'
 
 export default resolver({
   params: {},
   returns: String,
   async resolve(file, params, viewer) {
-    const vault = await PersonalVaults.findOne({_id: file.userVaultId})
+    const vault = await Vaults.findOne({_id: file.vaultId})
     return vault.name
   }
 })

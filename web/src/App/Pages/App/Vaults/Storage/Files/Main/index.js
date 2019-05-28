@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {withApollo} from 'react-apollo'
 import Pagination from 'App/components/Parts/Pagination'
-import {VaultProvider} from 'App/helpers/contexts/personalVaultContext'
+import {VaultProvider} from 'App/helpers/contexts/vaultContext'
 import Loading from 'App/components/Parts/Loading'
 import NoItemsFound from 'App/components/Parts/NoItemsFound'
 import autobind from 'autobind-decorator'
@@ -20,7 +20,7 @@ export default class Main extends React.Component {
     client: PropTypes.object,
     location: PropTypes.object,
     match: PropTypes.object,
-    personalVault: PropTypes.object,
+    vault: PropTypes.object,
     filter: PropTypes.string
   }
 
@@ -44,11 +44,11 @@ export default class Main extends React.Component {
   @autobind
   async search(page = 1) {
     const {client, filter, match} = this.props
-    const {personalVaultId} = match.params
+    const {vaultId} = match.params
     this.setState({loading: true})
     const result = await client.query({
       query: filesQuery,
-      variables: {filter, personalVaultId, page, limit: 6},
+      variables: {filter, vaultId, page, limit: 6},
       fetchPolicy: 'network-only'
     })
     const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.files
@@ -63,11 +63,11 @@ export default class Main extends React.Component {
   }
 
   renderItems() {
-    const {personalVaultId} = this.props.match.params
+    const {vaultId} = this.props.match.params
     const {items, currentPage, totalPages, hasNextPage, hasPreviousPage, filter} = this.state
     return (
       <div className={styles.container}>
-        <VaultProvider value={{userVaultId: personalVaultId, onDeleteFile: this.onDeleteFile}}>
+        <VaultProvider value={{vaultId, onDeleteFile: this.onDeleteFile}}>
           <Items items={items} searchValue={filter} onSearch={this.onSearch} />
         </VaultProvider>
         <Pagination
