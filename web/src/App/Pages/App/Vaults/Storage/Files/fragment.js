@@ -1,9 +1,10 @@
 import gql from 'graphql-tag'
 
 export default gql`
-  fragment personalVaultData on PersonalVault {
+  fragment vaultData on Vault {
     _id
     name
+    userCredentials
     fileCount
     storageUsed
   }

@@ -9,10 +9,12 @@ import optionItems from './optionItems'
 export default class Options extends React.Component {
   static propTypes = {
     history: PropTypes.object,
-    vaultId: PropTypes.string
+    vaultId: PropTypes.string,
+    credentialType: PropTypes.string
   }
 
-  renderItem(Component, route, message, index) {
+  renderItem(name, Component, route, message, index) {
+    if (name === 'settings' && this.props.credentialType === 'heritage') return
     return (
       <div key={index} className={styles.setting}>
         <Tooltip content={message} place="top">
@@ -29,7 +31,7 @@ export default class Options extends React.Component {
 
   renderOptions(vaultId) {
     return optionItems.map((item, index) => {
-      return this.renderItem(item.icon, item.route + vaultId, item.message, index)
+      return this.renderItem(item.name, item.icon, item.route + vaultId, item.message, index)
     })
   }
 
