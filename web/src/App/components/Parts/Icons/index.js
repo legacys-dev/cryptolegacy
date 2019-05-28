@@ -12,6 +12,7 @@ import AddFile from './AddFile'
 import AddVault from './AddVault'
 import Update from './Update'
 import Upload from './Upload'
+import Contract from './Contract'
 
 export {
   AddFile,
@@ -19,6 +20,7 @@ export {
   Alert,
   Cloud,
   Configuration,
+  Contract,
   DataStorage,
   Download,
   MagnifyingGlass,
