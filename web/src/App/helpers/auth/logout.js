@@ -1,5 +1,6 @@
 import gql from 'graphql-tag'
 import {setSession} from '@orion-js/graphql-client'
+import {deleteUserMessageKeys} from 'App/helpers/messageKeys'
 
 export default async function() {
   await global.apolloClient.mutate({
@@ -9,5 +10,8 @@ export default async function() {
       }
     `
   })
+
+  deleteUserMessageKeys()
+
   await setSession(null)
 }
