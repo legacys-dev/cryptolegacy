@@ -1,38 +1,40 @@
-import {resolver, generateId} from '@orion-js/app'
+import {resolver} from '@orion-js/app'
 import Vaults from 'app/collections/Vaults'
-import {createVault} from 'app/helpers/awsGlacier'
+import createActivity from 'app/resolvers/Activities/createActivity'
+import createVaultCredentials from 'app/resolvers/VaultCredentials/createVaultCredentials'
+import {slugify} from 'app/helpers/parts'
 
 export default resolver({
   params: {
     name: {
       type: String,
-      label: 'Nombre de la bóveda en glacier',
-      description:
-        'El nombre es de uso local, la bóveda en glacier se crea con un nombre encryptado.'
+      label: 'Nombre de la bóveda'
     }
   },
-  returns: Boolean,
+  returns: String,
   mutation: true,
   requireLogin: true,
-  requireAdminRole: true,
   checkVaultName: true,
   async resolve({name}, viewer) {
-    const vaultName = generateId(19)
-
-    let hasError
-    try {
-      await createVault({vaultName})
-    } catch (error) {
-      hasError = !!error
+    const params = {
+      name,
+      searchSlug: slugify(name),
+      createdAt: new Date()
     }
 
-    if (hasError) throw new Error('Error creating glacier vault')
+    const vaultId = await Vaults.insert(params)
 
-    await Vaults.insert({
-      name,
-      vaultName
-    })
+    await createVaultCredentials({vaultId, credentialType: 'owner'}, viewer)
 
-    return true
+    const activityTypeParams = {
+      activityType: 'vault',
+      actionType: 'createVault',
+      vaultName: name,
+      status: 'finished'
+    }
+
+    await createActivity(activityTypeParams, viewer)
+
+    return vaultId
   }
 })

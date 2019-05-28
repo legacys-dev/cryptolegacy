@@ -1,10 +1,10 @@
 import {resolver} from '@orion-js/app'
-import PersonalVaults from 'app/collections/PersonalVaults'
+import Vaults from 'app/collections/Vaults'
 import createActivity from 'app/resolvers/Activities/createActivity'
 
 export default resolver({
   params: {
-    personalVaultId: {
+    vaultId: {
       type: 'ID'
     }
   },
@@ -12,21 +12,21 @@ export default resolver({
   mutation: true,
   requireLogin: true,
   vaultOwner: true,
-  personalVaultForDelete: true,
-  async resolve({personalVaultId}, viewer) {
-    const personalVault = await PersonalVaults.findOne(personalVaultId)
-    if (!personalVault) return
+  vaultForDelete: true,
+  async resolve({vaultId}, viewer) {
+    const vault = await Vaults.findOne(vaultId)
+    if (!vault) return
 
     const activityTypeParams = {
       activityType: 'vault',
       actionType: 'deleteVault',
-      vaultName: personalVault.name,
+      vaultName: vault.name,
       status: 'finished'
     }
 
     await createActivity(activityTypeParams, viewer)
 
-    await personalVault.remove()
+    await vault.remove()
 
     return true
   }

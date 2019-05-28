@@ -1,5 +1,5 @@
-import PersonalVaults from './PersonalVaults'
+import Vaults from './Vaults'
 
 export default {
-  ...PersonalVaults
+  ...Vaults
 }

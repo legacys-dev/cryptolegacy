@@ -1,11 +1,11 @@
 import {subscription} from '@orion-js/graphql'
-import PersonalVault from 'app/models/PersonalVault'
+import Vault from 'app/models/Vault'
 
 export default subscription({
   params: {
-    personalVaultId: {
+    vaultId: {
       type: 'ID'
     }
   },
-  returns: PersonalVault
+  returns: Vault
 })

@@ -1,7 +1,9 @@
 import {resolver} from '@orion-js/app'
 import Files from 'app/collections/Files'
 import {planStorage} from 'app/helpers/plan'
+import VaultCredentials from 'app/collections/VaultCredentials'
 import Users from 'app/collections/Users'
+import {getVaultsIds} from 'app/helpers/vaults'
 
 export default resolver({
   params: {},
@@ -9,7 +11,16 @@ export default resolver({
   requireLogin: true,
   async resolve(params, viewer) {
     const user = await Users.findOne({_id: viewer.userId})
-    const files = await Files.find({userId: viewer.userId}).toArray()
+    const userVaultsCredentials = await VaultCredentials.find({userId: viewer.userId}).toArray()
+
+    const vaultsId = getVaultsIds(userVaultsCredentials)
+
+    const acceptedStatusForStorage = ['active', 'inTrash']
+
+    const files = await Files.find({
+      vaultId: {$in: vaultsId},
+      status: {$in: acceptedStatusForStorage}
+    }).toArray()
 
     const userPlan = user.plan || 'free'
     const userPlanStorage = planStorage[userPlan]
