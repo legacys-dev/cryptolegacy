@@ -5,17 +5,10 @@ export default {
   name: {
     type: String
   },
-  vaultName: {
-    type: String,
-    provate: true
-  },
-  useAsDefault: {
-    type: Boolean,
-    optional: true,
-    defaultValue: false
+  searchSlug: {
+    type: String
   },
   createdAt: {
-    type: Date,
-    defaultValue: () => new Date()
+    type: Date
   }
 }

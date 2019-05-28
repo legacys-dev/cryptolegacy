@@ -4,8 +4,8 @@ import Files from 'app/collections/Files'
 export default resolver({
   params: {},
   returns: Number,
-  async resolve(personalVault, params, viewer) {
-    const query = {userVaultId: personalVault._id, userId: viewer.userId}
+  async resolve(vault, params, viewer) {
+    const query = {vaultId: vault._id, status: 'active'}
     const files = await Files.find(query).toArray()
     return files.reduce((sum, file) => sum + file.s3Data.size, 0)
   }
