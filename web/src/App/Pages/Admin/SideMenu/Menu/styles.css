@@ -1,8 +1,7 @@
 :local(.container) {
-  background-color: #0053b3;
+  background-color: #032c5c;
   color: #fff;
   width: 300px;
-  border-radius: 8px;
 }
 
 @media print {
