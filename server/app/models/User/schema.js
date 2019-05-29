@@ -1,6 +1,6 @@
 import UserProfile from './UserProfile'
 import UserEmail from './UserEmail'
-import PrivateData from './PrivateData'
+import MessageKeys from './MessageKeys'
 
 export default {
   _id: {
@@ -16,8 +16,8 @@ export default {
     type: 'blackbox',
     private: true
   },
-  accountSecret: {
-    type: PrivateData,
+  messageKeys: {
+    type: MessageKeys,
     private: true,
     optional: true
   },

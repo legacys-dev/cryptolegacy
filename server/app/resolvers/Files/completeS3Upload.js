@@ -13,7 +13,7 @@ export default resolver({
   requireLogin: true,
   filePermissions: true,
   async resolve({fileId}, viewer) {
-    const file = await Files.findOne({userId: viewer.userId, _id: fileId})
+    const file = await Files.findOne({_id: fileId})
     const status = file.storage.includes('b2')
       ? {'b2Data.status': 'pending'}
       : {'glacierData.status': 'pending'}

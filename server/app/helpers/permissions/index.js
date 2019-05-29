@@ -3,16 +3,18 @@ import registrationChecker from './registrationChecker'
 import sessionChecker from './sessionChecker'
 import filesChecker from './filesChecker'
 import glacierVaultsChecker from './glacierVaultsChecker'
-import personalVaultsChecker from './personalVaultsChecker'
+import vaultsChecker from './vaultsChecker'
 import emergencyKitChecker from './emergencyKitChecker'
+import heritagesChecker from './heritagesChecker'
 
 const checkers = [
   registrationChecker,
   sessionChecker,
   filesChecker,
   glacierVaultsChecker,
-  personalVaultsChecker,
-  emergencyKitChecker
+  vaultsChecker,
+  emergencyKitChecker,
+  heritagesChecker
 ]
 
 for (const checker of checkers) {

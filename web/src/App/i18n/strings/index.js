@@ -5,6 +5,7 @@ import global from './global'
 import files from './files'
 import vaults from './vaults'
 import actions from './actions'
+import heritages from './heritages'
 
 export default {
   actions,
@@ -13,5 +14,6 @@ export default {
   errors,
   auth,
   files,
-  vaults
+  vaults,
+  heritages
 }

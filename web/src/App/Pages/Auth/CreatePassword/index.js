@@ -7,6 +7,7 @@ import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withValidToken from 'App/helpers/registerTokens/withValidToken'
+import {setUserMessageKeys} from 'App/helpers/messageKeys'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import {setSession} from '@orion-js/graphql-client'
 import autobind from 'autobind-decorator'
@@ -27,11 +28,13 @@ export default class CreatePassword extends React.Component {
   state = {}
 
   @autobind
-  async onSuccess({session, emergencyKitId, emergencyKey}) {
+  async onSuccess(response) {
+    const {session, emergencyKitId, emergencyKey, encryptedKeysForMessages, k} = response
     await sleep(1000)
     try {
       await setSession(session)
       this.props.showMessage('Account created successfully')
+      await setUserMessageKeys(k, encryptedKeysForMessages)
       const params = {emergencyKitId, emergencyKey}
       this.props.onLogin(params)
     } catch (error) {

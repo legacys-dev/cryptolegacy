@@ -16,7 +16,6 @@ export default class Navbar extends React.Component {
         <div className={styles.options}>
           <MenuOptions />
         </div>
-        <div className={styles.middle} />
         <div className={styles.storage}>
           <Storage />
         </div>

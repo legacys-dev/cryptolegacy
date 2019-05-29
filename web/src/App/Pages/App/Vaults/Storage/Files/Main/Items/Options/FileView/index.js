@@ -11,7 +11,7 @@ export default function FileView(props) {
           className={styles.icon}
           size={25}
           onClick={() =>
-            props.history.push(`/vaults/storage/${props.userVaultId}/file/${props.fileId}`)
+            props.history.push(`/vaults/storage/${props.vaultId}/file/${props.fileId}`)
           }
         />
       </Tooltip>

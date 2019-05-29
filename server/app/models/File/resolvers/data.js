@@ -9,7 +9,7 @@ export default resolver({
       name: s3Data.name,
       type: s3Data.type,
       size: s3Data.size,
-      vaultId: file.userVaultId,
+      vaultId: file.vaultId,
       storageType: file.storage,
       status: file.status
     }

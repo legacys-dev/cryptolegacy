@@ -1,6 +1,9 @@
-import {resolver} from '@orion-js/app'
+import {resolver, PermissionsError} from '@orion-js/app'
 import Vaults from 'app/collections/Vaults'
-import Vault from 'app/models/Vault'
+import VaultCredentials from 'app/collections/VaultCredentials'
+import createActivity from 'app/resolvers/Activities/createActivity'
+import {slugify} from 'app/helpers/parts'
+import isEmpty from 'lodash/isEmpty'
 
 export default resolver({
   params: {
@@ -9,35 +12,39 @@ export default resolver({
     },
     name: {
       type: String,
-      label: 'Nombre local',
-      description: 'Solo cambiará el nombre local de la bóveda'
-    },
-    useAsDefault: {
-      type: Boolean,
-      label: 'Que esta bóveda guarde los archivos de la app',
-      optional: true
+      label: 'Nombre de la bóveda'
     }
   },
-  returns: Vault,
+  returns: Boolean,
   mutation: true,
+  vaultOwner: true,
   requireLogin: true,
-  requireAdminRole: true,
-  checkVaultName: true,
-  async resolve({vaultId, name, useAsDefault}, viewer) {
+  async resolve({vaultId, name}, viewer) {
     const vault = await Vaults.findOne(vaultId)
+    const vaultCredentials = await VaultCredentials.findOne({userId: viewer.userId, vaultId})
 
-    if (useAsDefault) {
-      const defaultVault = await Vaults.findOne({useAsDefault})
-
-      if (defaultVault) {
-        defaultVault.update({$set: {defaultVault: false}})
-      }
+    if (isEmpty(vault)) throw new Error('Vault not found')
+    if (isEmpty(vaultCredentials)) throw new Error('User vault not found')
+    if (vaultCredentials.credentialType !== 'owner') {
+      throw new PermissionsError('unauthorized', {
+        message: 'User doesnt have the required permissions'
+      })
     }
 
-    if (!vault) throw new Error('Error, vault not found')
+    if (vault.name === name) return true
 
-    await vault.update({$set: {name, useAsDefault}})
+    const activityTypeParams = {
+      activityType: 'vault',
+      actionType: 'updateVault',
+      vaultName: vault.name,
+      newVaultName: name,
+      status: 'finished'
+    }
 
-    return vault
+    await vault.update({$set: {name, searchSlug: slugify(name)}})
+
+    await createActivity(activityTypeParams, viewer)
+
+    return true
   }
 })

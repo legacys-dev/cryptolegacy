@@ -5,6 +5,7 @@ import Breadcrumbs from 'App/components/Breadcrumbs'
 import EmptyTrash from 'App/components/Parts/EmptyTrash'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import Loading from 'App/components/Parts/Loading'
 import forceLogin from 'App/helpers/auth/forceLogin'
 import Text from 'App/components/fields/Text'
 import autobind from 'autobind-decorator'
@@ -12,14 +13,17 @@ import gql from 'graphql-tag'
 import Main from './Main'
 
 @forceLogin
-@withGraphQL(gql`
-  query me {
-    me {
-      _id
-      email
+@withGraphQL(
+  gql`
+    query me {
+      me {
+        _id
+        email
+      }
     }
-  }
-`)
+  `,
+  {loading: <Loading />}
+)
 @withMessage
 export default class AllItemsList extends React.Component {
   static propTypes = {

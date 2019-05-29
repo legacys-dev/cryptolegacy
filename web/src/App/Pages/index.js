@@ -29,6 +29,11 @@ export default class Pages extends React.Component {
       return <EmergencyKit />
     }
 
+    if (pathname.startsWith('/heritage')) {
+      const Heritage = lazy(() => import('./Heritage'))
+      return <Heritage />
+    }
+
     return <App />
   }
 

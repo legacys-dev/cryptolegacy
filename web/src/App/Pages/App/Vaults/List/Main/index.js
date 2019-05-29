@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import autobind from 'autobind-decorator'
 import NoItemsFound from 'App/components/Parts/NoItemsFound'
-import Loading from 'App/components/Parts/Loading'
 import Pagination from 'App/components/Parts/Pagination'
+import Loading from 'App/components/Parts/Loading'
 import {withApollo} from 'react-apollo'
 import vaultsQuery from './vaultsQuery'
 import isEmpty from 'lodash/isEmpty'
@@ -14,7 +14,8 @@ import Items from './Items'
 export default class Main extends React.Component {
   static propTypes = {
     client: PropTypes.object,
-    filter: PropTypes.string
+    filter: PropTypes.string,
+    credentialType: PropTypes.string
   }
 
   state = {}
@@ -25,17 +26,18 @@ export default class Main extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.filter !== this.props.filter) this.search()
+    if (prevProps.credentialType !== this.props.credentialType) this.search()
   }
 
   @autobind
   async search(page = 1) {
-    const {filter, client} = this.props
+    const {filter, client, credentialType} = this.props
     const result = await client.query({
       query: vaultsQuery,
-      variables: {filter, page, limit: 6},
+      variables: {filter, credentialType, page, limit: 6},
       fetchPolicy: 'network-only'
     })
-    const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.personalVaults
+    const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.vaults
     this.setState({
       items,
       currentPage: page,
@@ -49,7 +51,7 @@ export default class Main extends React.Component {
     const {items, currentPage, totalPages, hasNextPage, hasPreviousPage} = this.state
     return (
       <div className={styles.container}>
-        <Items items={items} />
+        <Items items={items} credentialType={this.props.credentialType} />
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

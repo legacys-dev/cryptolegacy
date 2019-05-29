@@ -41,7 +41,7 @@ export default class Create extends React.Component {
         <Breadcrumbs past={{[`/vaults`]: 'Bóvedas'}}>Crear bóveda</Breadcrumbs>
         <div className={styles.content}>
           <Section top title="Crear bóveda" description="description">
-            <AutoForm mutation="createPersonalVault" ref="form" onSuccess={this.onSuccess} />
+            <AutoForm mutation="createVault" ref="form" onSuccess={this.onSuccess} />
             {this.renderButtons()}
           </Section>
         </div>

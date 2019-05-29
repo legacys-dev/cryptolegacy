@@ -18,7 +18,7 @@ export default class Items extends React.Component {
         <tr className={styles.cell} key={index}>
           <td>
             <div className={styles.iconType}>
-              <Icon size={25} />
+              <Icon size={20} />
             </div>
           </td>
           <td style={{textAlign: 'left'}}>

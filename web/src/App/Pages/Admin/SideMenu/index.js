@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Menu from './Menu'
+import Container from 'orionsoft-parts/lib/components/Container'
 
 export default class SideMenu extends React.Component {
   static propTypes = {
@@ -27,7 +28,9 @@ export default class SideMenu extends React.Component {
           title={this.props.title}
           rootPath={this.props.rootPath}
         />
-        <div className={styles.content}>{this.props.children}</div>
+        <div className={styles.content}>
+          <Container>{this.props.children}</Container>
+        </div>
       </div>
     )
   }

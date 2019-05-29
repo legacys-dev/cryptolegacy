@@ -8,9 +8,9 @@ export default function Delete(props) {
       title="Eliminar"
       message="¿Confirmas que quieres eliminar esta bóveda?"
       confirmText="Eliminar"
-      mutation="deletePersonalVault"
+      mutation="deleteVault"
       danger
-      params={{personalVaultId: props.personalVaultId}}
+      params={{vaultId: props.vaultId}}
       onSuccess={() => props.onDeleteSuccess()}
     />
   )

@@ -1,9 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import isEmpty from 'lodash/isEmpty'
-import NoItemsFound from 'App/components/Parts/NoItemsFound'
-import Loading from 'App/components/Parts/Loading'
 import LargeName from 'App/components/User/LargeName'
 import {Vault} from 'App/components/Parts/Icons'
 import getSize from 'App/helpers/files/getSize'
@@ -13,7 +10,8 @@ import moment from 'moment'
 export default class Items extends React.Component {
   static propTypes = {
     history: PropTypes.object,
-    items: PropTypes.array
+    items: PropTypes.array,
+    credentialType: PropTypes.string
   }
 
   state = {}
@@ -33,7 +31,7 @@ export default class Items extends React.Component {
           <td>{getSize(vault.storageUsed)}</td>
           <td>{moment(vault.createdAt).format('LL')}</td>
           <td>
-            <Options vaultId={vault._id} />
+            <Options vaultId={vault._id} credentialType={this.props.credentialType} />
           </td>
         </tr>
       )
@@ -61,8 +59,6 @@ export default class Items extends React.Component {
   }
 
   render() {
-    if (!this.props.items) return <Loading />
-    if (isEmpty(this.props.items)) return <NoItemsFound message="vaults.notFound" />
     return <div className={styles.container}>{this.renderVaults()}</div>
   }
 }

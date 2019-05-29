@@ -7,7 +7,7 @@ export default resolver({
     fileId: {
       type: 'ID'
     },
-    personalVaultId: {
+    vaultId: {
       type: 'ID'
     }
   },
@@ -16,9 +16,9 @@ export default resolver({
   vaultOwner: true,
   requireLogin: true,
   filePermissions: true,
-  async resolve({fileId, personalVaultId}, viewer) {
+  async resolve({fileId, vaultId}, viewer) {
     const file = await Files.findOne(fileId)
-    await file.update({$set: {status: 'deleted', updateAt: new Date()}})
+    await file.update({$set: {status: 'inTrash', updateAt: new Date()}})
 
     const activityTypeParams = {
       activityType: 'file',

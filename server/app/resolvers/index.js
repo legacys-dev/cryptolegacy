@@ -5,14 +5,16 @@ import Files from './Files'
 import Registrations from './Registrations'
 import Users from './Users'
 import Vaults from './Vaults'
-import PersonalVaults from './PersonalVaults'
 import Activities from './Activities'
 import EmergencyKits from './EmergencyKits'
+import Heritages from './Heritages'
+import VaultCredentials from './VaultCredentials'
 
 export default {
+  ...VaultCredentials,
+  ...Heritages,
   ...EmergencyKits,
   ...Activities,
-  ...PersonalVaults,
   ...resolversSchemas,
   ...Auth,
   ...Authentications,

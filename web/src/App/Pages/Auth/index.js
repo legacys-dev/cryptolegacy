@@ -28,7 +28,7 @@ export default class Auth extends React.Component {
   onLogin(params) {
     const {location, history} = this.props
     if (location.state && location.state.nextPathname) {
-      history.replace(location.state.nextPathname)
+      history.replace('/')
     } else {
       const {emergencyKitId, emergencyKey} = params
       if (!emergencyKitId || !emergencyKey) return
@@ -43,15 +43,13 @@ export default class Auth extends React.Component {
         <div className={styles.content}>
           <div className={styles.contentInner}>
             <div className={styles.logoContainer}>
-              <Logo imgName="twoColorsBT.png" size={'111px'} />
+              <Logo imgName="twoColorsBT.png" size={'85px'} />
             </div>
             <Switch>
               <Route path="/login" render={() => <Login {...otherProps} />} />
-
               <Route path="/register" render={() => <RegisterEmail {...otherProps} />} />
               <Route path="/verify-email/:token" render={() => <VerifyEmail {...otherProps} />} />
               <Route path="/password/:token" render={() => <CreatePassword {...otherProps} />} />
-
               <Route path="/forgot" render={() => <Forgot {...otherProps} />} />
               <Route
                 path="/reset/:token"

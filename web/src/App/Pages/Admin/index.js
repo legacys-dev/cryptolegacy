@@ -4,9 +4,9 @@ import styles from './styles.css'
 import {Route, Switch, Redirect} from 'react-router-dom'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import forceLogin from 'App/helpers/auth/forceLogin'
-import Vaults from './Vaults'
-import gql from 'graphql-tag'
+import Heritages from './Heritages'
 import SideMenu from './SideMenu'
+import gql from 'graphql-tag'
 import links from './links'
 
 @forceLogin
@@ -34,8 +34,8 @@ export default class Admin extends React.Component {
       <div className={styles.container}>
         <SideMenu title="Admin" links={links}>
           <Switch>
-            <Redirect path="/admin" exact to="/admin/vaults" />
-            <Route path="/admin/vaults" component={Vaults} />
+            <Redirect path="/admin" exact to="/admin/heritages" />
+            <Route path="/admin/heritages" component={Heritages} />
           </Switch>
         </SideMenu>
       </div>

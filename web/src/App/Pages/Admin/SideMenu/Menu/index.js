@@ -63,8 +63,11 @@ export default class Menu extends React.Component {
   render() {
     return (
       <div className={styles.container}>
+        <div className={styles.title}>
+          <strong>Admin</strong>
+        </div>
         <Link to={this.props.rootPath} className={styles.title}>
-          {this.props.title}
+          Back to Home
         </Link>
         <div className={styles.divider} />
         {this.renderLinks()}

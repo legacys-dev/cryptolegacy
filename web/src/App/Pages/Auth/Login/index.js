@@ -9,6 +9,7 @@ import Title from 'App/components/Auth/Title'
 import LoggedIn from '../LoggedIn'
 import {Link} from 'react-router-dom'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import {setUserMessageKeys} from 'App/helpers/messageKeys'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import Translate from 'App/i18n'
 import translate from 'App/i18n/translate'
@@ -27,15 +28,23 @@ export default class Login extends React.Component {
   }
 
   @autobind
-  async onSuccess({session}) {
+  async onSuccess(response) {
+    const {session, encryptedKeysForMessages} = response
     await sleep(1000)
     try {
       await setSession(session)
       this.props.showMessage('Login successfully')
+      await setUserMessageKeys(this.state.userMasterKey, encryptedKeysForMessages)
+      this.setState({userMasterKey: undefined})
       this.props.onLogin()
     } catch (error) {
       console.log('Error:', error)
     }
+  }
+
+  @autobind
+  onChange(data) {
+    this.setState({userMasterKey: data.masterKey})
   }
 
   renderForgotLink() {
@@ -70,7 +79,11 @@ export default class Login extends React.Component {
     return (
       <div>
         <Title text="auth.login" />
-        <AutoForm mutation="appLogin" ref="form" onSuccess={this.onSuccess}>
+        <AutoForm
+          mutation="appLogin"
+          ref="form"
+          onSuccess={this.onSuccess}
+          onChange={this.onChange}>
           <Field fieldName="email" type={Text} fieldType="email" placeholder="Email" />
           <Field fieldName="masterKey" type={Text} placeholder="Master key" />
           <Field

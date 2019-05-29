@@ -15,7 +15,7 @@ import Header from './Header'
 @withValidKitHorary
 @withGraphQL(
   gql`
-    query getUserData($emergencyKitId: String, $emergencyKey: String) {
+    query getData($emergencyKitId: String, $emergencyKey: String) {
       me {
         _id
         name

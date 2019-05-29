@@ -6,11 +6,7 @@ export default {
   _id: {
     type: 'ID'
   },
-  userId: {
-    type: 'ID',
-    private: true
-  },
-  userVaultId: {
+  vaultId: {
     type: 'ID',
     private: true
   },
@@ -40,7 +36,7 @@ export default {
   status: {
     type: String,
     private: true,
-    allowedValues: ['active', 'deleted'],
+    allowedValues: ['active', 'inTrash', 'authorizedToRemove'],
     defaultValue: 'active'
   },
   updateAt: {

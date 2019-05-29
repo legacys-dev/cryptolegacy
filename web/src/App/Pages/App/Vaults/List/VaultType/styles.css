@@ -1,0 +1,9 @@
+:local(.container) {
+  display: flex;
+  flex-direction: row;
+}
+
+:local(.select) {
+  min-width: 150px;
+  margin-right: 10px;
+}

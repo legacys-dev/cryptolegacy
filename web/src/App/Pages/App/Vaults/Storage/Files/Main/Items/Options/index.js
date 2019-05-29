@@ -14,7 +14,7 @@ export default class Options extends React.Component {
     showMessage: PropTypes.func,
     history: PropTypes.object,
     file: PropTypes.object,
-    userVaultId: PropTypes.string,
+    vaultId: PropTypes.string,
     onDeleteFile: PropTypes.func
   }
 
@@ -24,14 +24,14 @@ export default class Options extends React.Component {
   }
 
   renderOptions() {
-    const {userVaultId, file, history} = this.props
+    const {vaultId, file, history} = this.props
     return (
       <div className={styles.setting}>
-        <FileView history={history} userVaultId={userVaultId} fileId={file._id} />
+        <FileView history={history} vaultId={vaultId} fileId={file._id} />
         <DownloadButton file={file} />
         <DeleteFile
           fileId={file._id}
-          personalVaultId={userVaultId}
+          vaultId={vaultId}
           onDeleteSuccess={() => this.onDeleteSuccess(new Date())}
         />
       </div>

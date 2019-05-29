@@ -10,6 +10,7 @@ import b2DeleteFromS3 from './b2DeleteFromS3'
 import emergencyKitsDeleter from './emergencyKitsDeleter'
 import glacierUpdatePendingDownloads from './glacierUpdatePendingDownloads'
 import glacierUpdateDeletedJobs from './glacierUpdateDeletedJobs'
+import removeFiles from './removeFiles'
 
 start({
   glacierUpdateDeletedJobs,
@@ -22,5 +23,6 @@ start({
   glacierBigFilesUploader,
   glacierMediumFilesUploader,
   glacierSmallFilesUploader,
-  emergencyKitsDeleter
+  emergencyKitsDeleter,
+  removeFiles
 })

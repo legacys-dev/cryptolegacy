@@ -1,6 +1,7 @@
 import {resolver} from '@orion-js/app'
 import {createSession, hashPassword} from '@orion-js/auth'
-import {createMasterHash, generateUserCipherKeys, createKeyPairs} from 'app/helpers/keys'
+import {createMasterHash, generateUserCipherKeys, decomposeMasterKey} from 'app/helpers/keys'
+import {generateKeys as generateOpenPgpKeys} from 'app/helpers/openPgp'
 import {passwordValidator} from 'app/helpers/registration'
 import {accountCreated} from 'app/helpers/emails'
 import {cipherEncrypt} from 'app/helpers/crypto'
@@ -41,16 +42,17 @@ export default resolver({
     const profile = {firstName: name, lastName}
 
     const userMasterHash = createMasterHash()
-    const userMasterKeys = await generateUserCipherKeys(userMasterHash.masterKey)
-    const userPrivateInformation = createKeyPairs()
+    const temporaryUserMasterHash = createMasterHash()
+    const userMasterPassword = await generateUserCipherKeys(temporaryUserMasterHash.masterKey)
+    const userMessageKeys = await generateOpenPgpKeys()
 
     const invalidKeys =
-      isEmpty(userMasterHash) || isEmpty(userMasterKeys) || isEmpty(userPrivateInformation)
-    if (invalidKeys) throw new Error('Error creating user')
+      isEmpty(userMasterHash) ||
+      isEmpty(userMasterHash.masterKey) ||
+      isEmpty(userMasterPassword) ||
+      isEmpty(userMessageKeys)
 
-    if (isEmpty(userMasterHash) || isEmpty(userMasterHash.masterKey)) {
-      throw new Error('Error creating user')
-    }
+    if (invalidKeys) throw new Error('Error creating user')
 
     const {createUser} = authResolvers
     await createUser({email, password, profile})
@@ -59,10 +61,9 @@ export default resolver({
 
     if (!newUser) throw new Error('Error creating user')
 
-    userPrivateInformation.userId = newUser._id
-    const {secret} = userMasterKeys
-    const encryptedContent = cipherEncrypt(
-      JSON.stringify(userPrivateInformation),
+    const {secret} = userMasterPassword
+    const encryptedKeysForMessages = cipherEncrypt(
+      JSON.stringify(userMessageKeys),
       secret,
       null,
       'meta-data'
@@ -72,8 +73,11 @@ export default resolver({
       {_id: newUser._id, 'emails.address': email},
       {
         $set: {
-          'accountSecret.masterBcrypt': hashPassword(userMasterHash.masterKey),
-          'accountSecret.data': encryptedContent,
+          'services.masterKey.bcrypt': hashPassword(userMasterHash.masterKey),
+          'services.masterKey.createdAt': new Date(),
+          'messageKeys.publicKey': userMessageKeys.publicKey,
+          'messageKeys.privateKey': userMessageKeys.privateKey,
+          'messageKeys.passphrase': userMessageKeys.passphrase,
           'emails.$.verified': true
         },
         $unset: {'services.emailVerify': ''}
@@ -88,13 +92,20 @@ export default resolver({
       email
     })
 
+    const k = decomposeMasterKey({
+      masterKey: temporaryUserMasterHash.masterKey,
+      userId: newUser._id
+    })
+
     const {userData} = registration
     await accountCreated({userData})
 
     return {
       session,
       emergencyKitId,
-      emergencyKey
+      emergencyKey,
+      encryptedKeysForMessages,
+      k
     }
   }
 })

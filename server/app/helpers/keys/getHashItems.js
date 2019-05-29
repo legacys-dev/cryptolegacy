@@ -13,11 +13,18 @@ export default function(hash) {
   if (isNaN(parseInt(ivKeyInterval, 10))) throw new Error('Invalid hash interval i, not number')
 
   if (secretKeyInterval > 9 || secretKeyInterval < 0) throw new Error('Invalid hash interval')
-  if (ivKeyInterval > 9 || ivKeyInterval < 0) throw new Error('Invalid hash interval interval')
+  if (ivKeyInterval > 9 || ivKeyInterval < 0) throw new Error('Invalid hash interval')
+
+  const keyHashes = hashItems[1].split('-')
+
+  if (!keyHashes || keyHashes.length !== 3) throw new Error('Invalid hash object')
 
   return {
     secretKeyInterval,
     ivKeyInterval,
+    hashOne: keyHashes[0],
+    hashTwo: keyHashes[1],
+    hashThree: keyHashes[2],
     original: hash
   }
 }

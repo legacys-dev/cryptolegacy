@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import FileManager from 'App/components/Parts/FileManager'
-import {VaultProvider} from 'App/helpers/contexts/personalVaultContext'
+import {VaultProvider} from 'App/helpers/contexts/vaultContext'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import Loading from 'App/components/Parts/Loading'
 import Text from 'App/components/fields/Text'
@@ -14,9 +14,9 @@ import Main from './Main'
 
 @withGraphQL(
   gql`
-    query personalVault($personalVaultId: ID) {
-      personalVault(personalVaultId: $personalVaultId) {
-        ...personalVaultData
+    query getVault($vaultId: ID) {
+      vault(vaultId: $vaultId) {
+        ...vaultData
       }
     }
     ${fragment}
@@ -27,7 +27,7 @@ import Main from './Main'
 export default class Files extends React.Component {
   static propTypes = {
     match: PropTypes.object,
-    personalVault: PropTypes.object
+    vault: PropTypes.object
   }
 
   state = {}
@@ -47,27 +47,33 @@ export default class Files extends React.Component {
   }
 
   renderFileManager() {
-    const {personalVaultId} = this.props.match.params
+    const {vaultId} = this.props.match.params
     return (
-      <VaultProvider value={{userVaultId: personalVaultId}}>
+      <VaultProvider value={{vaultId}}>
         <FileManager />
       </VaultProvider>
     )
   }
 
+  fileManagerAccess() {
+    const {vault} = this.props
+    if (vault.userCredentials !== 'owner') return
+    return this.renderFileManager()
+  }
+
   render() {
-    const {personalVault} = this.props
-    if (!personalVault) return <span />
+    const {vault} = this.props
+    if (!vault) return <span />
     return (
       <div className={styles.container}>
-        <VaultWatcher personalVaultId={personalVault._id} />
-        <Breadcrumbs past={{[`/vaults`]: `Bóvedas`}} right={this.renderFileManager()}>
+        <VaultWatcher vaultId={vault._id} />
+        <Breadcrumbs past={{[`/vaults`]: `Bóvedas`}} right={this.fileManagerAccess()}>
           <div className={styles.title}>
-            <div className={styles.subTitle}>{personalVault.name} - (Archivos)</div>
+            <div className={styles.subTitle}>{vault.name} - (Archivos)</div>
             <div className={styles.searchBar}>{this.renderSearch()}</div>
           </div>
         </Breadcrumbs>
-        <Main personalVault={personalVault} filter={this.state.searchValue} />
+        <Main vault={vault} filter={this.state.searchValue} />
       </div>
     )
   }
