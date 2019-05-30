@@ -4,5 +4,5 @@ import Vault from 'app/models/Vault'
 export default new Collection({
   name: 'vaults',
   model: Vault,
-  indexes: []
+  indexes: [{keys: {name: 1}, options: {unique: true}}]
 })
