@@ -1,18 +1,18 @@
 :local(.container) {
+  width: 25px;
+  margin: 0 5px;
 }
 
 :local(.loading) {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 3px;
-  margin: 0 5px;
+  margin-top: 2px !important;
 }
 
 :local(.icon) {
   -webkit-transition-property: color;
   -webkit-transition-duration: 300ms;
-  margin: 0 5px;
   height: auto;
 }
 

@@ -87,14 +87,16 @@ export default class DownloadButton extends React.Component {
     )
   }
 
+  renderLoading() {
+    return (
+      <div className={styles.loading}>
+        <Loading size={22} thickness={2} color="#0053b3" />
+      </div>
+    )
+  }
+
   renderIcon() {
-    if (this.state.loading) {
-      return (
-        <div className={styles.loading}>
-          <Loading size={22} thickness={2} color="#0053b3" />
-        </div>
-      )
-    }
+    if (this.state.loading) return this.renderLoading()
     return (
       <Tooltip content="Descargar">
         <MdCloudDownload className={styles.icon} size={25} onClick={this.download} />
