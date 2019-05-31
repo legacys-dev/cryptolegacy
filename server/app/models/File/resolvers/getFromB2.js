@@ -27,7 +27,7 @@ export default resolver({
       downloadData.url +
       '/file' +
       '/' +
-      process.env.B2_BUCKET_NAME +
+      file.b2Data.bucketName +
       '/' +
       file.s3Data.name +
       '?Authorization=' +

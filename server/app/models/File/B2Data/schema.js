@@ -5,6 +5,9 @@ export default {
   bucketId: {
     type: String
   },
+  bucketName: {
+    type: String
+  },
   contentSha1: {
     type: String
   },

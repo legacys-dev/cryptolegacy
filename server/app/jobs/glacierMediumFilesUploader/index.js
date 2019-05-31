@@ -31,16 +31,9 @@ export default job({
       let errorAtUpload
       await file.update({$set: {'glacierData.status': 'uploading'}})
 
-      const vaultName = process.env.ORION_DEV
-        ? process.env.AWS_S3_GLACIER_LOCAL_BUCKET
-        : process.env.ORION_BETA
-        ? process.env.AWS_S3_GLACIER_DEV_BUCKET
-        : 'prod'
-
       try {
         glacierResult = await multiUpload({
           file: s3Element,
-          vaultName,
           archiveDescription: file.userId
         })
       } catch (error) {
@@ -53,7 +46,7 @@ export default job({
 
       if (errorAtUpload) continue
 
-      const {archiveId, location, checksum} = glacierResult
+      const {archiveId, location, checksum, vaultName} = glacierResult
       await file.update({
         $set: {
           'glacierData.archiveId': archiveId,

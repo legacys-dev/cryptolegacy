@@ -2,10 +2,12 @@ import AWS from 'aws-sdk'
 import {AWSCredentials} from '../credentials'
 import getPartSize from './getPartSize'
 
-export default async function({file, vaultName, archiveDescription}) {
+export default async function({file, archiveDescription}) {
+  const {vaultName} = AWSCredentials
   const fileContent = file.Body
+
   let {partSize, numPartsLeft, fileSize} = getPartSize(fileContent.length)
-  const params = {vaultName, partSize: partSize.toString()}
+  const params = {partSize: partSize.toString()}
 
   const glacier = new AWS.Glacier(AWSCredentials)
   const treeHash = glacier.computeChecksums(fileContent).treeHash
