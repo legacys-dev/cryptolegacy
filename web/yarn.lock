@@ -1548,9 +1548,9 @@ apollo-client@^2.2.2, apollo-client@^2.5.1:
     zen-observable "^0.8.0"
 
 apollo-hooks@^2.1.2:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/apollo-hooks/-/apollo-hooks-2.2.1.tgz#5bd8fe249a3e2d1dab8817b724de4cfcbd394c64"
-  integrity sha512-oWQ6wyMP1dstQWvpyHDuqBILAW2E0diQ2RWb1yidr/XZVsWRfMK79hFpDrlYhvv+ZShwRkXEnEMcaO6MM3JM+A==
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/apollo-hooks/-/apollo-hooks-2.3.0.tgz#e43e8d4dd21943a4fbe5f96f8c4e3985817df83f"
+  integrity sha512-cCnfbo8MpzmmtTQk4Ffvd3HTWxk3zE1AeYu7fWvFSt+Bub95badapnI7vhRDN1qrm2GKVU5NgZVeDjbYS2ohQw==
   dependencies:
     lodash "^4.17.11"
     react-fast-compare "^2.0.2"
