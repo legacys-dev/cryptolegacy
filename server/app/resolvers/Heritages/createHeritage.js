@@ -1,4 +1,5 @@
 import {resolver, generateId} from '@orion-js/app'
+import {hashPassword} from '@orion-js/auth'
 import {emailTest} from 'app/helpers/registration'
 import Heritages from 'app/collections/Heritages'
 import Users from 'app/collections/Users'
@@ -29,19 +30,23 @@ export default resolver({
       status: 'waiting'
     })
 
+    const userCode = Math.random()
+      .toString()
+      .slice(2, 15)
+      .toString()
+
     const requiredParams = {
-      code: Math.random()
-        .toString()
-        .slice(2, 11)
-        .toString(),
-      accessToken: generateId(151)
+      'code.bcrypt': hashPassword(userCode),
+      'code.createdAt': new Date(),
+      accessToken: generateId(201)
     }
 
     const inheritorEmail = email.toLowerCase()
-    const reclaimIdentificator = Math.random()
-      .toString()
-      .slice(2, 5)
-      .toString()
+    const reclaimIdentificator = heritage
+      ? heritage.reclaimIdentificator
+      : Math.random()
+          .toString()
+          .slice(2, 5)
 
     if (heritage) {
       await heritage.update({$set: requiredParams})
@@ -73,7 +78,7 @@ export default resolver({
       lastName: inheritor ? await inheritor.lastName() : null
     }
 
-    await heritageCreated({owner, user, code: requiredParams.code, reclaimIdentificator})
+    await heritageCreated({owner, user, code: userCode, reclaimIdentificator})
 
     return true
   }

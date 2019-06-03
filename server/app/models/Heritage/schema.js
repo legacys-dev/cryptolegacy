@@ -19,7 +19,7 @@ export default {
     private: true
   },
   code: {
-    type: String,
+    type: 'blackbox',
     private: true
   },
   accessToken: {
