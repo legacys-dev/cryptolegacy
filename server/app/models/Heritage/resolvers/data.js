@@ -6,7 +6,6 @@ export default resolver({
   returns: 'blackbox',
   async resolve(heritage, params, viewer) {
     const vault = await Vaults.findOne({_id: heritage.vaultId})
-
     return {
       heritageId: heritage._id,
       vaultId: heritage.vaultId,

@@ -23,5 +23,6 @@ export default {
   register: 'Registro',
   forgotPassword: '¿Olvidaste tu contraseña?',
   confirmEmail: 'Confirmar email',
-  createPassword: 'Crear contraseña'
+  createPassword: 'Crear contraseña',
+  sharedHardware: 'Este es un equipo público o compartido'
 }

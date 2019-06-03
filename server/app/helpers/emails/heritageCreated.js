@@ -22,11 +22,13 @@ export default async function({owner, user, code, reclaimIdentificator}) {
         Guarda en un lugar seguro el siguiente código, ya que cuando la herencia se complete,
         deberás ingresarlo en la plataforma para finalizar con el proceso.
       </p>
+      <p className="space" />
       <p className="space">
         número identificador de la bóveda: #{reclaimIdentificator}
         <br />
         código: <strong>{code}</strong>
       </p>
+      <p className="space" />
       {hasAccount && (
         <p className="space">
           Si no tienes una cuenta en CryptoLegacy puedes crearte una haciendo click aca{' '}

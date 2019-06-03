@@ -1090,9 +1090,9 @@
   integrity sha1-APy5adykzoKgp2c0E63gOeR7Nh4=
 
 "@react-pdf/renderer@^1.5.4":
-  version "1.6.1"
-  resolved "https://registry.yarnpkg.com/@react-pdf/renderer/-/renderer-1.6.1.tgz#c5581d5f6473d0959e39a6fc1d0491ad4b0cad22"
-  integrity sha512-YCsLrlnp0CpSMsGGJqrJfWIhoJrnByw9s6kVO4Ov/OQ3ovPP1JfcESvMSYX4Y40TwPosZBFcbfnOV3xEeib+gw==
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@react-pdf/renderer/-/renderer-1.6.2.tgz#c6d5f597f2a1eb25c0789143e34cd2d1444bcc55"
+  integrity sha512-IhXBXki4n6nm5ARPb//CprmV2aYHLPWaTTLwf8ykeJQdSLBAuszi/9DjuFhZxo+v+wZQLDa3l6VkjaPPrpKLUQ==
   dependencies:
     "@babel/runtime" "^7.3.1"
     "@react-pdf/fontkit" "^1.13.0"
@@ -9853,6 +9853,11 @@ react-icons@^3.4.0:
   integrity sha512-7MyPwjIhuyW0D2N3s4DEd0hGPGFf0sK+IIRKhc1FvSpZNVmnUoGvHbmAwzGJU+3my+fvihVWgwU5SDtlAri56Q==
   dependencies:
     camelcase "^5.0.0"
+
+react-idle-timer@^4.2.5:
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/react-idle-timer/-/react-idle-timer-4.2.5.tgz#eb7d6e1b318f7755b5e0ee810254a8e95a2271b7"
+  integrity sha512-8B/OwjG8E/DTx1fHYKTpZ4cnCbL9+LOc5I9t8SYe8tbEkP14KChiYg0xPIuyRpO33wUZHcgmQl93CVePaDhmRA==
 
 react-input-autosize@^2.2.1:
   version "2.2.1"

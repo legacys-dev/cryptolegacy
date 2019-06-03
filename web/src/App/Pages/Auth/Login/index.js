@@ -3,19 +3,20 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
 import {Field} from 'simple-react-form'
-import Text from 'App/components/fields/Text'
 import Button from 'App/components/Parts/Button'
 import Title from 'App/components/Auth/Title'
-import LoggedIn from '../LoggedIn'
-import {Link} from 'react-router-dom'
+import Text from 'App/components/fields/Text'
+import Checkbox from 'orionsoft-parts/lib/components/fields/Checkbox'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import {setUserMessageKeys} from 'App/helpers/messageKeys'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
-import Translate from 'App/i18n'
-import translate from 'App/i18n/translate'
-import autobind from 'autobind-decorator'
 import withUserId from 'App/helpers/auth/withUserId'
 import {setSession} from '@orion-js/graphql-client'
+import autobind from 'autobind-decorator'
+import translate from 'App/i18n/translate'
+import Translate from 'App/i18n'
+import LoggedIn from '../LoggedIn'
+import {Link} from 'react-router-dom'
 
 @withUserId
 @withMessage
@@ -91,6 +92,11 @@ export default class Login extends React.Component {
             type={Text}
             fieldType="password"
             placeholder={translate('auth.password')}
+          />
+          <Field
+            fieldName="sharedHardware"
+            type={Checkbox}
+            label={translate('auth.sharedHardware')}
           />
         </AutoForm>
         {this.renderButtons()}

@@ -82,6 +82,7 @@ export default class SelectField extends React.Component {
           onChange={this.onChange}
           options={options}
           placeholder={placeholder}
+          onCopy={event => event.preventDefault()}
           {...passProps}
         />
         <div className="description">{description}</div>

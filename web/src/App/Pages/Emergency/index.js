@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './styles.css'
 import {Switch, Route} from 'react-router-dom'
 import forceLogin from 'App/helpers/auth/forceLogin'
+import InactivityTimer from 'App/components/InactivityTimer'
 import Kit from './Kit'
 
 @forceLogin
@@ -11,9 +12,11 @@ export default class Emergency extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Switch>
-          <Route path="/emergency-kit/:emergencyKitId/:emergencyKey" component={Kit} />
-        </Switch>
+        <InactivityTimer time={5}>
+          <Switch>
+            <Route path="/emergency-kit/:emergencyKitId/:emergencyKey" component={Kit} />
+          </Switch>
+        </InactivityTimer>
       </div>
     )
   }

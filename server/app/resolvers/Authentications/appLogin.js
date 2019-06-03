@@ -40,11 +40,15 @@ export default resolver({
           return 'invalidMasterKey'
         }
       }
+    },
+    sharedHardware: {
+      type: Boolean,
+      optional: true
     }
   },
   returns: 'blackbox',
   mutation: true,
-  async resolve({email, masterKey, password}, viewer) {
+  async resolve({email, masterKey, password, sharedHardware}, viewer) {
     const user = await Users.findOne({'emails.address': email})
     const session = await createSession(user)
 

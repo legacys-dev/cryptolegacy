@@ -16,7 +16,7 @@ route('/get-aws-job-output/:vaultName/:jobId', async function({
   try {
     result = await getJobOutput({vaultName, jobId})
   } catch (error) {
-    console.log('Error:', error)
+    console.log(error)
   }
 
   return result.body

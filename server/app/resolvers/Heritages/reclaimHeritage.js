@@ -3,6 +3,7 @@ import Users from 'app/collections/Users'
 import Heritages from 'app/collections/Heritages'
 import createVaultCredentials from 'app/resolvers/VaultCredentials/createVaultCredentials'
 import {heritageReclaimed} from 'app/helpers/emails'
+import bcrypt from 'bcryptjs'
 
 export default resolver({
   params: {
@@ -19,7 +20,7 @@ export default resolver({
   requireLogin: true,
   async resolve({code, accessToken}, viewer) {
     const user = await Users.findOne({_id: viewer.userId})
-    const heritage = await Heritages.findOne({code, accessToken, status: 'available'})
+    const heritage = await Heritages.findOne({accessToken, status: 'available'})
 
     if (!heritage) {
       throw new PermissionsError('unauthorized', {message: 'Unauthorized credentials access'})
@@ -31,6 +32,10 @@ export default resolver({
 
     if ((await user.email()) !== heritage.inheritorEmail) {
       throw new PermissionsError('unauthorized', {message: 'Unauthorized credentials access'})
+    }
+
+    if (!bcrypt.compareSync(code, heritage.code.bcrypt)) {
+      throw new PermissionsError('unauthorized', {message: 'Wrong code'})
     }
 
     const insertParams = {

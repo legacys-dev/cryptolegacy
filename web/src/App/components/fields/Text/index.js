@@ -44,6 +44,7 @@ export default class Text extends React.Component {
             placeholder={placeholder}
             onChange={event => onChange(event.target.value)}
             disabled={disabled}
+            onCopy={event => event.preventDefault()}
             {...passProps}
           />
         </div>

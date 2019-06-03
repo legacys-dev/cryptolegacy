@@ -11,6 +11,7 @@ import autobind from 'autobind-decorator'
 export default class Items extends React.Component {
   static propTypes = {
     showMessage: PropTypes.func,
+    onHeritageEnabled: PropTypes.func,
     items: PropTypes.array,
     status: PropTypes.string
   }
@@ -20,6 +21,7 @@ export default class Items extends React.Component {
   @autobind
   onEnableSuccess() {
     this.props.showMessage('The heritage was enabled')
+    this.props.onHeritageEnabled(new Date())
   }
 
   renderEnableHeritageButton(heritageId) {

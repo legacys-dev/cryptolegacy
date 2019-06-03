@@ -23,5 +23,6 @@ export default {
   register: 'Register',
   forgotPassword: 'Forgot password?',
   confirmEmail: 'Confirm email',
-  createPassword: 'Create password'
+  createPassword: 'Create password',
+  sharedHardware: 'This is a public or shared computer'
 }
