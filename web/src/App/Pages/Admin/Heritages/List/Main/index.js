@@ -18,7 +18,7 @@ export default class Main extends React.Component {
     status: PropTypes.string
   }
 
-  state = {}
+  state = {newHeritage: null}
 
   componentDidMount() {
     this.search()
@@ -27,6 +27,12 @@ export default class Main extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.filter !== this.props.filter) this.search()
     if (prevProps.status !== this.props.status) this.search()
+    if (prevState.newHeritage !== this.state.prevState) this.search()
+  }
+
+  @autobind
+  onHeritageEnabled(date) {
+    this.setState({newHeritage: date})
   }
 
   @autobind
@@ -51,7 +57,11 @@ export default class Main extends React.Component {
     const {items, currentPage, totalPages, hasNextPage, hasPreviousPage} = this.state
     return (
       <div className={styles.container}>
-        <Items items={items} status={this.props.status} />
+        <Items
+          items={items}
+          status={this.props.status}
+          onHeritageEnabled={this.onHeritageEnabled}
+        />
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
