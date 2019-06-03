@@ -113,6 +113,7 @@ export default class Number extends React.Component {
             onChange={this.onChange}
             onKeyDown={this.onKeyDown}
             onBlur={this.onBlur}
+            onCopy={event => event.preventDefault()}
             {...passProps}
           />
         </div>

@@ -89,6 +89,7 @@ export default class SixDigitInput extends React.Component {
           placeholder="•"
           onChange={event => this.onChange(event, index)}
           onKeyDown={event => this.onKeyDown(event, index)}
+          onCopy={event => event.preventDefault()}
           type="tel"
         />
       )
