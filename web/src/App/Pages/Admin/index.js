@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {Route, Switch, Redirect} from 'react-router-dom'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import InactivityTimer from 'App/components/InactivityTimer'
 import forceLogin from 'App/helpers/auth/forceLogin'
 import Heritages from './Heritages'
 import SideMenu from './SideMenu'
@@ -32,12 +33,14 @@ export default class Admin extends React.Component {
     if (!me.roles || !me.roles.includes('admin')) return this.renderWithoutPermissions()
     return (
       <div className={styles.container}>
-        <SideMenu title="Admin" links={links}>
-          <Switch>
-            <Redirect path="/admin" exact to="/admin/heritages" />
-            <Route path="/admin/heritages" component={Heritages} />
-          </Switch>
-        </SideMenu>
+        <InactivityTimer time={10}>
+          <SideMenu title="Admin" links={links}>
+            <Switch>
+              <Redirect path="/admin" exact to="/admin/heritages" />
+              <Route path="/admin/heritages" component={Heritages} />
+            </Switch>
+          </SideMenu>
+        </InactivityTimer>
       </div>
     )
   }
