@@ -13,7 +13,7 @@
   -webkit-transition-property: color;
   -webkit-transition-duration: 300ms;
   margin: 0 5px;
-  height: auto;
+  height: inherit;
 }
 
 :local(.item):hover {
