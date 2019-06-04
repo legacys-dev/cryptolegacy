@@ -1,5 +1,6 @@
 import crypto from 'crypto'
 import cloneDeep from 'lodash/cloneDeep'
+import algorithm from './algorithm'
 
 export default function(encryptedItem, userSecret, userIv, type) {
   if (!encryptedItem || !userSecret || !type) throw new Error('Missing information')
@@ -20,8 +21,6 @@ export default function(encryptedItem, userSecret, userIv, type) {
     encrypted = cloneDeep(Buffer.from(hashArray[1], 'hex'))
     encryptionIv = cloneDeep(Buffer.from(hashArray[0], 'hex'))
   }
-
-  const algorithm = 'aes-256-cbc'
 
   const decipher = crypto.createDecipheriv(algorithm, userSecret, encryptionIv)
   const decrypted = decipher.update(encrypted)

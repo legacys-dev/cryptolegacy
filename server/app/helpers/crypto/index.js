@@ -2,5 +2,6 @@ import cipherEncrypt from './cipherEncrypt'
 import cipherDecrypt from './cipherDecrypt'
 import publicEncrypt from './publicEncrypt'
 import privateDecrypt from './privateDecrypt'
+import algorithm from './algorithm'
 
-export {publicEncrypt, privateDecrypt, cipherEncrypt, cipherDecrypt}
+export {algorithm, publicEncrypt, privateDecrypt, cipherEncrypt, cipherDecrypt}

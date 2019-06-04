@@ -1,5 +1,6 @@
 import crypto from 'crypto'
 import cloneDeep from 'lodash/cloneDeep'
+import algorithm from './algorithm'
 
 export default function(item, userSecret, userIv, type) {
   if (!item || !userSecret || !type) throw new Error('Missing information')
@@ -11,8 +12,6 @@ export default function(item, userSecret, userIv, type) {
   if (type === 'meta-data') encryptionIv = cloneDeep(crypto.randomBytes(16))
 
   if (!encryptionIv || encryptionIv.length !== 16) throw new Error('Invalid IV key')
-
-  const algorithm = 'aes-256-cbc'
 
   const cipher = crypto.createCipheriv(algorithm, userSecret, encryptionIv)
   const encrypted = cipher.update(item)
