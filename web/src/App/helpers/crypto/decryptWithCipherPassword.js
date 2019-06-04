@@ -1,4 +1,5 @@
 import crypto from 'crypto'
+import algorithm from './algorithm'
 
 export default function({encryptedItem, password, iv, type}) {
   if (!encryptedItem || !password || !type) throw new Error('Missing information')
@@ -19,8 +20,6 @@ export default function({encryptedItem, password, iv, type}) {
     encrypted = Buffer.from(hashArray[1], 'hex')
     encryptionIv = Buffer.from(hashArray[0], 'hex')
   }
-
-  const algorithm = 'aes-256-cbc'
 
   const decipher = crypto.createDecipheriv(algorithm, password, encryptionIv)
   const decrypted = decipher.update(encrypted)
