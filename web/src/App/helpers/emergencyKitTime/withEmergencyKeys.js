@@ -11,13 +11,7 @@ export default function(ComposedComponent) {
 
     render() {
       const {params} = this.props.match
-      return (
-        <ComposedComponent
-          emergencyKitId={params.emergencyKitId}
-          emergencyKey={params.emergencyKey}
-          {...this.props}
-        />
-      )
+      return <ComposedComponent emergencyKitId={params.emergencyKitId} {...this.props} />
     }
   }
 

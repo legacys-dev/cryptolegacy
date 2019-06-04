@@ -14,7 +14,7 @@ export default class Emergency extends React.Component {
       <div className={styles.container}>
         <InactivityTimer time={5}>
           <Switch>
-            <Route path="/emergency-kit/:emergencyKitId/:emergencyKey" component={Kit} />
+            <Route path="/emergency-kit/:emergencyKitId" component={Kit} />
           </Switch>
         </InactivityTimer>
       </div>

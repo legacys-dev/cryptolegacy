@@ -1,15 +1,15 @@
 import {generateId} from '@orion-js/app'
-import {cipherEncrypt} from 'app/helpers/crypto'
+import {encryptMessage} from 'app/helpers/openPgp'
 import EmergencyKits from 'app/collections/EmergencyKits'
 
-export default async function({userMasterHash, userId, email}) {
+export default async function({userMasterHash, userId, email, userMessageKeys}) {
   const _id = generateId(201)
-  const key = generateId(32)
+  const textToEncrypt = {userId, userMasterHash, email}
+  const {publicKey} = userMessageKeys
 
-  const toEncrypt = {userId, userMasterHash, email}
-  const encrypted = cipherEncrypt(JSON.stringify(toEncrypt), key, null, 'meta-data')
+  const encrypted = await encryptMessage({publicKey, textToEncrypt: textToEncrypt})
 
-  await EmergencyKits.insert({_id, key, userId, encrypted})
+  await EmergencyKits.insert({_id, userId, encrypted})
 
-  return {emergencyKitId: _id, emergencyKey: key}
+  return {emergencyKitId: _id}
 }
