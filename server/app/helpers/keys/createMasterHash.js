@@ -47,13 +47,11 @@ export default function() {
 
   const masterKeyItems = masterKey.split(':')
 
-  const resultObject = {
+  return {
     masterKey,
     secretKeyInterval: masterKeyItems[0],
     ivKeyInterval: masterKeyItems[2],
     rest: masterKeyItems[1],
     range: masterKey.length
   }
-
-  return resultObject
 }

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import withValidKitHorary from 'App/helpers/emergencyKitTime/withValidKitHorary'
+import {getMessagePrivateKey, getMessagePassphrase} from 'App/helpers/user'
+import {decryptMessage} from 'App/helpers/openPgp'
 import Container from 'orionsoft-parts/lib/components/Container'
 import KeyPdfGenerator from 'App/functions/KeyPdfGenerator'
 import Loading from 'App/components/Parts/Loading'
@@ -15,13 +17,13 @@ import Header from './Header'
 @withValidKitHorary
 @withGraphQL(
   gql`
-    query getData($emergencyKitId: String, $emergencyKey: String) {
+    query getData($emergencyKitId: String) {
       me {
         _id
         name
         lastName
       }
-      emergencyKit(emergencyKitId: $emergencyKitId, emergencyKey: $emergencyKey)
+      emergencyKit(emergencyKitId: $emergencyKitId)
     }
   `,
   {loading: <Loading />}
@@ -33,13 +35,26 @@ export default class Kit extends React.Component {
     emergencyKit: PropTypes.object
   }
 
+  state = {decryptContent: null}
+
+  async componentDidMount() {
+    const decryptParams = {
+      privateKey: getMessagePrivateKey(),
+      passphrase: getMessagePassphrase(),
+      encryptedMessage: this.props.emergencyKit.encrypted
+    }
+    const decryptContent = await decryptMessage(decryptParams)
+    this.setState({decryptContent})
+  }
+
   render() {
+    if (!this.state.decryptContent) return <Loading />
     const {me, emergencyKit} = this.props
     const userData = {
       userName: me.name,
       userLastName: me.lastName,
       createdAt: emergencyKit.createdAt,
-      userMasterKey: emergencyKit.userMasterKey
+      userMasterKey: this.state.decryptContent.userMasterHash.masterKey
     }
 
     return (

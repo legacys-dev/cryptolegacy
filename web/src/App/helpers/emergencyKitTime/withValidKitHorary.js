@@ -7,14 +7,13 @@ import gql from 'graphql-tag'
 export default function(ComposedComponent) {
   @withEmergencyKeys
   @withGraphQL(gql`
-    query itsValidKitHorary($emergencyKitId: String, $emergencyKey: String) {
-      itsValidKitHorary(emergencyKitId: $emergencyKitId, emergencyKey: $emergencyKey)
+    query itsValidKitHorary($emergencyKitId: String) {
+      itsValidKitHorary(emergencyKitId: $emergencyKitId)
     }
   `)
   class withValidKitHorary extends React.Component {
     static propTypes = {
       emergencyKitId: PropTypes.string,
-      emergencyKey: PropTypes.string,
       itsValidKitHorary: PropTypes.bool
     }
 

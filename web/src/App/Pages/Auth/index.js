@@ -30,9 +30,9 @@ export default class Auth extends React.Component {
     if (location.state && location.state.nextPathname) {
       history.replace('/')
     } else {
-      const {emergencyKitId, emergencyKey} = params
-      if (!emergencyKitId || !emergencyKey) return
-      history.replace(`/emergency-kit/${emergencyKitId}/${emergencyKey}`)
+      const {emergencyKitId} = params
+      if (!emergencyKitId) return
+      history.replace(`/emergency-kit/${emergencyKitId}`)
     }
   }
 

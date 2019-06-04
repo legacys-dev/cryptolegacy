@@ -1,4 +1,5 @@
 import crypto from 'crypto'
+import algorithm from './algorithm'
 
 export default function({itemToCipher, password, iv, type}) {
   if (!itemToCipher || !password || !type) throw new Error('Missing information')
@@ -10,8 +11,6 @@ export default function({itemToCipher, password, iv, type}) {
   if (type === 'meta-data') encryptionIv = crypto.randomBytes(16)
 
   if (!encryptionIv || encryptionIv.length !== 16) throw new Error('Invalid IV key')
-
-  const algorithm = 'aes-256-cbc'
 
   const cipher = crypto.createCipheriv(algorithm, password, encryptionIv)
   const encrypted = cipher.update(itemToCipher)

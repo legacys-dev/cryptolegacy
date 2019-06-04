@@ -4,7 +4,7 @@ import resolvers from 'app/resolvers'
 import subscriptions from 'app/subscriptions'
 
 const useGraphiql = false // Activate Graphql IDE in browser
-const origin = process.env.ORION_DEV ? '*' : 'https'
+const origin = process.env.ORION_LOCAL ? '*' : 'https'
 
 startGraphQL({
   resolvers,

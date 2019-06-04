@@ -6,10 +6,6 @@ export default {
     type: 'ID',
     private: true
   },
-  key: {
-    type: String,
-    private: true
-  },
   encrypted: {
     type: String,
     private: true

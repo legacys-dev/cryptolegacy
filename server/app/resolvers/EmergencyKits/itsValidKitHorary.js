@@ -7,22 +7,18 @@ export default resolver({
   params: {
     emergencyKitId: {
       type: String
-    },
-    emergencyKey: {
-      type: String
     }
   },
   returns: Boolean,
   requireLogin: true,
   emergencyKitPermissions: true,
-  async resolve({emergencyKitId, emergencyKey}, viewer) {
+  async resolve({emergencyKitId}, viewer) {
     const limitTime = DateTime.local()
       .minus({minutes: 2})
       .toJSDate()
 
     const kit = await EmergencyKits.findOne({
       _id: emergencyKitId,
-      key: emergencyKey,
       createdAt: {$gte: limitTime}
     })
 

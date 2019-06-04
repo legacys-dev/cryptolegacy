@@ -86,10 +86,11 @@ export default resolver({
 
     const session = await createSession(newUser)
 
-    const {emergencyKitId, emergencyKey} = await createEmergencyKit({
+    const {emergencyKitId} = await createEmergencyKit({
       userMasterHash,
       userId: newUser._id,
-      email
+      email,
+      userMessageKeys
     })
 
     const k = decomposeMasterKey({
@@ -103,7 +104,6 @@ export default resolver({
     return {
       session,
       emergencyKitId,
-      emergencyKey,
       encryptedKeysForMessages,
       k
     }

@@ -29,13 +29,13 @@ export default class CreatePassword extends React.Component {
 
   @autobind
   async onSuccess(response) {
-    const {session, emergencyKitId, emergencyKey, encryptedKeysForMessages, k} = response
+    const {session, emergencyKitId, encryptedKeysForMessages, k} = response
     await sleep(1000)
     try {
       await setSession(session)
       this.props.showMessage('Account created successfully')
       await setUserMessageKeys(k, encryptedKeysForMessages)
-      const params = {emergencyKitId, emergencyKey}
+      const params = {emergencyKitId}
       this.props.onLogin(params)
     } catch (error) {
       console.log('Error:', error)

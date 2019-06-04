@@ -9,11 +9,10 @@ export default function({email, name, lastName}) {
     },
     confirmEmail: {
       confirm: false,
-      token: generateId(151),
+      token: generateId(201),
       code: Math.random()
         .toString()
-        .slice(2, 11)
-        .toString(),
+        .slice(2, 11),
       date: new Date()
     },
     updateDate: new Date()

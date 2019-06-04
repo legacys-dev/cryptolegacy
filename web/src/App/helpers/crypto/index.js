@@ -1,4 +1,5 @@
 import decryptWithCipherPassword from './decryptWithCipherPassword'
 import encryptWithCipherPassword from './encryptWithCipherPassword'
+import algorithm from './algorithm'
 
-export {encryptWithCipherPassword, decryptWithCipherPassword}
+export {algorithm, encryptWithCipherPassword, decryptWithCipherPassword}

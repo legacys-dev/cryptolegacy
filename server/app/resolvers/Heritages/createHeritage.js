@@ -31,7 +31,6 @@ export default resolver({
     })
 
     const userCode = Math.random()
-      .toString()
       .slice(2, 15)
       .toString()
 
@@ -45,8 +44,8 @@ export default resolver({
     const reclaimIdentificator = heritage
       ? heritage.reclaimIdentificator
       : Math.random()
-          .toString()
           .slice(2, 5)
+          .toString()
 
     if (heritage) {
       await heritage.update({$set: requiredParams})
