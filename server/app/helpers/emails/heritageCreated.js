@@ -7,7 +7,7 @@ export default async function({owner, user, code, reclaimIdentificator}) {
 
   const hasAccount = name && lastName
 
-  const local = process.env.ORION_DEV
+  const local = process.env.ORION_LOCAL
   const link = local ? `http://localhost:3010/register` : `https://dev.cryptolegacy.io/register`
 
   const emailContent = (

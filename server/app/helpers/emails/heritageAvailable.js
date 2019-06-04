@@ -4,7 +4,7 @@ import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
 export default async function({user, accessToken, reclaimIdentificator}) {
   const {email, name, lastName} = user
 
-  const local = process.env.ORION_DEV
+  const local = process.env.ORION_LOCAL
 
   const link = local
     ? `http://localhost:3010/heritage/${accessToken}`

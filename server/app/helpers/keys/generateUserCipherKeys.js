@@ -11,10 +11,8 @@ export default async function(masterHash) {
   const wallet = ethers.Wallet.fromMnemonic(mnemonic)
   const copyWallet = ethers.Wallet.fromMnemonic(copyMNemonic)
 
-  const privateKey = wallet.signingKey.keyPair.privateKey
-  const publicKey = wallet.signingKey.keyPair.publicKey
-  const compressedPublicKey = wallet.signingKey.keyPair.compressedPublicKey
-  const address = wallet.signingKey.address
+  const {privateKey, publicKey, compressedPublicKey} = wallet.signingKey.keyPair
+  const {address} = wallet.signingKey
 
   const copyPrivateKey = copyWallet.signingKey.keyPair.privateKey
   const copyPublicKey = copyWallet.signingKey.keyPair.publicKey

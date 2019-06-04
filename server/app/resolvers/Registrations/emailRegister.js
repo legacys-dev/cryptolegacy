@@ -36,9 +36,8 @@ export default resolver({
     if (register) await register.update({$set: dataForRegister})
     else await Registrations.insert(dataForRegister)
 
-    // send code by mail to confirm
-    console.log('digits:', dataForRegister.confirmEmail.code)
     await verifyEmail({registerData: dataForRegister})
+    if (process.env.ORION_LOCAL) console.log('digits:', dataForRegister.confirmEmail.code)
 
     return dataForRegister.confirmEmail.token
   }
