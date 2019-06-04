@@ -11,8 +11,8 @@ export default async function({privateKey, passphrase, encryptedMessage}) {
 
   if (!encryptedMessage) throw new Error('Invalid encrypted message')
 
-  const messageToDecrypt = await openpgp.message.readArmored(encryptedMessage.data)
-  const privateKeyObject = (await openpgp.key.readArmored()).keys[0]
+  const messageToDecrypt = await openpgp.message.readArmored(encryptedMessage)
+  const privateKeyObject = (await openpgp.key.readArmored(privateKey)).keys[0]
 
   await privateKeyObject.decrypt(passphrase)
 
