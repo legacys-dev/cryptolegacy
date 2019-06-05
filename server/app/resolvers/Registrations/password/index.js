@@ -4,7 +4,7 @@ import {createMasterHash, generateUserCipherKeys, decomposeMasterKey} from 'app/
 import {generateKeys as generateOpenPgpKeys} from 'app/helpers/openPgp'
 import {passwordValidator} from 'app/helpers/registration'
 import {accountCreated} from 'app/helpers/emails'
-import {cipherEncrypt} from 'app/helpers/crypto'
+import {userDataEncryptWithPassword} from 'app/helpers/crypto'
 import Registrations from 'app/collections/Registrations'
 import createEmergencyKit from './createEmergencyKit'
 import authResolvers from 'app/resolvers/Auth'
@@ -61,13 +61,12 @@ export default resolver({
 
     if (!newUser) throw new Error('Error creating user')
 
-    const {secret} = userMasterPassword
-    const encryptedKeysForMessages = cipherEncrypt(
-      JSON.stringify(userMessageKeys),
-      secret,
-      null,
-      'meta-data'
-    )
+    const {secret, iv} = userMasterPassword
+    const encryptedKeysForMessages = userDataEncryptWithPassword({
+      itemToEncrypt: JSON.stringify(userMessageKeys),
+      cipherPassword: secret,
+      userDataIv: iv
+    })
 
     await Users.update(
       {_id: newUser._id, 'emails.address': email},

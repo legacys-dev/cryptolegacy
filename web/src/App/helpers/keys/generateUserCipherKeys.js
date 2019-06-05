@@ -1,4 +1,4 @@
-import {createEtherWallet} from 'app/helpers/ethers'
+import {createEtherWallet} from 'App/helpers/ethers'
 import getHashItems from './getHashItems'
 
 export default async function(masterHash) {

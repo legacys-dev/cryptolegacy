@@ -26,14 +26,7 @@ export default class InactivityTimer extends React.Component {
 
   inactivityChecker() {
     return (
-      <IdleTimer
-        ref={ref => {
-          this.idleTimer = ref
-        }}
-        onIdle={this.onInactivity}
-        debounce={250}
-        timeout={1000 * 60 * this.props.time}
-      />
+      <IdleTimer onIdle={this.onInactivity} debounce={250} timeout={1000 * 60 * this.props.time} />
     )
   }
 

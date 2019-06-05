@@ -2,7 +2,7 @@ import {resolver} from '@orion-js/app'
 import {createSession} from '@orion-js/auth'
 import {hasPassword, checkPassword} from 'app/helpers/authentication'
 import {generateUserCipherKeys} from 'app/helpers/keys'
-import {cipherEncrypt} from 'app/helpers/crypto'
+import {userDataEncryptWithPassword} from 'app/helpers/crypto'
 import Users from 'app/collections/Users'
 import bcrypt from 'bcryptjs'
 
@@ -60,13 +60,12 @@ export default resolver({
 
     const userMasterPassword = await generateUserCipherKeys(masterKey)
 
-    const {secret} = userMasterPassword
-    const encryptedKeysForMessages = cipherEncrypt(
-      JSON.stringify(userMessageKeys),
-      secret,
-      null,
-      'meta-data'
-    )
+    const {secret, iv} = userMasterPassword
+    const encryptedKeysForMessages = userDataEncryptWithPassword({
+      itemToEncrypt: JSON.stringify(userMessageKeys),
+      cipherPassword: secret,
+      userDataIv: iv
+    })
 
     return {
       session,
