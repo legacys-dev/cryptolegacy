@@ -1,22 +1,23 @@
 import regenerateKey from './regenerateKey'
-import {getKeys} from 'App/helpers/ethers'
-import {decryptWithCipherPassword} from 'App/helpers/crypto'
+import {generateUserCipherKeys} from 'App/helpers/keys'
+import {userDataDecryptWithPassword} from 'App/helpers/crypto'
 
 export default async function(k, encryptedKeysForMessages) {
   const isObject = typeof k === 'object'
   const isString = typeof k === 'string'
 
   const userMasterKey = isObject ? regenerateKey(k) : isString && k
-  const {secret} = await getKeys(userMasterKey)
+  const {secret, iv} = await generateUserCipherKeys(userMasterKey)
 
   const decipherParams = {
     encryptedItem: encryptedKeysForMessages,
-    password: secret,
-    iv: null,
-    type: 'meta-data'
+    cipherPassword: secret,
+    userDataIv: iv
   }
 
-  const {publicKey, privateKey, passphrase} = JSON.parse(decryptWithCipherPassword(decipherParams))
+  const {publicKey, privateKey, passphrase} = JSON.parse(
+    userDataDecryptWithPassword(decipherParams)
+  )
 
   const messages = {
     publicKey,

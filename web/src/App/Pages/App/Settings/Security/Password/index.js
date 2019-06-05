@@ -58,34 +58,19 @@ export default class ChangePassword extends React.Component {
             <div className="label">
               <Translate tr="settings.currentPassword" />
             </div>
-            <Field
-              fieldName="oldPassword"
-              fieldType="password"
-              placeholder={translate('settings.currentPassword')}
-              type={Text}
-            />
+            <Field fieldName="oldPassword" fieldType="password" type={Text} />
             <div className={styles.divider} />
             <div className="label">
               <Translate tr="settings.newPassword" />
             </div>
-            <Field
-              fieldName="newPassword"
-              fieldType="password"
-              placeholder={translate('settings.newPassword')}
-              type={Text}
-            />
+            <Field fieldName="newPassword" fieldType="password" type={Text} />
             <div className="description">
               <Translate tr="auth.passwordRequirements" />
             </div>
             <div className="label">
               <Translate tr="settings.confirmYourPassword" />
             </div>
-            <Field
-              fieldName="confirm"
-              fieldType="password"
-              placeholder={translate('settings.repeatYourNewPassword')}
-              type={Text}
-            />
+            <Field fieldName="confirm" fieldType="password" type={Text} />
           </AutoForm>
           <br />
           <Button icon={MdLockOutline} onClick={() => this.refs.form.submit()} primary>
