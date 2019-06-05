@@ -1,3 +1,3 @@
-import getKeys from './getKeys'
+import createEtherWallet from './createEtherWallet'
 
-export {getKeys}
+export {createEtherWallet}
