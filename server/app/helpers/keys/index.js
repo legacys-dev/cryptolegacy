@@ -1,7 +1,7 @@
 import createMasterHash from './createMasterHash'
-import generateUserCipherKeys from './generateUserCipherKeys'
+import generateCipherKeys from './generateCipherKeys'
 import getHashItems from './getHashItems'
 import createKeyPairs from './createKeyPairs'
 import decomposeMasterKey from './decomposeMasterKey'
 
-export {createMasterHash, generateUserCipherKeys, getHashItems, createKeyPairs, decomposeMasterKey}
+export {createMasterHash, generateCipherKeys, getHashItems, createKeyPairs, decomposeMasterKey}

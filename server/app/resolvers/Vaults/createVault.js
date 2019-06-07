@@ -24,7 +24,19 @@ export default resolver({
 
     const vaultId = await Vaults.insert(params)
 
-    await createVaultCredentials({vaultId, credentialType: 'owner'}, viewer)
+    let onError
+    try {
+      await createVaultCredentials({vaultId, credentialType: 'owner'}, viewer)
+    } catch (error) {
+      console.log(error)
+      onError = !!error
+    }
+
+    if (onError) {
+      const vault = await Vaults.findOne(vaultId)
+      await vault.remove()
+      throw new Error('Error creating vault credentials. Vault was removed')
+    }
 
     const activityTypeParams = {
       activityType: 'vault',
