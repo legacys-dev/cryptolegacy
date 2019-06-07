@@ -4,6 +4,7 @@ import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
 import Button from 'App/components/Parts/Button'
 import withValidToken from 'App/helpers/registerTokens/withValidToken'
+import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
@@ -11,8 +12,10 @@ import Translate from 'App/i18n'
 
 @withRouter
 @withValidToken
+@withMessage
 export default class VerifyEmail extends React.Component {
   static propTypes = {
+    showMessage: PropTypes.func,
     history: PropTypes.object,
     match: PropTypes.object
   }
@@ -22,8 +25,13 @@ export default class VerifyEmail extends React.Component {
   @autobind
   async onSuccess(token) {
     await sleep(1000)
-    const {history} = this.props
-    history.push(`/password/${token}`)
+    this.props.history.push(`/password/${token}`)
+  }
+
+  @autobind
+  onError() {
+    this.props.showMessage('El tiempo válido para ingresar el código ha caducado')
+    this.props.history.push('/register')
   }
 
   @autobind
@@ -42,6 +50,7 @@ export default class VerifyEmail extends React.Component {
           onSuccess={this.onSuccess}
           ref="form"
           doc={{token: params.token}}
+          onError={this.onError}
           omit={['token']}
         />
         <div className={styles.button}>

@@ -3,7 +3,7 @@ export default {
     type: String
   },
   code: {
-    type: String
+    type: 'blackbox'
   },
   date: {
     type: Date

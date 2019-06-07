@@ -2,9 +2,9 @@ import {resolver} from '@orion-js/app'
 import {createSession, hashPassword} from '@orion-js/auth'
 import {createMasterHash, generateUserCipherKeys, decomposeMasterKey} from 'app/helpers/keys'
 import {generateKeys as generateOpenPgpKeys} from 'app/helpers/openPgp'
+import {userDataEncryptWithPassword} from 'app/helpers/crypto'
 import {passwordValidator} from 'app/helpers/registration'
 import {accountCreated} from 'app/helpers/emails'
-import {userDataEncryptWithPassword} from 'app/helpers/crypto'
 import Registrations from 'app/collections/Registrations'
 import createEmergencyKit from './createEmergencyKit'
 import authResolvers from 'app/resolvers/Auth'
@@ -38,7 +38,7 @@ export default resolver({
   async resolve({password, confirmPassword, token}, viewer) {
     const registration = await Registrations.findOne({'confirmPassword.token': token})
 
-    const {email, name, lastName} = registration.userData
+    const {email, name, lastName} = registration.userInformation
     const profile = {firstName: name, lastName}
 
     const userMasterHash = createMasterHash()
@@ -97,8 +97,8 @@ export default resolver({
       userId: newUser._id
     })
 
-    const {userData} = registration
-    await accountCreated({userData})
+    const {userInformation} = registration
+    await accountCreated({userInformation})
 
     return {
       session,

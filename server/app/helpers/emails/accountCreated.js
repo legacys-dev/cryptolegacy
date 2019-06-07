@@ -1,8 +1,8 @@
 import React from 'react'
 import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
 
-export default async function({userData}) {
-  const {email, name, lastName} = userData
+export default async function({userInformation}) {
+  const {email, name, lastName} = userInformation
 
   const emailContent = (
     <div>

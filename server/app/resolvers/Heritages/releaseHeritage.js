@@ -17,19 +17,20 @@ export default resolver({
     const heritage = await Heritages.findOne({_id: heritageId, status: 'waiting'})
     if (!heritage) throw new Error('Heritage not found')
 
-    const user = await Users.findOne({emails: {$elemMatch: {address: heritage.inheritorEmail}}})
+    const user = await Users.findOne({'emails.address': heritage.inheritorEmail})
+
     if (!user) throw new Error('Inheritor not found')
 
     await heritage.update({$set: {status: 'available'}})
 
-    const userData = {
+    const userInformation = {
       email: await user.email(),
       name: await user.name(),
       lastName: await user.lastName()
     }
 
     const {accessToken, reclaimIdentificator} = heritage
-    await heritageAvailable({user: userData, accessToken, reclaimIdentificator})
+    await heritageAvailable({user: userInformation, accessToken, reclaimIdentificator})
 
     return true
   }

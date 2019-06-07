@@ -29,16 +29,19 @@ export default resolver({
   mutation: true,
   emailRegisterPermission: true,
   async resolve(params, viewer) {
-    const query = {'userData.email': params.email.toLowerCase()}
-    const dataForRegister = emailRegistration(params)
+    const query = {'userInformation.email': params.email.toLowerCase()}
+    const {verifyCode, userRegisterData} = emailRegistration(params)
     const register = await Registrations.findOne(query)
 
-    if (register) await register.update({$set: dataForRegister})
-    else await Registrations.insert(dataForRegister)
+    if (register) await register.update({$set: userRegisterData})
+    else await Registrations.insert(userRegisterData)
 
-    await verifyEmail({registerData: dataForRegister})
-    if (process.env.ORION_LOCAL) console.log('digits:', dataForRegister.confirmEmail.code)
+    // await verifyEmail({registerData: {verifyCode, ...userRegisterData}})
 
-    return dataForRegister.confirmEmail.token
+    if (process.env.ORION_LOCAL) {
+      console.log('digits:', verifyCode)
+    }
+
+    return userRegisterData.confirmEmail.token
   }
 })

@@ -2,8 +2,8 @@ import React from 'react'
 import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
 
 export default async function({registerData}) {
-  const {email, name, lastName} = registerData.userData
-  const {code} = registerData.confirmEmail
+  const {email, name, lastName} = registerData.userInformation
+  const {verifyCode} = registerData
 
   const emailContent = (
     <div>
@@ -15,7 +15,7 @@ export default async function({registerData}) {
         Cryptolegacy:
       </p>
       <p>
-        <strong>{code}</strong>
+        <strong>{verifyCode}</strong>
       </p>
     </div>
   )

@@ -6,7 +6,7 @@ export default {
   signOut: 'Salir',
   password: 'Contraseña',
   forgotMyPassword: 'Olvidé mi contraseña',
-  createAnAccount: 'Crear un cuenta',
+  createAnAccount: 'Crear una cuenta',
   login: 'Entrar',
   loginNow: 'Entra',
   name: 'Nombre',

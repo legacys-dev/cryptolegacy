@@ -6,7 +6,7 @@ export default {
   _id: {
     type: 'ID'
   },
-  userData: {
+  userInformation: {
     type: UserData
   },
   confirmEmail: {

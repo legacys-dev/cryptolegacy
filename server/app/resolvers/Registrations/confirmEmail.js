@@ -21,7 +21,6 @@ export default resolver({
   confirmEmailPermission: true,
   async resolve({code, token}, viewer) {
     const query = {
-      'confirmEmail.code': code,
       'confirmEmail.token': token
     }
 

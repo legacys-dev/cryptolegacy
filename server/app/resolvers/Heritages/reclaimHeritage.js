@@ -45,14 +45,14 @@ export default resolver({
 
     await createVaultCredentials(insertParams, viewer)
 
-    const userData = {
+    const userInformation = {
       email: await user.email(),
       name: await user.name(),
       lastName: await user.lastName()
     }
 
     const {reclaimIdentificator} = heritage
-    await heritageReclaimed({user: userData, reclaimIdentificator})
+    await heritageReclaimed({user: userInformation, reclaimIdentificator})
 
     return true
   }
