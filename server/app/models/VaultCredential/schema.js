@@ -15,6 +15,9 @@ export default {
     private: true,
     allowedValues: ['owner', 'heritage']
   },
+  encryptedCredentials: {
+    type: String
+  },
   createdAt: {
     type: Date,
     private: true,
