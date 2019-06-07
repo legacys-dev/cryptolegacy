@@ -43,7 +43,7 @@ export default class Auth extends React.Component {
         <div className={styles.content}>
           <div className={styles.contentInner}>
             <div className={styles.logoContainer}>
-              <Logo imgName="twoColorsBT.png" size={'85px'} />
+              <Logo imgName="twoColorsBT.png" size={'100px'} />
             </div>
             <Switch>
               <Route path="/login" render={() => <Login {...otherProps} />} />
