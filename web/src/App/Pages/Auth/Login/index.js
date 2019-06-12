@@ -85,13 +85,25 @@ export default class Login extends React.Component {
           ref="form"
           onSuccess={this.onSuccess}
           onChange={this.onChange}>
-          <Field fieldName="email" type={Text} fieldType="email" placeholder="Email" />
-          <Field fieldName="masterKey" type={Text} placeholder="Master key" />
+          <Field
+            fieldName="email"
+            type={Text}
+            fieldType="email"
+            placeholder="Email"
+            autoComplete="new-password"
+          />
+          <Field
+            fieldName="masterKey"
+            type={Text}
+            placeholder="Master key"
+            autoComplete="new-password"
+          />
           <Field
             fieldName="password"
             type={Text}
             fieldType="password"
             placeholder={translate('auth.password')}
+            autoComplete="new-password"
           />
           <Field
             fieldName="sharedHardware"

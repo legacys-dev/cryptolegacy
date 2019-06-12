@@ -11,7 +11,8 @@ export default class Text extends React.Component {
     errorMessage: PropTypes.node,
     disabled: PropTypes.bool,
     label: PropTypes.node,
-    description: PropTypes.node
+    description: PropTypes.node,
+    autoComplete: PropTypes.string
   }
 
   static defaultProps = {
@@ -29,7 +30,8 @@ export default class Text extends React.Component {
       disabled,
       passProps,
       description,
-      errorMessage
+      errorMessage,
+      autoComplete
     } = this.props
 
     return (
@@ -41,6 +43,7 @@ export default class Text extends React.Component {
             className="os-input-text"
             type={fieldType}
             value={value || ''}
+            autoComplete={autoComplete || ''}
             placeholder={placeholder}
             onChange={event => onChange(event.target.value)}
             disabled={disabled}
