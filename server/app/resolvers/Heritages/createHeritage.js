@@ -1,6 +1,6 @@
 import {resolver, generateId} from '@orion-js/app'
 import {hashPassword} from '@orion-js/auth'
-import {emailTest} from 'app/helpers/registration'
+import {emailValidator} from 'app/helpers/registration'
 import Heritages from 'app/collections/Heritages'
 import Users from 'app/collections/Users'
 import {heritageCreated} from 'app/helpers/emails'
@@ -15,7 +15,7 @@ export default resolver({
       label: 'Email del heredero',
       async custom(email) {
         email = email.toLowerCase()
-        if (!emailTest(email)) return 'invalidEmail'
+        if (!emailValidator(email)) return 'invalidEmail'
       }
     }
   },

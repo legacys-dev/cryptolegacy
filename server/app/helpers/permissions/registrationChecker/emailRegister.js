@@ -1,10 +1,10 @@
 import Users from 'app/collections/Users'
-import {emailTest} from 'app/helpers/registration'
+import {emailValidator} from 'app/helpers/registration'
 
 export default async function({viewer, email, name, lastName}) {
   if (!email) throw new Error('Email required')
 
-  if (!emailTest(email)) throw new Error('Email is not valid')
+  if (!emailValidator(email)) throw new Error('Email is not valid')
 
   if (!name) throw new Error('Name required')
 

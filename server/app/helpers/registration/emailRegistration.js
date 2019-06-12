@@ -20,7 +20,7 @@ export default function({email, name, lastName}) {
       confirm: false,
       token: generateId(201),
       date: new Date(),
-      'code.bcrypt': hashPassword(verifyCode)
+      code: {bcrypt: hashPassword(verifyCode)}
     },
     updateDate: new Date()
   }

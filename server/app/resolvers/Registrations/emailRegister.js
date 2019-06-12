@@ -1,6 +1,6 @@
 import {resolver} from '@orion-js/app'
 import Registrations from 'app/collections/Registrations'
-import {emailRegistration, emailTest} from 'app/helpers/registration'
+import {emailRegistration, emailValidator} from 'app/helpers/registration'
 import {verifyEmail} from 'app/helpers/emails'
 import Users from 'app/collections/Users'
 
@@ -11,7 +11,7 @@ export default resolver({
       placeholder: 'Email',
       async custom(email) {
         email = email.toLowerCase()
-        if (!emailTest(email)) return 'invalidEmail'
+        if (!emailValidator(email)) return 'invalidEmail'
         const user = await Users.findOne({'emails.address': email})
         if (user) return 'emailAlreadyExists'
       }

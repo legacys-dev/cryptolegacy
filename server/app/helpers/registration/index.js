@@ -1,6 +1,6 @@
 import passwordRegistration from './passwordRegistration'
 import emailRegistration from './emailRegistration'
 import passwordValidator from './passwordValidator'
-import emailTest from './emailTest'
+import emailValidator from './emailValidator'
 
-export {emailRegistration, emailTest, passwordRegistration, passwordValidator}
+export {emailRegistration, emailValidator, passwordRegistration, passwordValidator}
