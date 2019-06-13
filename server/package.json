@@ -5,7 +5,6 @@
   "main": "index.js",
   "author": "Legacys",
   "private": true,
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/legacys-dev/cryptolegacy"
