@@ -1,6 +1,6 @@
 import {resolver} from '@orion-js/app'
 import {createSession, hashPassword} from '@orion-js/auth'
-import {createMasterHash, generateCipherKeys, decomposeMasterKey} from 'app/helpers/keys'
+import {createMasterKey, generateCipherKeys, decomposeMasterKey} from 'app/helpers/keys'
 import {generateKeys as generateOpenPgpKeys} from 'app/helpers/openPgp'
 import {userDataEncryptWithPassword} from 'app/helpers/crypto'
 import {passwordValidator} from 'app/helpers/registration'
@@ -41,8 +41,8 @@ export default resolver({
     const {email, name, lastName} = registration.userInformation
     const profile = {firstName: name, lastName}
 
-    const userMasterHash = createMasterHash()
-    const temporaryUserMasterHash = createMasterHash()
+    const userMasterHash = createMasterKey()
+    const temporaryUserMasterHash = createMasterKey()
     const userMasterPassword = await generateCipherKeys(temporaryUserMasterHash.masterKey)
     const userMessageKeys = await generateOpenPgpKeys()
 

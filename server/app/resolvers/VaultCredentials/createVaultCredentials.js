@@ -1,6 +1,6 @@
 import {resolver} from '@orion-js/app'
 import VaultCredentials from 'app/collections/VaultCredentials'
-import {createMasterHash, generateCipherKeys} from 'app/helpers/keys'
+import {createMasterKey, generateCipherKeys} from 'app/helpers/keys'
 import {encryptMessage} from 'app/helpers/openPgp'
 import Users from 'app/collections/Users'
 
@@ -17,7 +17,7 @@ export default resolver({
   mutation: true,
   requireLogin: true,
   async resolve({vaultId, credentialType}, viewer) {
-    const {masterKey} = createMasterHash()
+    const {masterKey} = createMasterKey()
     const vaultMasterPassword = await generateCipherKeys(masterKey)
 
     const user = await Users.findOne({_id: viewer.userId})

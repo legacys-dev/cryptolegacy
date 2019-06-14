@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs'
 
 it('Should return object with user information', () => {
   const registerParams = {
-    email: generateId(10) + '@example.com',
+    email: generateId(11) + '@example.com',
     name: 'ExampleName',
     lastName: 'ExampleLastName'
   }
