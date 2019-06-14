@@ -8,8 +8,8 @@ export default async function(masterHash) {
   const {privateKey, publicKey} = walletCredentials
 
   const {secretKeyInterval, ivKeyInterval} = hash
-  const secretEnd = parseInt(secretKeyInterval) + 32
-  const ivEnd = parseInt(ivKeyInterval) + 16
+  const secretEnd = secretKeyInterval + 32
+  const ivEnd = ivKeyInterval + 16
 
   const secret = privateKey.slice(secretKeyInterval, secretEnd)
   const iv = publicKey.slice(ivKeyInterval, ivEnd)

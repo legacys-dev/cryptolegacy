@@ -49,8 +49,8 @@ export default function() {
 
   return {
     masterKey,
-    secretKeyInterval: masterKeyItems[0],
-    ivKeyInterval: masterKeyItems[2],
+    secretKeyInterval: parseInt(masterKeyItems[0]),
+    ivKeyInterval: parseInt(masterKeyItems[2]),
     rest: masterKeyItems[1],
     range: masterKey.length
   }
