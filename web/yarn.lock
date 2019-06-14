@@ -871,7 +871,7 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3", "@babel/runtime@^7.4.4":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.3", "@babel/runtime@^7.4.4", "@babel/runtime@^7.4.5":
   version "7.4.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.4.5.tgz#582bb531f5f9dc67d2fcb682979894f75e253f12"
   integrity sha512-TuI4qpWZP6lGOGIuGWtp9sPluqYICmbk8T/1vpSysqJxRPkudh/ofFWyqdcMsDf2s7KvDL4/YHgKyvcS3g9CJQ==
@@ -1577,9 +1577,9 @@ apollo-client@^2.2.2, apollo-client@^2.5.1:
     zen-observable "^0.8.0"
 
 apollo-hooks@^2.1.2:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/apollo-hooks/-/apollo-hooks-2.3.0.tgz#e43e8d4dd21943a4fbe5f96f8c4e3985817df83f"
-  integrity sha512-cCnfbo8MpzmmtTQk4Ffvd3HTWxk3zE1AeYu7fWvFSt+Bub95badapnI7vhRDN1qrm2GKVU5NgZVeDjbYS2ohQw==
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/apollo-hooks/-/apollo-hooks-2.3.1.tgz#c434c83af5264d342281c30ba16789b59946c6d5"
+  integrity sha512-BwH7ZYtOo+4YQB7jTYRqERbS94FORf6+bABOK0LmKtDBhRk/KpoTy0igP9qISfMGUneYomMrzSmqeDHmX8G42Q==
   dependencies:
     lodash "^4.17.11"
     react-fast-compare "^2.0.2"
@@ -8195,9 +8195,9 @@ onetime@^2.0.0:
     mimic-fn "^1.0.0"
 
 openpgp@^4.5.1:
-  version "4.5.2"
-  resolved "https://registry.yarnpkg.com/openpgp/-/openpgp-4.5.2.tgz#924b82698143aca4bee79eb165abed668405576a"
-  integrity sha512-vi+jLDY4jHZ6+LUeWRLI43YV8BWtMYnw0ohAV8j5dd67sDpQKDZ92N5uEIiCieudcSoRtP0r/dwM6k+JvO3/gQ==
+  version "4.5.3"
+  resolved "https://registry.yarnpkg.com/openpgp/-/openpgp-4.5.3.tgz#fd1c803663b9eff529195a9809e854458fe9a9b9"
+  integrity sha512-QU3TUMgw4UEjhqCUNcLizCdAX8M0eA+h5GCiIji7hOanT1r4R/J3647SRUbW6MjHYyg6N5i4IMzGQMlpFc+Ihg==
   dependencies:
     asn1.js "^5.0.0"
     node-fetch "^2.1.2"
@@ -8284,9 +8284,9 @@ orionjs-react-autoform@^1.1.2:
     prop-types "^15.7.2"
 
 orionsoft-parts@^1.15.14:
-  version "1.16.0"
-  resolved "https://registry.yarnpkg.com/orionsoft-parts/-/orionsoft-parts-1.16.0.tgz#cdb74de87789d17af38cada9b0772c06b322c0f1"
-  integrity sha512-XL1STYoNrg79lG/0AnbcsWFvO32h78yFdDpV9rE6Ira3aEbQ5Jdb9USFAAmR/f/6uLALTNNLIkNHbTlYr+peRw==
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/orionsoft-parts/-/orionsoft-parts-1.16.1.tgz#e5693f436f6910509d84b0baf40b71fcefab8f95"
+  integrity sha512-0j6h8R0EiVO3G9ZafxY9psx2kzF50twKHoE931pyLEXFyIkjvrxy9nubCjAMkEvyx51RJgO5AGozxSTO2zM2hA==
   dependencies:
     autobind-decorator "^2.1.0"
     boron "^0.2.3"
@@ -9994,10 +9994,11 @@ react-transition-group@^2.2.1:
     react-lifecycles-compat "^3.0.4"
 
 react-transition-group@^4.0.1:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.1.0.tgz#7b50c0a93a6c127336187252c3c1a70eff3304ce"
-  integrity sha512-/OITbogb3emGN49WaP7468QGSde7er5w6eIHldIDCSQBq/9QTSCzs8OgpgmOnaUXCXzBUcK1zoZ6DqRlM8CJtA==
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.1.1.tgz#16efe9ac8c68306f6bef59c7da5a96b4dfd9fb32"
+  integrity sha512-K/N1wqJ2GRP2yj3WBqEUYa0KV5fiaAWpUfU9SpHOHefeKvyrO+VrnMBML21M19QZoVbDZKmuQFHZYoMMi1xuJA==
   dependencies:
+    "@babel/runtime" "^7.4.5"
     dom-helpers "^3.4.0"
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
@@ -11614,9 +11615,9 @@ typedarray@^0.0.6:
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
 ua-parser-js@^0.7.18:
-  version "0.7.19"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.19.tgz#94151be4c0a7fb1d001af7022fdaca4642659e4b"
-  integrity sha512-T3PVJ6uz8i0HzPxOF9SWzWAlfN/DavlpQqepn22xgve/5QecC+XMCAtmUNnY7C9StehaV6exjUCI801lOI7QlQ==
+  version "0.7.20"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.20.tgz#7527178b82f6a62a0f243d1f94fd30e3e3c21098"
+  integrity sha512-8OaIKfzL5cpx8eCMAhhvTlft8GYF8b2eQr6JkCyVdrgjcytyOmPCXrqXFcUnhonRpLlh5yxEZVohm6mzaowUOw==
 
 uglify-es@^3.3.4:
   version "3.3.9"
