@@ -1,4 +1,5 @@
 import algorithm from './algorithm'
+import createKeyPairs from './createKeyPairs'
 import publicEncrypt from './publicEncrypt'
 import privateDecrypt from './privateDecrypt'
 import archiveEncryptWithPassword from './archiveEncryptWithPassword'
@@ -10,6 +11,7 @@ import userDataDecryptWithPassword from './userDataDecryptWithPassword'
 
 export {
   algorithm,
+  createKeyPairs,
   publicEncrypt,
   privateDecrypt,
   archiveEncryptWithPassword,
