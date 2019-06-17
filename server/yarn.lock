@@ -352,10 +352,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^12.0.9"
 
-"@orion-js/app@^0.12.0":
-  version "0.12.10"
-  resolved "https://registry.yarnpkg.com/@orion-js/app/-/app-0.12.10.tgz#828e20ec1477eac864e1a6317d2a4bab8083838b"
-  integrity sha512-VVGfGd2GSr+mcXX1R10LmEHqSzGA7WLeDGcs1xgY5VcStB9ZwQXA50XHTQtupf/nqMllcupUVihmedPSwAw2vQ==
+"@orion-js/app@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@orion-js/app/-/app-0.13.0.tgz#3fc91f08c87c89f9661dddfc52403e9c8c96f0c0"
+  integrity sha512-xJriojNOHiY7C7UBniipO2Ny7xBpu4ayEaRMmh9VDU7fyPm9PvyRcJ9Xiwtm31j0pEXIiwmH5at1DVuGKsqGyw==
   dependencies:
     "@babel/polyfill" "^7.4.3"
     "@orion-js/schema" "^0.12.0"
@@ -368,10 +368,10 @@
     path-match "^1.2.4"
     path-to-regexp "^3.0.0"
 
-"@orion-js/auth@^0.12.0":
-  version "0.12.10"
-  resolved "https://registry.yarnpkg.com/@orion-js/auth/-/auth-0.12.10.tgz#eb6edfc3e6c32b1ab84e1c17d9efed66a6891767"
-  integrity sha512-OA6Jch4J3UfCdxn7zBURa0hq1rLNAs1XsjJ68LrfAoOnQuo1tGMxKFLAzJWXSQcaoeYUEQ5f+T7pSbH5HEGj4A==
+"@orion-js/auth@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@orion-js/auth/-/auth-0.13.0.tgz#7adddd7b75c78dafb17f74553a3b975e04a86ced"
+  integrity sha512-5j66GCxDPWOuVlAILjUqly/gqZMk42co/HHAQKPM8EIf7gZxQ+KktcZDIKe3NUKwL0u1q+Rv6/ioW14yybv8Zw==
   dependencies:
     bcryptjs "^2.4.3"
     jssha "^2.3.1"
@@ -380,10 +380,10 @@
     qr-image "^3.2.0"
     speakeasy "^2.0.0"
 
-"@orion-js/graphql@^0.12.0":
-  version "0.12.10"
-  resolved "https://registry.yarnpkg.com/@orion-js/graphql/-/graphql-0.12.10.tgz#9e6ac1b7cda72839a6f3c468b28eca27facf7cd1"
-  integrity sha512-WvFe7fopq2cNq0hQ7+kiCFb80segtySCWe0PtcC7qmr0GZ1Ey+4+qK1VxRQzSrJxlCPbpqX/azkZI+tnWPoF1A==
+"@orion-js/graphql@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@orion-js/graphql/-/graphql-0.13.0.tgz#28ed7d0e7292b6f82a9d4b18bdc35ce3f7f875d6"
+  integrity sha512-cJIxxassyc7+CRR9ar0j+WzscUQo/1VvYkstYzyB6kmCobRRBnxvqAwwt1JF3PdNxNKO/jWr81Uey6mDFvf8qw==
   dependencies:
     "@orion-js/schema" "^0.12.0"
     apollo-server-core "^1.3.6"
@@ -394,18 +394,18 @@
     lodash "^4.17.10"
     subscriptions-transport-ws "^0.9.12"
 
-"@orion-js/jobs@^0.12.0":
-  version "0.12.10"
-  resolved "https://registry.yarnpkg.com/@orion-js/jobs/-/jobs-0.12.10.tgz#df0f86c8c3b5ead2fb29edf203d9e4946594d48e"
-  integrity sha512-GtWKaNz9Bfet7k+q3rI3DSO6g9pcwcptRuZx2YtzU5GZd5cnpKJy6uS38rCAsQzNkzwD2SGfsbnP2E531fNaVw==
+"@orion-js/jobs@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@orion-js/jobs/-/jobs-0.13.0.tgz#56d848980a9a477c21a7892476b5b75ee89237ff"
+  integrity sha512-7MUzHeJCgi+Rcx44l0np04jPkAKjjp6nYPckX293JPfP+Hi53n8HOFiWlAG2xiIaAkni6sfD5K9jo11ti4zcOg==
   dependencies:
     lodash "^4.17.10"
     luxon "^1.2.0"
 
-"@orion-js/mailing@^0.12.0":
-  version "0.12.10"
-  resolved "https://registry.yarnpkg.com/@orion-js/mailing/-/mailing-0.12.10.tgz#6bb60444b9f527b59f2d817e5312988f5baefea2"
-  integrity sha512-Cuo3gWzEBEUuYytcdRmFgm4xIL2cL3SMEqHjxnjXUXvaZQiGN98XjV0frtflCSyeLd1Pc4FTg7zIWhV/DodLqg==
+"@orion-js/mailing@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@orion-js/mailing/-/mailing-0.13.0.tgz#c8f3b98e6e53890dfb52721fb325f91a635006aa"
+  integrity sha512-KzsK5cONZwrdRqNgFqIZcf5UVlAa48SR6spyamuAT6atFrxye0eAVuikv12j0PSEdFqM8u0Uzr7boGUVW0T6RQ==
   dependencies:
     lodash "^4.17.10"
     luxon "^1.2.0"
@@ -765,9 +765,9 @@ atob@^2.1.1:
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 aws-sdk@^2.447.0:
-  version "2.475.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.475.0.tgz#69f0f9c97e591fad98a31a4b40dd15bde000cf1e"
-  integrity sha512-C8vRCYOrDxqlpx/HQUvIJteLwTllOQrGZBfGM6DuFBNmMJvkzoJi3MWKj1e+yWXkGzNmbOgpzyVLcKrXyntnTw==
+  version "2.477.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.477.0.tgz#6769a9176ba4234be9ed0ae9f0b064a17dccc3d1"
+  integrity sha512-CdUbQg0tIIydyCa+rUMzS7EuWV6hUQmSp6gWYy/hdsyeh+fpARjpijrerAML1iawsC47TKTgT5lYE97Kf6DTxg==
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
