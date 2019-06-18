@@ -5,9 +5,10 @@ import {deleteArchive} from 'app/helpers/awsS3'
 
 export default job({
   type: 'recurrent',
-  runEvery: 1000 * 60 * 20,
+  runEvery: 1000 * 60,
   async run(params) {
     const files = await Files.find({
+      storage: 'b2',
       's3Data.status': 'uploaded',
       's3Data.deletedFromS3': false,
       'b2Data.status': 'uploaded'
@@ -26,7 +27,7 @@ export default job({
         console.log(error)
       }
 
-      if (hasError) return
+      if (hasError) continue
 
       await file.update({$set: {'s3Data.deletedFromS3': true, 's3Data.updatedAt': new Date()}})
     }

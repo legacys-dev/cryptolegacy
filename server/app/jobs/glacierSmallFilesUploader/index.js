@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty'
 
 export default job({
   type: 'recurrent',
-  runEvery: 1000 * 60 * 20,
+  runEvery: 1000 * 60,
   async run(params) {
     const limitSize = 1024 * 1024 * 99 // 99MB
     const files = await Files.find({

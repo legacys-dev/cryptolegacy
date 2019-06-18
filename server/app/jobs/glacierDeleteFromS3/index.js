@@ -8,6 +8,7 @@ export default job({
   runEvery: 1000 * 60 * 20,
   async run(params) {
     const files = await Files.find({
+      storage: 'glacier',
       's3Data.status': 'uploaded',
       's3Data.deletedFromS3': false,
       'glacierData.status': 'uploaded'

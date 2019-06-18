@@ -46,11 +46,12 @@ export default job({
 
       if (errorAtUpload) continue
 
-      const {fileId, bucketId, contentSha1} = b2Result
+      const {fileId, bucketId, contentSha1, bucketName} = b2Result
       await file.update({
         $set: {
           'b2Data.fileId': fileId,
           'b2Data.bucketId': bucketId,
+          'b2Data.bucketName': bucketName,
           'b2Data.contentSha1': contentSha1,
           'b2Data.status': 'uploaded'
         }

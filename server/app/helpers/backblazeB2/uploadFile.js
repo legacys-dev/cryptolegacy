@@ -3,7 +3,7 @@ import {B2Credentials} from './credentials'
 import crypto from 'crypto'
 
 export default async function({file, fileName, type}) {
-  const {accountId, applicationKey, bucketId} = B2Credentials
+  const {accountId, applicationKey, bucketId, bucketName} = B2Credentials
   const b2 = new B2({
     accountId,
     applicationKey
@@ -37,5 +37,8 @@ export default async function({file, fileName, type}) {
 
   if (hasError) throw new Error('Error uploading file')
 
-  return result.data
+  return {
+    bucketName,
+    ...result.data
+  }
 }

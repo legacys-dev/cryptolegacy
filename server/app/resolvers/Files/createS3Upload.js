@@ -30,7 +30,7 @@ export default resolver({
   checkUserStorage: true,
   async resolve(params, viewer) {
     const {bucket, basePath} = AWSCredentials
-    const key = `${basePath}/${generateId(151)}`
+    const key = `${basePath}/${generateId(131)}`
 
     const s3Data = {
       key,

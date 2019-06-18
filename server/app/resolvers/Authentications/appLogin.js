@@ -35,6 +35,7 @@ export default resolver({
 
         const user = await Users.findOne({'emails.address': doc.email})
 
+        if (!user) return
         if (!user.messageKeys) return 'errorNotKeysFound'
         if (!bcrypt.compareSync(masterKey, user.services.masterKey.bcrypt)) {
           return 'invalidMasterKey'

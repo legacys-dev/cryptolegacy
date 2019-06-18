@@ -31,8 +31,8 @@ export default resolver({
     })
 
     const userCode = Math.random()
-      .slice(2, 15)
       .toString()
+      .slice(2, 11)
 
     const requiredParams = {
       'code.bcrypt': hashPassword(userCode),
@@ -44,8 +44,8 @@ export default resolver({
     const reclaimIdentificator = heritage
       ? heritage.reclaimIdentificator
       : Math.random()
-          .slice(2, 5)
           .toString()
+          .slice(3, 6)
 
     if (heritage) {
       await heritage.update({$set: requiredParams})
