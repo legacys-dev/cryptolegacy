@@ -48,7 +48,7 @@ export default function() {
   const masterKeyItems = masterKey.split(':')
 
   return {
-    masterKey,
+    original: masterKey,
     secretKeyInterval: parseInt(masterKeyItems[0]),
     ivKeyInterval: parseInt(masterKeyItems[2]),
     rest: masterKeyItems[1],

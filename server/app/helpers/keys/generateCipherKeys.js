@@ -1,8 +1,8 @@
 import {createEtherWallet} from 'app/helpers/ethers'
 import getHashItems from './getHashItems'
 
-export default async function(masterHash) {
-  const hash = getHashItems(masterHash)
+export default async function(masterKey) {
+  const hash = getHashItems(masterKey)
   const walletCredentials = await createEtherWallet(hash.original)
 
   const {privateKey, publicKey} = walletCredentials
