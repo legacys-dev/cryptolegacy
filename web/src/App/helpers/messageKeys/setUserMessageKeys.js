@@ -1,6 +1,7 @@
 import regenerateKey from './regenerateKey'
 import {generateUserCipherKeys} from 'App/helpers/keys'
 import {userDataDecryptWithPassword} from 'App/helpers/crypto'
+import {setUserCipherPassword} from '../keys'
 
 export default async function(k, encryptedKeysForMessages) {
   const isObject = typeof k === 'object'
@@ -8,6 +9,8 @@ export default async function(k, encryptedKeysForMessages) {
 
   const userMasterKey = isObject ? regenerateKey(k) : isString && k
   const {secret, iv} = await generateUserCipherKeys(userMasterKey)
+
+  if (isString) setUserCipherPassword(secret, iv)
 
   const decipherParams = {
     encryptedItem: encryptedKeysForMessages,
