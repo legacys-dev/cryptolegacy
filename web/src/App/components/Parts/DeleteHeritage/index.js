@@ -11,7 +11,7 @@ export default function DeleteFile(props) {
         confirmText="Eliminar"
         mutation="deleteHeritage"
         danger
-        params={{heritageId: props.heritageId, vaultId: props.vaultId}}
+        params={{vaultPolicyId: props.vaultPolicyId, vaultId: props.vaultId}}
         onSuccess={() => props.onDeleteSuccess()}>
         <div className={styles.delete}>Eliminar</div>
       </MutationButton>

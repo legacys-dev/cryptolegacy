@@ -1,5 +1,4 @@
 import {resolver} from '@orion-js/app'
-import {encryptMessage} from 'app/helpers/openPgp'
 import VaultPolicies from 'app/collections/VaultPolicies'
 import Users from 'app/collections/Users'
 import getVaultPassword from './getVaultPassword'

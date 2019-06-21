@@ -9,6 +9,7 @@ export default async function({credentials, privateKey, passphrase, vaultId, use
     privateKey,
     passphrase
   })
+
   const vaultPassphrase = vaultId + mainUserV
 
   const etherWallet = await createEtherWallet(vaultPassphrase)

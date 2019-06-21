@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {Contract} from 'App/components/Parts/Icons'
 import DeleteHeritage from 'App/components/Parts/DeleteHeritage'
-import moment from 'moment'
-import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import autobind from 'autobind-decorator'
+import moment from 'moment'
 
 @withMessage
 export default class Items extends React.Component {
@@ -33,11 +33,11 @@ export default class Items extends React.Component {
           <td>
             <Contract size={25} />
           </td>
-          <td>{data.inheritorEmail}</td>
+          <td>{data.userEmail}</td>
           <td>{moment(heritage.createdAt).format('LL')}</td>
           <td>
             <DeleteHeritage
-              heritageId={data.heritageId}
+              vaultPolicyId={data.vaultPolicyId}
               vaultId={data.vaultId}
               onDeleteSuccess={this.onDeleteSuccess}
             />

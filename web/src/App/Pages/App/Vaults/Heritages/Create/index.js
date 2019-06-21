@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {withRouter} from 'react-router'
 import AutoForm from 'App/components/AutoForm'
-import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import {getEncryptedPassword} from 'App/helpers/user'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import Loading from 'App/components/Parts/Loading'
 import Button from 'App/components/Parts/Button'
 import Section from 'App/components/Section'
+import autobind from 'autobind-decorator'
 import gql from 'graphql-tag'
 
 @withGraphQL(
@@ -39,6 +40,8 @@ export default class Create extends React.Component {
     history.push(`/vaults/heritages/${vault._id}`)
   }
 
+  getEncrypted
+
   renderButtons() {
     const {vault, history} = this.props
     return (
@@ -62,9 +65,9 @@ export default class Create extends React.Component {
           <Section top title="Heredar bóveda" description="description">
             <AutoForm
               mutation="createHeritage"
-              omit="vaultId"
+              omit={['vaultId', 'credentials']}
               ref="form"
-              doc={{vaultId: vault._id}}
+              doc={{vaultId: vault._id, credentials: getEncryptedPassword()}}
               onSuccess={this.onSuccess}
             />
             {this.renderButtons()}

@@ -1,4 +1,4 @@
-import {resolver, PermissionsError} from '@orion-js/app'
+import {resolver} from '@orion-js/app'
 import VaultPolicies from 'app/collections/VaultPolicies'
 
 export default resolver({
@@ -13,21 +13,18 @@ export default resolver({
   returns: Boolean,
   mutation: true,
   vaultOwner: true,
+  vaultPolicyOwner: true,
   requireLogin: true,
   async resolve({vaultPolicyId, vaultId}, viewer) {
     const heritage = await VaultPolicies.findOne({
       _id: vaultPolicyId,
       vaultId,
       status: 'waiting',
-      credentialType: 'heritage'
+      credentialType: 'heritage',
+      creatorId: viewer.userId
     })
 
     if (!heritage) throw new Error('Heritage not found')
-    if (heritage.userId !== viewer.userId) {
-      throw new PermissionsError('unauthorized', {
-        message: 'You dont have permissions to access this heritage'
-      })
-    }
 
     heritage.remove() // await not necessary
 

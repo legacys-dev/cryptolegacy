@@ -2,12 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Breadcrumbs from 'App/components/Breadcrumbs'
-import AutoForm from 'App/components/AutoForm'
-import {withRouter} from 'react-router'
+import {getEncryptedPassword} from 'App/helpers/user'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
-import autobind from 'autobind-decorator'
 import Button from 'App/components/Parts/Button'
+import AutoForm from 'App/components/AutoForm'
 import Section from 'App/components/Section'
+import autobind from 'autobind-decorator'
+import {withRouter} from 'react-router'
 
 @withRouter
 @withMessage
@@ -22,10 +23,6 @@ export default class Create extends React.Component {
     const {showMessage, history} = this.props
     showMessage('Bóveda creada correctamente')
     history.push('/vaults')
-  }
-
-  getUserCredentials() {
-    return window.localStorage.encryptedPassword
   }
 
   renderButtons() {
@@ -49,7 +46,7 @@ export default class Create extends React.Component {
               mutation="createVault"
               ref="form"
               omit="credentials"
-              doc={{credentials: this.getUserCredentials()}}
+              doc={{credentials: getEncryptedPassword()}}
               onSuccess={this.onSuccess}
             />
             {this.renderButtons()}
