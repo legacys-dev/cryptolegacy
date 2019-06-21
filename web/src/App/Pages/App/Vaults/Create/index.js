@@ -24,6 +24,10 @@ export default class Create extends React.Component {
     history.push('/vaults')
   }
 
+  getUserCredentials() {
+    return window.localStorage.encryptedPassword
+  }
+
   renderButtons() {
     return (
       <div className={styles.buttons}>
@@ -41,7 +45,13 @@ export default class Create extends React.Component {
         <Breadcrumbs past={{[`/vaults`]: 'Bóvedas'}}>Crear bóveda</Breadcrumbs>
         <div className={styles.content}>
           <Section top title="Crear bóveda" description="description">
-            <AutoForm mutation="createVault" ref="form" onSuccess={this.onSuccess} />
+            <AutoForm
+              mutation="createVault"
+              ref="form"
+              omit="credentials"
+              doc={{credentials: this.getUserCredentials()}}
+              onSuccess={this.onSuccess}
+            />
             {this.renderButtons()}
           </Section>
         </div>
