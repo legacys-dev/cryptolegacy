@@ -1,6 +1,7 @@
 import {ethers} from 'ethers'
 import isEmpty from 'lodash/isEmpty'
 
+// DONT TOUCH THIS CODE
 export default async function(passphrase) {
   if (isEmpty(passphrase)) throw new Error('Passphrase to create keys is missing')
 

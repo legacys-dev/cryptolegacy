@@ -1,7 +1,7 @@
 import {resolver} from '@orion-js/app'
 import Vaults from 'app/collections/Vaults'
 import createActivity from 'app/resolvers/Activities/createActivity'
-import createVaultCredentials from 'app/resolvers/VaultCredentials/createVaultCredentials'
+import createVaultOwnerPolicy from 'app/resolvers/VaultPolicies/createVaultOwnerPolicy'
 import {slugify} from 'app/helpers/parts'
 
 export default resolver({
@@ -9,13 +9,16 @@ export default resolver({
     name: {
       type: String,
       label: 'Nombre de la bóveda'
+    },
+    credentials: {
+      type: String
     }
   },
   returns: String,
   mutation: true,
   requireLogin: true,
   checkVaultName: true,
-  async resolve({name}, viewer) {
+  async resolve({name, credentials}, viewer) {
     const params = {
       name,
       searchSlug: slugify(name),
@@ -26,7 +29,7 @@ export default resolver({
 
     let onError
     try {
-      await createVaultCredentials({vaultId, credentialType: 'owner'}, viewer)
+      await createVaultOwnerPolicy({vaultId, credentials}, viewer)
     } catch (error) {
       console.log(error)
       onError = !!error
@@ -34,7 +37,7 @@ export default resolver({
 
     if (onError) {
       const vault = await Vaults.findOne(vaultId)
-      await vault.remove()
+      vault.remove() // await not necessary
       throw new Error('Error creating vault credentials. Vault was removed')
     }
 
@@ -45,7 +48,7 @@ export default resolver({
       status: 'finished'
     }
 
-    await createActivity(activityTypeParams, viewer)
+    createActivity(activityTypeParams, viewer) // await not necessary
 
     return vaultId
   }

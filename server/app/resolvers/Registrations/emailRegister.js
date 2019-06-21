@@ -36,11 +36,9 @@ export default resolver({
     if (register) await register.update({$set: userRegisterData})
     else await Registrations.insert(userRegisterData)
 
-    await verifyEmail({registerData: {verifyCode, ...userRegisterData}})
+    verifyEmail({registerData: {verifyCode, ...userRegisterData}}) // await not necessary
 
-    if (process.env.ORION_LOCAL) {
-      console.log('digits:', verifyCode)
-    }
+    if (process.env.ORION_LOCAL) console.log('digits:', verifyCode)
 
     return userRegisterData.confirmEmail.token
   }

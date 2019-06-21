@@ -19,6 +19,6 @@ export default paginatedResolver({
       query.name = {$regex: new RegExp(`^${escape(filter)}`)}
     }
 
-    return await Activities.find(query).sort({createdAt: -1})
+    return Activities.find(query).sort({createdAt: -1}) // await not necessary
   }
 })

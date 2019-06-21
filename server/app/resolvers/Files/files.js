@@ -1,5 +1,5 @@
 import {paginatedResolver} from '@orion-js/app'
-import VaultCredentials from 'app/collections/VaultCredentials'
+import VaultPolicies from 'app/collections/VaultPolicies'
 import Files from 'app/collections/Files'
 import File from 'app/models/File'
 import {getVaultsIds} from 'app/helpers/vaults'
@@ -33,12 +33,12 @@ export default paginatedResolver({
 
     let typeQuery
     if (deletedFiles) {
-      const userVaultsCredentials = await VaultCredentials.find({
+      const userVaultsPolicies = await VaultPolicies.find({
         userId: viewer.userId,
         credentialType: 'owner'
       }).toArray()
 
-      const vaultsId = getVaultsIds(userVaultsCredentials)
+      const vaultsId = getVaultsIds(userVaultsPolicies)
 
       typeQuery = {vaultId: {$in: vaultsId}, status: 'inTrash'}
     } else {
@@ -49,6 +49,6 @@ export default paginatedResolver({
 
     if (filter) query.searchSlug = {$regex: filter + '.*', $options: 'i'}
 
-    return Files.find(query).sort({createdAt: -1})
+    return Files.find(query).sort({createdAt: -1}) // await not necessary
   }
 })

@@ -18,7 +18,7 @@ export default resolver({
   filePermissions: true,
   async resolve({fileId, vaultId}, viewer) {
     const file = await Files.findOne(fileId)
-    await file.update({$set: {status: 'active', updateAt: new Date()}})
+    file.update({$set: {status: 'active', updateAt: new Date()}}) // await not necessary
 
     const activityTypeParams = {
       activityType: 'file',
@@ -28,7 +28,7 @@ export default resolver({
       status: 'finished'
     }
 
-    await createActivity(activityTypeParams, viewer)
+    createActivity(activityTypeParams, viewer) // await not necessary
 
     return true
   }

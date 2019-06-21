@@ -1,7 +1,7 @@
 import {paginatedResolver} from '@orion-js/app'
 import Vault from 'app/models/Vault'
 import Vaults from 'app/collections/Vaults'
-import VaultCredentials from 'app/collections/VaultCredentials'
+import VaultPolicies from 'app/collections/VaultPolicies'
 import {getVaultsIds} from 'app/helpers/vaults'
 
 export default paginatedResolver({
@@ -17,19 +17,17 @@ export default paginatedResolver({
   },
   requireLogin: true,
   async getCursor({filter, credentialType}, viewer) {
-    const userVaultsCredentials = await VaultCredentials.find({
+    const userVaultsPolicies = await VaultPolicies.find({
       userId: viewer.userId,
       credentialType
     }).toArray()
 
-    const vaultsId = getVaultsIds(userVaultsCredentials)
+    const vaultsId = getVaultsIds(userVaultsPolicies)
 
     const query = {_id: {$in: vaultsId}}
 
-    if (filter) {
-      query.searchSlug = {$regex: filter + '.*', $options: 'i'}
-    }
+    if (filter) query.searchSlug = {$regex: filter + '.*', $options: 'i'}
 
-    return Vaults.find(query).sort({createdAt: -1})
+    return Vaults.find(query).sort({createdAt: -1}) // await not necessary
   }
 })

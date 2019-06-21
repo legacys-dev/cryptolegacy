@@ -7,12 +7,10 @@ import Users from './Users'
 import Vaults from './Vaults'
 import Activities from './Activities'
 import EmergencyKits from './EmergencyKits'
-import Heritages from './Heritages'
-import VaultCredentials from './VaultCredentials'
+import VaultPolicies from './VaultPolicies'
 
 export default {
-  ...VaultCredentials,
-  ...Heritages,
+  ...VaultPolicies,
   ...EmergencyKits,
   ...Activities,
   ...resolversSchemas,

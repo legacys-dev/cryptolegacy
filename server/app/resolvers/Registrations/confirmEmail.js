@@ -20,10 +20,7 @@ export default resolver({
   mutation: true,
   confirmEmailPermission: true,
   async resolve({code, token}, viewer) {
-    const query = {
-      'confirmEmail.token': token
-    }
-
+    const query = {'confirmEmail.token': token}
     const updateDate = new Date()
     const confirmPassword = passwordRegistration()
 

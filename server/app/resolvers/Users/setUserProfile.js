@@ -16,9 +16,7 @@ export default resolver({
   requireUserId: true,
   mutation: true,
   checkPermission({userId}, viewer) {
-    if (userId !== viewer.userId) {
-      return 'userNotAllowed'
-    }
+    if (userId !== viewer.userId) return 'userNotAllowed'
   },
   async resolve({userId, profile}, viewer) {
     await Users.update(userId, {$set: {profile}})

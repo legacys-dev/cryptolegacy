@@ -98,7 +98,7 @@ export default resolver({
     })
 
     const {userInformation} = registration
-    await accountCreated({userInformation})
+    accountCreated({userInformation}) // await not necessary
 
     return {
       session,

@@ -1,6 +1,6 @@
 import {resolver, PermissionsError} from '@orion-js/app'
 import Vaults from 'app/collections/Vaults'
-import VaultCredentials from 'app/collections/VaultCredentials'
+import VaultPolicies from 'app/collections/VaultPolicies'
 import createActivity from 'app/resolvers/Activities/createActivity'
 import {slugify} from 'app/helpers/parts'
 import isEmpty from 'lodash/isEmpty'
@@ -21,11 +21,11 @@ export default resolver({
   requireLogin: true,
   async resolve({vaultId, name}, viewer) {
     const vault = await Vaults.findOne(vaultId)
-    const vaultCredentials = await VaultCredentials.findOne({userId: viewer.userId, vaultId})
+    const vaultPolicies = await VaultPolicies.findOne({userId: viewer.userId, vaultId})
 
     if (isEmpty(vault)) throw new Error('Vault not found')
-    if (isEmpty(vaultCredentials)) throw new Error('User vault not found')
-    if (vaultCredentials.credentialType !== 'owner') {
+    if (isEmpty(vaultPolicies)) throw new Error('User vault not found')
+    if (vaultPolicies.credentialType !== 'owner') {
       throw new PermissionsError('unauthorized', {
         message: 'User doesnt have the required permissions'
       })
@@ -41,9 +41,9 @@ export default resolver({
       status: 'finished'
     }
 
-    await vault.update({$set: {name, searchSlug: slugify(name)}})
+    vault.update({$set: {name, searchSlug: slugify(name)}}) // await not necessary
 
-    await createActivity(activityTypeParams, viewer)
+    createActivity(activityTypeParams, viewer) // await not necessary
 
     return true
   }
