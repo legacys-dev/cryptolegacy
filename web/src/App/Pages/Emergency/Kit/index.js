@@ -45,8 +45,8 @@ export default class Kit extends React.Component {
       encryptedMessage: this.props.emergencyKit.encrypted
     }
     const decryptContent = await decryptMessage(decryptParams)
-    const {secret, iv} = await generateUserCipherKeys(decryptContent.userMasterKey.original)
-    setUserCipherPassword(secret, iv)
+    const {secret, iv, userV} = await generateUserCipherKeys(decryptContent.userMasterKey.original)
+    await setUserCipherPassword(secret, iv, userV)
     this.setState({decryptContent})
   }
 

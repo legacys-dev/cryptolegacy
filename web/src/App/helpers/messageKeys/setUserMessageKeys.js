@@ -8,9 +8,7 @@ export default async function(k, encryptedKeysForMessages) {
   const isString = typeof k === 'string'
 
   const userMasterKey = isObject ? regenerateKey(k) : isString && k
-  const {secret, iv} = await generateUserCipherKeys(userMasterKey)
-
-  if (isString) setUserCipherPassword(secret, iv)
+  const {secret, iv, userV} = await generateUserCipherKeys(userMasterKey)
 
   const decipherParams = {
     encryptedItem: encryptedKeysForMessages,
@@ -29,4 +27,6 @@ export default async function(k, encryptedKeysForMessages) {
   }
 
   window.localStorage.setItem('messages', JSON.stringify(messages))
+
+  if (isString) await setUserCipherPassword(secret, iv, userV)
 }
