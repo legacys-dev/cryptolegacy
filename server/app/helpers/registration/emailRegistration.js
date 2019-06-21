@@ -6,9 +6,7 @@ export default function({email, name, lastName}) {
   const missingData = isEmpty(email) || isEmpty(name) || isEmpty(lastName)
   if (missingData) throw new Error('Missing user data for register email')
 
-  const verifyCode = Math.random()
-    .toString()
-    .slice(2, 11)
+  const verifyCode = generateId(16).toUpperCase()
 
   const userRegisterData = {
     userInformation: {

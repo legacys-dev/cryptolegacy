@@ -4,5 +4,5 @@ import VaultPolicy from 'app/models/VaultPolicy'
 export default new Collection({
   name: 'vault_policies',
   model: VaultPolicy,
-  indexes: [{keys: {userId: 1, vaultId: 1}, options: {unique: true}}]
+  indexes: [{keys: {vaultId: 1, userEmail: 1}, options: {unique: true}}]
 })

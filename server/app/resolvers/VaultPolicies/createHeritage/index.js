@@ -38,9 +38,7 @@ export default resolver({
     })
 
     const {privateKey, passphrase} = vaultOwner.messageKeys
-    const heirCode = Math.random()
-      .toString()
-      .slice(2, 19)
+    const heirCode = generateId(16)
 
     const createHeirCredentialsParams = {
       privateKey,
@@ -75,7 +73,7 @@ export default resolver({
       ...requiredParams
     }
 
-    if (heritage) heritage.remove() // await not necessary
+    if (heritage) await heritage.remove() // await not necessary
 
     let hasError
     try {
