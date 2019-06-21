@@ -16,9 +16,7 @@ export default async function({publicKey, textToEncrypt}) {
   }
 
   const encryptedMessage = await openpgp.encrypt(encryptOptions).then(cipherText => {
-    if (cipherText) {
-      return cipherText
-    }
+    if (cipherText) return cipherText
   })
 
   return encryptedMessage.data
