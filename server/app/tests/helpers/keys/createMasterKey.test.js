@@ -1,9 +1,9 @@
 import {createMasterKey} from 'app/helpers/keys'
 
 it('Should return a master key', () => {
-  const {masterKey, secretKeyInterval, ivKeyInterval, rest, range} = createMasterKey()
+  const {original, secretKeyInterval, ivKeyInterval, rest, range} = createMasterKey()
 
-  expect(typeof masterKey).toBe('string')
+  expect(typeof original).toBe('string')
   expect(typeof secretKeyInterval).toBe('number')
   expect(typeof ivKeyInterval).toBe('number')
   expect(typeof rest).toBe('string')
