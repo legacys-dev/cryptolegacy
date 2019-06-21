@@ -8,7 +8,7 @@ export default gql`
     $page: BigInt
     $limit: BigInt
   ) {
-    heritages(
+    vaultPolicies(
       adminPanel: $adminPanel
       status: $status
       filter: $filter

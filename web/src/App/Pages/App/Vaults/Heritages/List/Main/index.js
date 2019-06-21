@@ -42,7 +42,7 @@ export default class Main extends React.Component {
       variables: {vaultId, filter, page, limit: 6},
       fetchPolicy: 'network-only'
     })
-    const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.heritages
+    const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.vaultPolicies
     this.setState({
       items,
       currentPage: page,
