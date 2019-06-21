@@ -5,7 +5,7 @@ import filesChecker from './filesChecker'
 import glacierVaultsChecker from './glacierVaultsChecker'
 import vaultsChecker from './vaultsChecker'
 import emergencyKitChecker from './emergencyKitChecker'
-import heritagesChecker from './heritagesChecker'
+import vaultPoliciesChecker from './vaultPoliciesChecker'
 
 const checkers = [
   registrationChecker,
@@ -14,7 +14,7 @@ const checkers = [
   glacierVaultsChecker,
   vaultsChecker,
   emergencyKitChecker,
-  heritagesChecker
+  vaultPoliciesChecker
 ]
 
 for (const checker of checkers) {

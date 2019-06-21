@@ -1,12 +1,12 @@
 import {PermissionsError} from '@orion-js/app'
 import Files from 'app/collections/Files'
 import isEmpty from 'lodash/isEmpty'
-import VaultCredentials from 'app/collections/VaultCredentials'
+import VaultPolicies from 'app/collections/VaultPolicies'
 
 export default async function({fileId, viewer}) {
   const file = await Files.findOne(fileId)
 
-  const vaultCredential = await VaultCredentials.findOne({
+  const vaultCredential = await VaultPolicies.findOne({
     userId: viewer.userId,
     vaultId: file.vaultId
   })
