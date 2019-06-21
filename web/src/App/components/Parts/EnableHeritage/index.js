@@ -11,7 +11,7 @@ export default function EnableHeritage(props) {
         confirmText="Habilitar"
         mutation="releaseHeritage"
         danger
-        params={{heritageId: props.heritageId}}
+        params={{vaultPolicyId: props.vaultPolicyId}}
         onSuccess={() => props.onEnableSuccess()}>
         <div className={styles.enable}>Habilitar</div>
       </MutationButton>

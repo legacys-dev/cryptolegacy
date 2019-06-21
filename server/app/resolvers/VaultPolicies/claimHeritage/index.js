@@ -3,6 +3,7 @@ import Users from 'app/collections/Users'
 import VaultPolicies from 'app/collections/VaultPolicies'
 import {claimedHeritage} from 'app/helpers/emails'
 import bcrypt from 'bcryptjs'
+import getHeirVaultPassword from './getHeirVaultPassword'
 
 export default resolver({
   params: {
@@ -12,14 +13,20 @@ export default resolver({
     },
     accessToken: {
       type: String
+    },
+    credentials: {
+      type: String
     }
   },
   returns: Boolean,
   mutation: true,
   requireLogin: true,
-  async resolve({code, accessToken}, viewer) {
+  async resolve({code, accessToken, credentials}, viewer) {
     const user = await Users.findOne({_id: viewer.userId})
-    const vaultPolicy = await VaultPolicies.findOne({accessToken, status: 'available'})
+    const vaultPolicy = await VaultPolicies.findOne({
+      'transferData.accessToken': accessToken,
+      status: 'available'
+    })
 
     if (!vaultPolicy) {
       throw new PermissionsError('unauthorized', {message: 'Unauthorized credentials access'})
@@ -37,7 +44,20 @@ export default resolver({
       throw new PermissionsError('unauthorized', {message: 'Wrong code'})
     }
 
-    await vaultPolicy.update({$set: {userId: viewer.userId, credentialType: 'heritage'}})
+    const {privateKey, passphrase} = user.messageKeys
+    const claimParams = {
+      userCredentials: credentials,
+      code,
+      encryptedVaultPassword: vaultPolicy.vaultPassword,
+      privateKey,
+      passphrase
+    }
+
+    const encryptedUserVaultPassword = await getHeirVaultPassword(claimParams)
+
+    await vaultPolicy.update({
+      $set: {userId: viewer.userId, vaultPassword: encryptedUserVaultPassword, status: 'active'}
+    })
 
     const userInformation = {
       email: await user.email(),

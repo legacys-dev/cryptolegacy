@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Container from 'orionsoft-parts/lib/components/Container'
 import withValidHeir from 'App/helpers/vaultPolicy/withValidHeir'
-import forceLogin from 'App/helpers/auth/forceLogin'
-import Button from 'App/components/Parts/Button'
-import {Alert} from 'App/components/Parts/Icons'
-import AutoForm from 'App/components/AutoForm'
-import {withRouter} from 'react-router'
-import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import {getEncryptedPassword} from 'App/helpers/user'
+import forceLogin from 'App/helpers/auth/forceLogin'
+import {Alert} from 'App/components/Parts/Icons'
+import Button from 'App/components/Parts/Button'
+import AutoForm from 'App/components/AutoForm'
+import autobind from 'autobind-decorator'
+import {withRouter} from 'react-router'
 
 @forceLogin
 @withValidHeir
@@ -42,9 +43,12 @@ export default class Claim extends React.Component {
           </div>
           <AutoForm
             mutation="claimHeritage"
-            omit="accessToken"
+            omit={['accessToken', 'credentials']}
             ref="form"
-            doc={{accessToken: this.props.match.params.accessToken}}
+            doc={{
+              accessToken: this.props.match.params.accessToken,
+              credentials: getEncryptedPassword()
+            }}
             onSuccess={this.onSuccess}
           />
           <div className={styles.button}>

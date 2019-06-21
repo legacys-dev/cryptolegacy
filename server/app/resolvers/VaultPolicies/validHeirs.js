@@ -11,7 +11,11 @@ export default resolver({
   returns: String,
   requireLogin: true,
   async resolve({accessToken}, viewer) {
-    const vaultPolicy = await VaultPolicies.findOne({accessToken, status: 'available'})
+    const vaultPolicy = await VaultPolicies.findOne({
+      'transferData.accessToken': accessToken,
+      status: 'available'
+    })
+
     if (!vaultPolicy) return
 
     const user = await Users.findOne({'emails.address': vaultPolicy.userEmail})

@@ -21,7 +21,7 @@ export default resolver({
 
     if (!user) throw new Error('Inheritor not found')
 
-    vaultPolicy.update({$set: {status: 'available'}}) // await not necessary
+    await vaultPolicy.update({$set: {status: 'available'}}) // await not necessary
 
     const userInformation = {
       email: await user.email(),
@@ -29,7 +29,7 @@ export default resolver({
       lastName: await user.lastName()
     }
 
-    const {accessToken} = vaultPolicy
+    const {accessToken} = vaultPolicy.transferData
 
     await heritageAvailable({
       user: userInformation,
