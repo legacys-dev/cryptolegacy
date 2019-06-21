@@ -34,7 +34,7 @@ export default resolver({
       status: 'finished'
     }
 
-    await createActivity(activityTypeParams, viewer)
+    createActivity(activityTypeParams, viewer) // await not necessary
 
     return true
   }

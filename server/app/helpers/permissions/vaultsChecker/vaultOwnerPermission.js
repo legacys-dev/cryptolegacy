@@ -1,15 +1,15 @@
 import {PermissionsError} from '@orion-js/app'
 import isEmpty from 'lodash/isEmpty'
-import VaultCredentials from 'app/collections/VaultCredentials'
+import VaultPolicies from 'app/collections/VaultPolicies'
 
 export default async function({viewer, vaultId}) {
-  const vaultCredential = await VaultCredentials.findOne({vaultId, userId: viewer.userId})
+  const vaultPolicy = await VaultPolicies.findOne({vaultId, userId: viewer.userId})
 
-  if (isEmpty(vaultCredential)) {
+  if (isEmpty(vaultPolicy)) {
     throw new PermissionsError('unauthorized', {message: 'Vault permissions denied'})
   }
 
-  const {credentialType} = vaultCredential
+  const {credentialType} = vaultPolicy
 
   if (isEmpty(credentialType) || credentialType !== 'owner') {
     throw new PermissionsError('unauthorized', {message: 'Vault permissions denied'})

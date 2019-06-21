@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {Contract} from 'App/components/Parts/Icons'
 import EnableHeritage from 'App/components/Parts/EnableHeritage'
-import moment from 'moment'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import autobind from 'autobind-decorator'
+import moment from 'moment'
 
 @withMessage
 export default class Items extends React.Component {
@@ -24,9 +24,9 @@ export default class Items extends React.Component {
     this.props.onHeritageEnabled(new Date())
   }
 
-  renderEnableHeritageButton(heritageId) {
+  renderEnableHeritageButton(vaultPolicyId) {
     if (this.props.status !== 'waiting') return
-    return <EnableHeritage heritageId={heritageId} onEnableSuccess={this.onEnableSuccess} />
+    return <EnableHeritage vaultPolicyId={vaultPolicyId} onEnableSuccess={this.onEnableSuccess} />
   }
 
   renderTable() {
@@ -39,9 +39,9 @@ export default class Items extends React.Component {
             <Contract size={25} />
           </td>
           <td>{creatorEmail}</td>
-          <td>{data.inheritorEmail}</td>
+          <td>{data.userEmail}</td>
           <td>{moment(heritage.createdAt).format('LL')}</td>
-          <td>{this.renderEnableHeritageButton(data.heritageId)}</td>
+          <td>{this.renderEnableHeritageButton(data.vaultPolicyId)}</td>
         </tr>
       )
     })

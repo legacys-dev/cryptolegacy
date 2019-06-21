@@ -1,7 +1,7 @@
 import {resolver} from '@orion-js/app'
 import Files from 'app/collections/Files'
 import isEmpty from 'lodash/isEmpty'
-import VaultCredentials from 'app/collections/VaultCredentials'
+import VaultPolicies from 'app/collections/VaultPolicies'
 import {getVaultsIds} from 'app/helpers/vaults'
 
 export default resolver({
@@ -14,19 +14,19 @@ export default resolver({
   mutation: true,
   requireLogin: true,
   async resolve({userId}, viewer) {
-    const userVaultsCredentials = await VaultCredentials.find({
+    const userVaultsPolicies = await VaultPolicies.find({
       userId: viewer.userId,
       credentialType: 'owner'
     }).toArray()
 
-    const vaultsId = getVaultsIds(userVaultsCredentials)
+    const vaultsId = getVaultsIds(userVaultsPolicies)
 
     const files = await Files.find({vaultId: {$in: vaultsId}, status: 'inTrash'}).toArray()
 
     if (isEmpty(files)) return
 
     for (const file of files) {
-      await file.update({$set: {status: 'authorizedToRemove'}})
+      file.update({$set: {status: 'authorizedToRemove'}}) // await not necessary
     }
 
     return true

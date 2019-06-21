@@ -1,14 +1,14 @@
 import {resolver} from '@orion-js/app'
-import VaultCredentials from 'app/collections/VaultCredentials'
+import VaultPolicies from 'app/collections/VaultPolicies'
 
 export default resolver({
   params: {},
   returns: String,
   async resolve(vault, params, viewer) {
-    const vaultCredential = await VaultCredentials.findOne({
+    const vaultPolicy = await VaultPolicies.findOne({
       vaultId: vault._id,
       userId: viewer.userId
     })
-    return vaultCredential.credentialType
+    return vaultPolicy.credentialType
   }
 })

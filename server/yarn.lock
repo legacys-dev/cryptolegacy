@@ -702,9 +702,9 @@ arrify@^1.0.1:
   integrity sha1-iYUI2iIm84DfkEcoRWhJwVAaSw0=
 
 asn1.js@^5.0.0:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/asn1.js/-/asn1.js-5.0.1.tgz#7668b56416953f0ce3421adbb3893ace59c96f59"
-  integrity sha512-aO8EaEgbgqq77IEw+1jfx5c9zTbzvkfuRBuZsSsPnTHMkmd5AI4J6OtITLZFa381jReeaQL67J0GBTUu0+ZTVw==
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/asn1.js/-/asn1.js-5.1.1.tgz#48e98850a6991f8e35b4d35afc51b1b898598a5e"
+  integrity sha512-kkj0MRSG9Yo3B2BpnLwEk/Sc7oiLu3jmEPaxiwOb219+1j8q6zZocqQYncLlSjMGhAw+OCVks5iIwnFAHudczw==
   dependencies:
     bn.js "^4.0.0"
     inherits "^2.0.1"
@@ -765,9 +765,9 @@ atob@^2.1.1:
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
 aws-sdk@^2.447.0:
-  version "2.477.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.477.0.tgz#6769a9176ba4234be9ed0ae9f0b064a17dccc3d1"
-  integrity sha512-CdUbQg0tIIydyCa+rUMzS7EuWV6hUQmSp6gWYy/hdsyeh+fpARjpijrerAML1iawsC47TKTgT5lYE97Kf6DTxg==
+  version "2.479.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.479.0.tgz#e305f6c514dd012a8ab7dc8ef62c81e9d7cfa9e3"
+  integrity sha512-BxHYj0Yi+Kz3D1hhRwVqMzdyTguae2mF47k0bjhw8I9zi9QXkOpxjWwh48Mqc7zs61zgFfzC/k22zmX/C5k6ww==
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
@@ -1579,9 +1579,9 @@ babylon@^6.18.0:
   integrity sha512-q/UEjfGJ2Cm3oKV71DJz9d25TPnq5rhBVL2Q4fA5wcC3jcrdn7+SssEybFIxwAvvP+YCsCYNKughoF33GxgycQ==
 
 backblaze-b2@^1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/backblaze-b2/-/backblaze-b2-1.3.1.tgz#42aa8780d738c56e588603be3ece1b550a04b4a7"
-  integrity sha512-swVXIU5l+oee3u/AyUW0w4ttoJKSykWEi26x380Ob2LaOzETC4d0WkCL40V8U9cvroJE3ie+EgN5SqmgBJrjJw==
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/backblaze-b2/-/backblaze-b2-1.4.0.tgz#3528a121bba2870209df499de2c4877cafff1df8"
+  integrity sha512-dRMgwx5nKBXLBIPFgWepEIZQf8PpDugO8AKMr1HgRGqB6uFsxkGvar7CqNi5dOhPqdKY603cmonnNggg7Fp2Nw==
   dependencies:
     axios "^0.18.0"
     axios-retry "^3.1.2"
@@ -3249,7 +3249,7 @@ inherits@1:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-1.0.2.tgz#ca4309dadee6b54cc0b8d247e8d7c7a0975bdc9b"
   integrity sha1-ykMJ2t7mtUzAuNJH6NfHoJdb3Js=
 
-inherits@2, inherits@2.0.3, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.3:
+inherits@2, inherits@2.0.3, inherits@^2.0.3, inherits@~2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
@@ -3258,6 +3258,11 @@ inherits@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.1.tgz#b17d08d326b4423e568eff719f91b0b1cbdf69f1"
   integrity sha1-sX0I0ya0Qj5Wjv9xn5GwscvfafE=
+
+inherits@^2.0.1:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
+  integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
 
 ini@~1.3.0:
   version "1.3.5"
@@ -4839,9 +4844,9 @@ onetime@^2.0.0:
     mimic-fn "^1.0.0"
 
 openpgp@^4.5.1:
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/openpgp/-/openpgp-4.5.3.tgz#fd1c803663b9eff529195a9809e854458fe9a9b9"
-  integrity sha512-QU3TUMgw4UEjhqCUNcLizCdAX8M0eA+h5GCiIji7hOanT1r4R/J3647SRUbW6MjHYyg6N5i4IMzGQMlpFc+Ihg==
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/openpgp/-/openpgp-4.5.4.tgz#e893cff5ea105d0649d7e5b2e4674c790bbc041e"
+  integrity sha512-3aQN+vN8aV27HrJkNMfArPFkr7456SyYmcgTmklu0Q74sVC7RFAofcQWjGx0dnIM+5ZET9NVGDk6jr2S0T5WUA==
   dependencies:
     asn1.js "^5.0.0"
     node-fetch "^2.1.2"

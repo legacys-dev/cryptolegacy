@@ -41,15 +41,15 @@ export default resolver({
     const {email, name, lastName} = registration.userInformation
     const profile = {firstName: name, lastName}
 
-    const userMasterHash = createMasterKey()
-    const temporaryUserMasterHash = createMasterKey()
-    const userMasterPassword = await generateCipherKeys(temporaryUserMasterHash.masterKey)
+    const userMasterKey = createMasterKey()
+    const temporaryUserMasterKey = createMasterKey()
+    const temporaryUserMasterPassword = await generateCipherKeys(temporaryUserMasterKey.original)
     const userMessageKeys = await generateOpenPgpKeys()
 
     const invalidKeys =
-      isEmpty(userMasterHash) ||
-      isEmpty(userMasterHash.masterKey) ||
-      isEmpty(userMasterPassword) ||
+      isEmpty(userMasterKey) ||
+      isEmpty(userMasterKey.original) ||
+      isEmpty(temporaryUserMasterPassword) ||
       isEmpty(userMessageKeys)
 
     if (invalidKeys) throw new Error('Error creating user')
@@ -61,7 +61,7 @@ export default resolver({
 
     if (!newUser) throw new Error('Error creating user')
 
-    const {secret, iv} = userMasterPassword
+    const {secret, iv} = temporaryUserMasterPassword
     const encryptedKeysForMessages = userDataEncryptWithPassword({
       itemToEncrypt: JSON.stringify(userMessageKeys),
       cipherPassword: secret,
@@ -72,7 +72,7 @@ export default resolver({
       {_id: newUser._id, 'emails.address': email},
       {
         $set: {
-          'services.masterKey.bcrypt': hashPassword(userMasterHash.masterKey),
+          'services.masterKey.bcrypt': hashPassword(userMasterKey.original),
           'services.masterKey.createdAt': new Date(),
           'messageKeys.publicKey': userMessageKeys.publicKey,
           'messageKeys.privateKey': userMessageKeys.privateKey,
@@ -86,19 +86,19 @@ export default resolver({
     const session = await createSession(newUser)
 
     const {emergencyKitId} = await createEmergencyKit({
-      userMasterHash,
+      userMasterKey,
       userId: newUser._id,
       email,
       userMessageKeys
     })
 
     const k = decomposeMasterKey({
-      masterKey: temporaryUserMasterHash.masterKey,
+      masterKey: temporaryUserMasterKey.original,
       userId: newUser._id
     })
 
     const {userInformation} = registration
-    await accountCreated({userInformation})
+    accountCreated({userInformation}) // await not necessary
 
     return {
       session,

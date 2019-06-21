@@ -22,9 +22,7 @@ export default async function({privateKey, passphrase, encryptedMessage}) {
   }
 
   const decryptedMessage = await openpgp.decrypt(decryptOptions).then(plaintext => {
-    if (plaintext) {
-      return plaintext
-    }
+    if (plaintext) return plaintext
   })
 
   return JSON.parse(decryptedMessage.data)

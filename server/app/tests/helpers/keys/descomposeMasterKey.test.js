@@ -17,10 +17,10 @@ it('Should descompose master key items pass content type', () => {
 })
 
 it('Should descompose master key items pass type test', () => {
-  const {masterKey} = createMasterKey()
+  const {original} = createMasterKey()
   const userId = generateId(11)
 
-  const result = decomposeMasterKey({masterKey, userId})
+  const result = decomposeMasterKey({masterKey: original, userId})
   const {sInterval, iInterval, initial, central, latest, secret} = result
 
   expect(typeof result).toBe('object')
