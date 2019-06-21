@@ -5,7 +5,7 @@ import {deleteArchive} from 'app/helpers/awsS3'
 
 export default job({
   type: 'recurrent',
-  runEvery: 1000 * 60 * 20,
+  runEvery: 1000 * 60,
   async run(params) {
     const files = await Files.find({
       storage: 'glacier',

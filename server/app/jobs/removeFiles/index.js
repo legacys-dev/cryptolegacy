@@ -19,20 +19,18 @@ export default job({
 
       if (!s3Data.deletedFromS3) {
         const {key, bucket} = s3Data
-        await deleteFileInS3({key, bucket})
+        deleteFileInS3({key, bucket})
       }
 
       if (s3Data.deletedFromS3 && file.storage === 'b2') {
         const fileName = s3Data.name
         const {fileId} = b2Data
-        const response = await deleteFileInB2({fileName, fileId})
-        if (!response) hasError = true
+        deleteFileInB2({fileName, fileId})
       }
 
       if (s3Data.deletedFromS3 && file.storage === 'glacier') {
         const {archiveId, vaultName} = glacierData
-        const response = await deleteFileInGlacier({archiveId, vaultName})
-        if (!response) hasError = true
+        deleteFileInGlacier({archiveId, vaultName})
       }
 
       if (!hasError) await file.remove()
