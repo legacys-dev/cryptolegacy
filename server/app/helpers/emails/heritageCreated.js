@@ -1,7 +1,7 @@
 import React from 'react'
 import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
 
-export default async function({owner, user, code, reclaimIdentificator}) {
+export default async function({owner, user, code, vaultName}) {
   const {email, name, lastName} = user
   const {ownerEmail, ownerName, ownerLastName} = owner
 
@@ -24,7 +24,7 @@ export default async function({owner, user, code, reclaimIdentificator}) {
       </p>
       <p className="space" />
       <p className="space">
-        número identificador de la bóveda: #{reclaimIdentificator}
+        Nombre de la bóveda: <strong>{vaultName}</strong>
         <br />
         código: <strong>{code}</strong>
       </p>

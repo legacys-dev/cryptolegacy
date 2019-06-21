@@ -1,7 +1,7 @@
 import React from 'react'
 import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
 
-export default async function({user, accessToken, reclaimIdentificator}) {
+export default async function({user, accessToken, vaultName}) {
   const {email, name, lastName} = user
 
   const local = process.env.ORION_LOCAL
@@ -16,8 +16,8 @@ export default async function({user, accessToken, reclaimIdentificator}) {
         Hola {name} {lastName}
       </p>
       <p className="space">
-        Se te comunica que tu herencia de la bóveda <strong>#{reclaimIdentificator}</strong> está
-        lista para completarse.
+        Se te comunica que tu herencia de la bóveda <strong>#{vaultName}</strong> está lista para
+        completarse.
       </p>
       <p className="space">
         Solo debes ingresar al siguiente link e ingresar el código de seguridad que se te envió en
