@@ -3,6 +3,7 @@ import {hashPassword} from '@orion-js/auth'
 import {heritageCreated} from 'app/helpers/emails'
 import {emailValidator} from 'app/helpers/registration'
 import VaultPolicies from 'app/collections/VaultPolicies'
+import getEncryptedCredentialsForHeir from './getEncryptedCredentialsForHeir'
 import Users from 'app/collections/Users'
 import getVaultName from './getVaultName'
 
@@ -18,13 +19,39 @@ export default resolver({
         email = email.toLowerCase()
         if (!emailValidator(email)) return 'invalidEmail'
       }
+    },
+    credentials: {
+      type: String
     }
   },
   returns: Boolean,
   mutation: true,
   vaultOwner: true,
+  vaultPolicyOwner: true,
   requireLogin: true,
-  async resolve({vaultId, email}, viewer) {
+  async resolve({vaultId, email, credentials}, viewer) {
+    const vaultOwner = await Users.findOne({_id: viewer.userId})
+    const ownerVaultCredentials = await VaultPolicies.findOne({
+      vaultId,
+      userId: viewer.userId,
+      status: 'active'
+    })
+
+    const {privateKey, passphrase} = vaultOwner.messageKeys
+    const heirCode = Math.random()
+      .toString()
+      .slice(2, 19)
+
+    const createHeirCredentialsParams = {
+      privateKey,
+      passphrase,
+      ownerEncryptedCredentials: credentials,
+      encryptedVaultCredentials: ownerVaultCredentials.vaultPassword,
+      heirCode
+    }
+
+    const heirVaultPassword = await getEncryptedCredentialsForHeir(createHeirCredentialsParams)
+
     const userEmail = email.toLowerCase()
     const heritage = await VaultPolicies.findOne({
       userEmail,
@@ -32,31 +59,34 @@ export default resolver({
       status: 'waiting'
     })
 
-    const userCode = Math.random()
-      .toString()
-      .slice(2, 11)
-
     const requiredParams = {
-      'transferData.code.bcrypt': hashPassword(userCode),
+      vaultPassword: heirVaultPassword,
+      'transferData.code.bcrypt': hashPassword(heirCode),
       'transferData.code.createdAt': new Date(),
       'transferData.accessToken': generateId(201)
     }
 
-    if (heritage) {
-      await heritage.update({$set: requiredParams})
-    } else {
-      const insertParams = {
-        creatorId: viewer.userId,
-        vaultId,
-        userEmail,
-        status: 'waiting',
-        ...requiredParams
-      }
-
-      await VaultPolicies.insert(insertParams)
+    const insertParams = {
+      creatorId: viewer.userId,
+      vaultId,
+      userEmail,
+      credentialType: 'heritage',
+      status: 'waiting',
+      ...requiredParams
     }
 
-    const vaultOwner = await Users.findOne({_id: viewer.userId})
+    if (heritage) heritage.remove() // await not necessary
+
+    let hasError
+    try {
+      await VaultPolicies.insert(insertParams)
+    } catch (error) {
+      hasError = !!error
+      console.log('Error:', error)
+    }
+
+    if (hasError) throw new Error('Error creating a heritage')
+
     const inheritor = await Users.findOne({'emails.address': userEmail})
 
     const owner = {
@@ -71,10 +101,10 @@ export default resolver({
       lastName: inheritor ? await inheritor.lastName() : null
     }
 
-    await heritageCreated({
+    heritageCreated({
       owner,
       user,
-      code: userCode,
+      code: heirCode,
       vaultName: await getVaultName({heritage, vaultId})
     })
 
