@@ -11,8 +11,8 @@ import {MdCloudDownload} from 'react-icons/md'
 import autobind from 'autobind-decorator'
 import {saveAs} from './downloadFile'
 import Progress from './Progress'
-import gql from 'graphql-tag'
 import messages from './messages'
+import gql from 'graphql-tag'
 
 @withMutation(gql`
   mutation createDownload($fileId: ID) {

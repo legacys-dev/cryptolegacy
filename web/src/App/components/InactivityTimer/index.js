@@ -5,6 +5,7 @@ import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import logout from 'App/helpers/auth/logout'
 import IdleTimer from 'react-idle-timer'
 import autobind from 'autobind-decorator'
+import getEnv from 'App/Root/getEnv'
 
 @withMessage
 export default class InactivityTimer extends React.Component {
@@ -15,13 +16,18 @@ export default class InactivityTimer extends React.Component {
   }
 
   static defaultProps = {
-    time: 1
+    time: 10
   }
 
   @autobind
   async onInactivity() {
+    if (this.mustStayLogin()) return
     await logout()
     this.props.showMessage('Se ha cerrado sesión por inactividad')
+  }
+
+  mustStayLogin() {
+    return getEnv() === 'local'
   }
 
   inactivityChecker() {
