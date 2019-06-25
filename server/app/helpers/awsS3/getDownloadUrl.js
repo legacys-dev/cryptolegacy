@@ -7,21 +7,10 @@ export default async function({key, bucket}) {
 
   const params = {Bucket: bucket, Key: key, Expires: 60}
 
-  let result
-  let hasError
-
-  try {
-    result = await new Promise((resolve, reject) => {
-      s3.getSignedUrl('getObject', params, function(error, data) {
-        if (error) reject(error)
-        else resolve(data)
-      })
+  return await new Promise((resolve, reject) => {
+    s3.getSignedUrl('getObject', params, function(error, data) {
+      if (error) reject(error)
+      else resolve(data)
     })
-  } catch (error) {
-    hasError = !!error
-  }
-
-  if (hasError) throw new Error('Error getitng download url')
-
-  return result
+  })
 }
