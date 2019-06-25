@@ -4,12 +4,15 @@ import {downloadElement} from 'app/helpers/awsS3'
 import {uploadFile} from 'app/helpers/backblazeB2'
 import isEmpty from 'lodash/isEmpty'
 
+const time = process.env.ORION_LOCAL ? 1000 * 60 : 1000 * 60 * 30
+
 export default job({
   type: 'recurrent',
-  runEvery: 1000 * 60,
+  runEvery: time, // must be 30 minutes
   async run(params) {
     const limitSize = 1024 * 1024 * 99 // 99MB
     const files = await Files.find({
+      status: 'active',
       storage: 'b2',
       's3Data.status': 'uploaded',
       'b2Data.status': 'pending',
@@ -25,10 +28,9 @@ export default job({
       const {bucket, key} = file.s3Data
       const s3Element = await downloadElement({bucket, key})
 
-      let b2Result
-      let errorAtUpload
-      await file.update({$set: {'b2Data.status': 'uploading'}})
+      file.update({$set: {'b2Data.status': 'uploading'}}) // await not necessary
 
+      let b2Result
       try {
         b2Result = await uploadFile({
           file: s3Element,
@@ -36,17 +38,12 @@ export default job({
           type: file.s3Data.type
         })
       } catch (error) {
-        await file.update({
-          $set: {'b2Data.status': 'pending'}
-        })
-        errorAtUpload = !!error
-        console.log(error)
+        file.update({$set: {'b2Data.status': 'pending', 'b2Data.errorAtUpload': error}}) // await not necessary
+        continue
       }
 
-      if (errorAtUpload) continue
-
       const {fileId, bucketId, contentSha1, bucketName} = b2Result
-      await file.update({
+      file.update({
         $set: {
           'b2Data.fileId': fileId,
           'b2Data.bucketId': bucketId,
@@ -54,7 +51,7 @@ export default job({
           'b2Data.contentSha1': contentSha1,
           'b2Data.status': 'uploaded'
         }
-      })
+      }) // await not necessary
     }
   }
 })

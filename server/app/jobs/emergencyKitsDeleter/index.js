@@ -5,10 +5,10 @@ import EmergencyKits from 'app/collections/EmergencyKits'
 
 export default job({
   type: 'recurrent',
-  runEvery: 1000 * 60 * 3,
+  runEvery: 1000 * 60 * 5, // must be 10 minutes
   async run(params) {
     const limitTime = DateTime.local()
-      .minus({minutes: 30})
+      .minus({minutes: 5})
       .toJSDate()
 
     const kits = await EmergencyKits.find({createdAt: {$lt: limitTime}}).toArray()
@@ -16,7 +16,7 @@ export default job({
     if (isEmpty(kits)) return
 
     for (const kit of kits) {
-      await EmergencyKits.remove({_id: kit._id})
+      kit.remove() // await not necessary
     }
   }
 })

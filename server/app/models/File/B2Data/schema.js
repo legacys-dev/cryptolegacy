@@ -11,6 +11,10 @@ export default {
   contentSha1: {
     type: String
   },
+  errorAtUpload: {
+    type: String,
+    optional: true
+  },
   status: {
     type: String,
     allowedValues: ['pending', 'uploading', 'uploaded'],

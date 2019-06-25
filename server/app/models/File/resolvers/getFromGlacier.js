@@ -12,16 +12,16 @@ export default resolver({
     const {jobId} = downloadRequest
     const {vaultName} = file.glacierData
 
-    const local = process.env.ORION_DEV
-    const beta = process.env.ORION_BETA
+    const local = process.env.ORION_LOCAL
+    const dev = process.env.ORION_DEVELOPMENT
 
     const extension = `get-aws-job-output/${vaultName}/${jobId}`
 
     const donwloadUrl = local
       ? `http://localhost:3000/${extension}`
-      : beta
+      : dev
       ? `https://apidev.cryptolegacy.io/${extension}`
-      : `https://apidev.cryptolegacy.io/${extension}`
+      : null
 
     return donwloadUrl
   }

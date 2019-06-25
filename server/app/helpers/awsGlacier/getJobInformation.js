@@ -8,21 +8,10 @@ export default async function({jobId, vaultName}) {
     vaultName
   }
 
-  let result
-  let hasError
-
-  try {
-    result = await new Promise((resolve, reject) => {
-      glacier.describeJob(params, function(error, data) {
-        if (error) reject(error)
-        else resolve(data)
-      })
+  return await new Promise((resolve, reject) => {
+    glacier.describeJob(params, function(error, data) {
+      if (error) reject(error)
+      else resolve(data)
     })
-  } catch (error) {
-    hasError = !!error
-  }
-
-  if (hasError) return
-
-  return result
+  })
 }

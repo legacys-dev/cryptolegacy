@@ -5,35 +5,32 @@ import {deleteArchive as deleteFileInB2} from 'app/helpers/backblazeB2'
 import {deleteArchive as deleteFileInGlacier} from 'app/helpers/awsGlacier'
 import isEmpty from 'lodash/isEmpty'
 
+const time = process.env.ORION_LOCAL ? 1000 * 60 : 1000 * 60 * 30
+
 export default job({
   type: 'recurrent',
-  runEvery: 1000 * 60 * 10,
+  runEvery: time, // Must be 30 minutes
   async run(params) {
     const files = await Files.find({status: 'authorizedToRemove'}).toArray()
 
     if (isEmpty(files)) return
 
     for (const file of files) {
-      const {s3Data, b2Data, glacierData} = file
-      let hasError = false
+      const {s3Data, b2Data, glacierData, storage} = file
+      const {deletedFromS3} = s3Data
 
-      if (!s3Data.deletedFromS3) {
+      if (!deletedFromS3) {
         const {key, bucket} = s3Data
         deleteFileInS3({key, bucket})
-      }
-
-      if (s3Data.deletedFromS3 && file.storage === 'b2') {
+      } else if (storage === 'b2') {
         const fileName = s3Data.name
         const {fileId} = b2Data
         deleteFileInB2({fileName, fileId})
-      }
-
-      if (s3Data.deletedFromS3 && file.storage === 'glacier') {
+      } else if (storage === 'glacier') {
         const {archiveId, vaultName} = glacierData
         deleteFileInGlacier({archiveId, vaultName})
       }
-
-      if (!hasError) await file.remove()
+      file.remove() // await not necessary
     }
   }
 })
