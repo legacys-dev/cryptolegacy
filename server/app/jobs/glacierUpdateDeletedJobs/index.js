@@ -5,10 +5,10 @@ import isEmpty from 'lodash/isEmpty'
 
 export default job({
   type: 'recurrent',
-  runEvery: 1000 * 60 * 30,
+  runEvery: 1000 * 60 * 30, // Must be 30 minutes
   async run(params) {
     const limitTime = DateTime.local()
-      .minus({hours: 20})
+      .minus({hours: 23})
       .toJSDate()
 
     const glacierDownloads = await DownloadRequests.find({
@@ -24,7 +24,7 @@ export default job({
         completionDate: null
       }
 
-      await downloadRequest.update({$set: updateData})
+      downloadRequest.update({$set: updateData}) // await not necessary
     }
   }
 })

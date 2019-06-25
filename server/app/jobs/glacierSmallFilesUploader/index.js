@@ -4,12 +4,15 @@ import {downloadElement} from 'app/helpers/awsS3'
 import {singleUpload} from 'app/helpers/awsGlacier'
 import isEmpty from 'lodash/isEmpty'
 
+const time = process.env.ORION_LOCAL ? 1000 * 60 : 1000 * 60 * 30
+
 export default job({
   type: 'recurrent',
-  runEvery: 1000 * 60,
+  runEvery: time, // Must be 20 minutes
   async run(params) {
     const limitSize = 1024 * 1024 * 99 // 99MB
     const files = await Files.find({
+      status: 'active',
       storage: 'glacier',
       's3Data.status': 'uploaded',
       'glacierData.status': 'pending',
@@ -25,27 +28,21 @@ export default job({
       const {bucket, key} = file.s3Data
       const s3Element = await downloadElement({bucket, key})
 
-      let glacierResult
-      let errorAtUpload
-      await file.update({$set: {'glacierData.status': 'uploading'}})
+      file.update({$set: {'glacierData.status': 'uploading'}}) // await not necessary
 
+      let glacierResult
       try {
         glacierResult = await singleUpload({
           file: s3Element,
           archiveDescription: file.userId
         })
       } catch (error) {
-        await file.update({
-          $set: {'glacierData.status': 'pending', 'glacierData.errorAtUpload': error}
-        })
-        errorAtUpload = !!error
-        console.log(error)
+        file.update({$set: {'glacierData.status': 'pending', 'glacierData.errorAtUpload': error}}) // await not necessary
+        continue
       }
 
-      if (errorAtUpload) continue
-
       const {archiveId, location, checksum, vaultName} = glacierResult
-      await file.update({
+      file.update({
         $set: {
           'glacierData.archiveId': archiveId,
           'glacierData.location': location,
@@ -53,7 +50,7 @@ export default job({
           'glacierData.vaultName': vaultName,
           'glacierData.status': 'uploaded'
         }
-      })
+      }) // await not necessary
     }
   }
 })

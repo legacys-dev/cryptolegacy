@@ -3,9 +3,11 @@ import {getJobInformation} from 'app/helpers/awsGlacier'
 import DownloadRequests from 'app/collections/DownloadRequests'
 import isEmpty from 'lodash/isEmpty'
 
+const time = process.env.ORION_LOCAL ? 1000 * 60 : 1000 * 60 * 30
+
 export default job({
   type: 'recurrent',
-  runEvery: 1000 * 60 * 30,
+  runEvery: time, // Must be 30 minutes
   async run(params) {
     const glacierDownloads = await DownloadRequests.find({status: 'pending'}).toArray()
 
@@ -18,24 +20,28 @@ export default job({
       }
 
       let result
-      let errorOnRequest
       try {
         result = await getJobInformation(downloadParams)
       } catch (error) {
-        errorOnRequest = !!error
         console.log(error)
+        continue
       }
 
-      if (errorOnRequest) continue
+      const updateData = isEmpty(result)
+        ? {
+            status: 'jobDeleted',
+            completionDate: null
+          }
+        : result && result.Completed
+        ? {
+            status: 'completed',
+            completionDate: new Date(result.CompletionDate)
+          }
+        : null
 
-      const updateData = {
-        status: 'completed',
-        completionDate: new Date(result.CompletionDate)
-      }
+      if (!updateData) continue
 
-      if (result.Completed) {
-        await downloadRequest.update({$set: updateData})
-      }
+      downloadRequest.update({$set: updateData}) // await not necessary
     }
   }
 })

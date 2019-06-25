@@ -6,12 +6,13 @@ import isEmpty from 'lodash/isEmpty'
 
 export default job({
   type: 'recurrent',
-  runEvery: 1000 * 60 * 20,
+  runEvery: 1000 * 60 * 20, // must be 20 minutes
   async run(params) {
-    const startSize = 1024 * 1024 * 500.00000000000001
-    const limitSize = 1024 * 1024 * 1000 // 1GB
+    const startSize = 1024 * 1024 * 500.00000000000001 // 500 MB
+    const limitSize = 1024 * 1024 * 1000 // 1 GB
 
     const files = await Files.find({
+      status: 'active',
       storage: 'glacier',
       's3Data.status': 'uploaded',
       'glacierData.status': 'pending',
@@ -27,27 +28,21 @@ export default job({
       const {bucket, key} = file.s3Data
       const s3Element = await downloadElement({bucket, key})
 
-      let glacierResult
-      let errorAtUpload
-      await file.update({$set: {'glacierData.status': 'uploading'}})
+      file.update({$set: {'glacierData.status': 'uploading'}}) // await not necessary
 
+      let glacierResult
       try {
         glacierResult = await multiUpload({
           file: s3Element,
           archiveDescription: file.userId
         })
       } catch (error) {
-        await file.update({
-          $set: {'glacierData.status': 'pending', 'glacierData.errorAtUpload': error}
-        })
-        errorAtUpload = !!error
-        console.log(error)
+        file.update({$set: {'glacierData.status': 'pending', 'glacierData.errorAtUpload': error}}) // await not necessary
+        continue
       }
 
-      if (errorAtUpload) continue
-
       const {archiveId, location, checksum, vaultName} = glacierResult
-      await file.update({
+      file.update({
         $set: {
           'glacierData.archiveId': archiveId,
           'glacierData.location': location,
@@ -55,7 +50,7 @@ export default job({
           'glacierData.vaultName': vaultName,
           'glacierData.status': 'uploaded'
         }
-      })
+      }) // await not necessary
     }
   }
 })
