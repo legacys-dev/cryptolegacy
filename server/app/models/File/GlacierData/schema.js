@@ -13,7 +13,7 @@ export default {
     type: String
   },
   errorAtUpload: {
-    type: 'blackbox',
+    type: String,
     optional: true
   },
   status: {
