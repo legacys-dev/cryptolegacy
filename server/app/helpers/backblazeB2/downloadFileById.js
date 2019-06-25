@@ -10,18 +10,10 @@ export default async function({fileId}) {
 
   await b2.authorize()
 
-  let result, hasError
-  try {
-    result = await b2.downloadFileById({
-      fileId,
-      responseType: 'arraybuffer'
-    })
-  } catch (error) {
-    hasError = !!error
-    console.log(error)
-  }
-
-  if (hasError) return
+  const result = await b2.downloadFileById({
+    fileId,
+    responseType: 'arraybuffer'
+  })
 
   return result.data
 }

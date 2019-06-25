@@ -21,21 +21,14 @@ export default async function({file, fileName, type}) {
     .update(file.Body)
     .digest('hex')
 
-  let result, hasError
-  try {
-    result = await b2.uploadFile({
-      uploadUrl,
-      hash,
-      fileName,
-      uploadAuthToken: authorizationToken,
-      mime: type,
-      data: file.Body
-    })
-  } catch (error) {
-    hasError = !!error
-  }
-
-  if (hasError) throw new Error('Error uploading file')
+  const result = await b2.uploadFile({
+    uploadUrl,
+    hash,
+    fileName,
+    uploadAuthToken: authorizationToken,
+    mime: type,
+    data: file.Body
+  })
 
   return {
     bucketName,

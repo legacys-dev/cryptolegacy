@@ -10,17 +10,8 @@ export default async function({fileId, fileName}) {
 
   await b2.authorize()
 
-  let result, hasError
-  try {
-    result = await b2.deleteFileVersion({
-      fileId,
-      fileName
-    })
-  } catch (error) {
-    hasError = !!error
-  }
-
-  if (hasError) return
-
-  return result
+  return await b2.deleteFileVersion({
+    fileId,
+    fileName
+  })
 }
