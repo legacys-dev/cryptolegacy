@@ -6,8 +6,8 @@ export default resolver({
   async resolve(file, params, viewer) {
     const {s3Data} = file
     return {
-      name: s3Data.name,
-      type: s3Data.type,
+      name: file.name,
+      type: file.type,
       size: s3Data.size,
       vaultId: file.vaultId,
       storageType: file.storage,

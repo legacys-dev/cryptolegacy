@@ -35,14 +35,15 @@ export default resolver({
     const s3Data = {
       key,
       bucket,
-      name: params.name,
-      type: params.type,
       size: params.size,
       status: 'uploading',
       updatedAt: new Date()
     }
 
     const fileId = await Files.insert({
+      name: params.name,
+      cloudName: generateId(51),
+      type: params.type,
       s3Data,
       vaultId: params.vaultId,
       searchSlug: slugify(params.name),

@@ -10,24 +10,19 @@ export default resolver({
       key: file.s3Data.key
     }
 
-    let headerError
     try {
       await getHeadersElement(s3Params)
     } catch (error) {
-      headerError = !!error
+      console.log(error)
+      return
     }
 
-    if (headerError) return
-
     let s3DownloadUrl
-    let s3Error
     try {
       s3DownloadUrl = await getDownloadUrl(s3Params)
     } catch (error) {
-      s3Error = !!error
+      return
     }
-
-    if (s3Error) return
 
     return s3DownloadUrl
   }

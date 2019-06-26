@@ -29,7 +29,7 @@ export default resolver({
     const activityTypeParams = {
       activityType: 'file',
       actionType: 'uploadFile',
-      fileName: file.s3Data.name,
+      fileName: file.name,
       vaultName: await file.vaultName(),
       status: 'finished'
     }

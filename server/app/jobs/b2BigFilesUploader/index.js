@@ -34,7 +34,7 @@ export default job({
       try {
         b2Result = await multiUpload({
           file: s3Element,
-          fileName: file.s3Data.name
+          fileName: file.cloudName
         })
       } catch (error) {
         file.update({$set: {'b2Data.status': 'pending', 'b2Data.errorAtUpload': error}}) // await not necessary

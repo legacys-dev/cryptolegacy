@@ -1119,9 +1119,9 @@
   integrity sha1-APy5adykzoKgp2c0E63gOeR7Nh4=
 
 "@react-pdf/renderer@^1.5.4":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@react-pdf/renderer/-/renderer-1.6.2.tgz#c6d5f597f2a1eb25c0789143e34cd2d1444bcc55"
-  integrity sha512-IhXBXki4n6nm5ARPb//CprmV2aYHLPWaTTLwf8ykeJQdSLBAuszi/9DjuFhZxo+v+wZQLDa3l6VkjaPPrpKLUQ==
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/@react-pdf/renderer/-/renderer-1.6.3.tgz#d8a5e38ddc10ade397a1f3914f67d6a0bcb223e7"
+  integrity sha512-qTlUWUabFBFHTXrg1vczyxMbShyDKhmrhLmBDjJAMMV2CVGMjwpZf7VClwf/8g7GOsjczNX9w7kij4A9YXNXyQ==
   dependencies:
     "@babel/runtime" "^7.3.1"
     "@react-pdf/fontkit" "^1.13.0"
@@ -3341,9 +3341,9 @@ create-react-class@^15.5.1:
     object-assign "^4.1.1"
 
 cross-fetch@^3.0.2:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.0.3.tgz#b988beab275939cb77ad4e362c873f7fa8a221a5"
-  integrity sha512-mplYkc4CopHu+AdHK8wxjJcPskUxp5CvPTdtDij3MUgVNBa0xOb9CQqbbn1zO23qISM4WLxIBociyEVQL7WQAg==
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.0.4.tgz#7bef7020207e684a7638ef5f2f698e24d9eb283c"
+  integrity sha512-MSHgpjQqgbT/94D4CyADeNoYh52zMkCX4pcJvPP5WqPsLFMKjr2TCMg381ox5qI0ii2dPwaLx/00477knXqXVw==
   dependencies:
     node-fetch "2.6.0"
     whatwg-fetch "3.0.0"
@@ -3851,11 +3851,9 @@ detect-port-alt@1.1.6:
     debug "^2.6.0"
 
 dfa@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/dfa/-/dfa-1.1.0.tgz#d30218bd10d030fa421df3ebbc82285463a31781"
-  integrity sha1-0wIYvRDQMPpCHfPrvIIoVGOjF4E=
-  dependencies:
-    babel-runtime "^6.11.6"
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/dfa/-/dfa-1.2.0.tgz#96ac3204e2d29c49ea5b57af8d92c2ae12790657"
+  integrity sha512-ED3jP8saaweFTjeGX8HQPjeC1YYyZs98jGNZx6IiBvxW7JG5v492kamAQB3m2wop07CvU/RQmzcKr6bgcC5D/Q==
 
 diff@^3.2.0:
   version "3.3.0"
@@ -8234,9 +8232,9 @@ onetime@^2.0.0:
     mimic-fn "^1.0.0"
 
 openpgp@^4.5.1:
-  version "4.5.4"
-  resolved "https://registry.yarnpkg.com/openpgp/-/openpgp-4.5.4.tgz#e893cff5ea105d0649d7e5b2e4674c790bbc041e"
-  integrity sha512-3aQN+vN8aV27HrJkNMfArPFkr7456SyYmcgTmklu0Q74sVC7RFAofcQWjGx0dnIM+5ZET9NVGDk6jr2S0T5WUA==
+  version "4.5.5"
+  resolved "https://registry.yarnpkg.com/openpgp/-/openpgp-4.5.5.tgz#8b6341ebf76ff86b9998f9430ca241a833982131"
+  integrity sha512-naG9hi3EIBXYtl8FplXbfYKQCmO7JUwAFBOlejyaLi4XSmFvTtAUSxB5vTchsw7tBbejYZj01dhgqhtYRDLfRg==
   dependencies:
     asn1.js "^5.0.0"
     node-fetch "^2.1.2"

@@ -27,7 +27,7 @@ export default resolver({
     if (isEmpty(vaultPolicies)) throw new Error('User vault not found')
     if (vaultPolicies.credentialType !== 'owner') {
       throw new PermissionsError('unauthorized', {
-        message: 'User doesnt have the required permissions'
+        message: 'you dont have the required permissions'
       })
     }
 

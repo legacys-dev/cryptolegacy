@@ -16,14 +16,14 @@ export default job({
     if (isEmpty(files)) return
 
     for (const file of files) {
-      const {s3Data, b2Data, glacierData, storage} = file
+      const {s3Data, b2Data, glacierData, storage, cloudName} = file
       const {deletedFromS3} = s3Data
 
       if (!deletedFromS3) {
         const {key, bucket} = s3Data
         deleteFileInS3({key, bucket})
       } else if (storage === 'b2') {
-        const fileName = s3Data.name
+        const fileName = cloudName
         const {fileId} = b2Data
         deleteFileInB2({fileName, fileId})
       } else if (storage === 'glacier') {

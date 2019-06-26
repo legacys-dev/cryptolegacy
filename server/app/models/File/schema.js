@@ -6,6 +6,18 @@ export default {
   _id: {
     type: 'ID'
   },
+  name: {
+    type: String,
+    private: true
+  },
+  cloudName: {
+    type: String,
+    private: true
+  },
+  type: {
+    type: String,
+    private: true
+  },
   vaultId: {
     type: 'ID',
     private: true

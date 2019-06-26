@@ -20,7 +20,8 @@ export default class Progress extends React.Component {
       <div>
         <div className={styles.loading}>
           Downloading file ({totalProgress.toFixed(2)}%)
-          <br />[{getSize(loaded)} of {getSize(total)}]
+          <br />
+          {getSize(loaded)} of {getSize(total)}
         </div>
         <div className={styles.progressLine}>
           <Line percent={totalProgress} />

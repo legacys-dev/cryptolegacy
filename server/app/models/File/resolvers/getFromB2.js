@@ -9,19 +9,16 @@ export default resolver({
 
     const b2Params = {
       bucketId: file.b2Data.bucketId,
-      fileName: file.s3Data.name
+      fileName: file.cloudName
     }
 
     let downloadData
-    let b2Error
     try {
       downloadData = await getDownloadUrl(b2Params)
     } catch (error) {
       console.log(error)
-      b2Error = !!error
+      return
     }
-
-    if (b2Error) return
 
     const downloadUrl =
       downloadData.url +
@@ -29,7 +26,7 @@ export default resolver({
       '/' +
       file.b2Data.bucketName +
       '/' +
-      file.s3Data.name +
+      file.cloudName +
       '?Authorization=' +
       downloadData.authorizationToken
 

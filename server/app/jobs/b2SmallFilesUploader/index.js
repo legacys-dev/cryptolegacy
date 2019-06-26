@@ -34,8 +34,8 @@ export default job({
       try {
         b2Result = await uploadFile({
           file: s3Element,
-          fileName: file.s3Data.name,
-          type: file.s3Data.type
+          fileName: file.cloudName,
+          type: file.type
         })
       } catch (error) {
         file.update({$set: {'b2Data.status': 'pending', 'b2Data.errorAtUpload': error}}) // await not necessary
