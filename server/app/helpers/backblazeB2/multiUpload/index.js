@@ -11,6 +11,7 @@ export default async function({file, fileName}) {
   })
 
   await b2.authorize()
+
   const start = await b2.startLargeFile({bucketId, fileName})
   const {fileId} = start.data
   let {partSize, fileSize} = getPartSize(file.Body.length)

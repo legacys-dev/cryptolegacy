@@ -6,8 +6,8 @@ import {deleteUserMainCipherPassword, deleteUserEncryptedPassword} from 'App/hel
 export default async function() {
   await global.apolloClient.mutate({
     mutation: gql`
-      mutation logout {
-        logout
+      mutation appLogout {
+        appLogout
       }
     `
   })

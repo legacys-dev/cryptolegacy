@@ -26,14 +26,14 @@ export default job({
 
     for (const file of files) {
       const {bucket, key} = file.s3Data
-      const s3Element = await downloadElement({bucket, key})
+      const downloadedFile = await downloadElement({bucket, key})
 
       file.update({$set: {'b2Data.status': 'uploading'}}) // await not necessary
 
       let b2Result
       try {
         b2Result = await multiUpload({
-          file: s3Element,
+          file: downloadedFile,
           fileName: file.cloudName
         })
       } catch (error) {

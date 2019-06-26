@@ -26,14 +26,14 @@ export default job({
 
     for (const file of files) {
       const {bucket, key} = file.s3Data
-      const s3Element = await downloadElement({bucket, key})
+      const downloadedFile = await downloadElement({bucket, key})
 
       file.update({$set: {'glacierData.status': 'uploading'}}) // await not necessary
 
       let glacierResult
       try {
         glacierResult = await multiUpload({
-          file: s3Element,
+          file: downloadedFile,
           archiveDescription: file.userId
         })
       } catch (error) {

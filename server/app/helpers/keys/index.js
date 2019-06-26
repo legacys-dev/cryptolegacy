@@ -1,12 +1,12 @@
 import createMasterKey from './createMasterKey'
-import generateCipherKeys from './generateCipherKeys'
+import generateUserCipherKeys from './generateUserCipherKeys'
 import getHashItems from './getHashItems'
 import decomposeMasterKey from './decomposeMasterKey'
 import generateHeritagePassword from './generateHeritagePassword'
 
 export {
   createMasterKey,
-  generateCipherKeys,
+  generateUserCipherKeys,
   getHashItems,
   decomposeMasterKey,
   generateHeritagePassword

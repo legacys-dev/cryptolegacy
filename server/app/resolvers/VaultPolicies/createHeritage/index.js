@@ -80,7 +80,7 @@ export default resolver({
       await VaultPolicies.insert(insertParams)
     } catch (error) {
       hasError = !!error
-      console.log('Error:', error)
+      console.log(error)
     }
 
     if (hasError) throw new Error('Error creating a heritage')
