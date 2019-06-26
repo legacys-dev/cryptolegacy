@@ -8,8 +8,7 @@ export default {
   passphrase: {
     type: String
   },
-  createdAt: {
-    type: Date,
-    defaultValue: () => new Date()
+  updatedAt: {
+    type: Date
   }
 }

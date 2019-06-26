@@ -1,5 +1,7 @@
 import appLogin from './appLogin'
+import appLogout from './appLogout'
 
 export default {
-  appLogin
+  appLogin,
+  appLogout
 }

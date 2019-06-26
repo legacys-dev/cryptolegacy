@@ -1,10 +1,11 @@
 import {resolver} from '@orion-js/app'
-import {createSession} from '@orion-js/auth'
 import {hasPassword, checkPassword} from 'app/helpers/authentication'
+import {generateKeys as generateOpenPgpKeys} from 'app/helpers/openPgp'
 import {userDataEncryptWithPassword} from 'app/helpers/crypto'
-import {generateCipherKeys} from 'app/helpers/keys'
+import {generateUserCipherKeys} from 'app/helpers/keys'
 import Users from 'app/collections/Users'
 import bcrypt from 'bcryptjs'
+import getSession from './getSession'
 
 export default resolver({
   params: {
@@ -51,15 +52,16 @@ export default resolver({
   mutation: true,
   async resolve({email, masterKey, password, sharedHardware}, viewer) {
     const user = await Users.findOne({'emails.address': email})
-    const session = await createSession(user)
 
-    const userMessageKeys = {
-      publicKey: user.messageKeys.publicKey,
-      privateKey: user.messageKeys.privateKey,
-      passphrase: user.messageKeys.passphrase
+    const session = await getSession(user)
+
+    let userMessageKeys
+    if (session) {
+      userMessageKeys = await generateOpenPgpKeys()
+      await user.update({$set: {messageKeys: {updatedAt: new Date(), ...userMessageKeys}}})
     }
 
-    const userMasterPassword = await generateCipherKeys(masterKey)
+    const userMasterPassword = await generateUserCipherKeys(masterKey)
 
     const {secret, iv} = userMasterPassword
     const encryptedKeysForMessages = userDataEncryptWithPassword({
