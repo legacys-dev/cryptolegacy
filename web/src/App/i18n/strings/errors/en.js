@@ -30,7 +30,7 @@ export default {
   incorrectPassword: ({label, placeholder}) => `Incorrect password`,
   masterKeyNotFound: ({label, placeholder}) => `Master key is required`,
   invalidMasterKey: ({label, placeholder}) => `The master key is invalid`,
-  errorNotKeysFound: ({label, placeholder}) => `Disabled user`,
+  errorKeysFoundOnLogin: ({label, placeholder}) => `Disabled user`,
   incorrectMasterKey: ({label, placeholder}) => `The master key is incorrect`,
   invalidCode: ({label, placeholder}) => `Invalid code`,
   invalidEmail: ({label, placeholder}) => `${message(label, placeholder)} in invalid`,

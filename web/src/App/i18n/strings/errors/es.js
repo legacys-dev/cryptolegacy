@@ -32,7 +32,7 @@ export default {
   incorrectPassword: ({label, placeholder}) => `La contraseña es incorrecta`,
   masterKeyNotFound: ({label, placeholder}) => `La master key es necesaria`,
   invalidMasterKey: ({label, placeholder}) => `La master key ingresada es inválida`,
-  errorNotKeysFound: ({label, placeholder}) => `Usuario inhabilitado`,
+  errorKeysFoundOnLogin: ({label, placeholder}) => `Usuario inhabilitado`,
   incorrectMasterKey: ({label, placeholder}) => `La master key ingresada es incorrecta`,
   invalidCode: ({label, placeholder}) => `El código ingresado es inválido`,
   invalidEmail: ({label, placeholder}) => `${message(label, placeholder)} no es válido`,

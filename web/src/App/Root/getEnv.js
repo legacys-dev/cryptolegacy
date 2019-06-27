@@ -7,4 +7,5 @@ const isProduction = !isDev && !isBeta && (hostname.includes('.com') || hostname
 
 const forceProd = false
 
-export default () => (isProduction || forceProd ? 'prod' : isDev ? 'dev' : 'local')
+export default () =>
+  isProduction || forceProd ? 'prod' : isDev ? 'dev' : isBeta ? 'beta' : 'local'

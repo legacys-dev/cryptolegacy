@@ -3,6 +3,7 @@ import getEnv from './getEnv'
 const urls = {
   local: `http://${window.location.hostname}:3000`,
   dev: 'https://apidev.cryptolegacy.io',
+  beta: 'https://apibeta.cryptolegacy.io',
   prod: ''
 }
 

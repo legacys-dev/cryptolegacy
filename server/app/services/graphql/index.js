@@ -3,12 +3,16 @@ import {startGraphQL} from '@orion-js/graphql'
 import resolvers from 'app/resolvers'
 import subscriptions from 'app/subscriptions'
 
+const {ORION_LOCAL, ORION_DEVELOPMENT, ORION_BETA} = process.env
+
 const useGraphiql = false // Activate Graphql IDE in browser
-const origin = process.env.ORION_LOCAL
+const origin = ORION_LOCAL
   ? '*'
-  : process.env.ORION_DEVELOPMENT
+  : ORION_DEVELOPMENT
   ? 'https://dev.cryptolegacy.io'
-  : null
+  : ORION_BETA
+  ? 'https://beta.cryptolegacy.io'
+  : 'prod'
 
 startGraphQL({
   resolvers,
