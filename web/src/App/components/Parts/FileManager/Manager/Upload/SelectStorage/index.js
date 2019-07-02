@@ -5,6 +5,7 @@ import autobind from 'autobind-decorator'
 import isEqual from 'lodash/isEqual'
 import styles from './styles.js'
 import simpleStyle from './simpleStyle.css'
+import Warning from './Warning'
 
 export default class SelectStorage extends React.Component {
   static propTypes = {
@@ -62,6 +63,9 @@ export default class SelectStorage extends React.Component {
           options={options}
         />
         <div className={simpleStyle.description}>{description}</div>
+        <div className={styles.warning}>
+          <Warning />
+        </div>
       </div>
     )
   }

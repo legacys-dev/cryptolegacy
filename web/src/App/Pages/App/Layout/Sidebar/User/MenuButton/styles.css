@@ -1,4 +1,8 @@
 :local(.container) {
+  width: 100%;
+}
+
+:local(.user) {
   cursor: pointer;
   color: inherit;
   font-size: 18px;
@@ -11,7 +15,7 @@
   -webkit-transition-duration: 300ms;
 }
 
-:local(.container):hover {
+:local(.user):hover {
   background-color: #53caff30;
 }
 

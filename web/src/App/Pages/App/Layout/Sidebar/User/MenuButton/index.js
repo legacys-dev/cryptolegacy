@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {MdArrowDropDown} from 'react-icons/md'
 import {UserIcon} from 'App/components/Parts/Icons'
+import AppTypeMesssage from 'App/components/AppTypeMesssage'
 
 export default class MenuButton extends React.Component {
   static propTypes = {
@@ -23,11 +24,14 @@ export default class MenuButton extends React.Component {
     if (!user) return <span />
     return (
       <div className={styles.container} onClick={toggleMenu}>
-        {this.renderUserPic()}
-        <div className={styles.name}> {user.name || 'Cuenta'} </div>
-        <div className={styles.arrow}>
-          <MdArrowDropDown size={20} />
+        <div className={styles.user}>
+          {this.renderUserPic()}
+          <div className={styles.name}> {user.name || 'Cuenta'} </div>
+          <div className={styles.arrow}>
+            <MdArrowDropDown size={20} />
+          </div>
         </div>
+        <AppTypeMesssage />
       </div>
     )
   }
