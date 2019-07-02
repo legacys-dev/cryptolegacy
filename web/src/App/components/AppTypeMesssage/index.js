@@ -7,7 +7,7 @@ import typeMessages from './typeMessages'
 const types = {
   beta: 'BETA mode',
   dev: 'DEV mode',
-  local: 'BETA mode'
+  local: 'Local mode'
 }
 
 export default class AppTypeMesssage extends React.Component {
@@ -15,20 +15,15 @@ export default class AppTypeMesssage extends React.Component {
 
   state = {}
 
-  getMessage(type) {
+  getTooltipMessage(type) {
     return <div className={styles.message}>{typeMessages[type]}</div>
-  }
-
-  renderLocalMode() {
-    return <div className={styles.container}>LOCAL mode</div>
   }
 
   render() {
     const type = getEnv()
-    if (type === 'local') return this.renderLocalMode()
     return (
       <div className={styles.container}>
-        <Tooltip content={this.getMessage(type)}>{types[type]}</Tooltip>
+        <Tooltip content={this.getTooltipMessage(type)}>{types[type]}</Tooltip>
       </div>
     )
   }

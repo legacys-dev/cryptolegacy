@@ -5,5 +5,5 @@ export default {
     'Es una versión de la app que indica que está incompleta y puede tener' +
     'errores. No guardes archivos realmente importantes ya que la app sufrirá más cambios hasta' +
     'su versión final y puedes perderlos.',
-  local: ''
+  local: 'Its the local mode, you can destroy everything if you want'
 }
