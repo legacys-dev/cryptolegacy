@@ -1,5 +1,6 @@
 import React from 'react'
 import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
+import setReceptor from './setReceptor'
 
 export default async function({owner, user, code, vaultName}) {
   const {email, name, lastName} = user
@@ -41,7 +42,7 @@ export default async function({owner, user, code, vaultName}) {
   )
 
   await sendEmailWithMessage({
-    to: email,
+    to: setReceptor(email),
     subject: 'Código de verificación para herencia',
     content: emailContent
   })
