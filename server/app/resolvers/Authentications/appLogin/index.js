@@ -1,11 +1,10 @@
 import {resolver} from '@orion-js/app'
 import {hasPassword, checkPassword} from 'app/helpers/authentication'
-import {generateKeys as generateOpenPgpKeys} from 'app/helpers/openPgp'
-import {userDataEncryptWithPassword} from 'app/helpers/crypto'
+import {userDataEncryptWithPassword, createKeyPairs as generateCryptoKeys} from 'app/helpers/crypto'
 import {generateUserCipherKeys} from 'app/helpers/keys'
 import Users from 'app/collections/Users'
-import bcrypt from 'bcryptjs'
 import getSession from './getSession'
+import bcrypt from 'bcryptjs'
 
 export default resolver({
   params: {
@@ -57,7 +56,7 @@ export default resolver({
 
     let userMessageKeys
     if (session) {
-      userMessageKeys = await generateOpenPgpKeys()
+      userMessageKeys = generateCryptoKeys()
       await user.update({$set: {messageKeys: {updatedAt: new Date(), ...userMessageKeys}}})
     }
 

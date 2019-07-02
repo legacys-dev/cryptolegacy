@@ -1,14 +1,13 @@
 import {resolver} from '@orion-js/app'
 import {createSession, hashPassword} from '@orion-js/auth'
 import {createMasterKey, generateUserCipherKeys, decomposeMasterKey} from 'app/helpers/keys'
-import {generateKeys as generateOpenPgpKeys} from 'app/helpers/openPgp'
-import {userDataEncryptWithPassword} from 'app/helpers/crypto'
+import {userDataEncryptWithPassword, createKeyPairs as generateCryptoKeys} from 'app/helpers/crypto'
 import {passwordValidator} from 'app/helpers/registration'
 import {accountCreated} from 'app/helpers/emails'
 import Registrations from 'app/collections/Registrations'
+import Users from 'app/collections/Users'
 import createEmergencyKit from './createEmergencyKit'
 import authResolvers from 'app/resolvers/Auth'
-import Users from 'app/collections/Users'
 import isEmpty from 'lodash/isEmpty'
 
 export default resolver({
@@ -43,7 +42,7 @@ export default resolver({
 
     const userMasterKey = createMasterKey()
     const temporaryUserMasterKey = createMasterKey()
-    const userMessageKeys = await generateOpenPgpKeys()
+    const userMessageKeys = generateCryptoKeys()
     const temporaryUserMasterPassword = await generateUserCipherKeys(
       temporaryUserMasterKey.original
     )

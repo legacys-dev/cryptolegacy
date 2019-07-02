@@ -1,7 +1,7 @@
 import crypto from 'crypto'
 import isEmpty from 'lodash/isEmpty'
 
-export default function(toEncrypt, publicKey) {
+export default function({toEncrypt, publicKey}) {
   if (isEmpty(toEncrypt)) throw new Error('Element to encrypt not found')
   if (isEmpty(publicKey)) throw new Error('Public key not found')
 
