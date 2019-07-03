@@ -8,7 +8,7 @@ export default async function({vaultId, viewer}) {
 
   if (!vaultPolicy) throw new Error('Vault credentials not found')
 
-  if (vaultPolicy.userId !== viewer.userId) {
+  if (vaultPolicy.creatorId !== viewer.userId) {
     throw new PermissionsError('unauthorized', {message: 'You dont have vault credentials'})
   }
 }

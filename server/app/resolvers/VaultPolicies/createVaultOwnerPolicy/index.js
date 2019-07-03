@@ -17,12 +17,11 @@ export default resolver({
   requireLogin: true,
   async resolve({vaultId, credentials}, viewer) {
     const user = await Users.findOne({_id: viewer.userId})
-    const {privateKey, passphrase} = user.messageKeys
+    const {privateKey} = user.messageKeys
 
     const vaultPassword = await getVaultPassword({
       credentials,
       privateKey,
-      passphrase,
       vaultId,
       userId: viewer.userId
     })

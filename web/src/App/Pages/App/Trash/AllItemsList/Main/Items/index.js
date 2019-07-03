@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import LargeName from 'App/components/User/LargeName'
+import LengthName from 'App/components/User/LengthName'
 import getSize from 'App/helpers/files/getSize'
 import FileIcon, {defaultStyles} from 'react-file-icon'
 import RestoreFile from 'App/components/Parts/RestoreFile'
@@ -44,13 +44,13 @@ export default class Items extends React.Component {
             </div>
           </td>
           <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
-            <LargeName name={data.name} />
+            <LengthName name={data.name} />
           </td>
           <td>{type}</td>
           <td>{getSize(data.size)}</td>
           <td>{storage[data.storageType]}</td>
           <td>
-            <LargeName name={vaultName} />{' '}
+            <LengthName name={vaultName} />{' '}
           </td>
           <td>
             <RestoreFile

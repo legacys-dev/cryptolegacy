@@ -1,18 +1,14 @@
-import {userDataDecryptWithPassword, userDataEncryptWithPassword} from 'app/helpers/crypto'
+import {
+  userDataDecryptWithPassword,
+  userDataEncryptWithPassword,
+  privateDecrypt as decryptMessage
+} from 'app/helpers/crypto'
 import {generateHeritagePassword} from 'app/helpers/keys'
-import {decryptMessage} from 'app/helpers/openPgp'
 
-export default async function({
-  userCredentials,
-  code,
-  encryptedVaultPassword,
-  privateKey,
-  passphrase
-}) {
-  const {mainCipherPassword, mainIv} = await decryptMessage({
-    encryptedMessage: userCredentials,
-    privateKey,
-    passphrase
+export default async function({userCredentials, code, encryptedVaultPassword, privateKey}) {
+  const {mainCipherPassword, mainIv} = decryptMessage({
+    toDecrypt: userCredentials,
+    privateKey
   })
 
   const {claimPassword, claimIv} = await generateHeritagePassword(code)

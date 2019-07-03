@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {VaultConsumer} from 'App/helpers/contexts/vaultContext'
-import LargeName from 'App/components/User/LargeName'
-import getSize from 'App/helpers/files/getSize'
+import LengthName from 'App/components/User/LengthName'
 import FileIcon, {defaultStyles} from 'react-file-icon'
+import getSize from 'App/helpers/files/getSize'
 import moment from 'moment'
 import mime from 'mime-types'
 import Options from './Options'
@@ -35,7 +35,7 @@ export default class Items extends React.Component {
             </div>
           </td>
           <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
-            <LargeName name={data.name} />
+            <LengthName name={data.name} />
           </td>
           <td>{type}</td>
           <td>{getSize(data.size)}</td>
