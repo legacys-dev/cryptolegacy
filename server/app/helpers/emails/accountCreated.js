@@ -16,7 +16,7 @@ export default async function({userInformation}) {
 
   await sendEmailWithMessage({
     to: setReceptor(email),
-    subject: 'Código de verificación de email',
+    subject: 'Cuenta creada correctamente',
     content: emailContent
   })
 }
