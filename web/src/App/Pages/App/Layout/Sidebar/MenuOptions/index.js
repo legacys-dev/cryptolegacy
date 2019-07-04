@@ -40,7 +40,6 @@ export default class MenuOptions extends React.Component {
   }
 
   render() {
-    console.log(typeof styles.itemActive)
     return <div className={styles.container}>{this.renderLinks()}</div>
   }
 }

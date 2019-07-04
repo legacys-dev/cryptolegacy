@@ -6,6 +6,6 @@ export default resolver({
   returns: String,
   async resolve(vaultPolicy, params, viewer) {
     const creator = await Users.findOne({_id: vaultPolicy.creatorId})
-    return creator.emails[0].address
+    return creator && creator.emails[0].address
   }
 })

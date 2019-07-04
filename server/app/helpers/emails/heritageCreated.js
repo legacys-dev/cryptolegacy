@@ -9,7 +9,16 @@ export default async function({owner, user, code, vaultName}) {
   const hasAccount = name && lastName
 
   const local = process.env.ORION_LOCAL
-  const link = local ? `http://localhost:3010/register` : `https://dev.cryptolegacy.io/register`
+  const dev = process.env.ORION_DEVELOPMENT
+  const beta = process.env.ORION_BETA
+
+  const link = local
+    ? `http://localhost:3010/register`
+    : dev
+    ? `https://dev.cryptolegacy.io/register`
+    : beta
+    ? `https://beta.cryptolegacy.io/register`
+    : 'pod'
 
   const emailContent = (
     <div>
