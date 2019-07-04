@@ -11,9 +11,6 @@
   justify-content: space-between;
 }
 
-:local(.middle) {
-}
-
 :local(.user) {
   margin: 10px 0;
 }
