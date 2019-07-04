@@ -1,5 +1,6 @@
 import React from 'react'
 import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
+import setReceptor from './setReceptor'
 
 export default async function({registerData}) {
   const {email, name, lastName} = registerData.userInformation
@@ -21,7 +22,7 @@ export default async function({registerData}) {
   )
 
   await sendEmailWithMessage({
-    to: email,
+    to: setReceptor(email),
     subject: 'Código de verificación de email',
     content: emailContent
   })

@@ -1,5 +1,6 @@
 import React from 'react'
 import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
+import setReceptor from './setReceptor'
 
 export default async function({userInformation}) {
   const {email, name, lastName} = userInformation
@@ -14,7 +15,7 @@ export default async function({userInformation}) {
   )
 
   await sendEmailWithMessage({
-    to: email,
+    to: setReceptor(email),
     subject: 'Código de verificación de email',
     content: emailContent
   })
