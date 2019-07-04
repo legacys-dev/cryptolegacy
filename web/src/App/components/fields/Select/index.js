@@ -1,52 +1,49 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Select from 'react-select'
-import autobind from 'autobind-decorator'
+import React, {useEffect, useRef} from 'react'
+import ReactSelect from 'react-select'
 import isEqual from 'lodash/isEqual'
 import styles from './styles'
 
-export default class SelectField extends React.Component {
-  static propTypes = {
-    fieldName: PropTypes.string,
-    onChange: PropTypes.func,
-    value: PropTypes.any,
-    passProps: PropTypes.object,
-    errorMessage: PropTypes.node,
-    label: PropTypes.node,
-    description: PropTypes.node,
-    placeholder: PropTypes.string,
-    multi: PropTypes.bool,
-    options: PropTypes.array
+Select.defaultProps = {
+  options: []
+}
+
+export default function Select({
+  fieldName,
+  onChange,
+  value,
+  passProps,
+  errorMessage,
+  label,
+  description,
+  placeholder,
+  multi,
+  options
+}) {
+  const setPrevOptions = options => {
+    const ref = useRef()
+    useEffect(() => {
+      ref.current = options
+    })
+    return ref.current
   }
 
-  static defaultProps = {
-    options: []
-  }
+  const prevOptions = setPrevOptions(options)
 
-  state = {}
+  useEffect(() => {
+    if (!isEqual(prevOptions, options)) {
+      if (!getValue()) onChange(null)
+    }
+  })
 
-  componentDidUpdate(prevProps, prevState) {
-    if (!isEqual(prevProps.options, this.props.options)) {
-      if (!this.getValue()) this.props.onChange(null)
+  const localOnChange = params => {
+    if (multi) onChange(params.map(item => item.value))
+    else {
+      if (params && params.value) onChange(params.value)
+      else onChange(null)
     }
   }
 
-  @autobind
-  onChange(params) {
-    const {multi, onChange} = this.props
-    if (multi) {
-      onChange(params.map(item => item.value))
-    } else {
-      if (params && params.value) {
-        onChange(params.value)
-      } else {
-        onChange(null)
-      }
-    }
-  }
-
-  getValue() {
-    const {value, options, multi} = this.props
+  const getValue = () => {
     if (multi) {
       const selectedOptions = (value || []).map(optionValue =>
         (options || []).find(option => option.value === optionValue)
@@ -59,35 +56,22 @@ export default class SelectField extends React.Component {
     }
   }
 
-  render() {
-    const {
-      label,
-      multi,
-      fieldName,
-      options,
-      placeholder,
-      description,
-      errorMessage,
-      passProps
-    } = this.props
-
-    return (
-      <div>
-        <div className="label">{label}</div>
-        <Select
-          styles={styles}
-          isMulti={multi}
-          name={fieldName}
-          value={this.getValue()}
-          onChange={this.onChange}
-          options={options}
-          placeholder={placeholder}
-          onCopy={event => event.preventDefault()}
-          {...passProps}
-        />
-        <div className="description">{description}</div>
-        {errorMessage && <div className="field-error">{errorMessage}</div>}
-      </div>
-    )
-  }
+  return (
+    <div>
+      <div className="label">{label}</div>
+      <ReactSelect
+        styles={styles}
+        isMulti={multi}
+        name={fieldName}
+        value={getValue()}
+        onChange={change => localOnChange(change)}
+        options={options}
+        placeholder={placeholder}
+        onCopy={event => event.preventDefault()}
+        {...passProps}
+      />
+      <div className="description">{description}</div>
+      {errorMessage && <div className="field-error">{errorMessage}</div>}
+    </div>
+  )
 }
