@@ -17,11 +17,9 @@ export default async function({vaultId, filter, adminPanel, status, viewer}) {
   } else {
     if (!vaultId) throw new Error('Vault identificator required')
 
-    const vaultPolicy = await VaultPolicies.findOne({vaultId})
+    const vaultPolicy = await VaultPolicies.findOne({vaultId, userId: viewer.userId})
 
-    if (!vaultPolicy) throw new Error('Vault credentials not found')
-
-    if (vaultPolicy.creatorId !== viewer.userId) {
+    if (!vaultPolicy) {
       throw new PermissionsError('unauthorized', {message: 'You dont have vault credentials'})
     }
   }
