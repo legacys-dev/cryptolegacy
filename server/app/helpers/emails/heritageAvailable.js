@@ -6,10 +6,16 @@ export default async function({user, accessToken, vaultName}) {
   const {email, name, lastName} = user
 
   const local = process.env.ORION_LOCAL
+  const dev = process.env.ORION_DEVELOPMENT
+  const beta = process.env.ORION_BETA
 
   const link = local
     ? `http://localhost:3010/heritage/${accessToken}`
-    : `https://dev.cryptolegacy.io/heritage/${accessToken}`
+    : dev
+    ? `https://dev.cryptolegacy.io/heritage/${accessToken}`
+    : beta
+    ? `https://beta.cryptolegacy.io/heritage/${accessToken}`
+    : 'prod'
 
   const emailContent = (
     <div>

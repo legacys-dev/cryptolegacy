@@ -2,26 +2,21 @@ import React from 'react'
 import styles from './styles.css'
 import options from './options'
 import {Link} from 'react-router-dom'
-import getRoutePath from 'App/helpers/routes/getRoutePath'
+import {getRoutePath} from 'App/helpers/routes'
 import classNames from 'classnames'
 
 export default class MenuOptions extends React.Component {
   static propTypes = {}
 
-  isRouteActive(path) {
-    const actualPath = getRoutePath()
-    return `/${actualPath}` === path
-  }
-
   isItemActive(path) {
-    const isActive = this.isRouteActive(path)
+    const isActive = getRoutePath(path)
     const style = isActive ? classNames(styles.item, styles.itemActive) : styles.item
     return style
   }
 
   renderIcon(icon, path) {
     const Icon = icon
-    const isActive = this.isRouteActive(path)
+    const isActive = this.isItemActive(path)
     return <Icon active={isActive} />
   }
 
