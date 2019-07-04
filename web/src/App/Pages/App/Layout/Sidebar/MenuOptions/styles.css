@@ -1,19 +1,18 @@
 :local(.container) {
-  height: auto;
   display: flex;
+  height: auto;
   flex-direction: column;
 }
 
 :local(.item) {
   margin: 5px 0;
-  -webkit-transition-property: border-left, font-size, background-color;
+  -webkit-transition-property: background-color;
   -webkit-transition-duration: 300ms;
   border-left: 5px solid #fff;
 }
 
 :local(.item):hover {
   cursor: pointer;
-  border-color: #0053b3;
   background-color: #53caff30;
 }
 
@@ -25,9 +24,9 @@
 :local(.link) {
   display: flex;
   flex-direction: row;
+  min-height: 35px;
   margin: 5px 40px;
   color: #91a2b0;
-  min-height: 35px;
 }
 
 :local(.icon) {
@@ -37,8 +36,7 @@
 }
 
 :local(.linkName) {
-  height: auto;
   display: flex;
+  height: auto;
   align-items: center;
-  color: #626262;
 }

@@ -1,9 +1,12 @@
-export default function() {
+export default function(path) {
   const {pathname} = window.location
+
+  if (!pathname) return
+
   const arrayRoutes = pathname.split('/')
 
   if (!arrayRoutes) return
   if (!arrayRoutes[1]) return
 
-  return arrayRoutes[1]
+  return path === arrayRoutes[1] || pathname.startsWith(path)
 }
