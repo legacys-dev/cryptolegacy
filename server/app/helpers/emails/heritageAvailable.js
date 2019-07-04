@@ -1,21 +1,11 @@
 import React from 'react'
 import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
 import setReceptor from './setReceptor'
+import getUrl from './getUrl'
 
 export default async function({user, accessToken, vaultName}) {
   const {email, name, lastName} = user
-
-  const local = process.env.ORION_LOCAL
-  const dev = process.env.ORION_DEVELOPMENT
-  const beta = process.env.ORION_BETA
-
-  const link = local
-    ? `http://localhost:3010/heritage/${accessToken}`
-    : dev
-    ? `https://dev.cryptolegacy.io/heritage/${accessToken}`
-    : beta
-    ? `https://beta.cryptolegacy.io/heritage/${accessToken}`
-    : 'prod'
+  const link = getUrl() + `/heritage/${accessToken}`
 
   const emailContent = (
     <div>

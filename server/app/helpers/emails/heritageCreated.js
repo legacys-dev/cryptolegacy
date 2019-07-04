@@ -1,24 +1,13 @@
 import React from 'react'
 import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
 import setReceptor from './setReceptor'
+import getUrl from './getUrl'
 
 export default async function({owner, user, code, vaultName}) {
   const {email, name, lastName} = user
   const {ownerEmail, ownerName, ownerLastName} = owner
-
   const hasAccount = name && lastName
-
-  const local = process.env.ORION_LOCAL
-  const dev = process.env.ORION_DEVELOPMENT
-  const beta = process.env.ORION_BETA
-
-  const link = local
-    ? `http://localhost:3010/register`
-    : dev
-    ? `https://dev.cryptolegacy.io/register`
-    : beta
-    ? `https://beta.cryptolegacy.io/register`
-    : 'pod'
+  const link = getUrl() + `/register`
 
   const emailContent = (
     <div>

@@ -2,7 +2,7 @@ import crypto from 'crypto'
 import isEmpty from 'lodash/isEmpty'
 
 export default function({toEncrypt, publicKey}) {
-  if (isEmpty(toEncrypt)) throw new Error('Element to encrypt not found')
+  if (isEmpty(toEncrypt)) throw new Error('Element to encrypt not found2')
   if (isEmpty(publicKey)) throw new Error('Public key not found')
 
   const buffer = Buffer.from(JSON.stringify(toEncrypt), 'utf8')
