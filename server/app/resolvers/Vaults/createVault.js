@@ -1,7 +1,7 @@
 import {resolver} from '@orion-js/app'
 import Vaults from 'app/collections/Vaults'
 import createActivity from 'app/resolvers/Activities/createActivity'
-import createVaultOwnerPolicy from 'app/resolvers/VaultPolicies/createVaultOwnerPolicy'
+import createVaultOwnerPolicy from '../VaultPolicies/createVaultOwnerPolicy'
 import {slugify} from 'app/helpers/parts'
 
 export default resolver({

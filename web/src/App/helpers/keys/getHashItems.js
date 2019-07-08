@@ -1,5 +1,6 @@
 export default function(hash) {
   if (!hash) throw new Error('Hash missing')
+  if (typeof hash !== 'string') throw new Error('Invalid hash type')
   if (hash.length !== 32) throw new Error('Invalid hash length')
 
   const hashItems = hash.split(':')

@@ -17,7 +17,7 @@ export default async function(cipherPassword, userIv, userV) {
   if (window.localStorage.encryptedPassword) return
 
   const publicKey = getMessagePublicKey()
-  const result = await publicEncrypt({toEncrypt: cipherObject, publicKey})
+  const result = publicEncrypt({toEncrypt: cipherObject, publicKey})
 
   window.localStorage.setItem('encryptedPassword', result)
 }
