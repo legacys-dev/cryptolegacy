@@ -16,7 +16,7 @@ export default class MenuOptions extends React.Component {
 
   renderIcon(icon, path) {
     const Icon = icon
-    const isActive = this.isItemActive(path)
+    const isActive = getRoutePath(path)
     return <Icon active={isActive} />
   }
 
