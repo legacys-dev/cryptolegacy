@@ -1,15 +1,15 @@
-:local(.container) {
+.container {
   max-height: 25px;
 }
 
-:local(.icon) {
+.icon {
   -webkit-transition-property: color;
   -webkit-transition-duration: 300ms;
   margin: 0 5px;
   height: auto;
 }
 
-:local(.icon):hover {
+.icon:hover {
   cursor: pointer;
   color: #ff0000;
 }

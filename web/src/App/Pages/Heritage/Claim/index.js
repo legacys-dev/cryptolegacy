@@ -5,14 +5,12 @@ import Container from 'orionsoft-parts/lib/components/Container'
 import withValidHeir from 'App/helpers/vaultPolicy/withValidHeir'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import {getEncryptedPassword} from 'App/helpers/user'
-import forceLogin from 'App/helpers/auth/forceLogin'
 import {Alert} from 'App/components/Parts/Icons'
 import Button from 'App/components/Parts/Button'
 import AutoForm from 'App/components/AutoForm'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 
-@forceLogin
 @withValidHeir
 @withRouter
 @withMessage

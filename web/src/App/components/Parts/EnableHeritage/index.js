@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import MutationButton from 'App/components/MutationButton'
 
-export default function EnableHeritage(props) {
+const EnableHeritage = ({vaultPolicyId, onEnableSuccess}) => {
   return (
     <div className={styles.container}>
       <MutationButton
@@ -11,10 +11,12 @@ export default function EnableHeritage(props) {
         confirmText="Habilitar"
         mutation="releaseHeritage"
         danger
-        params={{vaultPolicyId: props.vaultPolicyId}}
-        onSuccess={() => props.onEnableSuccess()}>
+        params={{vaultPolicyId: vaultPolicyId}}
+        onSuccess={() => onEnableSuccess()}>
         <div className={styles.enable}>Habilitar</div>
       </MutationButton>
     </div>
   )
 }
+
+export default EnableHeritage

@@ -3,11 +3,7 @@ import ReactSelect from 'react-select'
 import isEqual from 'lodash/isEqual'
 import styles from './styles'
 
-Select.defaultProps = {
-  options: []
-}
-
-export default function Select({
+const Select = ({
   fieldName,
   onChange,
   value,
@@ -18,7 +14,7 @@ export default function Select({
   placeholder,
   multi,
   options
-}) {
+}) => {
   const setPrevOptions = options => {
     const ref = useRef()
     useEffect(() => {
@@ -75,3 +71,9 @@ export default function Select({
     </div>
   )
 }
+
+Select.defaultProps = {
+  options: []
+}
+
+export default Select

@@ -8,13 +8,11 @@ import withValidKitHorary from 'App/helpers/emergencyKitTime/withValidKitHorary'
 import {setUserCipherPassword, generateUserCipherKeys} from 'App/helpers/keys'
 import KeyPdfGenerator from 'App/functions/KeyPdfGenerator'
 import {getMessagePrivateKey} from 'App/helpers/user'
-import forceLogin from 'App/helpers/auth/forceLogin'
 import Loading from 'App/components/Parts/Loading'
 import gql from 'graphql-tag'
 import Footer from './Footer'
 import Header from './Header'
 
-@forceLogin
 @withValidKitHorary
 @withGraphQL(
   gql`

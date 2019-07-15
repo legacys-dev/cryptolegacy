@@ -1,11 +1,6 @@
 import React from 'react'
 
-Text.defaultProps = {
-  fieldType: 'text',
-  value: ''
-}
-
-export default function Text({
+const Text = ({
   onChange,
   value,
   fieldType,
@@ -16,7 +11,7 @@ export default function Text({
   label,
   description,
   autoComplete
-}) {
+}) => {
   return (
     <div>
       <div className="label">{label}</div>
@@ -38,3 +33,10 @@ export default function Text({
     </div>
   )
 }
+
+Text.defaultProps = {
+  fieldType: 'text',
+  value: ''
+}
+
+export default Text

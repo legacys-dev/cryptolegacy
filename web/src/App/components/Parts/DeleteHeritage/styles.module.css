@@ -1,20 +1,20 @@
-:local(.container) {
+.container {
   max-height: 25px;
   display: flex;
   justify-content: center;
 }
 
-:local(.enable) {
+.delete {
   width: 150px;
   font-size: 15px;
   color: #fff;
-  background-color: #0053b3;
+  background-color: red;
   border-radius: 8px;
   -webkit-transition-property: font-weight, cursor;
   -webkit-transition-duration: 300ms;
 }
 
-:local(.enable):hover {
+.delete:hover {
   cursor: pointer;
   font-weight: 700;
 }
