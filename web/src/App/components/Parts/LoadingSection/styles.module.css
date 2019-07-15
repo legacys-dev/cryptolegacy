@@ -1,16 +1,16 @@
-:local(.container) {
+.container {
   border-top: 1px solid #eee;
   padding-top: 40px;
   margin-bottom: 20px;
   margin-top: 40px;
 }
 
-:local(.containerNoBorder) {
+.containerNoBorder {
   margin-bottom: 20px;
   margin-top: 20px;
 }
 
-:local(.title) {
+.title {
   margin-bottom: 10px;
   height: 31px;
   width: 300px;
@@ -19,14 +19,14 @@
   background-color: #eee;
 }
 
-:local(.description) {
+.description {
   composes: loadingGlow from global;
   background-color: #eee;
   height: 48px;
   width: 100%;
 }
 
-:local(.children) {
+.children {
   margin-top: 40px;
   height: 250px;
   composes: loadingGlow from global;
