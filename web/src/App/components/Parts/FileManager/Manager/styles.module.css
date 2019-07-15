@@ -1,4 +1,4 @@
-:local(.container) {
+.container {
   position: fixed;
   z-index: 100;
   top: 0;
@@ -12,7 +12,7 @@
   max-height: 100%;
 }
 
-:local(.content) {
+.content {
   composes: shadow from global;
   background-color: #fff;
   height: 90%;
@@ -25,16 +25,16 @@
   flex-direction: column;
 }
 
-:local(.hasMessage) {
+.hasMessage {
   max-height: 430px;
 }
 
-:local(.header) {
+.header {
   display: flex;
   margin: 20px;
 }
 
-:local(.title) {
+.title {
   flex: 1;
   font-size: 20px;
   font-weight: bold;

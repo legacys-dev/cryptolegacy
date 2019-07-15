@@ -1,4 +1,4 @@
-:local(.container) {
+.container {
   display: flex;
   flex: 1;
   align-items: center;
@@ -7,7 +7,7 @@
 }
 
 @media only screen and (max-width: 400px) {
-  :local(.container) {
+  .container {
     height: 100vh;
   }
 }
