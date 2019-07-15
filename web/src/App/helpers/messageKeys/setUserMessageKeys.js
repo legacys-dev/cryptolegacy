@@ -4,10 +4,9 @@ import {userDataDecryptWithPassword} from 'App/helpers/crypto'
 import {setUserCipherPassword} from '../keys'
 
 export default async function(k, encryptedKeysForMessages) {
-  const isObject = typeof k === 'object'
-  const isString = typeof k === 'string'
+  const isString = k && typeof k === 'string'
+  const userMasterKey = isString ? k : regenerateKey(k)
 
-  const userMasterKey = isObject ? regenerateKey(k) : isString && k
   const {secret, iv, userV} = await generateUserCipherKeys(userMasterKey)
 
   const decipherParams = {
@@ -16,14 +15,11 @@ export default async function(k, encryptedKeysForMessages) {
     userDataIv: iv
   }
 
-  const {publicKey, privateKey, passphrase} = JSON.parse(
-    userDataDecryptWithPassword(decipherParams)
-  )
+  const {publicKey, privateKey} = JSON.parse(userDataDecryptWithPassword(decipherParams))
 
   const messages = {
     publicKey,
-    privateKey,
-    passphrase
+    privateKey
   }
 
   window.localStorage.setItem('messages', JSON.stringify(messages))

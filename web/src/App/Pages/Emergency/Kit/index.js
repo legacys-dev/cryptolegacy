@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import withValidKitHorary from 'App/helpers/emergencyKitTime/withValidKitHorary'
-import {getMessagePrivateKey, getMessagePassphrase} from 'App/helpers/user'
-import {setUserCipherPassword, generateUserCipherKeys} from 'App/helpers/keys'
 import Container from 'orionsoft-parts/lib/components/Container'
+import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import {privateDecrypt as decryptMessage} from 'App/helpers/crypto'
+import withValidKitHorary from 'App/helpers/emergencyKitTime/withValidKitHorary'
+import {setUserCipherPassword, generateUserCipherKeys} from 'App/helpers/keys'
 import KeyPdfGenerator from 'App/functions/KeyPdfGenerator'
+import {getMessagePrivateKey} from 'App/helpers/user'
 import forceLogin from 'App/helpers/auth/forceLogin'
-import {decryptMessage} from 'App/helpers/openPgp'
 import Loading from 'App/components/Parts/Loading'
 import gql from 'graphql-tag'
 import Footer from './Footer'
@@ -41,10 +41,9 @@ export default class Kit extends React.Component {
   async componentDidMount() {
     const decryptParams = {
       privateKey: getMessagePrivateKey(),
-      passphrase: getMessagePassphrase(),
-      encryptedMessage: this.props.emergencyKit.encrypted
+      toDecrypt: this.props.emergencyKit.encrypted
     }
-    const decryptContent = await decryptMessage(decryptParams)
+    const decryptContent = decryptMessage(decryptParams)
     const {secret, iv, userV} = await generateUserCipherKeys(decryptContent.userMasterKey.original)
     await setUserCipherPassword(secret, iv, userV)
     this.setState({decryptContent})

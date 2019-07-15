@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import LargeName from 'App/components/User/LargeName'
+import LengthName from 'App/components/User/LengthName'
 
 export default class Action extends React.Component {
   static propTypes = {
@@ -13,11 +13,11 @@ export default class Action extends React.Component {
       <div className={styles.message}>
         <div>{firstText}</div>
         <div className={styles.name}>
-          <LargeName name={firstName} large={30} subString={25} />
+          <LengthName name={firstName} length={30} subString={25} />
         </div>
         <div>{secondText}</div>
         <div className={styles.name}>
-          <LargeName name={secondName} large={30} subString={25} />
+          <LengthName name={secondName} length={30} subString={25} />
         </div>
       </div>
     )
@@ -28,7 +28,7 @@ export default class Action extends React.Component {
       <div className={styles.message}>
         <div>{text}</div>
         <div className={styles.name}>
-          <LargeName name={name} large={30} subString={25} />
+          <LengthName name={name} length={30} subString={25} />
         </div>
       </div>
     )

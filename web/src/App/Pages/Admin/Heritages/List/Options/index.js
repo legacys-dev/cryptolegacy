@@ -17,7 +17,7 @@ const heritagesTypes = [
   },
   {
     name: 'Reclamadas',
-    type: 'claimed'
+    type: 'active'
   }
 ]
 

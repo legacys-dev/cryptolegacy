@@ -5,6 +5,8 @@ import {MdClose} from 'react-icons/md'
 import IconButton from 'orionsoft-parts/lib/components/IconButton'
 import {VaultConsumer} from 'App/helpers/contexts/vaultContext'
 import Upload from './Upload'
+import classnames from 'classnames'
+import getEnv from 'App/Root/getEnv'
 
 export default class Manager extends React.Component {
   static propTypes = {
@@ -17,10 +19,16 @@ export default class Manager extends React.Component {
     this.setState({progress, loaded, total})
   }
 
+  getContentStyles() {
+    const envType = getEnv()
+    if (envType === 'local' || envType === 'app') return styles.content
+    return classnames(styles.content, styles.hasMessage)
+  }
+
   render() {
     return (
       <div className={styles.container}>
-        <div className={styles.content}>
+        <div className={this.getContentStyles()}>
           <div className={styles.header}>
             <div className={styles.title}>Archivos</div>
             <div className={styles.close}>

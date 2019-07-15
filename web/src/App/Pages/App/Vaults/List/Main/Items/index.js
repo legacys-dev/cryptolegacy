@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import LargeName from 'App/components/User/LargeName'
+import LengthName from 'App/components/User/LengthName'
 import {Vault} from 'App/components/Parts/Icons'
 import getSize from 'App/helpers/files/getSize'
 import Options from './Options'
@@ -25,7 +25,7 @@ export default class Items extends React.Component {
             <Vault size={25} />
           </td>
           <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
-            <LargeName name={vault.name} />
+            <LengthName name={vault.name} />
           </td>
           <td>{vault.fileCount || '0'}</td>
           <td>{getSize(vault.storageUsed)}</td>

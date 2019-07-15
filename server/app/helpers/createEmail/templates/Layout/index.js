@@ -14,7 +14,7 @@ export default class Layout extends React.Component {
         <div className="header">
           <img
             className="logo"
-            src="https://f002.backblazeb2.com/file/Crytolegacy/twoColorsBT.png"
+            src="https://cryptolegacy-internal-use.s3-us-west-2.amazonaws.com/twoColorsBT.png"
             alt="Logo"
           />
         </div>

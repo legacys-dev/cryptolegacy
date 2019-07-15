@@ -16,7 +16,7 @@ export default class MenuOptions extends React.Component {
 
   renderIcon(icon, path) {
     const Icon = icon
-    const isActive = this.isItemActive(path)
+    const isActive = getRoutePath(path)
     return <Icon active={isActive} />
   }
 
@@ -40,7 +40,6 @@ export default class MenuOptions extends React.Component {
   }
 
   render() {
-    console.log(typeof styles.itemActive)
     return <div className={styles.container}>{this.renderLinks()}</div>
   }
 }

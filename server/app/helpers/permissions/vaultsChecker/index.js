@@ -4,11 +4,20 @@ import deleteVault from './deleteVault'
 import vaultNameChecker from './vaultNameChecker'
 import filesVaultPermission from './filesVaultPermission'
 import vaultAccessPermission from './vaultAccessPermission'
+import heritageFilesChecker from './heritageFilesChecker'
 
 export default async function(options, viewer, {params}) {
   params = cloneDeep(params)
 
-  const {vaultOwner, vaultAccess, filesVaultOwner, vaultForDelete, checkVaultName} = options
+  const {
+    vaultOwner,
+    vaultAccess,
+    filesVaultOwner,
+    vaultForDelete,
+    checkVaultName,
+    heritageChecker
+  } = options
+
   const {vaultId, name} = params
 
   if (vaultOwner) {
@@ -30,5 +39,9 @@ export default async function(options, viewer, {params}) {
 
   if (vaultForDelete) {
     await deleteVault({viewer, vaultId})
+  }
+
+  if (heritageChecker) {
+    await heritageFilesChecker({viewer, vaultId})
   }
 }

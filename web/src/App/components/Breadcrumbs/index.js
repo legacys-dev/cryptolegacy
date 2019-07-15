@@ -1,21 +1,13 @@
 import React from 'react'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import {Link} from 'react-router-dom'
-import PropTypes from 'prop-types'
 import {MdKeyboardArrowRight} from 'react-icons/md'
 
-export default class Breadcrumbs extends React.Component {
-  static propTypes = {
-    past: PropTypes.object,
-    children: PropTypes.node,
-    right: PropTypes.object,
-    divider: PropTypes.bool
-  }
-
-  getPast() {
-    if (!this.props.past) return []
-    return Object.keys(this.props.past).map(path => {
-      const title = this.props.past[path]
+export default function Breadcrumbs({past, children, right, divider}) {
+  const getPast = () => {
+    if (!past) return []
+    return Object.keys(past).map(path => {
+      const title = past[path]
       return {
         path,
         title
@@ -23,11 +15,11 @@ export default class Breadcrumbs extends React.Component {
     })
   }
 
-  renderPast() {
-    const past = this.getPast()
+  const renderPast = () => {
+    const past = getPast()
     return past.map((item, index) => {
       const isLast = index === past.length - 1
-      const renderArrow = this.props.children || !isLast
+      const renderArrow = children || !isLast
       const renderLink = typeof item.title === 'string'
       return (
         <span key={item.path}>
@@ -42,23 +34,21 @@ export default class Breadcrumbs extends React.Component {
     })
   }
 
-  renderRight() {
-    if (!this.props.right) return
-    return <div className={styles.right}>{this.props.right}</div>
+  const renderRight = () => {
+    if (!right) return
+    return <div className={styles.right}>{right}</div>
   }
 
-  render() {
-    return (
-      <div className={styles.container}>
-        <div className={styles.all}>
-          <div className={styles.content}>
-            {this.renderPast()}
-            {this.props.children ? <span className="last">{this.props.children}</span> : null}
-          </div>
-          <div className={styles.right}>{this.renderRight()}</div>
+  return (
+    <div className={styles.container}>
+      <div className={styles.all}>
+        <div className={styles.content}>
+          {renderPast()}
+          {children ? <span className="last">{children}</span> : null}
         </div>
-        {this.props.divider && <div className={styles.divider} />}
+        <div className={styles.right}>{renderRight()}</div>
       </div>
-    )
-  }
+      {divider && <div className={styles.divider} />}
+    </div>
+  )
 }

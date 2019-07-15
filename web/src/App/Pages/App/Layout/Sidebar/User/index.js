@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import {MdVpnKey, MdExitToApp, MdWork} from 'react-icons/md'
+import {MdExitToApp, MdWork} from 'react-icons/md'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import withUserId from 'App/helpers/auth/withUserId'
@@ -63,11 +63,6 @@ export default class User extends React.Component {
     await logout()
   }
 
-  @autobind
-  login() {
-    this.props.history.push('/login')
-  }
-
   renderAdmin() {
     const {me} = this.props
     if (!me || !me.roles || !me.roles.includes('admin')) return
@@ -111,11 +106,8 @@ export default class User extends React.Component {
   }
 
   renderIcon() {
-    const {me} = this.props
-    if (me) {
-      return <MenuButton user={me} toggleMenu={this.toggleMenu} />
-    } else if (!this.props.userId) {
-      return <MdVpnKey className={styles.icon} size={25} onClick={this.login} />
+    if (this.props.me) {
+      return <MenuButton user={this.props.me} toggleMenu={this.toggleMenu} />
     }
   }
 

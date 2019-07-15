@@ -19,6 +19,7 @@ export default resolver({
   mutation: true,
   vaultOwner: true,
   requireLogin: true,
+  checkVaultName: true,
   async resolve({vaultId, name}, viewer) {
     const vault = await Vaults.findOne(vaultId)
     const vaultPolicies = await VaultPolicies.findOne({userId: viewer.userId, vaultId})

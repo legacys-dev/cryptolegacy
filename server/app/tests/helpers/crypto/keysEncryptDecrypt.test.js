@@ -3,11 +3,12 @@ import {generateId} from '@orion-js/app'
 
 it('Should encrypt an item and decrypt it, it must be the same', () => {
   const {publicKey, privateKey} = createKeyPairs()
-  const message = 'This text is an example for encryption' + generateId(10)
-  const encryptedContent = publicEncrypt(message, publicKey)
-  const decryptedContent = privateDecrypt(encryptedContent, privateKey)
+  const toEncrypt = 'This text is an example for encryption' + generateId(10)
 
-  expect(typeof encryptedContent).toBe('string')
+  const toDecrypt = publicEncrypt({toEncrypt, publicKey})
+  const decryptedContent = privateDecrypt({toDecrypt, privateKey})
+
+  expect(typeof toDecrypt).toBe('string')
   expect(typeof decryptedContent).toBe('string')
-  expect(decryptedContent.localeCompare(message)).toBe(0)
+  expect(decryptedContent.localeCompare(toEncrypt)).toBe(0)
 })

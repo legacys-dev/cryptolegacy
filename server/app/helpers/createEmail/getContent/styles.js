@@ -39,7 +39,7 @@ ol li {
   list-style-position: inside;
 }
 .email {
-  background-color: #00000008;
+  background-color: #fff;
   height: auto;
 }
 img.logo {
@@ -64,7 +64,7 @@ body {
 .content-inner {
   padding: 25px;
   max-width: 600px;
-  background-color: #fff;
+  background-color: #00000008;
   border-radius: 4px;
   margin: 0 auto;
 }

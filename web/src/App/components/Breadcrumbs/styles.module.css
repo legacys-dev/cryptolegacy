@@ -1,14 +1,14 @@
-:local(.container) {
+.container {
 }
 
-:local(.all) {
+.all {
   margin-left: -10px;
   display: flex;
   align-items: center;
   padding: 20px;
 }
 
-:local(.content) {
+.content {
   flex: 1;
   font-size: 25px;
   color: #393939;
@@ -17,27 +17,27 @@
   align-items: center;
 }
 
-:local(.content) a {
+.content a {
   color: #393939;
   border-radius: 8px;
   padding: 5px 10px;
 }
 
-:local(.content) .last {
+.content .last {
   border-radius: 8px;
   padding: 5px 10px;
 }
 
-:local(.content) a:hover {
+.content a:hover {
   background: #53caff30;
 }
 
-:local(.right) {
+.right {
   display: flex;
   align-items: center;
 }
 
-:local(.divider) {
+.divider {
   height: 1px;
   background: #00000017;
   margin: 0 20px;

@@ -1,5 +1,5 @@
-import {encryptMessage} from '../openPgp'
 import {getMessagePublicKey} from '../user'
+import {publicEncrypt} from '../crypto'
 
 export default async function(cipherPassword, userIv, userV) {
   if (!cipherPassword || cipherPassword.length !== 32) return
@@ -17,7 +17,7 @@ export default async function(cipherPassword, userIv, userV) {
   if (window.localStorage.encryptedPassword) return
 
   const publicKey = getMessagePublicKey()
-  const result = await encryptMessage({publicKey, textToEncrypt: cipherObject})
+  const result = publicEncrypt({toEncrypt: cipherObject, publicKey})
 
   window.localStorage.setItem('encryptedPassword', result)
 }

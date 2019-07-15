@@ -1,9 +1,9 @@
 import {resolver, PermissionsError} from '@orion-js/app'
-import Users from 'app/collections/Users'
 import VaultPolicies from 'app/collections/VaultPolicies'
+import Users from 'app/collections/Users'
+import getHeirVaultPassword from './getHeirVaultPassword'
 import {claimedHeritage} from 'app/helpers/emails'
 import bcrypt from 'bcryptjs'
-import getHeirVaultPassword from './getHeirVaultPassword'
 
 export default resolver({
   params: {
@@ -44,13 +44,12 @@ export default resolver({
       throw new PermissionsError('unauthorized', {message: 'Wrong code'})
     }
 
-    const {privateKey, passphrase} = user.messageKeys
+    const {privateKey} = user.messageKeys
     const claimParams = {
       userCredentials: credentials,
       code,
       encryptedVaultPassword: vaultPolicy.vaultPassword,
-      privateKey,
-      passphrase
+      privateKey
     }
 
     const encryptedUserVaultPassword = await getHeirVaultPassword(claimParams)

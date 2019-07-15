@@ -1,13 +1,11 @@
-import {decryptMessage} from 'app/helpers/openPgp'
+import {privateDecrypt as decryptMessage, userDataEncryptWithPassword} from 'app/helpers/crypto'
 import {createEtherWallet} from 'app/helpers/ethers'
-import {userDataEncryptWithPassword} from 'app/helpers/crypto'
 
 // DONT TOUCH THIS CODE
-export default async function({credentials, privateKey, passphrase, vaultId, userId}) {
-  const {mainCipherPassword, mainUserV, mainIv} = await decryptMessage({
-    encryptedMessage: credentials,
-    privateKey,
-    passphrase
+export default async function({credentials, privateKey, vaultId, userId}) {
+  const {mainCipherPassword, mainUserV, mainIv} = decryptMessage({
+    toDecrypt: credentials,
+    privateKey
   })
 
   const vaultPassphrase = vaultId + mainUserV

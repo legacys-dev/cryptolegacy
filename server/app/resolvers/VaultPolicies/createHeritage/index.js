@@ -27,8 +27,9 @@ export default resolver({
   returns: Boolean,
   mutation: true,
   vaultOwner: true,
-  vaultPolicyOwner: true,
   requireLogin: true,
+  heritageChecker: true,
+  vaultPolicyOwner: true,
   async resolve({vaultId, email, credentials}, viewer) {
     const vaultOwner = await Users.findOne({_id: viewer.userId})
     const ownerVaultCredentials = await VaultPolicies.findOne({
@@ -37,12 +38,11 @@ export default resolver({
       status: 'active'
     })
 
-    const {privateKey, passphrase} = vaultOwner.messageKeys
+    const {privateKey} = vaultOwner.messageKeys
     const heirCode = generateId(16)
 
     const createHeirCredentialsParams = {
       privateKey,
-      passphrase,
       ownerEncryptedCredentials: credentials,
       encryptedVaultCredentials: ownerVaultCredentials.vaultPassword,
       heirCode
@@ -79,11 +79,8 @@ export default resolver({
     try {
       await VaultPolicies.insert(insertParams)
     } catch (error) {
-      hasError = !!error
-      console.log(error)
+      if (hasError) throw new Error('Error creating a heritage')
     }
-
-    if (hasError) throw new Error('Error creating a heritage')
 
     const inheritor = await Users.findOne({'emails.address': userEmail})
 

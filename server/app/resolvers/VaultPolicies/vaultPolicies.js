@@ -21,16 +21,21 @@ export default paginatedResolver({
     status: {
       type: String,
       optional: true
+    },
+    credentialType: {
+      type: String,
+      optional: true
     }
   },
   requireLogin: true,
   vaultPoliciesPaginatedPermissions: true,
-  async getCursor({vaultId, filter, adminPanel, status}, viewer) {
+  async getCursor({vaultId, filter, adminPanel, status, credentialType}, viewer) {
     const filterSearch = filter ? {userEmail: {$regex: new RegExp(`^${escape(filter)}`)}} : {}
     const query = {...filterSearch}
 
     if (adminPanel) {
       query.status = status || 'waiting'
+      query.credentialType = credentialType || 'heritage'
     } else {
       query.vaultId = vaultId
       query.status = 'waiting'

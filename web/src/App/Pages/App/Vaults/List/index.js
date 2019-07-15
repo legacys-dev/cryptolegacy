@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import Button from 'App/components/Parts/Button'
+import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 import VaultType from './VaultType'
-import autobind from 'autobind-decorator'
 import Main from './Main'
 
 @withRouter

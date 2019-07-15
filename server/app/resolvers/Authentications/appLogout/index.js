@@ -11,7 +11,6 @@ export default resolver({
     const {session} = viewer
 
     await user.update({$set: {messageKeys: null}})
-
     await session.remove()
 
     return true
