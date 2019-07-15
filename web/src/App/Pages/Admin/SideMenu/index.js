@@ -1,37 +1,21 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import Menu from './Menu'
 import Container from 'orionsoft-parts/lib/components/Container'
 
-export default class SideMenu extends React.Component {
-  static propTypes = {
-    children: PropTypes.object,
-    links: PropTypes.array,
-    title: PropTypes.node,
-    rootPath: PropTypes.string,
-    backPath: PropTypes.string
-  }
-
-  static defaultProps = {
-    links: [],
-    title: 'Admin',
-    rootPath: '/'
-  }
-
-  render() {
-    return (
-      <div className={styles.container}>
-        <Menu
-          backPath={this.props.backPath}
-          links={this.props.links}
-          title={this.props.title}
-          rootPath={this.props.rootPath}
-        />
-        <div className={styles.content}>
-          <Container>{this.props.children}</Container>
-        </div>
+const SideMenu = (children, links, title, rootPath, backPath) => {
+  return (
+    <div className={styles.container}>
+      <Menu backPath={backPath} links={links} title={title} rootPath={rootPath} />
+      <div className={styles.content}>
+        <Container>{children}</Container>
       </div>
-    )
-  }
+    </div>
+  )
 }
+SideMenu.defaultProps = {
+  links: [],
+  title: 'Admin',
+  rootPath: '/'
+}
+export default SideMenu

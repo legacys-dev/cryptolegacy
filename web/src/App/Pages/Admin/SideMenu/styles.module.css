@@ -1,4 +1,4 @@
-:local(.container) {
+.container {
   flex: 1;
   display: flex;
   min-height: 100vh;
@@ -12,6 +12,6 @@
   user-select: none; /* Standard syntax */
 }
 
-:local(.content) {
+.content {
   flex: 1;
 }

@@ -1,22 +1,22 @@
-:local(.container) {
+.container {
   color: #393939;
 }
 
-:local(.icon) {
+.icon {
   display: flex;
   justify-content: center;
   margin: 15px;
 }
 
-:local(.title) {
+.title {
   font-size: 18px;
 }
 
-:local(.danger) {
+.danger {
   margin: 15px 0;
 }
 
-:local(.downloadTip) {
+.downloadTip {
   font-size: 13px;
   text-align: center;
 }

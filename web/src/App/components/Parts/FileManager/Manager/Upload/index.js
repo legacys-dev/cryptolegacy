@@ -95,7 +95,7 @@ export default class Upload extends React.Component {
     const result = Number(((progress.loaded * 100) / progress.total).toFixed(3))
     const loaded = progress.loaded
     const total = progress.total
-    this.props.onUploadProgressChange(result, loaded, total)
+    this.props.onUploadProgressChange({progress: result, loaded, total})
   }
 
   async uploadFile({key, file, url, fields}) {
