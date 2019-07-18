@@ -1,9 +1,9 @@
 import React from 'react'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import {PDFViewer, Document} from '@react-pdf/renderer'
 import Resume from './Resume'
 
-export default function KeyPdfGenerator(props) {
+const KeyPdfGenerator = ({props}) => {
   return (
     <div className={styles.container}>
       <PDFViewer className={styles.viewer}>
@@ -18,3 +18,4 @@ export default function KeyPdfGenerator(props) {
     </div>
   )
 }
+export default KeyPdfGenerator

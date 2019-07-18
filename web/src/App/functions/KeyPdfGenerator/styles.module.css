@@ -1,9 +1,9 @@
-:local(.container) {
+.container {
   height: 750px;
   width: 100%;
 }
 
-:local(.viewer) {
+.viewer {
   height: 100%;
   width: 100%;
 }
