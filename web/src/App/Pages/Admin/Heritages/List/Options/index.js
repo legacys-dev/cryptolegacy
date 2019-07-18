@@ -1,27 +1,27 @@
 import React from 'react'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import Button from 'App/components/Parts/Button'
 
-const getStatus = function(props, status) {
-  return props.status === status
-}
-
-const heritagesTypes = [
-  {
-    name: 'Pendientes',
-    type: 'waiting'
-  },
-  {
-    name: 'En proceso',
-    type: 'available'
-  },
-  {
-    name: 'Reclamadas',
-    type: 'active'
+const Options = ({props}) => {
+  const getStatus = function(props, status) {
+    return props.status === status
   }
-]
 
-export default function Options(props) {
+  const heritagesTypes = [
+    {
+      name: 'Pendientes',
+      type: 'waiting'
+    },
+    {
+      name: 'En proceso',
+      type: 'available'
+    },
+    {
+      name: 'Reclamadas',
+      type: 'active'
+    }
+  ]
+
   const options = heritagesTypes.map((heritageType, index) => {
     const {name, type} = heritageType
     return (
@@ -37,3 +37,5 @@ export default function Options(props) {
   })
   return <div className={styles.container}>{options}</div>
 }
+
+export default Options
