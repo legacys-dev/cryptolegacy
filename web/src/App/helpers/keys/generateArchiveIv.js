@@ -1,7 +1,7 @@
 import {createEtherWallet} from 'App/helpers/ethers'
 import isEmpty from 'lodash/isEmpty'
 
-export default async function(archiveId) {
+export default async archiveId => {
   if (isEmpty(archiveId)) {
     throw new Error('Passphrase to create archive identificator vector is missing')
   }

@@ -1,7 +1,7 @@
 import {ethers} from './function'
 import isEmpty from 'lodash/isEmpty'
 
-export default async function(passphrase) {
+export default async passphrase => {
   if (isEmpty(passphrase)) throw new Error('Passphrase to create keys is missing')
 
   const dataInHex = Buffer.from(passphrase).toString('hex')
