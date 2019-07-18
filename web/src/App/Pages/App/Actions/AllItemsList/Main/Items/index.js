@@ -1,17 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import actionIcons from './actionIcons'
 import Action from './Action'
 import moment from 'moment'
 
-export default class Items extends React.Component {
-  static propTypes = {
-    items: PropTypes.array
-  }
-
-  renderTable() {
-    const actions = this.props.items || []
+const Items = ({items}) => {
+  const renderTable = () => {
+    const actions = items || []
     return actions.map((action, index) => {
       const Icon = actionIcons[action.data.action]
       return (
@@ -30,7 +25,7 @@ export default class Items extends React.Component {
     })
   }
 
-  renderFiles() {
+  const renderFiles = () => {
     return (
       <div className={styles.files}>
         <table className={styles.table}>
@@ -41,13 +36,12 @@ export default class Items extends React.Component {
               <td style={{width: '10%'}}>Fecha</td>
             </tr>
           </thead>
-          <tbody>{this.renderTable()}</tbody>
+          <tbody>{renderTable()}</tbody>
         </table>
       </div>
     )
   }
-
-  render() {
-    return <div className={styles.container}>{this.renderFiles()}</div>
-  }
+  return <div className={styles.container}>{renderFiles()}</div>
 }
+
+export default Items
