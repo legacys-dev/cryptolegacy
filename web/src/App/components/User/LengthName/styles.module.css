@@ -1,12 +1,12 @@
-:local(.container) {
+.container {
   margin-right: 5px;
   overflow: hidden;
   white-space: nowrap;
 }
 
-:local(.length) {
+.length {
 }
 
-:local(.length):hover {
+.length:hover {
   cursor: help;
 }

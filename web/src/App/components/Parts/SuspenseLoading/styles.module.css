@@ -1,4 +1,4 @@
-:local(.container) {
+.container {
   composes: loadingGlow from global;
   background-color: #eee;
   border-radius: 8px;
