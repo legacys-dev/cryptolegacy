@@ -1,8 +1,8 @@
-:local(.container) {
+.container {
   width: 100%;
 }
 
-:local(.user) {
+.user {
   cursor: pointer;
   color: inherit;
   font-size: 18px;
@@ -15,23 +15,23 @@
   -webkit-transition-duration: 300ms;
 }
 
-:local(.user):hover {
+.user:hover {
   background-color: #53caff30;
 }
 
-:local(.pic) {
+.pic {
   display: flex;
   align-items: center;
 }
 
-:local(.name) {
+.name {
   display: flex;
   align-items: center;
   font-size: 16px;
   margin-left: 15px;
 }
 
-:local(.arrow) {
+.arrow {
   display: flex;
   align-items: center;
   margin-left: 10px;

@@ -1,23 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import LengthName from 'App/components/User/LengthName'
 import {Vault} from 'App/components/Parts/Icons'
 import getSize from 'App/helpers/files/getSize'
 import Options from './Options'
 import moment from 'moment'
 
-export default class Items extends React.Component {
-  static propTypes = {
-    history: PropTypes.object,
-    items: PropTypes.array,
-    credentialType: PropTypes.string
-  }
-
-  state = {}
-
-  renderTable() {
-    const vaults = this.props.items || []
+const Items = ({history, items, credentialType}) => {
+  const renderTable = () => {
+    const vaults = items || []
     return vaults.map((vault, index) => {
       return (
         <tr className={styles.cell} key={index}>
@@ -31,14 +22,14 @@ export default class Items extends React.Component {
           <td>{getSize(vault.storageUsed)}</td>
           <td>{moment(vault.createdAt).format('LL')}</td>
           <td>
-            <Options vaultId={vault._id} credentialType={this.props.credentialType} />
+            <Options vaultId={vault._id} credentialType={credentialType} />
           </td>
         </tr>
       )
     })
   }
 
-  renderVaults() {
+  const renderVaults = () => {
     return (
       <div className={styles.vaults}>
         <table className={styles.table}>
@@ -52,13 +43,12 @@ export default class Items extends React.Component {
               <td>Acciones</td>
             </tr>
           </thead>
-          <tbody>{this.renderTable()}</tbody>
+          <tbody>{renderTable()}</tbody>
         </table>
       </div>
     )
   }
-
-  render() {
-    return <div className={styles.container}>{this.renderVaults()}</div>
-  }
+  return <div className={styles.container}>{renderVaults()}</div>
 }
+
+export default Items

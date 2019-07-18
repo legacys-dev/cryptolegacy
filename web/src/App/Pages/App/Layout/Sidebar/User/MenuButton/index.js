@@ -1,38 +1,30 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import {MdArrowDropDown} from 'react-icons/md'
 import {UserIcon} from 'App/components/Parts/Icons'
 import AppTypeMesssage from 'App/components/AppTypeMesssage'
 
-export default class MenuButton extends React.Component {
-  static propTypes = {
-    user: PropTypes.object,
-    toggleMenu: PropTypes.func
-  }
-
-  renderUserPic(user) {
+const MenuButton = ({user, toggleMenu}) => {
+  const renderUserPic = () => {
     return (
       <div className={styles.pic}>
         <UserIcon size={30} color={'#91a2b0'} />
       </div>
     )
   }
-
-  render() {
-    const {user, toggleMenu} = this.props
-    if (!user) return <span />
-    return (
-      <div className={styles.container} onClick={toggleMenu}>
-        <div className={styles.user}>
-          {this.renderUserPic()}
-          <div className={styles.name}> {user.name || 'Cuenta'} </div>
-          <div className={styles.arrow}>
-            <MdArrowDropDown size={20} />
-          </div>
+  if (!user) return <span />
+  return (
+    <div className={styles.container} onClick={toggleMenu}>
+      <div className={styles.user}>
+        {renderUserPic()}
+        <div className={styles.name}> {user.name || 'Cuenta'} </div>
+        <div className={styles.arrow}>
+          <MdArrowDropDown size={20} />
         </div>
-        <AppTypeMesssage />
       </div>
-    )
-  }
+      <AppTypeMesssage />
+    </div>
+  )
 }
+
+export default MenuButton
