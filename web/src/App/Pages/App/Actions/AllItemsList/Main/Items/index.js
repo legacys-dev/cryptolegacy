@@ -17,7 +17,7 @@ const Items = ({items}) => {
             </div>
           </td>
           <td style={{textAlign: 'left'}}>
-            <Action action={action} />
+            <Action actions={action} />
           </td>
           <td>{moment(action.createdAt).format('LLLL')}</td>
         </tr>
