@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.css'
 import Menu from './Menu'
-import Container from 'orionsoft-parts/lib/components/Container'
+import Container from 'App/components/Parts/Container/'
 
 const SideMenu = (children, links, title, rootPath, backPath) => {
   return (
@@ -13,9 +13,11 @@ const SideMenu = (children, links, title, rootPath, backPath) => {
     </div>
   )
 }
+
 SideMenu.defaultProps = {
   links: [],
   title: 'Admin',
   rootPath: '/'
 }
+
 export default SideMenu

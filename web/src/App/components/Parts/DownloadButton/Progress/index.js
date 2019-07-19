@@ -21,6 +21,7 @@ const Progress = ({total, loaded, close}) => {
       </div>
     )
   }
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>

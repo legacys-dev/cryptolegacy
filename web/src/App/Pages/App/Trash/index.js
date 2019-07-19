@@ -9,4 +9,5 @@ const Vaults = () => {
     </Switch>
   )
 }
+
 export default Vaults

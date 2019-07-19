@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 import {PDFViewer, Document} from '@react-pdf/renderer'
 import Resume from './Resume'
 
-const KeyPdfGenerator = ({props}) => {
+const KeyPdfGenerator = ({userData}) => {
   return (
     <div className={styles.container}>
       <PDFViewer className={styles.viewer}>
@@ -12,10 +12,11 @@ const KeyPdfGenerator = ({props}) => {
           keywords="Secret"
           subject="This document shown only once"
           title="CryptoLegacy secret user kit">
-          <Resume userData={props.userData} />
+          <Resume userData={userData} />
         </Document>
       </PDFViewer>
     </div>
   )
 }
+
 export default KeyPdfGenerator

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './styles.css'
-import Container from 'orionsoft-parts/lib/components/Container'
+import Container from 'App/components/Parts/Container/'
 import Translate from 'App/i18n'
 
 export default class ErrorHandler extends React.Component {

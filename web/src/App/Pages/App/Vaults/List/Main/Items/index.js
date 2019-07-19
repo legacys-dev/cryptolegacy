@@ -48,6 +48,7 @@ const Items = ({history, items, credentialType}) => {
       </div>
     )
   }
+
   return <div className={styles.container}>{renderVaults()}</div>
 }
 

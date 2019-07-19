@@ -12,6 +12,7 @@ const MenuButton = ({user, toggleMenu}) => {
       </div>
     )
   }
+
   if (!user) return <span />
   return (
     <div className={styles.container} onClick={toggleMenu}>

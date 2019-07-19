@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './styles.module.css'
-import PropTypes from 'prop-types'
 
 const Section = ({top}) => {
   return (
@@ -17,3 +16,5 @@ const Section = ({top}) => {
     </div>
   )
 }
+
+export default Section

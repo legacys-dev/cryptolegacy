@@ -15,6 +15,7 @@ const Text = ({onChange, value, fieldType, passProps, placeholder, errorMessage}
     </div>
   )
 }
+
 Text.defaultProps = {
   fieldType: 'text'
 }

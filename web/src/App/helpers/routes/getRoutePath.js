@@ -1,4 +1,4 @@
-export default ({path}) => {
+export default path => {
   const {pathname} = window.location
 
   if (!pathname) return

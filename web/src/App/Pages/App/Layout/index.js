@@ -2,7 +2,7 @@ import React from 'react'
 
 import styles from './styles.module.css'
 import Sidebar from './Sidebar'
-import Container from 'orionsoft-parts/lib/components/Container'
+import Container from 'App/components/Parts/Container/'
 
 const Layout = ({children}) => {
   return (
@@ -16,4 +16,5 @@ const Layout = ({children}) => {
     </div>
   )
 }
+
 export default Layout

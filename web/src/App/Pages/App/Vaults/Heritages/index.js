@@ -11,4 +11,5 @@ const Heritages = () => {
     </Switch>
   )
 }
+
 export default Heritages
