@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './styles.module.css'
-import PropTypes from 'prop-types'
 
 const Section = ({title, description, children, top}) => {
   return (
