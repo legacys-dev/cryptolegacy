@@ -1,6 +1,6 @@
 import * as openpgp from 'openpgp'
 
-export default async function({privateKey, passphrase, encryptedMessage}) {
+export default async ({privateKey, passphrase, encryptedMessage}) => {
   if (!privateKey) throw new Error('Invalid privateKey')
   if (typeof privateKey !== 'string') throw new Error('Invalid private key type')
   if (privateKey.length < 40) throw new Error('Invalid private key length')

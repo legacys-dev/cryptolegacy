@@ -10,7 +10,7 @@ const types = {
   local: 'Local mode'
 }
 
-export default function AppTypeMesssage() {
+const AppTypeMesssage = () => {
   const getTooltipMessage = type => {
     return <div className={styles.message}>{typeMessages[type]}</div>
   }
@@ -22,3 +22,5 @@ export default function AppTypeMesssage() {
     </div>
   )
 }
+
+export default AppTypeMesssage

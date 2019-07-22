@@ -3,7 +3,7 @@ import algorithm from './algorithm'
 import isEmpty from 'lodash/isEmpty'
 import cloneDeep from 'lodash/cloneDeep'
 
-export default function({encryptedItem, cipherPassword}) {
+export default ({encryptedItem, cipherPassword}) => {
   if (isEmpty(encryptedItem)) throw new Error('Missing meta data to decrypt')
   if (isEmpty(cipherPassword)) throw new Error('Missing meta data decrypt password')
 

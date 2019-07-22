@@ -1,0 +1,38 @@
+.container {
+  width: 100%;
+}
+
+.user {
+  cursor: pointer;
+  color: inherit;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 65px;
+  color: #7a7a7a;
+  -webkit-transition-property: background-color, padding;
+  -webkit-transition-duration: 300ms;
+}
+
+.user:hover {
+  background-color: #53caff30;
+}
+
+.pic {
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin-left: 15px;
+}
+
+.arrow {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}

@@ -1,7 +1,7 @@
 import crypto from 'crypto'
 import algorithm from './algorithm'
 
-export default function({encryptedItem, password, iv, type}) {
+export default ({encryptedItem, password, iv, type}) => {
   if (!encryptedItem || !password || !type) throw new Error('Missing information')
   if (password.length !== 32) throw new Error('Invalid user secret')
 

@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import MutationButton from 'App/components/MutationButton'
 
-export default function DeleteFile(props) {
+const DeleteFile = ({vaultPolicyId, vaultId, onDeleteSuccess}) => {
   return (
     <div className={styles.container}>
       <MutationButton
@@ -11,10 +11,12 @@ export default function DeleteFile(props) {
         confirmText="Eliminar"
         mutation="deleteHeritage"
         danger
-        params={{vaultPolicyId: props.vaultPolicyId, vaultId: props.vaultId}}
-        onSuccess={() => props.onDeleteSuccess()}>
+        params={{vaultPolicyId, vaultId}}
+        onSuccess={() => onDeleteSuccess()}>
         <div className={styles.delete}>Eliminar</div>
       </MutationButton>
     </div>
   )
 }
+
+export default DeleteFile

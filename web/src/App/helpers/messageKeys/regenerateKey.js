@@ -1,4 +1,4 @@
-export default function(k) {
+export default k => {
   if (!k) throw new Error('Error with keys elements')
   if (typeof k !== 'object') throw new Error('Error with key object, type is invalid')
 

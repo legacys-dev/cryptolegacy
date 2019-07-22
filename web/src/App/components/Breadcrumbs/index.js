@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 import {Link} from 'react-router-dom'
 import {MdKeyboardArrowRight} from 'react-icons/md'
 
-export default function Breadcrumbs({past, children, right, divider}) {
+const Breadcrumbs = ({past, children, right, divider}) => {
   const getPast = () => {
     if (!past) return []
     return Object.keys(past).map(path => {
@@ -52,3 +52,5 @@ export default function Breadcrumbs({past, children, right, divider}) {
     </div>
   )
 }
+
+export default Breadcrumbs

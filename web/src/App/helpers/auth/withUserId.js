@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import withSession from './withSession'
 
-export default function(ComposedComponent) {
+export default ComposedComponent => {
   class WithUserId extends React.Component {
     static propTypes = {
       session: PropTypes.object

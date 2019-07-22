@@ -1,26 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import Loading from 'orionsoft-parts/lib/components/Loading'
 
-export default class LoadingComponent extends React.Component {
-  static propTypes = {
-    size: PropTypes.number,
-    thickness: PropTypes.number
-  }
-
-  static defaultProps = {
-    size: 50,
-    thickness: 3
-  }
-
-  render() {
-    return (
-      <div className={styles.container}>
-        <div className={styles.loading}>
-          <Loading color="#0053b3" size={this.props.size} thickness={this.props.thickness} />
-        </div>
+const LoadingComponent = ({size, thickness}) => {
+  return (
+    <div className={styles.container}>
+      <div className={styles.loading}>
+        <Loading color="#0053b3" size={size} thickness={thickness} />
       </div>
-    )
-  }
+    </div>
+  )
 }
+
+LoadingComponent.defaultProps = {
+  size: 50,
+  thickness: 3
+}
+
+export default LoadingComponent

@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import MutationButton from 'App/components/MutationButton'
 
-export default function DeleteFile(props) {
+const DeleteFile = ({userId, filesCount, onDeleteSuccess}) => {
   return (
     <div className={styles.container}>
       <MutationButton
@@ -11,11 +11,13 @@ export default function DeleteFile(props) {
         message="¿Confirmas que quieres eliminar todos los archivos de esta sección?"
         confirmText="Eliminar"
         mutation="emptyTrash"
-        disabled={!props.filesCount}
+        disabled={!filesCount}
         danger
-        params={{userId: props.userId}}
-        onSuccess={() => props.onDeleteSuccess()}
+        params={{userId: userId}}
+        onSuccess={() => onDeleteSuccess()}
       />
     </div>
   )
 }
+
+export default DeleteFile

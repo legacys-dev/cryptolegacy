@@ -1,6 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import {Route, Switch} from 'react-router-dom'
 import Tabs from 'orionsoft-parts/lib/components/Tabs'
 import Breadcrumbs from 'App/components/Breadcrumbs'
@@ -8,31 +7,27 @@ import Security from './Security'
 import Profile from './Profile'
 import Translate from 'App/i18n'
 
-export default class Layout extends React.Component {
-  static propTypes = {
-    children: PropTypes.node
-  }
-
-  render() {
-    return (
-      <div>
-        <div className={styles.header}>
-          <Breadcrumbs>
-            <Translate tr="settings.title" />
-          </Breadcrumbs>
-          <br />
-          <Tabs
-            items={[
-              {title: <Translate tr="settings.profile" />, path: '/settings'},
-              {title: <Translate tr="settings.security" />, path: '/settings/security'}
-            ]}
-          />
-        </div>
-        <Switch>
-          <Route exact path="/settings" component={Profile} />
-          <Route path="/settings/security" component={Security} />
-        </Switch>
+const Layout = ({children}) => {
+  return (
+    <div>
+      <div className={styles.header}>
+        <Breadcrumbs>
+          <Translate tr="settings.title" />
+        </Breadcrumbs>
+        <br />
+        <Tabs
+          items={[
+            {title: <Translate tr="settings.profile" />, path: '/settings'},
+            {title: <Translate tr="settings.security" />, path: '/settings/security'}
+          ]}
+        />
       </div>
-    )
-  }
+      <Switch>
+        <Route exact path="/settings" component={Profile} />
+        <Route path="/settings/security" component={Security} />
+      </Switch>
+    </div>
+  )
 }
+
+export default Layout

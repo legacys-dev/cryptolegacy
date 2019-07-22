@@ -1,6 +1,6 @@
 import * as openpgp from 'openpgp'
 
-export default async function({passphrase}) {
+export default async ({passphrase}) => {
   if (!passphrase) throw new Error('Invalid passphrase')
   if (typeof passphrase !== 'string') throw new Error('Invalid passphrase type')
   if (passphrase.length < 21) throw new Error('Invalid passphrase length')

@@ -1,46 +1,35 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
+import React, {useState} from 'react'
+import styles from './styles.module.css'
 import Manager from './Manager'
 import {MdFileUpload} from 'react-icons/md/'
 import Button from 'App/components/Parts/Button'
 
-export default class FileManager extends React.Component {
-  static propTypes = {
-    value: PropTypes.object,
-    label: PropTypes.string,
-    errorMessage: PropTypes.node
-  }
+const FileManager = ({value, label, errorMessage}) => {
+  const [open, setOpen] = useState(false)
 
-  state = {open: false}
-
-  renderValue() {
+  const renderValue = () => {
     return (
       <div className={styles.upload}>
-        <Button
-          primary
-          icon={MdFileUpload}
-          onClick={() => this.setState({open: true})}
-          loading={this.state.loading}>
+        <Button primary icon={MdFileUpload} onClick={() => setOpen(true)}>
           Start upload
         </Button>
       </div>
     )
   }
 
-  renderManager() {
-    if (!this.state.open) return
-    return <Manager {...this.props} close={() => this.setState({open: false})} />
+  const renderManager = () => {
+    if (!open) return
+    return <Manager close={() => setOpen(false)} />
   }
 
-  render() {
-    return (
-      <div className={styles.container}>
-        <div className="label">{this.props.label}</div>
-        {this.renderManager()}
-        {this.renderValue()}
-        <div className={styles.error}>{this.props.errorMessage}</div>
-      </div>
-    )
-  }
+  return (
+    <div className={styles.container}>
+      <div className="label">{label}</div>
+      {renderManager()}
+      {renderValue()}
+      <div className={styles.error}>{errorMessage}</div>
+    </div>
+  )
 }
+
+export default FileManager

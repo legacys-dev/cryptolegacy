@@ -2,8 +2,8 @@ import React from 'react'
 import moment from 'moment'
 import {Body, Header, Title, Images, Logo, Picture, Paragraph, Code} from './pdfItems'
 
-export default function Resume(props) {
-  const {userName, userLastName, userMasterKey, createdAt} = props.userData
+const Resume = ({userData}) => {
+  const {userName, userLastName, userMasterKey, createdAt} = userData
   if (!userMasterKey) return <span />
 
   return (
@@ -27,3 +27,5 @@ export default function Resume(props) {
     </Body>
   )
 }
+
+export default Resume

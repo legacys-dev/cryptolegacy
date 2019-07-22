@@ -3,7 +3,7 @@ import algorithm from './algorithm'
 import isEmpty from 'lodash/isEmpty'
 import cloneDeep from 'lodash/cloneDeep'
 
-export default function({itemToEncrypt, cipherPassword, archiveIv}) {
+export default ({itemToEncrypt, cipherPassword, archiveIv}) => {
   if (isEmpty(itemToEncrypt)) throw new Error('Missing archive to encrypt')
   if (isEmpty(cipherPassword)) throw new Error('Missing archive encrypt password')
   if (isEmpty(archiveIv)) throw new Error('Missing archive identificator vector')
