@@ -5,6 +5,7 @@ import logout from 'App/helpers/auth/logout'
 import {withRouter} from 'react-router'
 import PropTypes from 'prop-types'
 import Translate from 'App/i18n'
+import translate from 'App/i18n/translate'
 
 @withRouter
 export default class Logout extends React.Component {
@@ -20,13 +21,13 @@ export default class Logout extends React.Component {
     return (
       <div className={styles.container}>
         <p>
-          {Translate('auth.youAreLoggedIn')}
+          {translate('auth.youAreLoggedIn')}
         </p>
         <Button onClick={() => this.props.history.push('/')}>
-          {Translate('auth.goHome')}
+          {translate('auth.goHome')}
         </Button>
         <Button onClick={this.logout} danger>
-          {Translate('auth.signOut')}
+          {translate('auth.signOut')}
         </Button>
       </div>
     )
