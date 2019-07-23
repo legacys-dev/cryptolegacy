@@ -10,7 +10,7 @@ import Button from 'App/components/Parts/Button'
 import AutoForm from 'App/components/AutoForm'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
-import translate from 'App/i18n'
+import translate from 'App/i18n/translate'
 
 @withValidHeir
 @withRouter
@@ -26,7 +26,7 @@ export default class Claim extends React.Component {
   @autobind
   onSuccess() {
     const {showMessage, history} = this.props
-    showMessage('Se ha validado tu herencia')
+    showMessage(translate('heritages.heritageValidated'))
     history.push('/')
   }
 
@@ -52,7 +52,7 @@ export default class Claim extends React.Component {
           />
           <div className={styles.button}>
             <Button primary onClick={() => this.refs.form.submit()} fullWidth>
-              Heredar
+              {translate('heritages.heritageButton')}
             </Button>
           </div>
         </div>
