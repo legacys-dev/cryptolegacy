@@ -9,6 +9,7 @@ import AutoForm from 'App/components/AutoForm'
 import Section from 'App/components/Section'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
+import translate from 'App/i18n/translate'
 
 @withRouter
 @withMessage
@@ -21,7 +22,7 @@ export default class Create extends React.Component {
   @autobind
   onSuccess() {
     const {showMessage, history} = this.props
-    showMessage('Bóveda creada correctamente')
+    showMessage(translate('vaults.vaultCreatedSuccesfully'))
     history.push('/vaults')
   }
 
@@ -30,7 +31,7 @@ export default class Create extends React.Component {
       <div className={styles.buttons}>
         <Button onClick={() => this.props.history.push('/vaults')}>Volver</Button>
         <Button primary onClick={() => this.refs.form.submit()}>
-          Crear bóveda
+          {translate('vaults.createVault')}
         </Button>
       </div>
     )
@@ -39,9 +40,9 @@ export default class Create extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Breadcrumbs past={{[`/vaults`]: 'Bóvedas'}}>Crear bóveda</Breadcrumbs>
+        <Breadcrumbs past={{[`/vaults`]: translate('vaults.vaults')}}>{translate('vaults.createVault')}</Breadcrumbs>
         <div className={styles.content}>
-          <Section top title="Crear bóveda" description="description">
+          <Section top title={translate('vaults.createVault')} description={translate('vaults.description')}>
             <AutoForm
               mutation="createVault"
               ref="form"
