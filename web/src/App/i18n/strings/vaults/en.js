@@ -10,5 +10,10 @@ export default {
   heritages: 'Heritages',
   deleteHeritageMessage: 'An heritage have been deleted correctly',
   inheritor: 'Inheritor',
-  creationDate: 'Creation date'
+  creationDate: 'Creation date',
+  vaultUpdatedSuccessfully: 'Vault updated successfully',
+  vaultDeletedSuccessfully: 'Vault deleted successfully',
+  updateVault:'Update valut',
+  delete:'Delete',
+  deleteMessage:'¿Do you confirm want to delete this vault?'
 }

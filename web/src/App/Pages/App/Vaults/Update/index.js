@@ -12,6 +12,7 @@ import Section from 'App/components/Section'
 import Loading from 'App/components/Parts/Loading'
 import gql from 'graphql-tag'
 import Delete from './Delete'
+import translate from 'App/i18n/translate'
 
 @withGraphQL(
   gql`
@@ -36,13 +37,13 @@ export default class Update extends React.Component {
   @autobind
   onSuccess() {
     const {showMessage} = this.props
-    showMessage('Bóveda actualizada correctamente')
+    showMessage(translate('vaults.vaultUpdatedSuccessfully'))
   }
 
   @autobind
   onDeleteSuccess() {
     const {showMessage, history} = this.props
-    showMessage('Bóveda eliminada correctamente')
+    showMessage(translate('vaults.vaultDeletedSuccessfully'))
     history.push('/vaults')
   }
 
@@ -59,10 +60,10 @@ export default class Update extends React.Component {
     const {vault, history} = this.props
     return (
       <div className={styles.buttons}>
-        <Button onClick={() => history.push('/vaults')}>Volver</Button>
+        <Button onClick={() => history.push('/vaults')}>{translate('vaults.back')}</Button>
         <Delete vaultId={vault._id} onDeleteSuccess={this.onDeleteSuccess} />
         <Button primary onClick={() => this.refs.form.submit()}>
-          Actualizar bóveda
+          {translate('vaults.updateVault')}
         </Button>
       </div>
     )
@@ -73,10 +74,10 @@ export default class Update extends React.Component {
     return (
       <div className={styles.container}>
         <Breadcrumbs past={{[`/vaults`]: 'Bóvedas'}} right={this.renderHeritageOptions()}>
-          Actualizar bóveda ({vault.name})
+          {translate('vaults.updateVault')} ({vault.name})
         </Breadcrumbs>
         <div className={styles.content}>
-          <Section top title="Actualizar bóveda" description="description">
+          <Section top title={translate('vaults.updateVault')} description={translate('vaults.description')}>
             <AutoForm
               mutation="updateVault"
               omit="vaultId"
