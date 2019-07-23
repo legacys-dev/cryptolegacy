@@ -10,5 +10,10 @@ export default {
   heritages: 'Herencias',
   deleteHeritageMessage: 'Se ha eliminado una herencia correctamente',
   inheritor: 'Heredero',
-  creationDate: 'Fecha de creación'
+  creationDate: 'Fecha de creación',
+  createVault: 'Crear bóveda',
+  vaults: 'Bóvedas',
+  files: 'Archivos',
+  storage: 'Almacenamiento',
+  actions: 'Acciones'
 }

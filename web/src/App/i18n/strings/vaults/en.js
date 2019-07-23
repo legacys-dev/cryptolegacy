@@ -10,5 +10,10 @@ export default {
   heritages: 'Heritages',
   deleteHeritageMessage: 'An heritage have been deleted correctly',
   inheritor: 'Inheritor',
-  creationDate: 'Creation date'
+  creationDate: 'Creation date',
+  createVault: 'Create vault',
+  vaults: 'Vaults',
+  files: 'Files',
+  storage: 'Storage',
+  actions: 'Actions'
 }
