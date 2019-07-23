@@ -64,7 +64,7 @@ export default class ResetPassword extends React.Component {
   renderDescription() {
     return (
       <div className={styles.description}>
-        <Translate tr="auth.passwordRequirements" />
+        {translate('auth.passwordRequirements')}
       </div>
     )
   }
@@ -73,7 +73,7 @@ export default class ResetPassword extends React.Component {
     return (
       <div className={styles.button}>
         <Button onClick={() => this.refs.form.submit()} primary>
-          <Translate tr="auth.resetPassword" />
+          {translate('auth.resetPassword')}
         </Button>
       </div>
     )
@@ -83,7 +83,7 @@ export default class ResetPassword extends React.Component {
     if (this.props.userId) return <LoggedIn />
     return (
       <div>
-        <Title text="auth.resetPassword" />
+        {translate('auth.resetPassword')}
         <AutoForm
           doc={{token: this.props.token}}
           mutation="resetPassword"

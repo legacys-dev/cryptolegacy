@@ -24,5 +24,10 @@ export default {
   forgotPassword: '¿Olvidaste tu contraseña?',
   confirmEmail: 'Confirmar email',
   createPassword: 'Crear contraseña',
-  sharedHardware: 'Este es un equipo público o compartido'
+  sharedHardware: 'Este es un equipo público o compartido',
+  accountCreatedSuccessfully: 'Cuenta creada con éxito',
+  enterPassword: 'Ingresa tu contraseña',
+  loginSuccessfully:'Ingreso exitoso',
+  masterKey:'Llave maestra',
+  timeLimitMessage:'El tiempo válido para ingresar el código ha caducado'
 }

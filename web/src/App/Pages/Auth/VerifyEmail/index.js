@@ -9,6 +9,7 @@ import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 import Translate from 'App/i18n'
+import translate from 'App/i18n/translate'
 
 @withRouter
 @withValidToken
@@ -30,7 +31,7 @@ export default class VerifyEmail extends React.Component {
 
   @autobind
   onError() {
-    this.props.showMessage('El tiempo válido para ingresar el código ha caducado')
+    this.props.showMessage(translate('auth.timeLimitMessage'))
     this.props.history.push('/register')
   }
 

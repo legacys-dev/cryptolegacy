@@ -8,6 +8,7 @@ import LoggedIn from '../LoggedIn'
 import {Link} from 'react-router-dom'
 import Title from 'App/components/Auth/Title'
 import Translate from 'App/i18n'
+import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
 import withUserId from 'App/helpers/auth/withUserId'
 import {withRouter} from 'react-router'
@@ -30,9 +31,9 @@ export default class Register extends React.Component {
   renderLogInLink() {
     return (
       <div className={styles.link}>
-        <Translate tr="auth.ifYouHaveAnAccount" />{' '}
+        {translate('auth.ifYouHaveAnAccount')}{' '}
         <Link to="/login" style={{color: '#0053b3'}}>
-          <Translate tr="auth.loginNow" />
+          {translate('auth.loginNow')}
         </Link>
       </div>
     )
@@ -42,7 +43,7 @@ export default class Register extends React.Component {
     return (
       <div className={styles.button}>
         <Button primary fullWidth onClick={() => this.refs.form.submit()}>
-          <Translate tr="auth.createAccount" />
+          {translate('auth.createAccount')}
         </Button>
       </div>
     )

@@ -24,5 +24,9 @@ export default {
   forgotPassword: 'Forgot password?',
   confirmEmail: 'Confirm email',
   createPassword: 'Create password',
-  sharedHardware: 'This is a public or shared computer'
+  sharedHardware: 'This is a public or shared computer',
+  accountCreatedSuccessfully:'Account created successfully',
+  enterPassword:'Enter your password',
+  loginSuccessfully:'Login successfully',
+  masterKey:'Master key'
 }

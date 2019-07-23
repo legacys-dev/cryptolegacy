@@ -13,6 +13,7 @@ import {setSession} from '@orion-js/graphql-client'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 import Translate from 'App/i18n'
+import translate from 'App/i18n/translate'
 
 @withRouter
 @withValidToken
@@ -27,13 +28,13 @@ export default class CreatePassword extends React.Component {
 
   state = {}
 
-  @autobind
+  @autobind 
   async onSuccess(response) {
     const {session, emergencyKitId, encryptedKeysForMessages, k} = response
     await sleep(1000)
     try {
       await setSession(session)
-      this.props.showMessage('Account created successfully')
+      this.props.showMessage(translate('auth.accountCreatedSuccessfully'))
       await setUserMessageKeys(k, encryptedKeysForMessages)
       const params = {emergencyKitId}
       this.props.onLogin(params)
@@ -59,13 +60,13 @@ export default class CreatePassword extends React.Component {
           ref="form"
           doc={{token: params.token}}>
           <Field
-            placeholder="Ingresa tu contraseña"
+            placeholder={translate('auth.enterPassword')}
             fieldName="password"
             type={Text}
             fieldType="password"
           />
           <Field
-            placeholder="Confirma tu contraseña"
+            placeholder={translate('auth.confirmPassword')}
             fieldName="confirmPassword"
             type={Text}
             fieldType="password"
@@ -76,7 +77,7 @@ export default class CreatePassword extends React.Component {
           fullWidth
           onClick={() => this.refs.form.submit()}
           disabled={!password || !confirmPassword}>
-          <Translate tr="auth.createPassword" />
+            {translate('auth.createPassword')}
         </Button>
       </div>
     )

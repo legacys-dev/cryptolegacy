@@ -34,7 +34,8 @@ export default class Login extends React.Component {
     await sleep(1000)
     try {
       await setSession(session)
-      this.props.showMessage('Login successfully')
+
+      this.props.showMessage(translate('auth.loginSuccessfully'))
       await setUserMessageKeys(this.state.userMasterKey, encryptedKeysForMessages)
       this.setState({userMasterKey: undefined})
       this.props.onLogin()
@@ -52,7 +53,7 @@ export default class Login extends React.Component {
     return (
       <div className={styles.forgotLink}>
         <Link to="/forgot" style={{color: '#0053b3'}}>
-          <Translate tr="auth.forgotMyPassword" />
+          {translate('auth.forgotMyPassword')}
         </Link>
       </div>
     )
@@ -66,10 +67,10 @@ export default class Login extends React.Component {
           fullWidth
           onClick={() => this.refs.form.submit()}
           loading={this.props.loading}>
-          <Translate tr="auth.login" />
+          {translate('auth.login')}
         </Button>
         <Button fullWidth to="/register">
-          <Translate tr="auth.createAnAccount" />
+          {translate('auth.createAnAccount')}
         </Button>
       </div>
     )
@@ -95,7 +96,7 @@ export default class Login extends React.Component {
           <Field
             fieldName="masterKey"
             type={Text}
-            placeholder="Master key"
+            placeholder={translate('auth.masterKey')}
             autoComplete="new-password"
           />
           <Field

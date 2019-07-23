@@ -20,13 +20,13 @@ export default class Logout extends React.Component {
     return (
       <div className={styles.container}>
         <p>
-          <Translate tr="auth.youAreLoggedIn" />
+          {Translate('auth.youAreLoggedIn')}
         </p>
         <Button onClick={() => this.props.history.push('/')}>
-          <Translate tr="auth.goHome" />
+          {Translate('auth.goHome')}
         </Button>
         <Button onClick={this.logout} danger>
-          <Translate tr="auth.signOut" />
+          {Translate('auth.signOut')}
         </Button>
       </div>
     )
