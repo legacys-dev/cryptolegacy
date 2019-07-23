@@ -6,6 +6,7 @@ import files from './files'
 import vaults from './vaults'
 import actions from './actions'
 import heritages from './heritages'
+import emergency from './emergency'
 
 export default {
   actions,
@@ -15,5 +16,6 @@ export default {
   auth,
   files,
   vaults,
-  heritages
+  heritages,
+  emergency
 }
