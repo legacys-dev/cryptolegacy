@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.css'
 import LengthName from 'App/components/User/LengthName'
-import translate from 'App/i18n'
+import translate from 'App/i18n/translate'
 
 const Action = ({actions}) => {
   const renderLargeMessage = (firstText, firstName, secondText, secondName) => {

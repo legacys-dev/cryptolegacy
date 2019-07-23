@@ -5,20 +5,20 @@ import Tabs from 'orionsoft-parts/lib/components/Tabs'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import Security from './Security'
 import Profile from './Profile'
-import Translate from 'App/i18n'
+import translate from 'App/i18n/translate'
 
 const Layout = ({children}) => {
   return (
     <div>
       <div className={styles.header}>
         <Breadcrumbs>
-          <Translate tr="settings.title" />
+          {translate('settings.title')}
         </Breadcrumbs>
         <br />
         <Tabs
           items={[
-            {title: <Translate tr="settings.profile" />, path: '/settings'},
-            {title: <Translate tr="settings.security" />, path: '/settings/security'}
+            {title: translate('settings.profile'), path: '/settings'},
+            {title: translate('settings.security'), path: '/settings/security'}
           ]}
         />
       </div>

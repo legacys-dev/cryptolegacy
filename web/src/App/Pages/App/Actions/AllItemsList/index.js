@@ -6,7 +6,7 @@ import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import gql from 'graphql-tag'
 import Main from './Main'
-import translate from 'App/i18n'
+import translate from 'App/i18n/translate'
 
 @withGraphQL(gql`
   query me {

@@ -10,6 +10,7 @@ import Button from 'App/components/Parts/Button'
 import AutoForm from 'App/components/AutoForm'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
+import translate from 'App/i18n'
 
 @withValidHeir
 @withRouter
@@ -37,7 +38,7 @@ export default class Claim extends React.Component {
             <Alert size={60} />
           </div>
           <div className={styles.title}>
-            Ingresa el código para heredar la bóveda <strong>#{this.props.vaultName}</strong>.
+            {translate('heritages.enterCodeToInheritVault')} <strong>#{this.props.vaultName}</strong>.
           </div>
           <AutoForm
             mutation="claimHeritage"

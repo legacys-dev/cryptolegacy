@@ -1,3 +1,4 @@
 export default {
-  notFound: 'No se encontraron herencias'
+  notFound: 'No se encontraron herencias',
+  enterCodeToInheritVault: 'Ingresa el código para heredar la bóveda'
 }

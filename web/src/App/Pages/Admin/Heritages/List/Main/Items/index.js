@@ -6,7 +6,7 @@ import EnableHeritage from 'App/components/Parts/EnableHeritage'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import autobind from 'autobind-decorator'
 import moment from 'moment'
-import translate from 'App/i18n'
+import translate from 'App/i18n/translate'
 
 @withMessage
 export default class Items extends React.Component {

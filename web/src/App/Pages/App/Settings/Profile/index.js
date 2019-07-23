@@ -7,7 +7,6 @@ import AutoForm from 'App/components/AutoForm'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import translate from 'App/i18n/translate'
-import Translate from 'App/i18n'
 import gql from 'graphql-tag'
 
 const fragment = gql`
@@ -56,7 +55,7 @@ export default class Profile extends React.Component {
           />
           <br />
           <Button onClick={() => this.refs.form.submit()} primary>
-            <Translate tr="global.save" />
+            {translate('global.save')}
           </Button>
         </Section>
       </div>
