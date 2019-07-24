@@ -23,6 +23,5 @@ export default {
   size: 'Size',
   actions: 'Actions',
   search: 'Search',
-  own: 'Own',
-  heritages: 'Heritages'
+  own: 'Own'
 }

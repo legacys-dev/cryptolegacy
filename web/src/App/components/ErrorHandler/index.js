@@ -15,7 +15,7 @@ export default class ErrorHandler extends React.Component {
     if (!error.isApolloError) throw error
     console.log('Apollo error', error.errors)
   }
-  // 
+
   renderError() {
     return (
       <div className={styles.container}>

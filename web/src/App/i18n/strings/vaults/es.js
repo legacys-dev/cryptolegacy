@@ -23,6 +23,5 @@ export default {
   size: 'Tamaño',
   actions: 'Acciones',
   search: 'Buscar',
-  own: 'Dueño',
-  heritages: 'Herencias'
+  own: 'Dueño'
 }

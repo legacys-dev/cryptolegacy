@@ -11,6 +11,7 @@ import Text from 'App/components/fields/Text'
 import autobind from 'autobind-decorator'
 import gql from 'graphql-tag'
 import Main from './Main'
+import translate from 'App/i18n/translate'
 
 @forceLogin
 @withGraphQL(
