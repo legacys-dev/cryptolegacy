@@ -9,6 +9,7 @@ import Heritages from './Heritages'
 import SideMenu from './SideMenu'
 import gql from 'graphql-tag'
 import links from './links'
+import translate from 'App/i18n/translate'
 
 @forceLogin
 @withGraphQL(gql`
@@ -25,7 +26,7 @@ export default class Admin extends React.Component {
   }
 
   renderWithoutPermissions() {
-    return <div className={styles.permissions}>No tienes permisos</div>
+    return <div className={styles.permissions}>{translate('admin.youHaveNotPermissions')}</div>
   }
 
   render() {

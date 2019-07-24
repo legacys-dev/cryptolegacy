@@ -1,6 +1,8 @@
+import translate from 'App/i18n/translate'
+
 export default [
   {
-    title: 'Herencias',
+    title: translate('admin.heritages'),
     path: '/admin/heritages'
   }
 ]
