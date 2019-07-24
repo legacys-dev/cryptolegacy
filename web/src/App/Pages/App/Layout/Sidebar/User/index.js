@@ -12,6 +12,7 @@ import {Configuration} from 'App/components/Parts/Icons'
 import autobind from 'autobind-decorator'
 import MenuButton from './MenuButton'
 import gql from 'graphql-tag'
+import translate from 'App/i18n/translate'
 
 @withGraphQL(
   gql`
@@ -68,7 +69,7 @@ export default class User extends React.Component {
     if (!me || !me.roles || !me.roles.includes('admin')) return
     return (
       <Link to="/admin">
-        {this.renderOption(styles.options, <MdWork size={20} />, 'Admin panel')}
+        {this.renderOption(styles.options, <MdWork size={20} />, translate('sidebar.adminPanel'))}
       </Link>
     )
   }
@@ -92,13 +93,13 @@ export default class User extends React.Component {
           <div className={styles.email}>{this.props.me.email}</div>
         </Link>
         <Link to="/settings">
-          {this.renderOption(styles.options, <Configuration size={20} />, 'Mi cuenta')}
+          {this.renderOption(styles.options, <Configuration size={20} />, translate('sidebar.account'))}
         </Link>
         {this.renderAdmin()}
         <div className={styles.logoutIcons}>
           <a onClick={this.logout} className={styles.menuLink}>
             <MdExitToApp size={25} />
-            <div>Salir</div>
+            <div>{translate('sidebar.account')}</div>
           </a>
         </div>
       </div>
