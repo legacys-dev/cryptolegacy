@@ -13,13 +13,13 @@ export default {
   creationDate: 'Creation date',
   vaultUpdatedSuccessfully: 'Vault updated successfully',
   vaultDeletedSuccessfully: 'Vault deleted successfully',
-  updateVault:'Update valut',
-  delete:'Delete',
-  deleteMessage:'¿Do you confirm want to delete this vault?',
+  updateVault: 'Update valut',
+  delete: 'Delete',
+  deleteMessage: '¿Do you confirm want to delete this vault?',
   createVault: 'Create vault',
   vaults: 'Vaults',
   files: 'Files',
   storage: 'Storage',
   actions: 'Actions',
-  search:'Search'
+  search: 'Search'
 }

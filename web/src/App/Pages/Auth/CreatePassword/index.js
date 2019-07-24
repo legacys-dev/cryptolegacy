@@ -12,7 +12,6 @@ import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import {setSession} from '@orion-js/graphql-client'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
-import Translate from 'App/i18n'
 import translate from 'App/i18n/translate'
 
 @withRouter
@@ -27,8 +26,7 @@ export default class CreatePassword extends React.Component {
   }
 
   state = {}
-
-  @autobind 
+  @autobind
   async onSuccess(response) {
     const {session, emergencyKitId, encryptedKeysForMessages, k} = response
     await sleep(1000)

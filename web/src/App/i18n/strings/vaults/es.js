@@ -13,13 +13,13 @@ export default {
   creationDate: 'Fecha de creación',
   vaultUpdatedSuccessfully: 'Bóveda actualizada correctamente',
   vaultDeletedSuccessfully: 'Bóveda eliminada correctamente',
-  updateVault:'Actualizar bóveda',
-  delete:'Borrar',
-  deleteMessage:'¿Confirmas que quieres eliminar esta bóveda?',
+  updateVault: 'Actualizar bóveda',
+  delete: 'Borrar',
+  deleteMessage: '¿Confirmas que quieres eliminar esta bóveda?',
   createVault: 'Crear bóveda',
   vaults: 'Bóvedas',
   files: 'Archivos',
   storage: 'Almacenamiento',
   actions: 'Acciones',
-  search:'Buscar'
+  search: 'Buscar'
 }

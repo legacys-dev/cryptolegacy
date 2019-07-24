@@ -5,7 +5,6 @@ import Button from 'App/components/Parts/Button'
 import {withRouter} from 'react-router'
 import translate from 'App/i18n/translate'
 
-
 @withRouter
 export default class Footer extends React.Component {
   static propTypes = {

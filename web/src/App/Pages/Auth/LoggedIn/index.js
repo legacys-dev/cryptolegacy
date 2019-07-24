@@ -4,7 +4,6 @@ import Button from 'App/components/Parts/Button'
 import logout from 'App/helpers/auth/logout'
 import {withRouter} from 'react-router'
 import PropTypes from 'prop-types'
-import Translate from 'App/i18n'
 import translate from 'App/i18n/translate'
 
 @withRouter
