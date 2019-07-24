@@ -8,7 +8,7 @@ import RestoreFile from 'App/components/Parts/RestoreFile'
 import mime from 'mime-types'
 import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
-import translate from 'App/i18/translate'
+import translate from 'App/i18n/translate'
 
 const storage = {
   b2: 'simple storage',
