@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.css'
 import Container from 'App/components/Parts/Container/'
-import Translate from 'App/i18n'
+import translate from 'App/i18n/translate'
 
 export default class ErrorHandler extends React.Component {
   state = {}
@@ -21,7 +21,7 @@ export default class ErrorHandler extends React.Component {
       <div className={styles.container}>
         <div className={styles.title}>
           <Container>
-            <Translate tr="misc.error" />
+            {translate('misc.error')}
           </Container>
         </div>
         <div className={styles.message}>

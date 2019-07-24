@@ -8,7 +8,6 @@ import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
-import Translate from 'App/i18n'
 import translate from 'App/i18n/translate'
 
 @withRouter
@@ -56,7 +55,7 @@ export default class VerifyEmail extends React.Component {
         />
         <div className={styles.button}>
           <Button primary fullWidth onClick={() => this.refs.form.submit()} disabled={!code}>
-            <Translate tr="auth.confirmEmail" />
+            {translate('auth.confirmEmail')}
           </Button>
         </div>
       </div>

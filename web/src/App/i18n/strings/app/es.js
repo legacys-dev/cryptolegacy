@@ -1,5 +1,6 @@
 export default{
     actions: 'Acciones',
+    search: 'Buscar',
     uploadFIle: 'Subiste el archivo',
     downloadFIle: 'Descargaste el archivo',
     deleteFile: 'Elimnaste el archivo',
