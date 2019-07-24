@@ -20,6 +20,9 @@ export default {
   vaults: 'Vaults',
   files: 'Files',
   storage: 'Storage',
+  size: 'Size',
   actions: 'Actions',
-  search: 'Search'
+  search: 'Search',
+  own: 'Own',
+  heritages: 'Heritages'
 }
