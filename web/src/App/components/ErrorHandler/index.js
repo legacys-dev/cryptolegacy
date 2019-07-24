@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.css'
 import Container from 'App/components/Parts/Container/'
-import translate from 'App/i18n/translate'
+import Translate from 'App/i18n'
 
 export default class ErrorHandler extends React.Component {
   state = {}
@@ -15,13 +15,13 @@ export default class ErrorHandler extends React.Component {
     if (!error.isApolloError) throw error
     console.log('Apollo error', error.errors)
   }
-
+  // 
   renderError() {
     return (
       <div className={styles.container}>
         <div className={styles.title}>
           <Container>
-            {translate('misc.error')}
+            <Translate tr="misc.error" />
           </Container>
         </div>
         <div className={styles.message}>
