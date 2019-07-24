@@ -111,7 +111,7 @@ export default class Enable extends React.Component {
         </p>
         <br />
         <p className={styles.instructionStep}>
-        {translate('settings.twoFactorStep3')}
+          {translate('settings.twoFactorStep3')}
         </p>
         <Form state={this.state} onChange={changes => this.setState(changes)}>
           <Field fieldName="code" type={SixDigitInput} />

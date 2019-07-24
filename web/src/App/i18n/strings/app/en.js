@@ -1,5 +1,6 @@
 export default{
     actions: 'Actions',
+    search: 'Search',
     uploadFIle: 'You have upload the file',
     downloadFIle: 'You have download the file',
     deleteFile: 'You have delete the file',
@@ -8,6 +9,13 @@ export default{
     updateVault: 'You have update the vault\'s name',
     deleteVault: 'You have delete the vault',
     fromVault: 'from the vault',
+    deleteFileMessage: 'The files have been deleted correctly',
+    restoreFileMessage: 'File restores succesfully',
+    fileOnDelete: 'Files in elimination',
+    type: 'Type',
+    weight: 'Weight',
+    storage: 'Storage',
+    vault: 'Vault',
     to: 'to',
     toVault: 'to the vault'
 }

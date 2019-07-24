@@ -41,7 +41,7 @@ export default class AllItemsList extends React.Component {
   @autobind
   onDeleteSuccess() {
     this.setState({emptyTrashDate: new Date()})
-    this.props.showMessage('Se han eliminado los archivos correctamente')
+    this.props.showMessage(translate('app.deleteFileMessage'))
   }
 
   onFilterChange(searchValue) {
@@ -51,7 +51,7 @@ export default class AllItemsList extends React.Component {
   renderSearch() {
     return (
       <Text
-        placeholder="Search"
+        placeholder={translate('app.search')}
         value={this.state.searchValue}
         onChange={searchValue => this.onFilterChange(searchValue)}
       />
@@ -71,7 +71,7 @@ export default class AllItemsList extends React.Component {
             />
           }>
           <div className={styles.title}>
-            <div className={styles.subTitle}>Archivos en eliminación</div>
+            <div className={styles.subTitle}>{translate('app.fileOnDelete')}</div>
             <div className={styles.searchBar}>{this.renderSearch()}</div>
           </div>
         </Breadcrumbs>
