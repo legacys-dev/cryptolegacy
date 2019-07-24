@@ -41,7 +41,7 @@ export default class Menu extends React.Component {
     return (
       <div className={styles.logout} onClick={() => this.props.history.push(this.props.backPath)}>
         <MdKeyboardBackspace />
-        <span style={{marginLeft: 5}}>Volver</span>
+        <span style={{marginLeft: 5}}>{translate('admin.back')}</span>
       </div>
     )
   }
@@ -51,7 +51,7 @@ export default class Menu extends React.Component {
     return (
       <div className={styles.logout} onClick={logout}>
         <MdKeyboardBackspace />
-        <span style={{marginLeft: 5}}>Salir</span>
+        <span style={{marginLeft: 5}}>{translate('admin.exit')}</span>
       </div>
     )
   }

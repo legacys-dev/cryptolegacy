@@ -21,7 +21,7 @@ export default class Items extends React.Component {
 
   @autobind
   onEnableSuccess() {
-    this.props.showMessage('The heritage was enabled')
+    this.props.showMessage(translate('admin.enableHeritageMessage'))
     this.props.onHeritageEnabled(new Date())
   }
 
