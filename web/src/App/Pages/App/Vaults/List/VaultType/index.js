@@ -39,7 +39,7 @@ export default class VaultType extends React.Component {
         </div>
         <div className={styles.search}>
           <Text
-            placeholder="Search"
+            placeholder={translate('vaults.search')}
             value={filterValue}
             onChange={searchValue => onFilterChange(searchValue)}
           />

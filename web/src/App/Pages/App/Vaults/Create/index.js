@@ -29,7 +29,7 @@ export default class Create extends React.Component {
   renderButtons() {
     return (
       <div className={styles.buttons}>
-        <Button onClick={() => this.props.history.push('/vaults')}>Volver</Button>
+        <Button onClick={() => this.props.history.push('/vaults')}>{translate('vaults.back')}</Button>
         <Button primary onClick={() => this.refs.form.submit()}>
           {translate('vaults.createVault')}
         </Button>
