@@ -14,7 +14,6 @@ import withUserId from 'App/helpers/auth/withUserId'
 import {setSession} from '@orion-js/graphql-client'
 import autobind from 'autobind-decorator'
 import translate from 'App/i18n/translate'
-import Translate from 'App/i18n'
 import LoggedIn from '../LoggedIn'
 import {Link} from 'react-router-dom'
 

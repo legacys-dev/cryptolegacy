@@ -10,7 +10,7 @@ const Header = () => {
         <Alert size={60} />
       </div>
       <div className={styles.title}>{translate('emergency.createAccountSuccess')}</div>
-      <div className={styles.danger} dangerouslySetInnerHTML={{__html:translate('emergency.masterKeyMessage')}}/>
+      <div className={styles.danger} dangerouslySetInnerHTML={{__html: translate('emergency.masterKeyMessage')}}/>
       <div className={styles.downloadTip}>
         {translate('emergency.downloadInformation')}
       </div>

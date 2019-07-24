@@ -27,7 +27,7 @@ export default {
   sharedHardware: 'Este es un equipo público o compartido',
   accountCreatedSuccessfully: 'Cuenta creada con éxito',
   enterPassword: 'Ingresa tu contraseña',
-  loginSuccessfully:'Ingreso exitoso',
-  masterKey:'Llave maestra',
-  timeLimitMessage:'El tiempo válido para ingresar el código ha caducado'
+  loginSuccessfully: 'Ingreso exitoso',
+  masterKey: 'Llave maestra',
+  timeLimitMessage: 'El tiempo válido para ingresar el código ha caducado'
 }

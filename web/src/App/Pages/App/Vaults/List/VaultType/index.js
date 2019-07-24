@@ -4,7 +4,7 @@ import styles from './styles.css'
 import Text from 'App/components/fields/Text'
 import {withRouter} from 'react-router'
 import Select from 'App/components/fields/Select'
-
+import translate from 'App/i18n/translate'
 const vaultoptions = [
   {
     label: 'Own',
