@@ -48,7 +48,7 @@ export default class ChangePassword extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Section title="Change password" description="Change your password">
+        <Section title={translate('settings.changePassword')} description={translate('settings.changePasswordDescription')}>
           <AutoForm
             mutation="changePassword"
             ref="form"

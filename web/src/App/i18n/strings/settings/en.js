@@ -20,6 +20,7 @@ export default {
   confirmYourPassword: 'Confirm your password',
   repeatYourNewPassword: 'Repeat your new password',
   changePassword: 'Change password',
+  changePasswordDescription: 'Change your password',
   title: 'Settings',
   security: 'Security'
 }
