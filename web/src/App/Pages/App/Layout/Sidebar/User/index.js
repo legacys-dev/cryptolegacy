@@ -89,7 +89,7 @@ export default class User extends React.Component {
     return (
       <div className={styles.menu} key="menu">
         <Link to="/settings" className={styles.account}>
-          <div className={styles.name}>{this.props.me.name || 'Cuenta'}</div>
+          <div className={styles.name}>{this.props.me.name || translate('sidebar.accountOut')}</div>
           <div className={styles.email}>{this.props.me.email}</div>
         </Link>
         <Link to="/settings">

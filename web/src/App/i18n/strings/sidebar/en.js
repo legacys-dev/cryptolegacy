@@ -4,5 +4,6 @@ export default {
   trash: 'Trash',
   adminPanel: 'Admin panel',
   account: 'My account',
-  exit: 'Exit'
+  exit: 'Exit',
+  account: 'account'
 }
