@@ -7,11 +7,11 @@ import Select from 'App/components/fields/Select'
 import translate from 'App/i18n/translate'
 const vaultoptions = [
   {
-    label: 'Own',
+    label: translate('vaults.own'),
     value: 'owner'
   },
   {
-    label: 'Heritages',
+    label: translate('vaults.heritages'),
     value: 'heritage'
   }
 ]

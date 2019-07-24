@@ -9,6 +9,7 @@ import heritages from './heritages'
 import emergency from './emergency'
 import app from './app'
 import sidebar from './sidebar'
+import storage from './storage'
 
 export default {
   actions,
@@ -21,5 +22,6 @@ export default {
   heritages,
   emergency,
   app,
-  sidebar
+  sidebar,
+  storage
 }

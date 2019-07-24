@@ -39,7 +39,7 @@ const Items = ({history, items, credentialType}) => {
               <td style={{width: '1%'}} />
               <td style={{textAlign: 'left'}}>Nombre</td>
               <td>{translate('vaults.files')}</td>
-              <td>{translate('vaults.stores')}</td>
+              <td>{translate('vaults.size')}</td>
               <td>{translate('vaults.creationDate')}</td>
               <td>{translate('vaults.actions')}</td>
             </tr>

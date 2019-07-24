@@ -20,6 +20,9 @@ export default {
   vaults: 'Bóvedas',
   files: 'Archivos',
   storage: 'Almacenamiento',
+  size: 'Tamaño',
   actions: 'Acciones',
-  search: 'Buscar'
+  search: 'Buscar',
+  own: 'Dueño',
+  heritages: 'Herencias'
 }

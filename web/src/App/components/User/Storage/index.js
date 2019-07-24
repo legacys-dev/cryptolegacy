@@ -8,6 +8,7 @@ import forceLogin from 'App/helpers/auth/forceLogin'
 import {Cloud} from 'App/components/Parts/Icons'
 import gql from 'graphql-tag'
 import numeral from 'numeral'
+import translate from 'App/i18n/translate'
 
 @forceLogin
 @withGraphQL(gql`
@@ -23,7 +24,7 @@ export default class Storage extends React.Component {
   renderUpgradeButton() {
     return (
       <div className={styles.button}>
-        <Button>Upgrade</Button>
+        <Button>{translate('storage.upgrade')}</Button>
       </div>
     )
   }
@@ -41,7 +42,7 @@ export default class Storage extends React.Component {
             <div className={styles.icon}>
               <Cloud size={25} />
             </div>
-            <div className={styles.storage}>Storage</div>
+            <div className={styles.storage}>{translate('storage.storage')}</div>
           </div>
           <div className={styles.right}>
             <div className={styles.percentage}>{numeral(percentageUsed).format('0.0')}%</div>
