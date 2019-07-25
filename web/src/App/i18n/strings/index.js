@@ -10,6 +10,8 @@ import emergency from './emergency'
 import app from './app'
 import sidebar from './sidebar'
 import storage from './storage'
+import emergencyKit from './emergencyKit'
+import components from './components'
 
 export default {
   actions,
@@ -23,5 +25,7 @@ export default {
   emergency,
   app,
   sidebar,
-  storage
+  storage,
+  emergencyKit,
+  components
 }

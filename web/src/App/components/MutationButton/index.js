@@ -7,6 +7,7 @@ import autobind from 'autobind-decorator'
 import WithParams from 'orionjs-react-autoform/lib/WithParams'
 import WithMutation from 'orionjs-react-autoform/lib/WithMutation'
 import getFragment from 'orionjs-react-autoform/lib/getFragment'
+import translate from 'App/i18n/translate'
 
 @withModal
 export default class FormModal extends React.Component {
@@ -64,7 +65,7 @@ export default class FormModal extends React.Component {
       confirm: this.submit,
       confirmText: this.props.confirmText,
       render: renderChildren || this.renderContent,
-      cancelText: 'Cancel'
+      cancelText: translate('global.cancel')
     })
   }
 

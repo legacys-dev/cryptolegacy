@@ -6,6 +6,7 @@ import logout from 'App/helpers/auth/logout'
 import IdleTimer from 'react-idle-timer'
 import autobind from 'autobind-decorator'
 import getEnv from 'App/Root/getEnv'
+import translate from 'App/i18n/translate'
 
 @withMessage
 export default class InactivityTimer extends React.Component {
@@ -23,7 +24,7 @@ export default class InactivityTimer extends React.Component {
   async onInactivity() {
     if (this.mustStayLogin()) return
     await logout()
-    this.props.showMessage('Se ha cerrado sesión por inactividad')
+    this.props.showMessage(translate('components.inactivityCloseSesion'))
   }
 
   mustStayLogin() {

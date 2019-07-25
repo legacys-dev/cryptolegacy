@@ -99,7 +99,7 @@ export default class User extends React.Component {
         <div className={styles.logoutIcons}>
           <a onClick={this.logout} className={styles.menuLink}>
             <MdExitToApp size={25} />
-            <div>{translate('sidebar.account')}</div>
+            <div>{translate('sidebar.exit')}</div>
           </a>
         </div>
       </div>
