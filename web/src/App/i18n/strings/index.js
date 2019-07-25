@@ -19,6 +19,7 @@ import deleteFile from './deleteFile'
 import enableHeritage from './enableHeritage'
 import restoreFile from './restoreFile'
 import parts from './parts'
+import information from './information'
 export default {
   actions,
   global,
@@ -40,5 +41,6 @@ export default {
   deleteFile,
   enableHeritage,
   restoreFile,
-  parts
+  parts,
+  information
 }
