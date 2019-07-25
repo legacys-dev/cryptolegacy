@@ -13,6 +13,7 @@ import {saveAs} from './downloadFile'
 import Progress from './Progress'
 import messages from './messages'
 import gql from 'graphql-tag'
+import translate from 'App/i18n/translate'
 
 @withMutation(gql`
   mutation createDownload($fileId: ID) {
@@ -41,7 +42,7 @@ export default class DownloadButton extends React.Component {
     const {loaded, total} = event
     this.setState({loaded, total})
     if (loaded === total) {
-      this.props.showMessage('Descarga completa')
+      this.props.showMessage(translate('parts.completeDownloadMessage'))
       await sleep(1250)
       this.setState({open: false, loading: false, loaded: 0})
     }
@@ -82,7 +83,7 @@ export default class DownloadButton extends React.Component {
   renderButton() {
     return (
       <Button primary onClick={this.download} loading={this.state.loading}>
-        Download archive
+        {translate('parts.downloadArchiveOption')}
       </Button>
     )
   }
@@ -98,7 +99,7 @@ export default class DownloadButton extends React.Component {
   renderIcon() {
     if (this.state.loading) return this.renderLoading()
     return (
-      <Tooltip content="Descargar">
+      <Tooltip content={translate('parts.download')}>
         <MdCloudDownload className={styles.icon} size={25} onClick={this.download} />
       </Tooltip>
     )
