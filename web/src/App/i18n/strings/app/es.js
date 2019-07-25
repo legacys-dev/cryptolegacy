@@ -1,9 +1,9 @@
 export default{
     actions: 'Acciones',
     search: 'Buscar',
-    uploadFIle: 'Subiste el archivo',
-    downloadFIle: 'Descargaste el archivo',
-    deleteFile: 'Elimnaste el archivo',
+    uploadFile: 'Subiste el archivo',
+    downloadFile: 'Descargaste el archivo',
+    deleteFile: 'Eliminaste el archivo',
     restoreFile: 'Restauraste el archivo',
     createVault: 'Creaste la bóveda',
     updateVault: 'Actualizaste el nombre de la bóveda',
