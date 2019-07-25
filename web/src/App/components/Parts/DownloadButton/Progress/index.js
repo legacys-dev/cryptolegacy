@@ -12,7 +12,7 @@ const Progress = ({total, loaded, close}) => {
     return (
       <div>
         <div className={styles.loading}>
-          Downloading file ({totalProgress.toFixed(2)}%)
+          {translate('parts.downloading')} ({totalProgress.toFixed(2)}%)
           <br />
           {getSize(loaded)} of {getSize(total)}
         </div>

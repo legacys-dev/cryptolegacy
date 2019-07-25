@@ -4,5 +4,6 @@ export default{
     glacierDownloadNotReadyMessage: 'Your Glacier download is not ready yet, please wait between',
     completeDownloadMessage: 'Download completed',
     downloadArchiveOption: 'Download file',
-    download: 'Download'
+    download: 'Download',
+    downloading: 'Downloading file'
  }
