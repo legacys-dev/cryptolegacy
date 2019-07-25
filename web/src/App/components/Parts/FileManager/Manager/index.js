@@ -6,6 +6,7 @@ import {VaultConsumer} from 'App/helpers/contexts/vaultContext'
 import Upload from './Upload'
 import classnames from 'classnames'
 import getEnv from 'App/Root/getEnv'
+import translate from 'App/i18n/translate'
 
 const Manager = ({close}) => {
   const [progress, setProgress] = useState(0)
@@ -29,9 +30,9 @@ const Manager = ({close}) => {
     <div className={styles.container}>
       <div className={getContentStyles()}>
         <div className={styles.header}>
-          <div className={styles.title}>Archivos</div>
+          <div className={styles.title}>{translate('fileManager.files')}</div>
           <div className={styles.close}>
-            <IconButton tooltip="Cerrar" icon={MdClose} onPress={close} />
+            <IconButton tooltip={translate('fileManager.close')} icon={MdClose} onPress={close} />
           </div>
         </div>
         <VaultConsumer>

@@ -12,6 +12,9 @@ import sidebar from './sidebar'
 import storage from './storage'
 import emergencyKit from './emergencyKit'
 import components from './components'
+import deleteHeritages from './deleteHeritages'
+import emptyTrash from './emptyTrash'
+import fileManager from './fileManager'
 
 export default {
   actions,
@@ -27,5 +30,8 @@ export default {
   sidebar,
   storage,
   emergencyKit,
-  components
+  components,
+  deleteHeritages,
+  emptyTrash,
+  fileManager
 }

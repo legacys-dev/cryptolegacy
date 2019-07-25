@@ -3,6 +3,7 @@ import styles from './styles.module.css'
 import Manager from './Manager'
 import {MdFileUpload} from 'react-icons/md/'
 import Button from 'App/components/Parts/Button'
+import translate from 'App/i18n/translate'
 
 const FileManager = ({value, label, errorMessage}) => {
   const [open, setOpen] = useState(false)
@@ -11,7 +12,7 @@ const FileManager = ({value, label, errorMessage}) => {
     return (
       <div className={styles.upload}>
         <Button primary icon={MdFileUpload} onClick={() => setOpen(true)}>
-          Start upload
+          {translate('fileManager.startUpload')}
         </Button>
       </div>
     )
