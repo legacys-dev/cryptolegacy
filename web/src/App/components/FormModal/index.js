@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Button from 'App/components/Parts/Button'
 import autobind from 'autobind-decorator'
 import AutoForm from 'App/components/AutoForm'
+import translate from 'App/i18n/translate'
 
 @withModal
 export default class FormModal extends React.Component {
@@ -22,7 +23,7 @@ export default class FormModal extends React.Component {
   }
 
   static defaultProps = {
-    confirmText: 'Guardar',
+    confirmText: translate('global.save'),
     onSuccess: () => {}
   }
 
@@ -52,7 +53,7 @@ export default class FormModal extends React.Component {
       title: this.props.title,
       confirm: this.submit,
       confirmText: this.props.confirmText,
-      cancelText: 'Cancelar',
+      cancelText: translate('global.cancel'),
       render: this.renderForm
     })
   }
