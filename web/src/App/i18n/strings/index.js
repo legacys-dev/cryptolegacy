@@ -12,7 +12,9 @@ import sidebar from './sidebar'
 import storage from './storage'
 import emergencyKit from './emergencyKit'
 import components from './components'
-
+import deleteFile from './deleteFile'
+import enableHeritage from './enableHeritage'
+import restoreFile from './restoreFile'
 export default {
   actions,
   global,
@@ -27,5 +29,8 @@ export default {
   sidebar,
   storage,
   emergencyKit,
-  components
+  components,
+  deleteFile,
+  enableHeritage,
+  restoreFile
 }

@@ -3,5 +3,6 @@ export default {
   start: 'Start',
   confirm: 'Confirm',
   disable: 'Disable',
-  cancel: 'Cancel'
+  cancel: 'Cancel',
+  close: 'Close'
 }

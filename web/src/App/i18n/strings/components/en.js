@@ -1,3 +1,3 @@
 export default {
-    inactivityCloseSesion: 'Logged out due to inactivity' // inactivityTimer
+    inactivityCloseSesion: 'Logged out due to inactivity', // inactivityTimer,
 }
