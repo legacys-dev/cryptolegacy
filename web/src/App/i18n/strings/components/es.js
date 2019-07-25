@@ -1,3 +1,3 @@
 export default {
-    inactivityCloseSesion: 'Sesión cerrada por inactividad', // inactivityTimer,
+    inactivityCloseSesion: 'Sesión cerrada por inactividad' // inactivityTimer,
 }

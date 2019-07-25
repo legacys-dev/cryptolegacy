@@ -7,8 +7,8 @@ import mime from 'mime-types'
 import moment from 'moment'
 
 const storage = {
-  b2: 'simple storage',
-  glacier: 'high security storage'
+  b2: translate('fileManager.simpleType'),
+  glacier: translate('fileManager.highType')
 }
 
 export default class Information extends React.Component {

@@ -35,7 +35,7 @@ const Action = ({actions}) => {
     return renderLargeMessage(translate('app.uploadFile'), fileName, translate('app.toVault'), vaultName)
   }
   if (action.includes('downloadFile')) {
-    return renderLargeMessage(translate('app.dowloadFile'), fileName, translate('app.fromVault'), vaultName)
+    return renderLargeMessage(translate('app.downloadFile'), fileName, translate('app.fromVault'), vaultName)
   }
   if (action.includes('deleteFile')) {
     return renderLargeMessage(translate('app.deleteFile'), fileName, translate('app.fromVault'), vaultName)

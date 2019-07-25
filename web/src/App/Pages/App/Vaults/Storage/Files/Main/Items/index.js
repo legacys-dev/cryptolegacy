@@ -12,8 +12,8 @@ import translate from 'App/i18n/translate'
 
 
 const storage = {
-  b2: 'simple storage',
-  glacier: 'high security storage'
+  b2: translate('fileManager.simpleType'),
+  glacier: translate('fileManager.highType')
 }
 
 export default class Items extends React.Component {
