@@ -23,5 +23,6 @@ export default {
   size: 'Tamaño',
   actions: 'Acciones',
   search: 'Buscar',
-  own: 'Dueño'
+  own: 'Dueño',
+  type:'Tipo'
 }

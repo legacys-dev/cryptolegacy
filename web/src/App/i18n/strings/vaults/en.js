@@ -23,5 +23,6 @@ export default {
   size: 'Size',
   actions: 'Actions',
   search: 'Search',
-  own: 'Own'
+  own: 'Own',
+  type:'Type'
 }

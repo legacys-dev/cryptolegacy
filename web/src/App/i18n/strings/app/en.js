@@ -1,8 +1,8 @@
 export default{
     actions: 'Actions',
     search: 'Search',
-    uploadFIle: 'You have upload the file',
-    downloadFIle: 'You have download the file',
+    uploadFile: 'You have upload the file',
+    downloadFile: 'You have download the file',
     deleteFile: 'You have delete the file',
     restoreFile: 'You have restore the file',
     createVault: 'You have create the vault',

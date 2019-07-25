@@ -12,16 +12,13 @@ import sidebar from './sidebar'
 import storage from './storage'
 import emergencyKit from './emergencyKit'
 import components from './components'
-<<<<<<< HEAD
 import deleteHeritages from './deleteHeritages'
 import emptyTrash from './emptyTrash'
 import fileManager from './fileManager'
-
-=======
 import deleteFile from './deleteFile'
 import enableHeritage from './enableHeritage'
 import restoreFile from './restoreFile'
->>>>>>> 8e11ee5d4ece479df33b29ed524617f8afb85127
+import parts from './parts'
 export default {
   actions,
   global,
@@ -37,13 +34,11 @@ export default {
   storage,
   emergencyKit,
   components,
-<<<<<<< HEAD
   deleteHeritages,
   emptyTrash,
-  fileManager
-=======
+  fileManager,
   deleteFile,
   enableHeritage,
-  restoreFile
->>>>>>> 8e11ee5d4ece479df33b29ed524617f8afb85127
+  restoreFile,
+  parts
 }
