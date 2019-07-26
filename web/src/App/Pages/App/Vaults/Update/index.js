@@ -73,7 +73,7 @@ export default class Update extends React.Component {
     const {vault} = this.props
     return (
       <div className={styles.container}>
-        <Breadcrumbs past={{[`/vaults`]: 'Bóvedas'}} right={this.renderHeritageOptions()}>
+        <Breadcrumbs past={{[`/vaults`]: translate('vaults.vaults')}} right={this.renderHeritageOptions()}>
           {translate('vaults.updateVault')} ({vault.name})
         </Breadcrumbs>
         <div className={styles.content}>
