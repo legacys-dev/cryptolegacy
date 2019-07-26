@@ -13,7 +13,7 @@ const EnableHeritage = ({vaultPolicyId, onEnableSuccess}) => {
         danger
         params={{vaultPolicyId: vaultPolicyId}}
         onSuccess={() => onEnableSuccess()}>
-        <div className={styles.enable}>Habilitar</div>
+        <div className={styles.enable}>{translate('enableHeritage.enable')}</div>
       </MutationButton>
     </div>
   )

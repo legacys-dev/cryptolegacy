@@ -2,11 +2,12 @@ import React from 'react'
 import styles from './styles.css'
 import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 import {MdInsertDriveFile} from 'react-icons/md'
+import translate from 'App/i18n/translate'
 
 export default function FileView(props) {
   return (
     <div className={styles.container}>
-      <Tooltip content="Información del archivo" place="top">
+      <Tooltip content={translate('files.fileInformationIndicator')} place="top">
         <MdInsertDriveFile
           className={styles.icon}
           size={25}
