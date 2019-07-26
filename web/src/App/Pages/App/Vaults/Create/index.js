@@ -22,7 +22,7 @@ export default class Create extends React.Component {
   @autobind
   onSuccess() {
     const {showMessage, history} = this.props
-    showMessage(translate('vaults.vaultCreatedSuccesfully'))
+    showMessage(translate('vaults.vaultCreatedSuccessfully'))
     history.push('/vaults')
   }
 
