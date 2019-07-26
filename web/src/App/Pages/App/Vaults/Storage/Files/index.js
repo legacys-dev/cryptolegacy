@@ -68,7 +68,7 @@ export default class Files extends React.Component {
     return (
       <div className={styles.container}>
         <VaultWatcher vaultId={vault._id} />
-        <Breadcrumbs past={{[`/vaults`]: `Bóvedas`}} right={this.fileManagerAccess()}>
+        <Breadcrumbs past={{[`/vaults`]: translate('vaults.vaults')}} right={this.fileManagerAccess()}>
           <div className={styles.title}>
             <div className={styles.subTitle}>{vault.name} - (Archivos)</div>
             <div className={styles.searchBar}>{this.renderSearch()}</div>

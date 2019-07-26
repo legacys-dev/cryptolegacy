@@ -51,7 +51,7 @@ export default class Update extends React.Component {
     const {vault, history} = this.props
     return (
       <div className={styles.heritageButton}>
-        <Button onClick={() => history.push(`/vaults/heritages/${vault._id}`)}>Herencias</Button>
+        <Button onClick={() => history.push(`/vaults/heritages/${vault._id}`)}>{translate('vaults.heritages')}</Button>
       </div>
     )
   }
@@ -73,7 +73,7 @@ export default class Update extends React.Component {
     const {vault} = this.props
     return (
       <div className={styles.container}>
-        <Breadcrumbs past={{[`/vaults`]: 'Bóvedas'}} right={this.renderHeritageOptions()}>
+        <Breadcrumbs past={{[`/vaults`]: translate('vaults.vaults')}} right={this.renderHeritageOptions()}>
           {translate('vaults.updateVault')} ({vault.name})
         </Breadcrumbs>
         <div className={styles.content}>

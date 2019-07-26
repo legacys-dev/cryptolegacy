@@ -66,7 +66,7 @@ export default class Items extends React.Component {
           <thead>
             <tr>
               <td style={{width: '5%'}} />
-              <td style={{textAlign: 'left'}}>Nombre</td>
+              <td style={{textAlign: 'left'}}>{translate('vaults.name')}</td>
               <td>{translate('vaults.type')}</td>
               <td>{translate('vaults.size')}</td>
               <td>{translate('vaults.storage')}</td>
