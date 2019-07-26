@@ -17,5 +17,6 @@ export default{
     storage: 'Almacenamiento',
     vault: 'Bóveda',
     to: 'a',
-    toVault: 'a la bóveda'
+    toVault: 'a la bóveda',
+    name: 'Nombre'
 }

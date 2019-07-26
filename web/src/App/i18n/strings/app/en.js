@@ -17,5 +17,6 @@ export default{
     storage: 'Storage',
     vault: 'Vault',
     to: 'to',
-    toVault: 'to the vault'
+    toVault: 'to the vault',
+    name: 'Name'
 }

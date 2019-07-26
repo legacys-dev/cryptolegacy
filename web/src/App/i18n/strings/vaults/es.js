@@ -24,5 +24,6 @@ export default {
   actions: 'Acciones',
   search: 'Buscar',
   own: 'Dueño',
-  type:'Tipo'
+  type:'Tipo',
+  name: 'Nombre'
 }

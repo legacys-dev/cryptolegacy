@@ -24,5 +24,6 @@ export default {
   actions: 'Actions',
   search: 'Search',
   own: 'Own',
-  type:'Type'
+  type:'Type',
+  name: 'Name'
 }
