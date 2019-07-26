@@ -14,7 +14,7 @@ const DeleteFile = ({vaultPolicyId, vaultId, onDeleteSuccess}) => {
         danger
         params={{vaultPolicyId, vaultId}}
         onSuccess={() => onDeleteSuccess()}>
-        <div className={styles.delete}>Eliminar</div>
+        <div className={styles.delete}>{translate('deleteHeritages.delete')}</div>
       </MutationButton>
     </div>
   )

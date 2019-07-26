@@ -1,5 +1,6 @@
 export default {
   profile: 'Profile',
+  changePasswordMessage: 'Your password was changed',
   profileDescription: 'Update your personal information',
   yourProfileWasSaved: 'Your profile was saved',
   twoFactorAuthentication: 'Two factor authentication',

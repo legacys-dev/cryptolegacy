@@ -70,7 +70,7 @@ export default class Files extends React.Component {
         <VaultWatcher vaultId={vault._id} />
         <Breadcrumbs past={{[`/vaults`]: translate('vaults.vaults')}} right={this.fileManagerAccess()}>
           <div className={styles.title}>
-            <div className={styles.subTitle}>{vault.name} - (Archivos)</div>
+            <div className={styles.subTitle}>{vault.name} - ({translate('vaults.files')})</div>
             <div className={styles.searchBar}>{this.renderSearch()}</div>
           </div>
         </Breadcrumbs>
