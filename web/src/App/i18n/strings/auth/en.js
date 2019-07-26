@@ -28,5 +28,7 @@ export default {
   accountCreatedSuccessfully: 'Account created successfully',
   enterPassword: 'Enter your password',
   loginSuccessfully: 'Login successfully',
-  masterKey: 'Master key'
+  masterKey: 'Master key',
+  codePlaceholder: '9 digit code',
+  codeDescription: 'A code was sent to your email to confirm your account. You have 4 minutes.'
 }
