@@ -8,7 +8,6 @@ export default resolver({
   params: {
     email: {
       type: String,
-      placeholder: 'Email',
       async custom(email) {
         email = email.toLowerCase()
         if (!emailValidator(email)) return 'invalidEmail'
@@ -18,11 +17,9 @@ export default resolver({
     },
     name: {
       type: String,
-      placeholder: 'Nombre'
     },
     lastName: {
       type: String,
-      placeholder: 'Apellido'
     }
   },
   returns: String,

@@ -9,6 +9,9 @@ import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 import translate from 'App/i18n/translate'
+import {Field} from 'simple-react-form'
+import Text from 'App/components/fields/Text'
+
 
 @withRouter
 @withValidToken
@@ -52,7 +55,15 @@ export default class VerifyEmail extends React.Component {
           doc={{token: params.token}}
           onError={this.onError}
           omit={['token']}
-        />
+        >
+          <Field
+            fieldName="code"
+            type={Text}
+            fieldType="code"
+            placeholder={translate('auth.codePlaceholder')}
+            description={translate('auth.codeDescription')}
+          />
+        </AutoForm>
         <div className={styles.button}>
           <Button primary fullWidth onClick={() => this.refs.form.submit()} disabled={!code}>
             {translate('auth.confirmEmail')}

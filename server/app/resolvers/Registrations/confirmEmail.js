@@ -6,8 +6,6 @@ export default resolver({
   params: {
     code: {
       type: String,
-      placeholder: 'Código de 9 dígitos',
-      description: 'Se ha enviado un código a tu email para confirmar. Tienes 4 minutos.',
       async custom(code) {
         if (isNaN(parseInt(code, 10))) return 'invalidCode'
       }
@@ -22,7 +20,7 @@ export default resolver({
   async resolve({code, token}, viewer) {
     const query = {'confirmEmail.token': token}
     const updateDate = new Date()
-    const confirmPassword = passwordRegistration()
+    const confirmPassword = pconfiasswordRegistration()
 
     await Registrations.update(query, {$set: {confirmPassword, updateDate}})
 

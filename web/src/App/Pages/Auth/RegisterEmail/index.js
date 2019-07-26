@@ -11,6 +11,10 @@ import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
 import withUserId from 'App/helpers/auth/withUserId'
 import {withRouter} from 'react-router'
+import {Field} from 'simple-react-form'
+import Text from 'App/components/fields/Text'
+
+
 
 @withUserId
 @withRouter
@@ -53,7 +57,27 @@ export default class Register extends React.Component {
     return (
       <div>
         <Title text="auth.register" />
-        <AutoForm mutation="emailRegister" ref="form" onSuccess={this.onSuccess} />
+        <AutoForm mutation="emailRegister" ref="form" onSuccess={this.onSuccess}>
+          <Field
+            fieldName="email"
+            type={Text}
+            fieldType="email"
+            placeholder="Email"
+          />
+          <Field
+            fieldName="name"
+            type={Text}
+            fieldType="name"
+            placeholder={translate('auth.name')}
+          />
+          <Field
+            fieldName="lastName"
+            type={Text}
+            fieldType="lastName"
+            placeholder={translate('auth.lastName')}
+          />
+
+        </AutoForm>
         {this.renderButton()}
         {this.renderLogInLink()}
       </div>
