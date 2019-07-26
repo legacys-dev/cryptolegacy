@@ -1,3 +1,9 @@
 export default {
-    inactivityCloseSesion: 'Logged out due to inactivity' // inactivityTimer,
+    inactivityCloseSesion: 'Logged out due to inactivity', // inactivityTimer,,
+    the: 'The',
+    profileSaved: 'profile was saved',
+    deleted: 'deleted',
+    deleted: 'Delete',
+    back: 'Back',
+    confirmDelete: 'Are you sure you want to delete this '
 }
