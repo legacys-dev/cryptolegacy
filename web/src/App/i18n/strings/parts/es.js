@@ -5,5 +5,5 @@ export default{
     completeDownloadMessage: 'Descarga completa',
     downloadArchiveOption: 'Descargar archivo',
     download: 'Descargar',
-    downloading: 'Descargando archivo'
+    downloading: 'Descargando archivo',
 }
