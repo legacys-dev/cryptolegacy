@@ -10,7 +10,6 @@ export default resolver({
   params: {
     email: {
       type: 'email',
-      label: 'Email',
       async custom(email) {
         const user = await Users.findOne({'emails.address': email})
         if (!user) return 'userNotFound'
@@ -18,7 +17,6 @@ export default resolver({
     },
     password: {
       type: String,
-      label: 'Password',
       async custom(password, {doc}) {
         const user = await Users.findOne({'emails.address': doc.email})
         if (!user) return
@@ -28,7 +26,6 @@ export default resolver({
     },
     masterKey: {
       type: String,
-      label: 'Master Key',
       async custom(masterKey, {doc}) {
         if (!masterKey) return 'masterKeyNotFound'
         if (masterKey.length !== 32) return 'invalidMasterKey'

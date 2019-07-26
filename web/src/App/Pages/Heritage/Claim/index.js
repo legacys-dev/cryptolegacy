@@ -11,6 +11,8 @@ import AutoForm from 'App/components/AutoForm'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 import translate from 'App/i18n/translate'
+import {Field} from 'simple-react-form'
+import Text from 'App/components/fields/Text'
 
 @withValidHeir
 @withRouter
@@ -38,18 +40,19 @@ export default class Claim extends React.Component {
             <Alert size={60} />
           </div>
           <div className={styles.title}>
-            {translate('heritages.enterCodeToInheritVault')} <strong>#{this.props.vaultName}</strong>.
+            {translate('heritages.enterCodeToInhe ritVault')} <strong>#{this.props.vaultName}</strong>.
           </div>
           <AutoForm
             mutation="claimHeritage"
-            omit={['accessToken', 'credentials']}
             ref="form"
             doc={{
               accessToken: this.props.match.params.accessToken,
               credentials: getEncryptedPassword()
             }}
             onSuccess={this.onSuccess}
-          />
+          >
+            <Field label={translate('heritages.code')} fieldName = "code" type={Text}/>
+          </AutoForm>
           <div className={styles.button}>
             <Button primary onClick={() => this.refs.form.submit()} fullWidth>
               {translate('heritages.heritageButton')}

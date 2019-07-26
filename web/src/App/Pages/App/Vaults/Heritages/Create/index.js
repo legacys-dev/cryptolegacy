@@ -12,6 +12,8 @@ import Button from 'App/components/Parts/Button'
 import Section from 'App/components/Section'
 import autobind from 'autobind-decorator'
 import translate from 'App/i18n/translate'
+import {Field} from 'simple-react-form'
+import Text from 'App/components/fields/Text'
 import gql from 'graphql-tag'
 
 @withGraphQL(
@@ -66,11 +68,16 @@ export default class Create extends React.Component {
           <Section top title={translate('vaults.inheritVault')} description={translate('vaults.description')}>
             <AutoForm
               mutation="createHeritage"
-              omit={['vaultId', 'credentials']}
               ref="form"
               doc={{vaultId: vault._id, credentials: getEncryptedPassword()}}
               onSuccess={this.onSuccess}
-            />
+            >
+              <Field 
+                label={translate('heritages.inheritorMail')} 
+                fieldName = "email" 
+                type = {Text} 
+              />
+            </AutoForm>
             {this.renderButtons()}
           </Section>
         </div>
