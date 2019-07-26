@@ -5,5 +5,7 @@ export default {
     deleted: 'deleted',
     deleted: 'Delete',
     back: 'Back',
-    confirmDelete: 'Are you sure you want to delete this '
+    confirmDelete: 'Are you sure you want to delete this ',
+    wasSaved: 'was saved',
+    select:'Selected...'
 }

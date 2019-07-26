@@ -6,5 +6,6 @@ export default {
     deleted: 'Eliminar',
     back: 'Atras',
     confirmDelete: 'Estás de que quieres eliminar ',
-    wasSaved: 'was saved'
+    wasSaved: 'Guardado',
+    select:'Seleccionado...'
 }
