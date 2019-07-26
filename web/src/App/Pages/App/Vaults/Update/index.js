@@ -51,7 +51,7 @@ export default class Update extends React.Component {
     const {vault, history} = this.props
     return (
       <div className={styles.heritageButton}>
-        <Button onClick={() => history.push(`/vaults/heritages/${vault._id}`)}>Herencias</Button>
+        <Button onClick={() => history.push(`/vaults/heritages/${vault._id}`)}>{translate('vaults.heritages')}</Button>
       </div>
     )
   }

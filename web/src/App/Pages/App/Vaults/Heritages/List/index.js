@@ -56,7 +56,7 @@ export default class List extends React.Component {
     return (
       <div className={styles.container}>
         <Breadcrumbs
-          past={{[`/vaults/storage-update/${vault._id}`]: 'Herencias'}}
+          past={{[`/vaults/storage-update/${vault._id}`]: translate('vaults.heritages')}}
           right={this.renderButtons()}>
           {translate('vaults.vault')} ({vault.name})
         </Breadcrumbs>
