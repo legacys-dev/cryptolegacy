@@ -20,6 +20,7 @@ import enableHeritage from './enableHeritage'
 import restoreFile from './restoreFile'
 import parts from './parts'
 import information from './information'
+import admin from './admin'
 export default {
   actions,
   global,
@@ -42,5 +43,6 @@ export default {
   enableHeritage,
   restoreFile,
   parts,
-  information
+  information,
+  admin
 }
