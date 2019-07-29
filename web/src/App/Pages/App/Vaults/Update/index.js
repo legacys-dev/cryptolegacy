@@ -13,6 +13,9 @@ import Loading from 'App/components/Parts/Loading'
 import gql from 'graphql-tag'
 import Delete from './Delete'
 import translate from 'App/i18n/translate'
+import {Field} from 'simple-react-form'
+import Text from 'App/components/fields/Text'
+
 
 @withGraphQL(
   gql`

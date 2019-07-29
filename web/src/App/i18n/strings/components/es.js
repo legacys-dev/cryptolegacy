@@ -3,9 +3,11 @@ export default {
     the: 'El',
     profileSaved: 'perfil ha sido guardado',
     deleted: 'eliminado',
-    deleted: 'Eliminar',
+    delete: 'Eliminar',
     back: 'Atras',
     confirmDelete: 'Estás de que quieres eliminar ',
     wasSaved: 'Guardado',
-    select:'Seleccionado...'
+    select:'Seleccionado...',
+    save: 'Guardar',
+    create: 'Crear'
 }

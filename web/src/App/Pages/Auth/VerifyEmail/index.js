@@ -54,7 +54,6 @@ export default class VerifyEmail extends React.Component {
           ref="form"
           doc={{token: params.token}}
           onError={this.onError}
-          omit={['token']}
         >
           <Field
             fieldName="code"

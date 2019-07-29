@@ -18,5 +18,6 @@ export default{
     vault: 'Vault',
     to: 'to',
     toVault: 'to the vault',
-    name: 'Name'
+    name: 'Name',
+    firstNameLabel: ''
 }
