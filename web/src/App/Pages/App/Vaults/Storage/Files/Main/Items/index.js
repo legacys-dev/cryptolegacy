@@ -8,10 +8,11 @@ import getSize from 'App/helpers/files/getSize'
 import moment from 'moment'
 import mime from 'mime-types'
 import Options from './Options'
+import translate from 'App/i18n/translate'
 
 const storage = {
-  b2: 'simple storage',
-  glacier: 'high security storage'
+  b2: translate('fileManager.simpleType'),
+  glacier: translate('fileManager.highType')
 }
 
 export default class Items extends React.Component {
@@ -64,12 +65,12 @@ export default class Items extends React.Component {
           <thead>
             <tr>
               <td style={{width: '5%'}} />
-              <td style={{textAlign: 'left'}}>Nombre</td>
-              <td>Tipo</td>
-              <td>Peso</td>
-              <td>Storage</td>
-              <td>Fecha de creación</td>
-              <td>Acciones</td>
+              <td style={{textAlign: 'left'}}>{translate('vaults.name')}</td>
+              <td>{translate('vaults.type')}</td>
+              <td>{translate('vaults.size')}</td>
+              <td>{translate('vaults.storage')}</td>
+              <td>{translate('vaults.creationDate')}</td>
+              <td>{translate('vaults.actions')}</td>
             </tr>
           </thead>
           <tbody>{this.renderTable()}</tbody>

@@ -1,18 +1,19 @@
 import React from 'react'
 import styles from './styles.module.css'
 import Button from 'App/components/Parts/Button'
+import translate from 'App/i18n/translate'
 
 const heritagesTypes = [
   {
-    name: 'Pendientes',
+    name: translate('admin.pendings'),
     type: 'waiting'
   },
   {
-    name: 'En proceso',
+    name: translate('admin.inProcess'),
     type: 'available'
   },
   {
-    name: 'Reclamadas',
+    name: translate('admin.claimed'),
     type: 'active'
   }
 ]

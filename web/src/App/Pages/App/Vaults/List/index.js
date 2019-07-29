@@ -7,6 +7,7 @@ import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 import VaultType from './VaultType'
 import Main from './Main'
+import translate from 'App/i18n/translate'
 
 @withRouter
 export default class List extends React.Component {
@@ -30,7 +31,7 @@ export default class List extends React.Component {
     if (this.state.credentialType === 'heritage') return
     return (
       <Button primary onClick={() => this.props.history.push('/vaults/create')}>
-        Crear bóveda
+        {translate('vaults.createVault')}
       </Button>
     )
   }
@@ -40,7 +41,7 @@ export default class List extends React.Component {
       <div className={styles.container}>
         <Breadcrumbs right={this.renderCreateVault()}>
           <div className={styles.title}>
-            <div className={styles.subTitle}>Bóvedas</div>
+            <div className={styles.subTitle}>{translate('vaults.vaults')}</div>
             <div className={styles.searchBar}>
               <VaultType
                 onVaultTypeChange={this.onVaultTypeChange}

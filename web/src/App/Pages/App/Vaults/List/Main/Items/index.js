@@ -5,6 +5,7 @@ import {Vault} from 'App/components/Parts/Icons'
 import getSize from 'App/helpers/files/getSize'
 import Options from './Options'
 import moment from 'moment'
+import translate from 'App/i18n/translate'
 
 const Items = ({history, items, credentialType}) => {
   const renderTable = () => {
@@ -36,11 +37,11 @@ const Items = ({history, items, credentialType}) => {
           <thead>
             <tr>
               <td style={{width: '1%'}} />
-              <td style={{textAlign: 'left'}}>Nombre</td>
-              <td>Archivos</td>
-              <td>Almacenamiento</td>
-              <td>Fecha de creación</td>
-              <td>Acciones</td>
+              <td style={{textAlign: 'left'}}>{translate('vaults.name')}</td>
+              <td>{translate('vaults.files')}</td>
+              <td>{translate('vaults.size')}</td>
+              <td>{translate('vaults.creationDate')}</td>
+              <td>{translate('vaults.actions')}</td>
             </tr>
           </thead>
           <tbody>{renderTable()}</tbody>

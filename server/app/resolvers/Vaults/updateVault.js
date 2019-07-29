@@ -11,8 +11,7 @@ export default resolver({
       type: 'ID'
     },
     name: {
-      type: String,
-      label: 'Nombre de la bóveda'
+      type: String
     }
   },
   returns: Boolean,

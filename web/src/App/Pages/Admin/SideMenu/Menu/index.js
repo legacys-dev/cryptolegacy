@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 import {MdKeyboardBackspace} from 'react-icons/md'
 import logout from 'App/helpers/auth/logout'
 import {withRouter} from 'react-router'
+import translate from 'App/i18n/translate'
 
 @withRouter
 export default class Menu extends React.Component {
@@ -40,7 +41,7 @@ export default class Menu extends React.Component {
     return (
       <div className={styles.logout} onClick={() => this.props.history.push(this.props.backPath)}>
         <MdKeyboardBackspace />
-        <span style={{marginLeft: 5}}>Volver</span>
+        <span style={{marginLeft: 5}}>{translate('admin.back')}</span>
       </div>
     )
   }
@@ -50,14 +51,14 @@ export default class Menu extends React.Component {
     return (
       <div className={styles.logout} onClick={logout}>
         <MdKeyboardBackspace />
-        <span style={{marginLeft: 5}}>Salir</span>
+        <span style={{marginLeft: 5}}>{translate('admin.exit')}</span>
       </div>
     )
   }
 
   renderSettings() {
     if (this.props.backPath) return
-    return this.renderLink({title: 'Mi cuenta', path: '/settings'})
+    return this.renderLink({title: translate('admin.myAccount'), path: '/settings'})
   }
 
   render() {
@@ -67,7 +68,7 @@ export default class Menu extends React.Component {
           <strong>Admin</strong>
         </div>
         <Link to={this.props.rootPath} className={styles.title}>
-          Back to Home
+          {translate('admin.backHome')}
         </Link>
         <div className={styles.divider} />
         {this.renderLinks()}

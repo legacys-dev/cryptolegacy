@@ -14,7 +14,6 @@ export default resolver({
     },
     email: {
       type: String,
-      label: 'Email del heredero',
       async custom(email) {
         email = email.toLowerCase()
         if (!emailValidator(email)) return 'invalidEmail'

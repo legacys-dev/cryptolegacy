@@ -11,6 +11,7 @@ import VaultWatcher from './VaultWatcher'
 import fragment from './fragment'
 import gql from 'graphql-tag'
 import Main from './Main'
+import translate from 'App/i18n/translate'
 
 @withGraphQL(
   gql`
@@ -39,7 +40,7 @@ export default class Files extends React.Component {
   renderSearch() {
     return (
       <Text
-        placeholder="Search"
+        placeholder={translate('vaults.search')}
         value={this.state.searchValue}
         onChange={searchValue => this.onFilterChange(searchValue)}
       />
@@ -67,9 +68,9 @@ export default class Files extends React.Component {
     return (
       <div className={styles.container}>
         <VaultWatcher vaultId={vault._id} />
-        <Breadcrumbs past={{[`/vaults`]: `Bóvedas`}} right={this.fileManagerAccess()}>
+        <Breadcrumbs past={{[`/vaults`]: translate('vaults.vaults')}} right={this.fileManagerAccess()}>
           <div className={styles.title}>
-            <div className={styles.subTitle}>{vault.name} - (Archivos)</div>
+            <div className={styles.subTitle}>{vault.name} - ({translate('vaults.files')})</div>
             <div className={styles.searchBar}>{this.renderSearch()}</div>
           </div>
         </Breadcrumbs>

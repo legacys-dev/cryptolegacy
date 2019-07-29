@@ -8,7 +8,6 @@ export default resolver({
   params: {
     name: {
       type: String,
-      label: 'Nombre de la bóveda'
     },
     credentials: {
       type: String

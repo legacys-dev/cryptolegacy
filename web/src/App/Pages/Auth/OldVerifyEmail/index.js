@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Loading from 'orionsoft-parts/lib/components/Loading'
-import Translate from 'App/i18n'
+import translate from 'App/i18n/translate'
 import withMutation from 'react-apollo-decorators/lib/withMutation'
 import gql from 'graphql-tag'
 import autobind from 'autobind-decorator'
@@ -44,7 +44,7 @@ export default class VerifyEmail extends React.Component {
       this.props.onLogin()
     } catch (error) {
       if (error.message.includes('Validation Error')) {
-        this.setState({errorMessage: <Translate tr="auth.emailVerficationCodeExpired" />})
+        this.setState({errorMessage: translate('auth.emailVerficationCodeExpired')})
       } else {
         this.setState({errorMessage: error.message})
       }
@@ -58,7 +58,7 @@ export default class VerifyEmail extends React.Component {
       <div className={styles.loading}>
         <Loading size={40} />
         <p>
-          <Translate tr="auth.weAreVerifyingYourEmail" />
+          {translate('auth.weAreVerifyingYourEmail')}
         </p>
       </div>
     )

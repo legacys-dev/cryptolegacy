@@ -1,18 +1,20 @@
+import translate from 'App/i18n/translate'
+
 export default {
   notAvailable: {
-    message: 'File is not available for download',
+    message: translate('parts.fileNotAvailableMessage'),
     error: true
   },
   error: {
-    message: 'File is not available for download',
+    message: translate('parts.fileNotAvailableMessage'),
     error: true
   },
   glacierJobCreated: {
-    message: 'Your glacier download was created, please wait between ',
+    message: translate('parts.glacierJobCreated'),
     minutes: true
   },
   pending: {
-    message: 'Your glacier download is not ready yet, please wait between ',
+    message: translate('parts.glacierDownloadNotReadyMessage'),
     minutes: true
   }
 }
