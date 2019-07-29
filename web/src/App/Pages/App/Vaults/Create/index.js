@@ -9,6 +9,8 @@ import AutoForm from 'App/components/AutoForm'
 import Section from 'App/components/Section'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
+import {Field} from 'simple-react-form'
+import Text from 'App/components/fields/Text'
 import translate from 'App/i18n/translate'
 
 @withRouter
@@ -46,10 +48,15 @@ export default class Create extends React.Component {
             <AutoForm
               mutation="createVault"
               ref="form"
-              omit="credentials"
               doc={{credentials: getEncryptedPassword()}}
               onSuccess={this.onSuccess}
-            />
+            >
+              <Field 
+                label = {translate('vaults.vaultName')} 
+                fieldName="name" 
+                type={Text}
+              />
+            </AutoForm>
             {this.renderButtons()}
           </Section>
         </div>

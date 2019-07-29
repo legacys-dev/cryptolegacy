@@ -1,5 +1,6 @@
 export default {
   notFound: 'No se encontraron bóvedas',
+  vaultName: 'Nombre de la bóveda',
   back: 'Volver',
   inheritVault: 'Heredar bóveda',
   vaultsFiles: 'Archivos de la bóveda',

@@ -80,11 +80,16 @@ export default class Update extends React.Component {
           <Section top title={translate('vaults.updateVault')} description={translate('vaults.description')}>
             <AutoForm
               mutation="updateVault"
-              omit="vaultId"
               ref="form"
               doc={{vaultId: vault._id, name: vault.name}}
               onSuccess={this.onSuccess}
-            />
+            >
+              <Field 
+                label={translate('vaults.vaultName')}
+                fieldName="name"
+                type={Text}
+              />
+            </AutoForm>
             {this.renderButtons()}
           </Section>
         </div>

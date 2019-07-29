@@ -1,5 +1,6 @@
 export default {
   notFound: 'No vaults were found',
+  vaultName: 'Vault name',
   back: 'Back',
   inheritVault: 'Inherit Vault',
   vaultsFiles: 'Vault\'s Files',
