@@ -11,9 +11,9 @@ export default ({encryptedItem, cipherPassword, archiveIv}) => {
   if (cipherPassword.length !== 32) throw new Error('Invalid archive decrypt password')
   if (archiveIv.length !== 16) throw new Error('Invalid archive identificator vector')
 
-  // const iv = Buffer.from(archiveIv, 'hex')
+  const iv = Buffer.from(archiveIv, 'hex')
 
-  const decipher = crypto.createDecipheriv(algorithm, cipherPassword, archiveIv)
+  const decipher = crypto.createDecipheriv(algorithm, cipherPassword, iv)
   const decrypted = decipher.update(encryptedItem)
   const finalBuffer = Buffer.concat([decrypted, decipher.final()])
 
