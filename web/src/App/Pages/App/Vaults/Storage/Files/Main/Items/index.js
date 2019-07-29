@@ -10,7 +10,6 @@ import mime from 'mime-types'
 import Options from './Options'
 import translate from 'App/i18n/translate'
 
-
 const storage = {
   b2: translate('fileManager.simpleType'),
   glacier: translate('fileManager.highType')

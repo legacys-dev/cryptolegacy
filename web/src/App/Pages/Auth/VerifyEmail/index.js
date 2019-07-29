@@ -12,7 +12,6 @@ import translate from 'App/i18n/translate'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 
-
 @withRouter
 @withValidToken
 @withMessage

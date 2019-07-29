@@ -4,8 +4,6 @@ import Menu from './Menu'
 import Container from 'App/components/Parts/Container/'
 
 const SideMenu = ({children, links, title, rootPath, backPath}) => {
-  console.log("links inside sideMenu: ",links)
-  console.log("backRoot: ",rootPath)
   return (
     <div className={styles.container}>
       <Menu backPath={backPath} links={links} title={title} rootPath={rootPath} />

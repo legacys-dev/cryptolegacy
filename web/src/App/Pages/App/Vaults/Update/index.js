@@ -16,7 +16,6 @@ import translate from 'App/i18n/translate'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 
-
 @withGraphQL(
   gql`
     query getVault($vaultId: ID) {
@@ -87,7 +86,7 @@ export default class Update extends React.Component {
               doc={{vaultId: vault._id, name: vault.name}}
               onSuccess={this.onSuccess}
             >
-              <Field 
+              <Field
                 label={translate('vaults.vaultName')}
                 fieldName="name"
                 type={Text}

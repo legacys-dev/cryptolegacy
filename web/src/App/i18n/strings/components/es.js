@@ -7,7 +7,7 @@ export default {
     back: 'Atras',
     confirmDelete: 'Estás de que quieres eliminar ',
     wasSaved: 'Guardado',
-    select:'Seleccionado...',
+    select: 'Seleccionado...',
     save: 'Guardar',
     create: 'Crear'
 }

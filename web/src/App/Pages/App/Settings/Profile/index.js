@@ -11,7 +11,6 @@ import gql from 'graphql-tag'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 
-
 const fragment = gql`
   fragment setUserProfileFragment on User {
     _id

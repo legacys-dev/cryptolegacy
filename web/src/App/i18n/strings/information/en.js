@@ -6,5 +6,5 @@ export default {
   size: 'Size:',
   vault: 'Vault:',
   storageType: 'Storage type:',
-  createdDate: 'Created at:',
+  createdDate: 'Created at:'
 }

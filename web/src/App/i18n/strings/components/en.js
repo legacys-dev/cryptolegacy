@@ -7,7 +7,7 @@ export default {
     back: 'Back',
     confirmDelete: 'Are you sure you want to delete this ',
     wasSaved: 'was saved',
-    select:'Selected...',
+    select: 'Selected...',
     save: 'Save',
     create: 'Create'
 }

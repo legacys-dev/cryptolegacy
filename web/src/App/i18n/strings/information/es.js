@@ -6,5 +6,5 @@ export default {
   size: 'Peso:',
   vault: 'Bóveda:',
   storageType: 'Tipo de almacenamiento:',
-  createdDate: 'Creado:',
+  createdDate: 'Creado:'
 }

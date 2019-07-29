@@ -51,9 +51,9 @@ export default class Create extends React.Component {
               doc={{credentials: getEncryptedPassword()}}
               onSuccess={this.onSuccess}
             >
-              <Field 
-                label = {translate('vaults.vaultName')} 
-                fieldName="name" 
+              <Field
+                label = {translate('vaults.vaultName')}
+                fieldName="name"
                 type={Text}
               />
             </AutoForm>

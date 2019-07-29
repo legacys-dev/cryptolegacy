@@ -72,10 +72,10 @@ export default class Create extends React.Component {
               doc={{vaultId: vault._id, credentials: getEncryptedPassword()}}
               onSuccess={this.onSuccess}
             >
-              <Field 
-                label={translate('heritages.inheritorMail')} 
-                fieldName = "email" 
-                type = {Text} 
+              <Field
+                label={translate('heritages.inheritorMail')}
+                fieldName = "email"
+                type = {Text}
               />
             </AutoForm>
             {this.renderButtons()}

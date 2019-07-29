@@ -14,8 +14,6 @@ import {withRouter} from 'react-router'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 
-
-
 @withUserId
 @withRouter
 export default class Register extends React.Component {

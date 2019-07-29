@@ -32,7 +32,6 @@ export default class Admin extends React.Component {
   render() {
     const {me} = this.props
     if (!me.roles || !me.roles.includes('admin')) return this.renderWithoutPermissions()
-    console.log("links: ",links)
     return (
       <div className={styles.container}>
         <InactivityTimer time={10}>
