@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './styles.module.css'
 import LengthName from 'App/components/User/LengthName'
+import translate from 'App/i18n/translate'
 
 const Action = ({actions}) => {
   const renderLargeMessage = (firstText, firstName, secondText, secondName) => {
@@ -31,25 +32,25 @@ const Action = ({actions}) => {
 
   const {action, vaultName, fileName, newVaultName} = actions.data
   if (action.includes('uploadFile')) {
-    return renderLargeMessage('Subiste el archivo', fileName, 'a la bóveda', vaultName)
+    return renderLargeMessage(translate('app.uploadFile'), fileName, translate('app.toVault'), vaultName)
   }
   if (action.includes('downloadFile')) {
-    return renderLargeMessage('Descargaste el archivo', fileName, 'desde la bóveda', vaultName)
+    return renderLargeMessage(translate('app.downloadFile'), fileName, translate('app.fromVault'), vaultName)
   }
   if (action.includes('deleteFile')) {
-    return renderLargeMessage('Elimiaste el archivo', fileName, 'desde la bóveda', vaultName)
+    return renderLargeMessage(translate('app.deleteFile'), fileName, translate('app.fromVault'), vaultName)
   }
   if (action.includes('restoreFile')) {
-    return renderLargeMessage('Restauraste el archivo', fileName, 'a la bóveda', vaultName)
+    return renderLargeMessage(translate('app.restoreFile'), fileName, translate('app.toVault'), vaultName)
   }
   if (action.includes('createVault')) {
-    return renderShortMessage('Creaste la bóveda', vaultName)
+    return renderShortMessage(translate('app.createVault'), vaultName)
   }
   if (action.includes('updateVault')) {
-    return renderLargeMessage('Actualizaste el nombre de la bóveda', vaultName, 'a', newVaultName)
+    return renderLargeMessage(translate('app.updateVault'), vaultName, translate('app.to'), newVaultName)
   }
   if (action.includes('deleteVault')) {
-    return renderShortMessage('Eliminaste la bóveda', vaultName)
+    return renderShortMessage(translate('app.deleteVault'), vaultName)
   }
 }
 

@@ -8,6 +8,7 @@ import {withRouter} from 'react-router'
 import BackIcon from 'react-icons/lib/md/arrow-back'
 import SaveIcon from 'react-icons/lib/md/save'
 import DeleteIcon from 'react-icons/lib/md/delete'
+import translate from 'App/i18n/translate'
 
 @withRouter
 export default class UpdateForm extends React.Component {
@@ -57,7 +58,7 @@ export default class UpdateForm extends React.Component {
               />
               <br />
               <Button icon={BackIcon} onClick={() => this.props.history.push(this.props.basePath)}>
-                Back
+                {translate('components.back')}
               </Button>
               <Button
                 icon={DeleteIcon}
@@ -65,10 +66,10 @@ export default class UpdateForm extends React.Component {
                 onClick={() =>
                   this.props.history.push(`${this.props.basePath}/${this.props.itemId}/delete`)
                 }>
-                Delete
+                {translate('components.delete')}
               </Button>
               <Button icon={SaveIcon} onClick={() => this.form.submit()} primary>
-                Save {this.props.singular}
+                {translate('components.save')} {this.props.singular}
               </Button>
             </div>
           )}

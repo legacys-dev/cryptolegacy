@@ -8,7 +8,6 @@ import SixDigitInput from 'App/components/fields/SixDigitInput'
 import {Form, Field} from 'simple-react-form'
 import autobind from 'autobind-decorator'
 import translate from 'App/i18n/translate'
-import Translate from 'App/i18n'
 import gql from 'graphql-tag'
 
 @withMutation(gql`
@@ -63,11 +62,11 @@ export default class Enable extends React.Component {
     return (
       <div>
         <div>
-          <Translate tr="settings.enableTwoFactor" />
+          {translate('settings.enableTwoFactor')}
         </div>
         <br />
         <Button onClick={this.generate} primary>
-          <Translate tr="global.start" />
+          {translate('global.start')}
         </Button>
       </div>
     )
@@ -77,8 +76,8 @@ export default class Enable extends React.Component {
     if (!this.state.base32) return
     return (
       <div>
-        <p className={styles.instructionStep}>
-          <Translate tr="settings.twoFactorStep1" />
+        <p className={styles.instructionStep}>'
+          {translate('settings.twoFactorStep1')}
         </p>
         <div>
           <a
@@ -103,23 +102,23 @@ export default class Enable extends React.Component {
           </a>
         </div>
         <p className={styles.instructionStep}>
-          <Translate tr="settings.twoFactorStep2" />
+          {translate('settings.twoFactorStep2')}
         </p>
         <div style={{width: 250}} dangerouslySetInnerHTML={{__html: this.state.qrCode}} />
         <p className={styles.addManually}>
-          <Translate tr="settings.twoFactorOrManuallyAddTheCode" />{' '}
+          {translate('settings.twoFactorOrManuallyAddTheCode')}
           <code className={styles.addManuallyPre}>{this.state.base32}</code>
         </p>
         <br />
         <p className={styles.instructionStep}>
-          <Translate tr="settings.twoFactorStep3" />
+          {translate('settings.twoFactorStep3')}
         </p>
         <Form state={this.state} onChange={changes => this.setState(changes)}>
           <Field fieldName="code" type={SixDigitInput} />
         </Form>
         <br />
         <Button onClick={this.activate}>
-          <Translate tr="global.confirm" />
+          {translate('global.confirm')}
         </Button>
       </div>
     )

@@ -6,7 +6,21 @@ import files from './files'
 import vaults from './vaults'
 import actions from './actions'
 import heritages from './heritages'
-
+import emergency from './emergency'
+import app from './app'
+import sidebar from './sidebar'
+import storage from './storage'
+import emergencyKit from './emergencyKit'
+import components from './components'
+import deleteHeritages from './deleteHeritages'
+import emptyTrash from './emptyTrash'
+import fileManager from './fileManager'
+import deleteFile from './deleteFile'
+import enableHeritage from './enableHeritage'
+import restoreFile from './restoreFile'
+import parts from './parts'
+import information from './information'
+import admin from './admin'
 export default {
   actions,
   global,
@@ -15,5 +29,20 @@ export default {
   auth,
   files,
   vaults,
-  heritages
+  heritages,
+  emergency,
+  app,
+  sidebar,
+  storage,
+  emergencyKit,
+  components,
+  deleteHeritages,
+  emptyTrash,
+  fileManager,
+  deleteFile,
+  enableHeritage,
+  restoreFile,
+  parts,
+  information,
+  admin
 }

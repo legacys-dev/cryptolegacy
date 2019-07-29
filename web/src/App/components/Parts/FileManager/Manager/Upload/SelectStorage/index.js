@@ -6,6 +6,7 @@ import isEqual from 'lodash/isEqual'
 import styles from './styles.js'
 import simpleStyle from './simpleStyle.css'
 import Warning from './Warning'
+import translate from 'App/i18n/translate'
 
 export default class SelectStorage extends React.Component {
   static propTypes = {
@@ -17,12 +18,11 @@ export default class SelectStorage extends React.Component {
   }
 
   static defaultProps = {
-    placeholder: 'Select storage type',
-    description:
-      'There are two types of storage. simple, where you will have quick access to your files and high security, where your files are stored in a high security vault but access to files is slower.',
+    placeholder: translate('fileManager.storageType'),
+    description: translate('fileManager.descriptionType'),
     options: [
-      {label: 'Simple storage', value: 'b2'},
-      {label: 'High security storage', value: 'glacier'}
+      {label: translate('fileManager.simpleType'), value: 'b2'},
+      {label: translate('fileManager.highType'), value: 'glacier'}
     ]
   }
 

@@ -8,7 +8,6 @@ import bcrypt from 'bcryptjs'
 export default resolver({
   params: {
     code: {
-      label: 'Código',
       type: String
     },
     accessToken: {

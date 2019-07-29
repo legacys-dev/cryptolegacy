@@ -3,6 +3,7 @@ import styles from './styles.module.css'
 import actionIcons from './actionIcons'
 import Action from './Action'
 import moment from 'moment'
+import translate from 'App/i18n/translate'
 
 const Items = ({items}) => {
   const renderTable = () => {
@@ -32,8 +33,8 @@ const Items = ({items}) => {
           <thead>
             <tr>
               <td style={{width: '1%'}} />
-              <td style={{textAlign: 'left'}}>Acción</td>
-              <td style={{width: '10%'}}>Fecha</td>
+              <td style={{textAlign: 'left'}}>{translate('actions.action')}</td>
+              <td style={{width: '10%'}}>{translate('actions.date')}</td>
             </tr>
           </thead>
           <tbody>{renderTable()}</tbody>

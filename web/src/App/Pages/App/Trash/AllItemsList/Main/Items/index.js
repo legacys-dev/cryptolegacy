@@ -8,10 +8,11 @@ import RestoreFile from 'App/components/Parts/RestoreFile'
 import mime from 'mime-types'
 import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import translate from 'App/i18n/translate'
 
 const storage = {
-  b2: 'simple storage',
-  glacier: 'high security storage'
+  b2: translate('fileManager.simpleType'),
+  glacier: translate('fileManager.highType')
 }
 
 @withMessage
@@ -27,7 +28,7 @@ export default class Items extends React.Component {
 
   @autobind
   onRestoreSuccess(updateDate) {
-    this.props.showMessage('Archivo restaurado correctamente')
+    this.props.showMessage(translate('app.restoreFileMessage'))
     this.props.onUpdateArchive(updateDate)
   }
 
@@ -71,11 +72,11 @@ export default class Items extends React.Component {
           <thead>
             <tr>
               <td style={{width: '5%'}} />
-              <td style={{textAlign: 'left'}}>Nombre</td>
-              <td>Tipo</td>
-              <td>Peso</td>
-              <td>Storage</td>
-              <td>Bóveda</td>
+              <td style={{textAlign: 'left'}}>{translate('app.name')}</td>
+              <td>{translate('app.type')}</td>
+              <td>{translate('app.weight')}</td>
+              <td>{translate('app.storage')}</td>
+              <td>{translate('app.vault')}</td>
               <td style={{width: '5%'}} />
             </tr>
           </thead>

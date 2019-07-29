@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import {Contract} from 'App/components/Parts/Icons'
 import DeleteHeritage from 'App/components/Parts/DeleteHeritage'
+import translate from 'App/i18n/translate'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import autobind from 'autobind-decorator'
 import moment from 'moment'
@@ -20,7 +21,7 @@ export default class Items extends React.Component {
 
   @autobind
   onDeleteSuccess() {
-    this.props.showMessage('Se ha eliminado una herencia correctamente')
+    this.props.showMessage(translate('vaults.deleteHeritageMessage'))
     this.props.onDeleteItem(new Date())
   }
 
@@ -54,8 +55,8 @@ export default class Items extends React.Component {
           <thead>
             <tr>
               <td style={{width: '1%'}} />
-              <td>Heredero</td>
-              <td>Fecha de creación</td>
+              <td>{translate('vaults.inheritor')}</td>
+              <td>{translate('vaults.creationDate')}</td>
               <td style={{width: '5%'}} />
             </tr>
           </thead>

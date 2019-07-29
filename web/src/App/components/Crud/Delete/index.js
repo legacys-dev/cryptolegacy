@@ -9,6 +9,7 @@ import WithMutation from './WithMutation'
 import WithParams from './WithParams'
 import getFragment from '../getFragment'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import translate from 'App/i18n/translate'
 
 @withRouter
 @withMessage
@@ -31,7 +32,7 @@ export default class Delete extends React.Component {
   async delete(mutate) {
     try {
       await mutate(this.props.itemId)
-      this.props.showMessage(`${this.props.singular} deleted`)
+      this.props.showMessage(`${this.props.singular} ${translate('components.deleted')}`)
       this.props.history.push(this.props.basePath)
     } catch (error) {
       this.props.showMessage(error)
@@ -44,7 +45,7 @@ export default class Delete extends React.Component {
         <div className="content">
           <div className={styles.title}>{this.props.title}</div>
           <div className={styles.text}>
-            Are you sure you want to delete this {this.props.singular}
+            {translate('components.confirmDelete')} {this.props.singular}
           </div>
           <br />
           <WithParams name={this.props.name}>
@@ -60,10 +61,10 @@ export default class Delete extends React.Component {
                       onClick={() =>
                         this.props.history.push(`${this.props.basePath}/${this.props.itemId}`)
                       }>
-                      Back
+                      {translate('components.back')}
                     </Button>
                     <Button icon={DeleteIcon} danger onClick={() => this.delete(mutate)}>
-                      Delete {this.props.singular}
+                      {translate('components.delete')} {this.props.singular}
                     </Button>
                   </div>
                 )}

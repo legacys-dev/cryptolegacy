@@ -1,5 +1,6 @@
 export default {
   profile: 'Profile',
+  changePasswordMessage: 'Your password was changed',
   profileDescription: 'Update your personal information',
   yourProfileWasSaved: 'Your profile was saved',
   twoFactorAuthentication: 'Two factor authentication',
@@ -20,6 +21,9 @@ export default {
   confirmYourPassword: 'Confirm your password',
   repeatYourNewPassword: 'Repeat your new password',
   changePassword: 'Change password',
+  changePasswordDescription: 'Change your password',
   title: 'Settings',
-  security: 'Security'
+  security: 'Security',
+  firstName: 'First name',
+  lastName: 'Last name'
 }

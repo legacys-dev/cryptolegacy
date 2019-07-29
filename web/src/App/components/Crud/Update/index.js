@@ -27,7 +27,7 @@ export default class Update extends React.Component {
 
   @autobind
   onSuccess() {
-    this.props.showMessage(`The ${this.props.singular} was saved`)
+    this.props.showMessage(`${translate('components.the')} ${this.props.singular} ${translate('components.wasSaved')}`)
   }
 
   render() {

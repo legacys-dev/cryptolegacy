@@ -6,6 +6,7 @@ import EnableHeritage from 'App/components/Parts/EnableHeritage'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import autobind from 'autobind-decorator'
 import moment from 'moment'
+import translate from 'App/i18n/translate'
 
 @withMessage
 export default class Items extends React.Component {
@@ -20,7 +21,7 @@ export default class Items extends React.Component {
 
   @autobind
   onEnableSuccess() {
-    this.props.showMessage('The heritage was enabled')
+    this.props.showMessage(translate('admin.enableHeritageMessage'))
     this.props.onHeritageEnabled(new Date())
   }
 
@@ -54,9 +55,9 @@ export default class Items extends React.Component {
           <thead>
             <tr>
               <td style={{width: '1%'}} />
-              <td>Creador de herencia</td>
-              <td>Heredero</td>
-              <td>Fecha de creación</td>
+              <td>{translate('admin.heritageCreator')}</td>
+              <td>{translate('admin.inheritor')}</td>
+              <td>{translate('admin.creationDate')}</td>
               <td style={{width: '5%'}} />
             </tr>
           </thead>

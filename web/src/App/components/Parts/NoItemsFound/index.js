@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.css'
-import Translate from 'App/i18n'
 import {Alert} from 'App/components/Parts/Icons'
+import translate from 'App/i18n/translate'
 
 const NoItemsFound = ({message}) => {
   return (
@@ -10,7 +10,7 @@ const NoItemsFound = ({message}) => {
         <Alert active size={30} />
       </div>
       <div className={styles.message}>
-        <Translate tr={message} />
+        {translate(message)}
       </div>
     </div>
   )

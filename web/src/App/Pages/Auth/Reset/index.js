@@ -5,8 +5,6 @@ import AutoForm from 'App/components/AutoForm'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 import Button from 'App/components/Parts/Button'
-import Title from 'App/components/Auth/Title'
-import Translate from 'App/i18n'
 import LoggedIn from '../LoggedIn'
 import autobind from 'autobind-decorator'
 import withUserId from 'App/helpers/auth/withUserId'
@@ -64,7 +62,7 @@ export default class ResetPassword extends React.Component {
   renderDescription() {
     return (
       <div className={styles.description}>
-        <Translate tr="auth.passwordRequirements" />
+        {translate('auth.passwordRequirements')}
       </div>
     )
   }
@@ -73,7 +71,7 @@ export default class ResetPassword extends React.Component {
     return (
       <div className={styles.button}>
         <Button onClick={() => this.refs.form.submit()} primary>
-          <Translate tr="auth.resetPassword" />
+          {translate('auth.resetPassword')}
         </Button>
       </div>
     )
@@ -83,7 +81,7 @@ export default class ResetPassword extends React.Component {
     if (this.props.userId) return <LoggedIn />
     return (
       <div>
-        <Title text="auth.resetPassword" />
+        {translate('auth.resetPassword')}
         <AutoForm
           doc={{token: this.props.token}}
           mutation="resetPassword"

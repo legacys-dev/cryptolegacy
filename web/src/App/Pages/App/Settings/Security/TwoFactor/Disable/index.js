@@ -7,7 +7,6 @@ import withMutation from 'react-apollo-decorators/lib/withMutation'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import autobind from 'autobind-decorator'
 import translate from 'App/i18n/translate'
-import Translate from 'App/i18n'
 import gql from 'graphql-tag'
 
 @withMutation(gql`
@@ -40,14 +39,14 @@ export default class Disable extends React.Component {
       <div className={styles.container}>
         <MdLock size={28} className={styles.twoFactorActivatedIcon} />
         <span className={styles.twoFactorActivatedText}>
-          <Translate tr="settings.twoFactorActivated" />
+          {translate('settings.twoFactorActivated')}
         </span>
         <div className={styles.yourAccountIsSecure}>
-          <Translate tr="settings.twoFactorYourAccountIsSafer" />
+          {translate('settings.twoFactorYourAccountIsSafer')}
         </div>
         <br />
         <Button danger onClick={this.disableTwoFactor}>
-          <Translate tr="global.disable" />
+          {translate('global.disable')}
         </Button>
       </div>
     )

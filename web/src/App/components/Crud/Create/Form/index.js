@@ -49,10 +49,10 @@ export default class UpdateForm extends React.Component {
               />
               <br />
               <Button icon={BackIcon} onClick={() => this.props.history.push(this.props.basePath)}>
-                Back
+                {translate('components.back')}
               </Button>
               <Button icon={SaveIcon} onClick={() => this.form.submit()} primary>
-                Create {this.props.singular}
+              {translate('components.create')} {this.props.singular}
               </Button>
             </div>
           )}

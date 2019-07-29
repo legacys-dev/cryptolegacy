@@ -10,6 +10,7 @@ import {MdCloudUpload} from 'react-icons/md'
 import getSize from 'App/helpers/files/getSize'
 import gql from 'graphql-tag'
 import mime from 'mime-types'
+import translate from 'App/i18n/translate'
 
 @withMutation(gql`
   mutation createS3Upload(
@@ -128,7 +129,7 @@ export default class Upload extends React.Component {
   @autobind
   async complete({fileId}) {
     await this.props.completeS3Upload({fileId}, {refetchQueries: ['getFiles']})
-    this.props.showMessage('The file was successfully loaded')
+    this.props.showMessage(translate('fileManager.loadFileMessage'))
     this.props.close()
   }
 
@@ -145,7 +146,7 @@ export default class Upload extends React.Component {
     return (
       <div className={styles.inputContainer}>
         <label htmlFor="file-upload" className={styles.label}>
-          <div>click here to upload the file</div>
+          <div>{translate('fileManager.clickUploadFile')}</div>
           <MdCloudUpload size={25} />
         </label>
         <input
@@ -165,9 +166,9 @@ export default class Upload extends React.Component {
     return (
       <div>
         <div className={styles.loading}>
-          Uploading file ({progress.toFixed(2)}%)
+          {`${translate('fileManager.uploadingFile')} (${progress.toFixed(2)}%)`}
           <br />
-          {getSize(loaded)} of {getSize(total)}
+          {getSize(loaded)} {translate('fileManager.of')} {getSize(total)}
         </div>
         <div className={styles.progressLine}>
           <Line percent={this.props.progress} />
