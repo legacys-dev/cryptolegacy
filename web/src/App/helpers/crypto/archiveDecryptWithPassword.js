@@ -13,7 +13,11 @@ export default ({encryptedItem, cipherPassword, archiveIv}) => {
 
   const iv = Buffer.from(archiveIv, 'hex')
 
+<<<<<<< HEAD
   const decipher = crypto.createDecipheriv(algorithm, cipherPassword, iv)
+=======
+  const decipher = crypto.createDecipheriv(algorithm, cipherPassword, Iv)
+>>>>>>> ab9a6ad3dce075e58c1d1f83f61555590c647e1d
   const decrypted = decipher.update(encryptedItem)
   const finalBuffer = Buffer.concat([decrypted, decipher.final()])
 
