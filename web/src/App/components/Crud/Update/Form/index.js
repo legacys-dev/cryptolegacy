@@ -10,7 +10,6 @@ import SaveIcon from 'react-icons/lib/md/save'
 import DeleteIcon from 'react-icons/lib/md/delete'
 import translate from 'App/i18n/translate'
 
-
 @withRouter
 export default class UpdateForm extends React.Component {
   static propTypes = {
@@ -70,7 +69,7 @@ export default class UpdateForm extends React.Component {
                 {translate('components.delete')}
               </Button>
               <Button icon={SaveIcon} onClick={() => this.form.submit()} primary>
-              {translate('components.save')} {this.props.singular}
+                {translate('components.save')} {this.props.singular}
               </Button>
             </div>
           )}

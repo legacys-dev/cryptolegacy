@@ -20,7 +20,7 @@ export default resolver({
   async resolve({code, token}, viewer) {
     const query = {'confirmEmail.token': token}
     const updateDate = new Date()
-    const confirmPassword = pconfiasswordRegistration()
+    const confirmPassword = passwordRegistration()
 
     await Registrations.update(query, {$set: {confirmPassword, updateDate}})
 

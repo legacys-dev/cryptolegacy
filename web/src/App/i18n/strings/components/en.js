@@ -3,7 +3,7 @@ export default {
     the: 'The',
     profileSaved: 'profile was saved',
     deleted: 'deleted',
-    deleted: 'Delete',
+    delete: 'Delete',
     back: 'Back',
     confirmDelete: 'Are you sure you want to delete this ',
     wasSaved: 'was saved',

@@ -56,11 +56,13 @@ export default class Profile extends React.Component {
             ref="form"
           >
           <Field
+            label= {translate('settings.firstName')}
             fieldName="firstName"
             type={Text}
             fieldType="firstName"
           />
           <Field
+            label={translate('settings.lastName')}
             fieldName="lastName"
             type={Text}
             fieldType="lastName"

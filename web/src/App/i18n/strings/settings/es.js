@@ -23,5 +23,8 @@ export default {
   changePassword: 'Cambiar contraseña',
   changePasswordDescription: 'Cambia tu contraseña',
   title: 'Ajustes',
-  security: 'Seguridad'
+  security: 'Seguridad',
+  firstName: 'Nombre',
+  lastName: 'Apellido',
+  
 }
