@@ -1,59 +1,95 @@
 import React from 'react'
-import './vaultcard.css'
+import styles from './styles.module.css'
 
-const VaultCard = props => {
-  const renderHeader = title => {
+const VaultCard = ({heirsData, numberFiles, size, vaultName, owner}) => {
+  const renderHeader = () => {
     return (
-      <div className="header">
-        <p className="title">{title}</p>
+      <div className={styles.header}>
+        <p className={styles.title}>{vaultName}</p>
       </div>
     )
   }
 
-  const renderAvatar = (role, name) => {
+  const renderAvatar = () => {
     return (
       <div>
-        <div className="administrator">
-          <p>{role}</p>
+        <div className={styles.administrator}>
+          <p>{owner.role}</p>
         </div>
 
-        <div className="avatar-container">
-          <img
-            className="avatar"
-            src="https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png"
-          />
-          <p>{name}</p>
+        <div className={styles.avatarContainer}>
+          <img className={styles.avatar} src={owner.image} />
+          <p>{owner.name}</p>
         </div>
       </div>
     )
   }
 
-  const renderHeirsAvatar = heirs => {
-    return heirs.map((heir, index) => {
-      console.log(index)
+  const renderHeirsAvatar = () => {
+    return heirsData.map((heir, index) => {
       return (
         <img
           key={index}
-          className="avatar"
+          className={styles.avatar}
           src={heir.image}
-          // "https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png"
+          // style={{ position: 'absolute', marginLeft: `${offset}`, border: '1.5px solid white', borderRadius: '50%' }}
         />
       )
     })
   }
 
-  const renderHeirsList = heirs => {
-    return heirs.map((heir, index) => {
+  const renderHeirsList = () => {
+    return heirsData.map((heir, index) => {
       return (
-        <div key={index} className="list-item">
+        <div key={index} className={styles.listiItem}>
           <p>{heir.name}</p>
-          <hr className="separate-line" />
+          <hr className={styles.separateLine} />
         </div>
       )
     })
   }
 
-  const heirs = [
+  const renderFooter = () => {
+    return (
+      <div className={styles.footer}>
+        <h2>{numberFiles} Files</h2>
+        <h2>{size}</h2>
+      </div>
+    )
+  }
+
+  const vaultCard = () => {
+    return (
+      <div className={styles.card}>
+        <div className={styles.upSide}>
+          {renderHeader()}
+          {renderAvatar()}
+        </div>
+        <div className={styles.downSide}>
+          <div className={styles.title2}>
+            <p> HEIRS</p>
+            <div className={styles.images}>{renderHeirsAvatar()}</div>
+          </div>
+          <div className={styles.containerList}>{renderHeirsList()}</div>
+
+          {renderFooter()}
+        </div>
+      </div>
+    )
+  }
+  return <div className={styles.container}>{vaultCard()}</div>
+}
+
+VaultCard.defaultProps = {
+  vaultName: 'Asseurance Vault',
+  numberFiles: 2,
+  size: '10 GB',
+  owner: {
+    name: 'Diego Mellis',
+    role: 'ADMINISTRADOR',
+    image: 'https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png'
+  },
+  heirsData: [
     {
       name: 'Diego Mellis',
       image:
@@ -103,35 +139,5 @@ const VaultCard = props => {
         'https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png'
     }
   ]
-
-  const renderFooter = () => {
-    return (
-      <div className="footer">
-        <h2>2 Files</h2>
-        <h2>10 GB</h2>
-      </div>
-    )
-  }
-
-  const vaultCard = () => {
-    return (
-      <div className="card">
-        <div className="up-side">
-          {renderHeader('Asseurance Vault')}
-          {renderAvatar('Administrador', 'Diego Mellis')}
-        </div>
-        <div className="down-side">
-          <div className="title2">
-            <p> HEIRS</p>
-            <div className="images">{renderHeirsAvatar(heirs)}</div>
-          </div>
-          <div className="container-list">{renderHeirsList(heirs)}</div>
-
-          {renderFooter()}
-        </div>
-      </div>
-    )
-  }
-  return <div className="container">{vaultCard()}</div>
 }
 export default VaultCard
