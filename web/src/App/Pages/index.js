@@ -34,11 +34,6 @@ export default class Pages extends React.Component {
       return <Heritage />
     }
 
-    if (pathname.startsWith('/vaultCard')) {
-      const VaultCard = lazy(() => import('../components/Parts/VaultCard'))
-      return <VaultCard />
-    }
-
     return <App />
   }
 
