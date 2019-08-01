@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './styles.module.css'
 import {MdMoreVert} from 'react-icons/md'
+import translate from 'App/i18n/translate'
 
 const VaultCard = ({heirsData, numberFiles, size, vaultName, owner}) => {
   const renderHeader = () => {
@@ -71,7 +72,7 @@ const VaultCard = ({heirsData, numberFiles, size, vaultName, owner}) => {
         </div>
         <div className={styles.downSide}>
           <div className={styles.title2}>
-            <p> HEIRS</p>
+            <p>{translate('vaults.heirs')}</p>
             <div className={styles.images}>{renderHeirsAvatar()}</div>
           </div>
           <div className={styles.containerList}>{renderHeirsList()}</div>
@@ -83,4 +84,64 @@ const VaultCard = ({heirsData, numberFiles, size, vaultName, owner}) => {
   return <div className={styles.container}>{vaultCard()}</div>
 }
 
+VaultCard.defaultProps = {
+  vaultName: 'Asseurance Vault',
+  numberFiles: 2,
+  size: '10 GB',
+  owner: {
+    name: 'Diego Mellis',
+    role: 'ADMINISTRADOR',
+    image: 'https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png'
+  },
+  heirsData: [
+    {
+      name: 'Diego Mellis',
+      image:
+        'https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png'
+    },
+
+    {
+      name: 'Michael Castillo',
+      image:
+        'https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png'
+    },
+    {
+      name: 'Nicolas',
+      image:
+        'https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png'
+    },
+    {
+      name: 'Diego Mellis',
+      image:
+        'https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png'
+    },
+
+    {
+      name: 'Michael Castillo',
+      image:
+        'https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png'
+    },
+    {
+      name: 'Nicolas',
+      image:
+        'https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png'
+    },
+    {
+      name: 'Diego Mellis',
+      image:
+        'https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png'
+    },
+
+    {
+      name: 'Michael Castillo',
+      image:
+        'https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png'
+    },
+    {
+      name: 'Nicolas',
+      image:
+        'https://www.drain1.ca/wp-content/uploads/2018/01/flat-faces-icons-circle-3-300x300.png'
+    }
+  ]
+}
 export default VaultCard
