@@ -8,6 +8,7 @@ import {withRouter} from 'react-router'
 import VaultType from './VaultType'
 import Main from './Main'
 import translate from 'App/i18n/translate'
+import {FiPlus} from 'react-icons/fi'
 
 @withRouter
 export default class List extends React.Component {
@@ -33,7 +34,7 @@ export default class List extends React.Component {
     const renderCreateVault = () => {
       if (this.state.credentialType === 'heritage') return
       return (
-        <Button primary onClick={() => this.props.history.push('/vaults/create')}>
+        <Button primary icon={FiPlus} onClick={() => this.props.history.push('/vaults/create')}>
           {translate('vaults.createVault')}
         </Button>
       )
