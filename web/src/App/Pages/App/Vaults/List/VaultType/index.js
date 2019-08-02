@@ -31,7 +31,7 @@ export default class VaultType extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.select}>
-          <Select
+          <Select             
             onChange={vaultType => onVaultTypeChange(vaultType)}
             options={vaultoptions}
             value={vaultTypeValue}
