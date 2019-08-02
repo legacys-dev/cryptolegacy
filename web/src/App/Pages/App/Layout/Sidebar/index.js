@@ -15,7 +15,7 @@ const Navbar = () => {
       </div>
       <div className={styles.logo}>
         <img src="./logos/white.png" style={{width: '128px', height: '39.56px'}} />
-        <p style={{color: 'white', cursor: 'pointer'}}>{translate('sidebar.termsAndConditions')}</p>
+        <p>{translate('sidebar.termsAndConditions')}</p>
       </div>
     </div>
   )
