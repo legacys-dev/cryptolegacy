@@ -8,7 +8,6 @@
   margin: 5px 0;
   -webkit-transition-property: background-color;
   -webkit-transition-duration: 300ms;
-  border-left: 5px solid #fff;
 }
 
 .item:hover {
@@ -17,8 +16,8 @@
 }
 
 .itemActive {
-  border-color: #0053b3;
   background-color: #53caff30;
+  border-right: 8px solid #0053b3;
 }
 
 .link {
@@ -26,7 +25,7 @@
   flex-direction: row;
   min-height: 35px;
   margin: 5px 40px;
-  color: #91a2b0;
+  color: #b0bac9;
 }
 
 .icon {
