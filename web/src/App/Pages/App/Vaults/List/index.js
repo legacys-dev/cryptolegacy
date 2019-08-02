@@ -41,7 +41,10 @@ export default class List extends React.Component {
       <div className={styles.container}>
         <Breadcrumbs right={this.renderCreateVault()}>
           <div className={styles.title}>
-            <div className={styles.subTitle}>{translate('vaults.vaults')}</div>
+            <div className={styles.header}>
+              <div className={styles.headTitle}>{translate('vaults.vaults')}</div>
+              <div className={styles.headSubTitle}> Aquí va la descripción </div>
+            </div>
             <div className={styles.searchBar}>
               <VaultType
                 onVaultTypeChange={this.onVaultTypeChange}
@@ -52,6 +55,7 @@ export default class List extends React.Component {
             </div>
           </div>
         </Breadcrumbs>
+        <div className={styles.divider}/>
         <Main filter={this.state.searchValue} credentialType={this.state.credentialType} />
       </div>
     )

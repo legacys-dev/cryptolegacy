@@ -1,20 +1,38 @@
 :local(.container) {
-  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 18px 35px rgba(50, 50, 93, 0.1), 0 8px 15px rgba(0, 0, 0, 0.07);
   padding: 20px;
 }
 
 :local(.title) {
   display: flex;
-  align-items: center;
+  align-items: center;  
+  justify-content: space-between;
+  margin-right: 20px;
 }
 
-:local(.subTitle) {
+:local(.headSubTitle) {
+  font-size: 14px;
+}
+
+:local(.headTitle){ 
+  font-size: 28px;
 }
 
 :local(.searchBar) {
   font-size: 17px;
   font-weight: 400;
   margin-left: 20px;
+
+}
+:local(.bradcrumsContainer){
+  display: flex;
+}
+:local(.addButton){
+}
+:local(.header){}
+:local(.divider){
+  height: 1px;
+  width: 100%;
+  text-align: center;
+  background-color: black;
 }
