@@ -7,6 +7,7 @@ import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 import VaultType from './VaultType'
 import Main from './Main'
+import {FiPlus} from 'react-icons/fi'
 import translate from 'App/i18n/translate'
 
 @withRouter
@@ -30,7 +31,7 @@ export default class List extends React.Component {
   renderCreateVault() {
     if (this.state.credentialType === 'heritage') return
     return (
-      <Button primary onClick={() => this.props.history.push('/vaults/create')}>
+      <Button primary icon={FiPlus} onClick={() => this.props.history.push('/vaults/create')}>
         {translate('vaults.createVault')}
       </Button>
     )
