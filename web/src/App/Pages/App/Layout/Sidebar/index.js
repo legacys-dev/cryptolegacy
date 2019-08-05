@@ -15,7 +15,7 @@ const Navbar = () => {
         <MenuOptions />
       </div>
       <div className={styles.logo}>
-        <Logo src="./logos/white.png" size={40}/>
+        <Logo imgName="white.png" size={40}/>
         <p>{translate('sidebar.termsAndConditions')}</p>
       </div>
     </div>
