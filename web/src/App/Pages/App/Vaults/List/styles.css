@@ -18,7 +18,10 @@
 :local(.renderRigth){
   display: flex;
   align-items: center;
-  margin-right: 10px;
+}
+
+:local(.headSubTitle) {
+  font-size: 14px;
 }
 
 :local(.headTitle){ 
@@ -37,4 +40,21 @@
   width: 100%;
   text-align: center;
   background-color: #045EFC;
+}
+
+:local(.bradcrumsContainer) {
+  display: flex;
+}
+
+:local(.addButton) {
+}
+
+:local(.header) {
+}
+
+:local(.divider) {
+  height: 1px;
+  width: 100%;
+  text-align: center;
+  background-color: black;
 }
