@@ -51,3 +51,13 @@
   display: flex;
   align-items: center;
 }
+
+.pastContainer{
+  display: flex;
+  align-items: center;
+}
+
+#arrowBack{
+  margin-bottom: 4px;
+  margin-right: 4px;
+}

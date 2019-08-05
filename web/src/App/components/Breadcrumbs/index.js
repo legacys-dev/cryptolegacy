@@ -24,19 +24,17 @@ const Breadcrumbs = ({past, children, right, divider}) => {
       return (
         <span key={item.path} className={styles.backContainer}>
           {renderLink ? (
-            <Link to={item.path}>
-              <span className={styles.rowBack}>
-                <MdArrowBack />
-              </span>
-              <span>{item.title}</span>
+            <Link to={item.path} >
+              <div className={styles.pastContainer}>
+                <MdArrowBack id={styles.arrowBack}/>
+                {item.title}
+              </div>
             </Link>
-          ) : (
+           ) : (
             item.title
           )}{' '}
           {renderArrow ? (
-            <span className="bread-divider">
-              <MdKeyboardArrowRight />
-            </span>
+            <MdKeyboardArrowRight />
           ) : null}
         </span>
       )
