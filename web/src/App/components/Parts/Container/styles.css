@@ -1,21 +1,22 @@
-.os_container {
-  margin: 30px auto;
+.os_parts_container {
+  margin: 0px auto;
   padding: 0 20px;
   padding: 0 calc(20px + env(safe-area-inset-left));
 }
 
-.os_container_fullWith {
+.os_parts_container_fullWith {
   max-width: 100%;
 }
 
-.os_container_big {
+.os_parts_container_big {
   max-width: 1340px;
+  margin-top: 100px;
 }
 
-.os_container_medium {
+.os_parts_container_medium {
   max-width: 900px;
 }
 
-.os_container_small {
+.os_parts_container_small {
   max-width: 600px;
 }

@@ -9,8 +9,8 @@ Container.defaultProps = {
 
 export default function Container({className, size, children}) {
   const getClassName = () => {
-    const className = ['os_container']
-    className.push(`os_container_${size}`)
+    const className = ['os_parts_container']
+    className.push(`os_parts_container${size}`)
     if (className) className.push(className)
 
     return className.join(' ')
