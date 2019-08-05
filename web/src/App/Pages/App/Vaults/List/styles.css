@@ -5,8 +5,9 @@
 
 :local(.title) {
   display: flex;
-  align-items: center;
+  align-items: center;  
   justify-content: space-between;
+  width: 100%;
   margin-right: 20px;
 }
 
@@ -14,7 +15,16 @@
   font-size: 14px;
 }
 
-:local(.headTitle) {
+:local(.renderRigth){
+  display: flex;
+  align-items: center;
+}
+
+:local(.headSubTitle) {
+  font-size: 14px;
+}
+
+:local(.headTitle){ 
   font-size: 28px;
 }
 
@@ -22,6 +32,14 @@
   font-size: 17px;
   font-weight: 400;
   margin-left: 20px;
+  margin-right: 10px;
+}
+
+:local(.divider){
+  height: 1px;
+  width: 100%;
+  text-align: center;
+  background-color: #045EFC;
 }
 
 :local(.bradcrumsContainer) {
