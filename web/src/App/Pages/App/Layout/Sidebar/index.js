@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './styles.module.css'
 import User from './User'
 import MenuOptions from './MenuOptions'
+import Logo from 'App/components/Parts/Logo'
 import translate from 'App/i18n/translate'
 
 const Navbar = () => {
@@ -14,7 +15,7 @@ const Navbar = () => {
         <MenuOptions />
       </div>
       <div className={styles.logo}>
-        <img src="./logos/white.png" style={{width: '128px', height: '39.56px'}} />
+        <Logo src="./logos/white.png" size={40}/>
         <p>{translate('sidebar.termsAndConditions')}</p>
       </div>
     </div>

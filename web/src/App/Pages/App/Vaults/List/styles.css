@@ -5,7 +5,7 @@
 
 :local(.title) {
   display: flex;
-  align-items: center;  
+  align-items: center;
   justify-content: space-between;
   margin-right: 20px;
 }
@@ -14,7 +14,7 @@
   font-size: 14px;
 }
 
-:local(.headTitle){ 
+:local(.headTitle) {
   font-size: 28px;
 }
 
@@ -22,15 +22,19 @@
   font-size: 17px;
   font-weight: 400;
   margin-left: 20px;
-
 }
-:local(.bradcrumsContainer){
+
+:local(.bradcrumsContainer) {
   display: flex;
 }
-:local(.addButton){
+
+:local(.addButton) {
 }
-:local(.header){}
-:local(.divider){
+
+:local(.header) {
+}
+
+:local(.divider) {
   height: 1px;
   width: 100%;
   text-align: center;
