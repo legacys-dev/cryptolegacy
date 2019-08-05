@@ -6,7 +6,7 @@ export default {
   }),
   control: base => ({
     ...base,
-    height: '50px',
+    height: '40px',
     borderRadius: '5px',
     minWidth: '30px'
   })

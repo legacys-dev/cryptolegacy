@@ -34,7 +34,7 @@ const Breadcrumbs = ({past, children, right, divider}) => {
             item.title
           )}{' '}
           {renderArrow ? (
-            <MdKeyboardArrowRight />
+            <MdKeyboardArrowRight id={styles.arrowRight}/>
           ) : null}
         </span>
       )

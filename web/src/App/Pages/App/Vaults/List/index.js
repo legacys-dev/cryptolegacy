@@ -7,8 +7,8 @@ import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 import VaultType from './VaultType'
 import Main from './Main'
-import translate from 'App/i18n/translate'
 import {FiPlus} from 'react-icons/fi'
+import translate from 'App/i18n/translate'
 
 @withRouter
 export default class List extends React.Component {
