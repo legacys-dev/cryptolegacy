@@ -21,7 +21,6 @@ const VaultCard = ({heirsData, numberFiles, size, vaultName, owner}) => {
         <div className={styles.administrator}>
           <p>{owner.role}</p>
         </div>
-
         <div className={styles.avatarContainer}>
           <img src={owner.image} />
           <p>{owner.name}</p>
@@ -37,7 +36,6 @@ const VaultCard = ({heirsData, numberFiles, size, vaultName, owner}) => {
           key={index}
           className={styles.avatar}
           src={heir.image}
-          // style={{ position: 'absolute', marginLeft: `${offset}`, border: '1.5px solid white', borderRadius: '50%' }}
         />
       )
     })
