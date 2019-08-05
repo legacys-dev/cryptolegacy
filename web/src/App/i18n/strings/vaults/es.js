@@ -13,6 +13,7 @@ export default {
   heritages: 'Herencias',
   deleteHeritageMessage: 'Se ha eliminado una herencia correctamente',
   inheritor: 'Heredero',
+  heirs: 'HEREDEROS',
   creationDate: 'Fecha de creación',
   vaultUpdatedSuccessfully: 'Bóveda actualizada correctamente',
   vaultDeletedSuccessfully: 'Bóveda eliminada correctamente',
