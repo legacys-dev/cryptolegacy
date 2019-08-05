@@ -27,8 +27,14 @@ export default class AllItemsList extends React.Component {
     return (
       <div className={styles.container}>
         <Breadcrumbs>
-          <div className={styles.title}>{translate('app.actions')}</div>
+          <div className={styles.title}>
+            <div className={styles.header}>
+              <div className={styles.headTitle}>{translate('app.actions')}</div>
+              <div className={styles.headSubTitle}> Aquí va la descripción </div>
+            </div>
+          </div>
         </Breadcrumbs>
+        <div className={styles.divider} />
         <Main />
       </div>
     )
