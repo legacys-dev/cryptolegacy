@@ -42,9 +42,11 @@
   background: #00000017;
   margin: 0 20px;
 }
+
 .rowBack{
   margin-right: 10px;
 }
+
 .backContainer{
   display: flex;
   align-items: center;

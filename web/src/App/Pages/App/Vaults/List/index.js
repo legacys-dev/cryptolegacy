@@ -28,28 +28,27 @@ export default class List extends React.Component {
     this.setState({credentialType})
   }
 
-  
-
   renderRigth() {
     const renderCreateVault = () => {
-      if (this.state.credentialType === 'heritage') return
-      return (
-        <Button primary icon={FiPlus} onClick={() => this.props.history.push('/vaults/create')}>
-          {translate('vaults.createVault')}
-        </Button>
-      )
-    };
-    return(
+      if (this.state.credentialType === 'heritage') {
+        return (
+          <Button primary icon={FiPlus} onClick={() => this.props.history.push('/vaults/create')}>
+            {translate('vaults.createVault')}
+          </Button>
+        )
+      }
+    }
+    return (
       <div className={styles.renderRigth}>
         <div className={styles.searchBar}>
-                <VaultType
-                  onVaultTypeChange={this.onVaultTypeChange}
-                  onFilterChange={this.onFilterChange}
-                  vaultTypeValue={this.state.credentialType}
-                  filterValue={this.state.searchValue}
-                />
-              </div>
-              {renderCreateVault()}
+          <VaultType
+            onVaultTypeChange={this.onVaultTypeChange}
+            onFilterChange={this.onFilterChange}
+            vaultTypeValue={this.state.credentialType}
+            filterValue={this.state.searchValue}
+          />
+        </div>
+        {renderCreateVault()}
       </div>
     )
   }
@@ -57,18 +56,17 @@ export default class List extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <div class={styles.headerContainer}>
+        <div className={styles.headerContainer}>
           <Breadcrumbs right={this.renderRigth()}>
             <div className={styles.title}>
               <div className={styles.header}>
                 <div className={styles.headTitle}>{translate('vaults.vaults')}</div>
                 <div className={styles.headSubTitle}> Aquí va la descripción </div>
               </div>
-              
             </div>
           </Breadcrumbs>
         </div>
-        <div className={styles.divider}/>
+        <div className={styles.divider} />
         <Main filter={this.state.searchValue} credentialType={this.state.credentialType} />
       </div>
     )
