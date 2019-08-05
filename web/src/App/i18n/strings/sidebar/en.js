@@ -5,5 +5,6 @@ export default {
   adminPanel: 'Admin panel',
   account: 'My account',
   exit: 'Exit',
-  accountOut: 'Account'
+  accountOut: 'Account',
+  termsAndConditions: 'Terms and Conditions'
 }

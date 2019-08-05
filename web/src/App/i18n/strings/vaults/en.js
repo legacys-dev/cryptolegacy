@@ -13,6 +13,7 @@ export default {
   heritages: 'Heritages',
   deleteHeritageMessage: 'An heritage have been deleted correctly',
   inheritor: 'Inheritor',
+  heirs: 'HEIRS',
   creationDate: 'Creation date',
   vaultUpdatedSuccessfully: 'Vault updated successfully',
   vaultDeletedSuccessfully: 'Vault deleted successfully',
