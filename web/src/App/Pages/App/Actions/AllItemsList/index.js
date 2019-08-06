@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import Breadcrumbs from 'App/components/Breadcrumbs'
+import Header from 'App/components/Parts/Header'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import gql from 'graphql-tag'
@@ -26,9 +26,7 @@ export default class AllItemsList extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Breadcrumbs>
-          <div className={styles.title}>{translate('app.actions')}</div>
-        </Breadcrumbs>
+        <Header title={translate('app.actions')}/>
         <Main />
       </div>
     )

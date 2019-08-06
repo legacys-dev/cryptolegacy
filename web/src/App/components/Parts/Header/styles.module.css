@@ -1,0 +1,76 @@
+.container {
+}
+
+.all {
+  margin-left: -10px;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  padding-bottom: 16px;
+}
+
+.content {
+  flex: 1;
+  font-size: 25px;
+  color: #393939;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.content a {
+  color: #393939;
+  border-radius: 8px;
+  padding: 5px 10px;
+}
+
+.content .last {
+  border-radius: 8px;
+  padding: 5px 10px;
+}
+
+.content a:hover {
+  background: #53caff30;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.divider {
+  height: 1px;
+  background: #e2e2e2;
+  margin: 0px 20px;
+
+}
+
+.rowBack{
+  margin-right: 10px;
+}
+
+.backContainer{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column
+}
+
+.pastContainer{
+  display: flex;
+}
+
+#arrowBack{
+  margin-top: 6px;
+  margin-right: 10px;
+}
+
+:local(.titleHeader) {
+  font-size: 28px;
+}
+
+:local(.descriptionHeader) {
+  font-size: 14px;
+  margin-left: 48px;
+  margin-top: -4px;
+}
+
