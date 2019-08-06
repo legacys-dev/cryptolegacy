@@ -6,7 +6,6 @@ import {getEncryptedPassword} from 'App/helpers/user'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import Button from 'App/components/Parts/Button'
 import AutoForm from 'App/components/AutoForm'
-import Section from 'App/components/Section'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 import {Field} from 'simple-react-form'
@@ -31,7 +30,9 @@ export default class Create extends React.Component {
   renderButtons() {
     return (
       <div className={styles.buttons}>
-        <Button onClick={() => this.props.history.push('/vaults')}>{translate('vaults.back')}</Button>
+        <Button onClick={() => this.props.history.push('/vaults')}>
+          {translate('vaults.back')}
+        </Button>
         <Button primary onClick={() => this.refs.form.submit()}>
           {translate('vaults.createVault')}
         </Button>
@@ -47,21 +48,19 @@ export default class Create extends React.Component {
         description={translate('vaults.description')}
         />
         <div className={styles.content}>
-          <Section top >
-            <AutoForm
-              mutation="createVault"
-              ref="form"
-              doc={{credentials: getEncryptedPassword()}}
-              onSuccess={this.onSuccess}
-            >
-              <Field
-                label = {translate('vaults.vaultName')}
-                fieldName="name"
-                type={Text}
-              />
-            </AutoForm>
-            {this.renderButtons()}
-          </Section>
+          <AutoForm
+            mutation="createVault"
+            ref="form"
+            doc={{credentials: getEncryptedPassword()}}
+            onSuccess={this.onSuccess}>
+            <Field
+              label={translate('vaults.vaultName')}
+              fieldName="name"
+              placeholder={translate('vaults.writeVaultName')}
+              type={Text}
+            />
+          </AutoForm>
+          {this.renderButtons()}
         </div>
       </div>
     )

@@ -8,7 +8,6 @@ import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import Header from 'App/components/Parts/Header'
 import Loading from 'App/components/Parts/Loading'
 import Button from 'App/components/Parts/Button'
-import Section from 'App/components/Section'
 import translate from 'App/i18n/translate'
 import gql from 'graphql-tag'
 import Main from './Main'
@@ -61,9 +60,7 @@ export default class List extends React.Component {
         />
 
         <div className={styles.content}>
-          <Section top title={translate('vaults.heritages')}description={translate('vaults.description')}>
-            <Main vaultId={vault._id} />
-          </Section>
+          <Main vaultId={vault._id} />
         </div>
       </div>
     )

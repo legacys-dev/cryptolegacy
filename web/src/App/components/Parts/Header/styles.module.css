@@ -68,9 +68,13 @@
   font-size: 28px;
 }
 
-:local(.descriptionHeader) {
+:local(.descriptionHeaderBack) {
   font-size: 14px;
   margin-left: 48px;
   margin-top: -4px;
 }
 
+:local(.descriptionHeader) {
+  font-size: 14px;
+  margin-top: -4px;
+}

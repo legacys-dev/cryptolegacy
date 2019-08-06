@@ -12,12 +12,12 @@
 
 .item:hover {
   cursor: pointer;
-  background-color: #53caff30;
+  background-color: #f4f6fc14 ;
 }
 
 .itemActive {
-  background-color: #53caff30;
-  border-right: 8px solid #0053b3;
+  background-color: #f4f6fc14 ;
+  border-right: 8px solid #1f6dfb;
 }
 
 .link {

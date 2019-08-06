@@ -22,7 +22,7 @@ const Header = ({past,title, description, right}) => {
                 <div className={styles.titleHeader}>{title}</div>
               </div>
             </Link>,
-            <div key={`description_${description}`} className={styles.descriptionHeader}>{description}</div>
+            <div key={`description_${description}`} className={styles.descriptionHeaderBack}>{description}</div>
            ] : (
             <div>
               <div className={styles.titleHeader}>{title}</div>
