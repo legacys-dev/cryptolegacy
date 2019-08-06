@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import Breadcrumbs from 'App/components/Breadcrumbs'
 import EmptyTrash from 'App/components/Parts/EmptyTrash'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
@@ -12,6 +11,7 @@ import autobind from 'autobind-decorator'
 import gql from 'graphql-tag'
 import Main from './Main'
 import translate from 'App/i18n/translate'
+import Header from 'App/components/Parts/Header'
 
 @forceLogin
 @withGraphQL(
@@ -59,23 +59,27 @@ export default class AllItemsList extends React.Component {
     )
   }
 
+  renderRight(id, onDeleteSuccess, filesCount) {
+    return (
+      <div className={styles.topContainer}>
+        <div className={styles.searchBar}>{this.renderSearch()}</div>
+        <EmptyTrash onDeleteSuccess={onDeleteSuccess} userId={id} filesCount={filesCount} />
+      </div>
+    )
+  }
+
   render() {
     const {searchValue, emptyTrashDate, filesCount} = this.state
     return (
       <div className={styles.container}>
-        <Breadcrumbs
-          right={
-            <EmptyTrash
-              onDeleteSuccess={this.onDeleteSuccess}
-              userId={this.props.me._id}
-              filesCount={filesCount}
-            />
-          }>
-          <div className={styles.title}>
-            <div className={styles.subTitle}>{translate('app.fileOnDelete')}</div>
-            <div className={styles.searchBar}>{this.renderSearch()}</div>
-          </div>
-        </Breadcrumbs>
+        <Header
+          right={this.renderRight(
+            this.props.me._id,
+            this.onDeleteSuccess,
+            filesCount
+          )}
+          title={translate('app.fileOnDelete')}
+          />
         <Main
           filter={searchValue}
           emptyTrashDate={emptyTrashDate}

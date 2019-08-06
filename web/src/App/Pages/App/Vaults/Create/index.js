@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import Breadcrumbs from 'App/components/Breadcrumbs'
 import Header from 'App/components/Parts/Header'
 import {getEncryptedPassword} from 'App/helpers/user'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'

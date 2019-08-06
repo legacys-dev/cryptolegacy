@@ -5,7 +5,7 @@ import {withRouter} from 'react-router'
 import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import Breadcrumbs from 'App/components/Breadcrumbs'
+import Header from 'App/components/Parts/Header'
 import Loading from 'App/components/Parts/Loading'
 import Button from 'App/components/Parts/Button'
 import Section from 'App/components/Section'
@@ -55,11 +55,11 @@ export default class List extends React.Component {
     const {vault} = this.props
     return (
       <div className={styles.container}>
-        <Breadcrumbs
-          past={{[`/vaults/storage-update/${vault._id}`]: translate('vaults.heritages')}}
-          right={this.renderButtons()}>
-          {translate('vaults.vault')} ({vault.name})
-        </Breadcrumbs>
+        <Header past={{[`/vaults/storage-update/${vault._id}`]: translate('vaults.heritages')}}
+        right={this.renderButtons()}
+        title={`${translate('vaults.vault')} - ${vault.name}`}
+        />
+
         <div className={styles.content}>
           <Section top title={translate('vaults.heritages')}description={translate('vaults.description')}>
             <Main vaultId={vault._id} />
