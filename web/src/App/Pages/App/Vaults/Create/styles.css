@@ -1,5 +1,5 @@
 :local(.container) {
-  max-width: 992px;
+  max-width: 100%;
 }
 
 :local(.content) {
