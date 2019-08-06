@@ -8,15 +8,7 @@ Container.defaultProps = {
 
 export default function Container({className, size, children}) {
   const getClassName = () => {
-<<<<<<< HEAD
-    const className = ['os_containerParts']
-    className.push(`os_containerParts_${size}`)
-    if (className) className.push(className)
-
-    return className.join(' ')
-=======
     return `${styles.os_container} ${sizes[size]}`
->>>>>>> origin/develop
   }
 
   return <div className={getClassName()}>{children}</div>
