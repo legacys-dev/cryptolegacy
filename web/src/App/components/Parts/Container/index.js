@@ -1,19 +1,14 @@
 import React from 'react'
-import './styles.css'
+import styles from './styles.module.css'
+import sizes from './styleTypes'
 
 Container.defaultProps = {
-  size: 'big', // {fullWith, big, medium, small}
-  style: {},
-  className: ''
+  size: 'big' // {fullWith, big, medium, small}
 }
 
 export default function Container({className, size, children}) {
   const getClassName = () => {
-    const className = ['os_containerParts']
-    className.push(`os_containerParts_${size}`)
-    if (className) className.push(className)
-
-    return className.join(' ')
+    return `${styles.os_container} ${sizes[size]}`
   }
 
   return <div className={getClassName()}>{children}</div>
