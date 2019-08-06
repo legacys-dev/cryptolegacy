@@ -11,6 +11,7 @@ export default {
   description: 'Descripción',
   create: 'Crear herencia',
   heritages: 'Herencias',
+  writeVaultName: 'Escriba el nombre de la bóveda',
   deleteHeritageMessage: 'Se ha eliminado una herencia correctamente',
   inheritor: 'Heredero',
   heirs: 'HEREDEROS',

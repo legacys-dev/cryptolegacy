@@ -11,6 +11,7 @@ export default {
   description: 'Description',
   create: 'Create heritage',
   heritages: 'Heritages',
+  writeVaultName: 'Write the vault name',
   deleteHeritageMessage: 'An heritage have been deleted correctly',
   inheritor: 'Inheritor',
   heirs: 'HEIRS',
