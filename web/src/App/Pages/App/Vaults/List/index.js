@@ -31,12 +31,11 @@ export default class List extends React.Component {
   renderRigth() {
     const renderCreateVault = () => {
       if (this.state.credentialType === 'heritage') return
-        return (
-          <Button primary icon={FiPlus} onClick={() => this.props.history.push('/vaults/create')}>
-            {translate('vaults.createVault')}
-          </Button>
-        )
-      
+      return (
+        <Button primary icon={FiPlus} onClick={() => this.props.history.push('/vaults/create')}>
+          {translate('vaults.createVault')}
+        </Button>
+      )
     }
     return (
       <div className={styles.renderRigth}>

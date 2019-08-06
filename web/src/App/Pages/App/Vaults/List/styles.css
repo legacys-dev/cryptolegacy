@@ -39,7 +39,7 @@
   height: 1px;
   width: 100%;
   text-align: center;
-  background-color: #045EFC;
+  background-color: #e2e2e2;
 }
 
 :local(.bradcrumsContainer) {
@@ -56,5 +56,5 @@
   height: 1px;
   width: 100%;
   text-align: center;
-  background-color: black;
+  background-color: #e2e2e2;
 }

@@ -8,7 +8,6 @@ import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import Button from 'App/components/Parts/Button'
-import Section from 'App/components/Section'
 import Loading from 'App/components/Parts/Loading'
 import gql from 'graphql-tag'
 import Delete from './Delete'
@@ -53,7 +52,9 @@ export default class Update extends React.Component {
     const {vault, history} = this.props
     return (
       <div className={styles.heritageButton}>
-        <Button onClick={() => history.push(`/vaults/heritages/${vault._id}`)}>{translate('vaults.heritages')}</Button>
+        <Button onClick={() => history.push(`/vaults/heritages/${vault._id}`)}>
+          {translate('vaults.heritages')}
+        </Button>
       </div>
     )
   }
@@ -75,25 +76,20 @@ export default class Update extends React.Component {
     const {vault} = this.props
     return (
       <div className={styles.container}>
-        <Breadcrumbs past={{[`/vaults`]: translate('vaults.vaults')}} right={this.renderHeritageOptions()}>
+        <Breadcrumbs
+          past={{[`/vaults`]: translate('vaults.vaults')}}
+          right={this.renderHeritageOptions()}>
           {translate('vaults.updateVault')} ({vault.name})
         </Breadcrumbs>
         <div className={styles.content}>
-          <Section top title={translate('vaults.updateVault')} description={translate('vaults.description')}>
-            <AutoForm
-              mutation="updateVault"
-              ref="form"
-              doc={{vaultId: vault._id, name: vault.name}}
-              onSuccess={this.onSuccess}
-            >
-              <Field
-                label={translate('vaults.vaultName')}
-                fieldName="name"
-                type={Text}
-              />
-            </AutoForm>
-            {this.renderButtons()}
-          </Section>
+          <AutoForm
+            mutation="updateVault"
+            ref="form"
+            doc={{vaultId: vault._id, name: vault.name}}
+            onSuccess={this.onSuccess}>
+            <Field label={translate('vaults.vaultName')} fieldName="name" type={Text} />
+          </AutoForm>
+          {this.renderButtons()}
         </div>
       </div>
     )

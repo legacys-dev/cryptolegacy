@@ -9,7 +9,6 @@ import {getEncryptedPassword} from 'App/helpers/user'
 import Breadcrumbs from 'App/components/Breadcrumbs'
 import Loading from 'App/components/Parts/Loading'
 import Button from 'App/components/Parts/Button'
-import Section from 'App/components/Section'
 import autobind from 'autobind-decorator'
 import translate from 'App/i18n/translate'
 import {Field} from 'simple-react-form'
@@ -49,7 +48,9 @@ export default class Create extends React.Component {
     const {vault, history} = this.props
     return (
       <div className={styles.buttons}>
-        <Button onClick={() => history.push(`/vaults/heritages/${vault._id}`)}>{translate('vaults.back')}</Button>
+        <Button onClick={() => history.push(`/vaults/heritages/${vault._id}`)}>
+          {translate('vaults.back')}
+        </Button>
         <Button primary onClick={() => this.refs.form.submit()}>
           {translate('vaults.inheritVault')}
         </Button>
@@ -61,25 +62,21 @@ export default class Create extends React.Component {
     const {vault} = this.props
     return (
       <div className={styles.container}>
-        <Breadcrumbs past={{[`/vaults/heritages/${vault._id}`]: `${translate('vaults.vault')} (${vault.name})`}}>
+        <Breadcrumbs
+          past={{
+            [`/vaults/heritages/${vault._id}`]: `${translate('vaults.vault')} (${vault.name})`
+          }}>
           {translate('vaults.inherit')}
         </Breadcrumbs>
         <div className={styles.content}>
-          <Section top title={translate('vaults.inheritVault')} description={translate('vaults.description')}>
-            <AutoForm
-              mutation="createHeritage"
-              ref="form"
-              doc={{vaultId: vault._id, credentials: getEncryptedPassword()}}
-              onSuccess={this.onSuccess}
-            >
-              <Field
-                label={translate('heritages.inheritorMail')}
-                fieldName = "email"
-                type = {Text}
-              />
-            </AutoForm>
-            {this.renderButtons()}
-          </Section>
+          <AutoForm
+            mutation="createHeritage"
+            ref="form"
+            doc={{vaultId: vault._id, credentials: getEncryptedPassword()}}
+            onSuccess={this.onSuccess}>
+            <Field label={translate('heritages.inheritorMail')} fieldName="email" type={Text} />
+          </AutoForm>
+          {this.renderButtons()}
         </div>
       </div>
     )
