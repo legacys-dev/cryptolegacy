@@ -4,6 +4,14 @@
 }
 
 .files {
+  background-color: white;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  padding-right: 32px;
+  border-radius: 20px;
+  -webkit-box-shadow: 4px 6px 14px -1px #e6ecfe;
+  -moz-box-shadow: 4px 6px 14px -1px #e6ecfe;
+  box-shadow: 4px 6px 14px -1px #e6ecfe;
 }
 
 .table {
@@ -46,8 +54,10 @@
 }
 
 .table > tbody > tr {
-  background: #00000007;
-  box-shadow: rgba(63, 63, 63, 0.75) 0px 0px 7px -2px;
+  background: white;
+  -webkit-box-shadow: 0px 0px 5px 2px rgba(230,236,254,1);
+  -moz-box-shadow: 0px 0px 5px 2px rgba(230,236,254,1);
+  box-shadow: 0px 0px 5px 2px rgba(230,236,254,1);
 }
 
 .table > tbody > tr > td {
