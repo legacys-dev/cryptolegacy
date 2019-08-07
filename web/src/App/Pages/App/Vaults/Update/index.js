@@ -6,7 +6,7 @@ import AutoForm from 'App/components/AutoForm'
 import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import Breadcrumbs from 'App/components/Breadcrumbs'
+import Header from 'App/components/Parts/Header'
 import Button from 'App/components/Parts/Button'
 import Loading from 'App/components/Parts/Loading'
 import gql from 'graphql-tag'
@@ -76,11 +76,11 @@ export default class Update extends React.Component {
     const {vault} = this.props
     return (
       <div className={styles.container}>
-        <Breadcrumbs
+        <Header 
           past={{[`/vaults`]: translate('vaults.vaults')}}
-          right={this.renderHeritageOptions()}>
-          {translate('vaults.updateVault')} ({vault.name})
-        </Breadcrumbs>
+          right={this.renderHeritageOptions()}
+          title={`${translate('vaults.updateVault')} (${vault.name})`}
+          />
         <div className={styles.content}>
           <AutoForm
             mutation="updateVault"

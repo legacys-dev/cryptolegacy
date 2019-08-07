@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import Breadcrumbs from 'App/components/Breadcrumbs'
+import Header from 'App/components/Parts/Header'
 import Button from 'App/components/Parts/Button'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
@@ -56,16 +56,11 @@ export default class List extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.headerContainer}>
-          <Breadcrumbs right={this.renderRigth()}>
-            <div className={styles.title}>
-              <div className={styles.header}>
-                <div className={styles.headTitle}>{translate('vaults.vaults')}</div>
-                <div className={styles.headSubTitle}> Aquí va la descripción </div>
-              </div>
-            </div>
-          </Breadcrumbs>
+          <Header right={this.renderRigth()}
+            title={translate('vaults.vaults')}
+            description={'Aqui va la descripcion'}
+          />
         </div>
-        <div className={styles.divider} />
         <Main filter={this.state.searchValue} credentialType={this.state.credentialType} />
       </div>
     )

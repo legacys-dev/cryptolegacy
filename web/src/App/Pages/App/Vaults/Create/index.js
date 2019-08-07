@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import Breadcrumbs from 'App/components/Breadcrumbs'
+import Header from 'App/components/Parts/Header'
 import {getEncryptedPassword} from 'App/helpers/user'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import Button from 'App/components/Parts/Button'
@@ -43,13 +43,10 @@ export default class Create extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Breadcrumbs past={{[`/vaults`]: translate('vaults.vaults')}}>
-          <div className={styles.title}>
-            <div className={styles.header}>
-              <div className={styles.headTitle}>{translate('vaults.createVault')}</div>
-            </div>
-          </div>
-        </Breadcrumbs>
+        <Header past={{[`/vaults`]: translate('vaults.vaults')}}
+        title={translate('vaults.createVault')} 
+        description={translate('vaults.description')}
+        />
         <div className={styles.content}>
           <AutoForm
             mutation="createVault"

@@ -6,7 +6,7 @@ import AutoForm from 'App/components/AutoForm'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import {getEncryptedPassword} from 'App/helpers/user'
-import Breadcrumbs from 'App/components/Breadcrumbs'
+import Header from 'App/components/Parts/Header'
 import Loading from 'App/components/Parts/Loading'
 import Button from 'App/components/Parts/Button'
 import autobind from 'autobind-decorator'
@@ -62,12 +62,7 @@ export default class Create extends React.Component {
     const {vault} = this.props
     return (
       <div className={styles.container}>
-        <Breadcrumbs
-          past={{
-            [`/vaults/heritages/${vault._id}`]: `${translate('vaults.vault')} (${vault.name})`
-          }}>
-          {translate('vaults.inherit')}
-        </Breadcrumbs>
+        <Header past={{[`/vaults/heritages/${vault._id}`]: `${translate('vaults.vault')} (${vault.name})`}} title={translate('vaults.inherit')}/>
         <div className={styles.content}>
           <AutoForm
             mutation="createHeritage"
