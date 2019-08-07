@@ -8,6 +8,7 @@ import RestoreFile from 'App/components/Parts/RestoreFile'
 import mime from 'mime-types'
 import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 import translate from 'App/i18n/translate'
 
 const storage = {
@@ -32,6 +33,17 @@ export default class Items extends React.Component {
     this.props.onUpdateArchive(updateDate)
   }
 
+  getStorageDescription(type){
+    if(type==='SS' || type==='AS')
+    {
+      return translate('fileManager.simpleTypeDescription');
+    }
+    else
+    {
+      return translate('fileManager.highTypeDescription');
+    }
+  }
+
   renderTable() {
     const files = this.props.items || []
     return files.map((file, index) => {
@@ -49,7 +61,9 @@ export default class Items extends React.Component {
           </td>
           <td>{type}</td>
           <td>{getSize(data.size)}</td>
-          <td>{storage[data.storageType]}</td>
+          <td>
+            <Tooltip content={this.getStorageDescription(storage[data.storageType])}>{storage[data.storageType]}</Tooltip>
+          </td>
           <td>
             <LengthName name={vaultName} />{' '}
           </td>
