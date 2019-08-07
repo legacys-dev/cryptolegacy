@@ -16,12 +16,12 @@ const Header = ({past,title, description, right}) => {
       return (
         <span key={last} className={styles.backContainer}>
           {renderLink ? [
-            <Link to={last} key={`link_${description}`}>
-                <div className={styles.pastContainer}>
-                <MdArrowBack id={styles.arrowBack}/ >
-                <div className={styles.titleHeader}>{title}</div>
-              </div>
-            </Link>,
+                <div className={styles.pastContainer} key={`link_${description}`}>
+            <Link to={last} id={styles.arrowBack}>
+                <MdArrowBack / >
+            </Link>
+            <div className={styles.titleHeader}>{title}</div>
+              </div>,
             <div key={`description_${description}`} className={styles.descriptionHeaderBack}>{description}</div>
            ] : (
             <div>

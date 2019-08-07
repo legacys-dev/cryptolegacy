@@ -13,7 +13,6 @@
   flex: 1;
   font-size: 25px;
   color: #393939;
-  font-weight: bold;
   display: flex;
   align-items: center;
 }
@@ -60,17 +59,20 @@
 }
 
 #arrowBack{
-  margin-top: 6px;
   margin-right: 10px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
 }
 
 :local(.titleHeader) {
   font-size: 28px;
+
 }
 
 :local(.descriptionHeaderBack) {
   font-size: 14px;
-  margin-left: 48px;
+  margin-left: 56px;
   margin-top: -4px;
 }
 
