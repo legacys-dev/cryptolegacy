@@ -12,15 +12,20 @@ import fragment from './fragment'
 import gql from 'graphql-tag'
 import Main from './Main'
 import translate from 'App/i18n/translate'
+import {setVaultPasswords} from 'App/helpers/keys'
 
 @withGraphQL(
   gql`
     query getVault($vaultId: ID) {
       vault(vaultId: $vaultId) {
-        ...vaultData
+        _id
+        name
+        userCredentials
+        fileCount
+        storageUsed
+        password
       }
     }
-    ${fragment}
   `,
 
   {loading: <Loading />}
@@ -29,6 +34,11 @@ export default class Files extends React.Component {
   static propTypes = {
     match: PropTypes.object,
     vault: PropTypes.object
+  }
+
+  componentDidMount() {
+    const {vault} = this.props
+    setVaultPasswords(vault._id, vault.password)
   }
 
   state = {}
@@ -62,8 +72,8 @@ export default class Files extends React.Component {
     return this.renderFileManager()
   }
 
-  renderRight(){
-    return(
+  renderRight() {
+    return (
       <div className={styles.rightContainer}>
         <div className={styles.searchBar}> {this.renderSearch()} </div>
         <div> {this.fileManagerAccess()} </div>
@@ -73,11 +83,12 @@ export default class Files extends React.Component {
 
   render() {
     const {vault} = this.props
+    console.log({vault})
     if (!vault) return <span />
     return (
       <div className={styles.container}>
         <VaultWatcher vaultId={vault._id} />
-        <Header 
+        <Header
           past={{[`/vaults`]: translate('vaults.vaults')}}
           right={this.renderRight()}
           title={`${vault.name} - (${translate('vaults.files')})`}

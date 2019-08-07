@@ -1,7 +1,11 @@
 import gql from 'graphql-tag'
 import {setSession} from '@orion-js/graphql-client'
 import {deleteUserMessageKeys} from 'App/helpers/messageKeys'
-import {deleteUserMainCipherPassword, deleteUserEncryptedPassword} from 'App/helpers/keys'
+import {
+  deleteUserMainCipherPassword,
+  deleteUserEncryptedPassword,
+  deleteVaultPasswords
+} from 'App/helpers/keys'
 
 export default async () => {
   await global.apolloClient.mutate({
@@ -15,6 +19,7 @@ export default async () => {
   deleteUserMessageKeys()
   deleteUserMainCipherPassword()
   deleteUserEncryptedPassword()
+  deleteVaultPasswords()
 
   await setSession(null)
 }
