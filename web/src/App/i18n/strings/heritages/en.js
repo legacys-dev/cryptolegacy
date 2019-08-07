@@ -4,5 +4,5 @@ export default {
   heritageValidated: 'your inheritance has been validated',
   heritageButton: 'Inherit',
   code: 'Code',
-  inheritorMail: 'Inheritor\'s email',
+  inheritorMail: 'Inheritor\'s email'
 }
