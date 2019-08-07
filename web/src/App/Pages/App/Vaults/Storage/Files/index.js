@@ -62,8 +62,8 @@ export default class Files extends React.Component {
     return this.renderFileManager()
   }
 
-  renderRight(){
-    return(
+  renderRight() {
+    return (
       <div className={styles.rightContainer}>
         <div className={styles.searchBar}> {this.renderSearch()} </div>
         <div> {this.fileManagerAccess()} </div>
@@ -77,7 +77,7 @@ export default class Files extends React.Component {
     return (
       <div className={styles.container}>
         <VaultWatcher vaultId={vault._id} />
-        <Header 
+        <Header
           past={{[`/vaults`]: translate('vaults.vaults')}}
           right={this.renderRight()}
           title={`${vault.name} - (${translate('vaults.files')})`}

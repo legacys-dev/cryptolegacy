@@ -24,14 +24,11 @@ export default class Items extends React.Component {
 
   state = {}
 
-  getStorageDescription(type){
-    if(type==='SS' || type==='AS')
-    {
-      return translate('fileManager.simpleTypeDescription');
-    }
-    else
-    {
-      return translate('fileManager.highTypeDescription');
+  getStorageDescription(type) {
+    if (type === 'SS' || type === 'AS') {
+      return translate('fileManager.simpleTypeDescription')
+    } else {
+      return translate('fileManager.highTypeDescription')
     }
   }
 
@@ -53,7 +50,9 @@ export default class Items extends React.Component {
           <td>{type}</td>
           <td>{getSize(data.size)}</td>
           <td>
-            <Tooltip content={this.getStorageDescription(storage[data.storageType])}>{storage[data.storageType]}</Tooltip>
+            <Tooltip content={this.getStorageDescription(storage[data.storageType])}>
+              {storage[data.storageType]}
+            </Tooltip>
           </td>
           <td>{moment(createdAt).format('LL')}</td>
           <td>

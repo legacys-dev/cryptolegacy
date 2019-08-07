@@ -43,9 +43,10 @@ export default class Create extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Header past={{[`/vaults`]: translate('vaults.vaults')}}
-        title={translate('vaults.createVault')} 
-        description={translate('vaults.description')}
+        <Header
+          past={{[`/vaults`]: translate('vaults.vaults')}}
+          title={translate('vaults.createVault')}
+          description={translate('vaults.description')}
         />
         <div className={styles.content}>
           <AutoForm
