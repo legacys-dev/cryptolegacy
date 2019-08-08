@@ -8,6 +8,7 @@ import getSize from 'App/helpers/files/getSize'
 import moment from 'moment'
 import mime from 'mime-types'
 import Options from './Options'
+import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 import translate from 'App/i18n/translate'
 
 const storage = {
@@ -22,6 +23,14 @@ export default class Items extends React.Component {
   }
 
   state = {}
+
+  getStorageDescription(type) {
+    if (type === 'SS' || type === 'AS') {
+      return translate('fileManager.simpleTypeDescription')
+    } else {
+      return translate('fileManager.highTypeDescription')
+    }
+  }
 
   renderTable() {
     const files = this.props.items || []
@@ -40,7 +49,11 @@ export default class Items extends React.Component {
           </td>
           <td>{type}</td>
           <td>{getSize(data.size)}</td>
-          <td>{storage[data.storageType]}</td>
+          <td>
+            <Tooltip content={this.getStorageDescription(storage[data.storageType])}>
+              {storage[data.storageType]}
+            </Tooltip>
+          </td>
           <td>{moment(createdAt).format('LL')}</td>
           <td>
             <VaultConsumer>

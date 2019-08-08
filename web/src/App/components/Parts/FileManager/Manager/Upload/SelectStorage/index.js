@@ -21,8 +21,8 @@ export default class SelectStorage extends React.Component {
     placeholder: translate('fileManager.storageType'),
     description: translate('fileManager.descriptionType'),
     options: [
-      {label: translate('fileManager.simpleType'), value: 'b2'},
-      {label: translate('fileManager.highType'), value: 'glacier'}
+      {label: translate('fileManager.simpleTypeDescription'), value: 'b2'},
+      {label: translate('fileManager.highTypeDescription'), value: 'glacier'}
     ]
   }
 
