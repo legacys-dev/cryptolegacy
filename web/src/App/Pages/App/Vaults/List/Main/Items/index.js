@@ -15,7 +15,6 @@ const Items = ({history, items, credentialType}) => {
     return vaults.map((vault, index) => {
       const messages = JSON.parse(window.localStorage.getItem('messages'));
       const decryptVault = privateDecrypt({toDecrypt: vault.data, privateKey: messages.privateKey});
-      console.log(decryptVault);
       return (
         <tr className={styles.cell} key={index}>
           <td>
@@ -28,7 +27,7 @@ const Items = ({history, items, credentialType}) => {
           <td>{getSize(decryptVault.storageUsed)}</td>
           <td>{moment(decryptVault.createdAt).format('LL')}</td>
           <td>
-            <Options vaultId={decryptVault._id} credentialType={credentialType} />
+            <Options vaultId={vault._id} credentialType={credentialType} />
           </td>
         </tr>
       )

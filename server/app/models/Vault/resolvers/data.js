@@ -9,13 +9,14 @@ export default resolver({
     const data = {
       name: vault.name,
       createdAt: vault.createdAt,
-      fileCount: vault.fileCount(),
-      storageUsed: vault.storageUsed()
+      fileCount: await vault.fileCount(),
+      storageUsed: await vault.storageUsed()
     }
-    console.log(data)
+
     const user = await Users.findOne({_id: viewer.userId});
     const {publicKey} = user.messageKeys;
     const encryptData = publicEncrypt({toEncrypt: data, publicKey});
+
     return encryptData;
   }
 })
