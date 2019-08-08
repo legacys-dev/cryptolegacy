@@ -5,10 +5,7 @@ export default gql`
     vaults(filter: $filter, credentialType: $credentialType, page: $page, limit: $limit) {
       items {
         _id
-        name
-        createdAt
-        fileCount
-        storageUsed
+        data
       }
       totalPages
       hasNextPage

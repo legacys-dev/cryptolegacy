@@ -6,24 +6,29 @@ import getSize from 'App/helpers/files/getSize'
 import Options from './Options'
 import moment from 'moment'
 import translate from 'App/i18n/translate'
+import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
+
 
 const Items = ({history, items, credentialType}) => {
   const renderTable = () => {
     const vaults = items || []
     return vaults.map((vault, index) => {
+      const messages = JSON.parse(window.localStorage.getItem('messages'));
+      const decryptVault = privateDecrypt({toDecrypt: vault.data, privateKey: messages.privateKey});
+      console.log(decryptVault);
       return (
         <tr className={styles.cell} key={index}>
           <td>
             <Vault size={25} />
           </td>
           <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
-            <LengthName name={vault.name} />
+            <LengthName name={decryptVault.name} />
           </td>
-          <td>{vault.fileCount || '0'}</td>
-          <td>{getSize(vault.storageUsed)}</td>
-          <td>{moment(vault.createdAt).format('LL')}</td>
+          <td>{decryptVault.fileCount || '0'}</td>
+          <td>{getSize(decryptVault.storageUsed)}</td>
+          <td>{moment(decryptVault.createdAt).format('LL')}</td>
           <td>
-            <Options vaultId={vault._id} credentialType={credentialType} />
+            <Options vaultId={decryptVault._id} credentialType={credentialType} />
           </td>
         </tr>
       )
