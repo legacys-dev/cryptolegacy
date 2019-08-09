@@ -8,9 +8,9 @@ export default{
     storageType: 'Select storage type',
     descriptionType: 'There are two types of storage. simple, where you will have quick access to your files and high security, where your files are stored in a high security vault but access to files is slower.',
     simpleType: 'SS',
-    simpleTypeDescription: '<b>S</b>imple <b>S</b>torage',
+    simpleTypeDescription: 'Simple Storage',
     highType: 'HSS',
-    highTypeDescription: '<b>H</b>igh <b>S</b>ecurity <b>S</b>torage',
+    highTypeDescription: 'High Security Storage',
     warning: 'Warning',
     of: 'of'
 }

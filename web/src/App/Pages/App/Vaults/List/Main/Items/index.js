@@ -8,13 +8,12 @@ import moment from 'moment'
 import translate from 'App/i18n/translate'
 import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 
-
 const Items = ({history, items, credentialType}) => {
   const renderTable = () => {
     const vaults = items || []
     return vaults.map((vault, index) => {
-      const messages = JSON.parse(window.localStorage.getItem('messages'));
-      const decryptVault = privateDecrypt({toDecrypt: vault.data, privateKey: messages.privateKey});
+      const messages = JSON.parse(window.localStorage.getItem('messages'))
+      const decryptVault = privateDecrypt({toDecrypt: vault.data, privateKey: messages.privateKey})
       return (
         <tr className={styles.cell} key={index}>
           <td>

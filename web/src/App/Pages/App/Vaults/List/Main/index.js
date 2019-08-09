@@ -38,8 +38,6 @@ export default class Main extends React.Component {
       fetchPolicy: 'network-only'
     })
     const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.vaults
-    console.log({items});
-    
     this.setState({
       items,
       currentPage: page,

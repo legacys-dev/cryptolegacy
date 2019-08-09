@@ -7,7 +7,6 @@ export default gql`
         _id
         data
         vaultName
-        createdAt
       }
       totalPages
       hasNextPage

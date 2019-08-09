@@ -8,7 +8,6 @@ import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import Loading from 'App/components/Parts/Loading'
 import Text from 'App/components/fields/Text'
 import VaultWatcher from './VaultWatcher'
-import fragment from './fragment'
 import gql from 'graphql-tag'
 import Main from './Main'
 import translate from 'App/i18n/translate'
@@ -83,7 +82,6 @@ export default class Files extends React.Component {
 
   render() {
     const {vault} = this.props
-    console.log({vault})
     if (!vault) return <span />
     return (
       <div className={styles.container}>
