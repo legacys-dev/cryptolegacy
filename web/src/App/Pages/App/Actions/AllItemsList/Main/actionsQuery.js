@@ -5,12 +5,7 @@ export default gql`
     result: activities(filter: $filter, page: $page, limit: $limit) {
       items {
         _id
-        data {
-          action
-          fileName
-          vaultName
-          newVaultName
-        }
+        actions
       }
       totalPages
       hasNextPage

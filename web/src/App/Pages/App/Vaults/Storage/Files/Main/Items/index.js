@@ -36,10 +36,8 @@ export default class Items extends React.Component {
   renderTable() {
     const files = this.props.items || []
     return files.map((file, index) => {
-      console.log(file.data)
       const messages = JSON.parse(window.localStorage.getItem('messages'))
       const decryptFile = privateDecrypt({toDecrypt: file.data, privateKey: messages.privateKey})
-      console.log(decryptFile)
       const type = mime.extension(decryptFile.type)
       return (
         <tr className={styles.cell} key={index}>

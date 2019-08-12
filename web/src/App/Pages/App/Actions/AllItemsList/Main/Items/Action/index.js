@@ -30,24 +30,49 @@ const Action = ({actions}) => {
     )
   }
 
-  const {action, vaultName, fileName, newVaultName} = actions.data
+  const {action, vaultName, fileName, newVaultName} = actions.actions
   if (action.includes('uploadFile')) {
-    return renderLargeMessage(translate('app.uploadFile'), fileName, translate('app.toVault'), vaultName)
+    return renderLargeMessage(
+      translate('app.uploadFile'),
+      fileName,
+      translate('app.toVault'),
+      vaultName
+    )
   }
   if (action.includes('downloadFile')) {
-    return renderLargeMessage(translate('app.downloadFile'), fileName, translate('app.fromVault'), vaultName)
+    return renderLargeMessage(
+      translate('app.downloadFile'),
+      fileName,
+      translate('app.fromVault'),
+      vaultName
+    )
   }
   if (action.includes('deleteFile')) {
-    return renderLargeMessage(translate('app.deleteFile'), fileName, translate('app.fromVault'), vaultName)
+    return renderLargeMessage(
+      translate('app.deleteFile'),
+      fileName,
+      translate('app.fromVault'),
+      vaultName
+    )
   }
   if (action.includes('restoreFile')) {
-    return renderLargeMessage(translate('app.restoreFile'), fileName, translate('app.toVault'), vaultName)
+    return renderLargeMessage(
+      translate('app.restoreFile'),
+      fileName,
+      translate('app.toVault'),
+      vaultName
+    )
   }
   if (action.includes('createVault')) {
     return renderShortMessage(translate('app.createVault'), vaultName)
   }
   if (action.includes('updateVault')) {
-    return renderLargeMessage(translate('app.updateVault'), vaultName, translate('app.to'), newVaultName)
+    return renderLargeMessage(
+      translate('app.updateVault'),
+      vaultName,
+      translate('app.to'),
+      newVaultName
+    )
   }
   if (action.includes('deleteVault')) {
     return renderShortMessage(translate('app.deleteVault'), vaultName)
