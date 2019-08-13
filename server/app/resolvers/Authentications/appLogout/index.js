@@ -1,5 +1,6 @@
 import {resolver} from '@orion-js/app'
 import Users from 'app/collections/Users'
+import deleteEmergencyKit from 'app/resolvers/EmergencyKits/deleteEmergencyKit'
 
 export default resolver({
   params: {},
@@ -11,6 +12,7 @@ export default resolver({
     const {session} = viewer
 
     await user.update({$set: {messageKeys: null}})
+    await deleteEmergencyKit({userId: viewer.userId},viewer)
     await session.remove()
 
     return true

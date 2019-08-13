@@ -1,5 +1,6 @@
-export default function(){
-    const today = new Date();
+import moment from 'moment'
+export default function(userData){
+    const {userName, userLastName, userMasterKey, createdAt} = userData
 return `
 <!doctype html>
     <html>
@@ -21,47 +22,6 @@ return `
              }
              .justify-center {
              text-align: center;
-             }
-             .invoice-box table {
-             width: 100%;
-             line-height: inherit;
-             text-align: left;
-             }
-             .invoice-box table td {
-             padding: 5px;
-             vertical-align: top;
-             }
-             .invoice-box table tr td:nth-child(2) {
-             text-align: right;
-             }
-             .invoice-box table tr.top table td {
-             padding-bottom: 20px;
-             }
-             .invoice-box table tr.top table td.title {
-             font-size: 45px;
-             line-height: 45px;
-             color: #333;
-             }
-             .invoice-box table tr.information table td {
-             padding-bottom: 40px;
-             }
-             .invoice-box table tr.heading td {
-             background: #eee;
-             border-bottom: 1px solid #ddd;
-             font-weight: bold;
-             }
-             .invoice-box table tr.details td {
-             padding-bottom: 20px;
-             }
-             .invoice-box table tr.item td {
-             border-bottom: 1px solid #eee;
-             }
-             .invoice-box table tr.item.last td {
-             border-bottom: none;
-             }
-             .invoice-box table tr.total td:nth-child(2) {
-             border-top: 2px solid #eee;
-             font-weight: bold;
              }
              @media only screen and (max-width: 600px) {
                 .invoice-box table tr.top table td {
@@ -88,19 +48,48 @@ return `
                 width: 10%;
              }
              .keyPhrase{
-                 font-size: 48px;
+                 font-size: 30px;
+             }
+             .headerKey {
+                text-align: start
+             }
+             .parKey{
+                font-size: 12px;
+             }
+             .keyCode{
+               border-width: 3px;
+               border-color: gray;
+               border-style: dashed;
+               width: fit-content;
+             }
+             .keyCodeContainer{
+               text-align: center;
+               width: 100%;
+             }
+             .keyCodeContainer > p{
+               border-width: 3px;
+               border-color: gray;
+               border-style: dashed;
+               width: auto
              }
           </style>
        </head>
        <body>
           <div class="invoice-box">
               <div class="header">
-                <p class="date"> Creado para test prueba el 8 de agosto de 2019 </p>
+                <p class="date"> Creado para test prueba ${userName} ${userLastName} el ${moment(createdAt).format(`LL`)}  </p>
                 <img class="logoContainer" src="https://s3-us-west-2.amazonaws.com/cryptolegacy-internal-use/twoColorsBT.png"/>
             </div>
             <div class="kit">
                 <p class="keyPhrase"> Kit de emergencia </p>
                 <img class="key" src="https://s3-us-west-2.amazonaws.com/cryptolegacy-internal-use/key-42197_960_720.png"/>
+            </div>
+            <div class="headerKey">
+               <p class="parKey">Tu llave maestra es: </p>
+               <div class="keyCodeContainer">
+                  <p >${userMasterKey}</p> 
+               </div>
+               <p class="parKey">Recuerda guardar este documento en un lugar seguro. Este documento es de vital importancia para que puedas acceder a tu cuenta en la plataforma.</p>
             </div>
           </div>
        </body>

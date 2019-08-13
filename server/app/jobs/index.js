@@ -23,6 +23,5 @@ start({
   glacierBigFilesUploader,
   glacierMediumFilesUploader,
   glacierSmallFilesUploader,
-  emergencyKitsDeleter,
   removeFiles
 })

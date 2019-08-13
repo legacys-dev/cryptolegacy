@@ -85,7 +85,29 @@
                 width: 10%;
              }
              .keyPhrase{
-                 font-size: 48px;
+                 font-size: 40px;
+             }
+             .headerKey {
+                text-align: start
+             }
+             .parKey{
+                font-size: 12px;
+             }
+             .keyCode{
+               border-width: 3px;
+               border-color: gray;
+               border-style: dashed;
+               width: fit-content;
+             }
+             .keyCodeContainer{
+               text-align: center;
+               width: 100%;
+             }
+             .keyCodeContainer > p{
+               border-width: 3px;
+               border-color: gray;
+               border-style: dashed;
+               width: auto
              }
           </style>
        </head>
@@ -99,9 +121,12 @@
                 <p class="keyPhrase"> Kit de emergencia </p>
                 <img class="key" src="https://s3-us-west-2.amazonaws.com/cryptolegacy-internal-use/key-42197_960_720.png"/>
             </div>
-            <div class="key">
-                <p>Tu llave maestra es: </p>
-                
+            <div class="headerKey">
+               <p class="parKey">Tu llave maestra es: </p>
+               <div class="keyCodeContainer">
+                  <p >5:HXWWQDTN-WXWP53SYIP-TBEWJ5KE:1</p> 
+               </div>
+               <p class="parKey">Recuerda guardar este documento en un lugar seguro. Este documento es de vital importancia para que puedas acceder a tu cuenta en la plataforma.</p>
             </div>
           </div>
        </body>

@@ -6,7 +6,6 @@ import translate from 'App/i18n/translate'
 const Resume = ({userData}) => {
   const {userName, userLastName, userMasterKey, createdAt} = userData
   if (!userMasterKey) return <span />
-
   return (
     <Body wrap size="B6">
       <Header fixed>

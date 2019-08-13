@@ -10,6 +10,9 @@ import translate from 'App/i18n/translate'
 import gql from 'graphql-tag'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
+import {withApollo} from 'react-apollo'
+import autobind from 'autobind-decorator'
+import pdfQuery from './pdfQuery'
 
 const fragment = gql`
   fragment setUserProfileFragment on User {
@@ -30,6 +33,7 @@ const fragment = gql`
   }
   ${fragment}
 `)
+@withApollo
 @withMessage
 export default class Profile extends React.Component {
   static propTypes = {
@@ -38,6 +42,23 @@ export default class Profile extends React.Component {
   }
 
   state = {}
+
+  @autobind
+  async getPdf() {
+    console.log("Obteniendo el pdf")
+    const {client} = this.props
+    const result = await client.query({
+      query: pdfQuery,
+      variables:{},
+      fetchPolicy: 'network-only'
+    })
+    const {id,data} = result
+    this.setState({
+      id,
+      data
+    })
+  }
+
 
   render() {
     if (!this.props.me) return
@@ -71,6 +92,19 @@ export default class Profile extends React.Component {
           <br />
           <Button onClick={() => this.refs.form.submit()} primary>
             {translate('global.save')}
+          </Button>
+          
+        </Section>
+
+        <Section
+          title={"Master Key"}
+          description={"Aqui puedes obtener tu llave maestra."}
+        >
+          <div>
+            <span>Llave maestra: </span><span>ASDASD-123asd-ASSw-2</span>
+          </div>
+          <Button onClick={() => this.getPdf()} primary>
+            Descargar llave
           </Button>
         </Section>
       </div>

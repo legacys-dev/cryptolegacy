@@ -5,6 +5,7 @@ import {generateUserCipherKeys} from 'app/helpers/keys'
 import Users from 'app/collections/Users'
 import getSession from './getSession'
 import bcrypt from 'bcryptjs'
+import createEmergencyKit from 'app/resolvers/EmergencyKits/createEmergencyKit'
 
 export default resolver({
   params: {
@@ -27,6 +28,7 @@ export default resolver({
     masterKey: {
       type: String,
       async custom(masterKey, {doc}) {
+        console.log("master key: ",masterKey)
         if (!masterKey) return 'masterKeyNotFound'
         if (masterKey.length !== 32) return 'invalidMasterKey'
 
@@ -65,6 +67,12 @@ export default resolver({
       cipherPassword: secret,
       userDataIv: iv
     })
+    const {emergencyKitId} = await createEmergencyKit({
+      userMasterKey:userMasterPassword,
+      userId: user._id,
+      email,
+      userMessageKeys
+    }, viewer)
 
     return {
       session,
