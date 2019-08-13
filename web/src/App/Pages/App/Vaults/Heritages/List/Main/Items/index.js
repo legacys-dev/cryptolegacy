@@ -30,8 +30,11 @@ export default class Items extends React.Component {
     const heritages = this.props.items || []
     return heritages.map((heritage, index) => {
       const messages = JSON.parse(window.localStorage.getItem('messages'))
-      const decryptHeritage = privateDecrypt({toDecrypt: heritage.data, privateKey: messages.privateKey})
-      console.log({decryptHeritage})
+      const decryptHeritage = privateDecrypt({
+        toDecrypt: heritage.data,
+        privateKey: messages.privateKey
+      })
+
       return (
         <tr className={styles.cell} key={index}>
           <td>
