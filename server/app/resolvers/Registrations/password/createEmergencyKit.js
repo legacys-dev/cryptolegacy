@@ -8,6 +8,7 @@ export default async function({userMasterKey, userId, email, userMessageKeys}) {
   const {publicKey} = userMessageKeys
 
   const encrypted = await encryptMessage({publicKey, toEncrypt})
+s
 
   await EmergencyKits.insert({_id, userId, encrypted})
 

@@ -12,7 +12,7 @@ import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 import {withApollo} from 'react-apollo'
 import autobind from 'autobind-decorator'
-import pdfQuery from './pdfQuery'
+import getEmergencyKit from './getEmergencyKit'
 
 const fragment = gql`
   fragment setUserProfileFragment on User {
@@ -30,37 +30,22 @@ const fragment = gql`
     me {
       ...setUserProfileFragment
     }
+    getEmergencyKit
   }
   ${fragment}
 `)
-@withApollo
 @withMessage
 export default class Profile extends React.Component {
   static propTypes = {
     me: PropTypes.object,
+    getEmergencyKit: PropTypes.string,
     showMessage: PropTypes.func
   }
 
   state = {}
 
-  @autobind
-  async getPdf() {
-    console.log("Obteniendo el pdf")
-    const {client} = this.props
-    const result = await client.query({
-      query: pdfQuery,
-      variables:{},
-      fetchPolicy: 'network-only'
-    })
-    const {id,data} = result
-    this.setState({
-      id,
-      data
-    })
-  }
-
-
   render() {
+    console.log(this.props.getEmergencyKit)
     if (!this.props.me) return
     return (
       <div className={styles.container}>
@@ -73,35 +58,30 @@ export default class Profile extends React.Component {
             doc={{userId: this.props.me._id, profile: this.props.me.profile}}
             onSuccess={() => this.props.showMessage(translate('settings.yourProfileWasSaved'))}
             fragment={fragment}
-            ref="form"
-          >
-          <Field
-            label= {translate('settings.firstName')}
-            fieldName="firstName"
-            type={Text}
-            fieldType="firstName"
-          />
-          <Field
-            label={translate('settings.lastName')}
-            fieldName="lastName"
-            type={Text}
-            fieldType="lastName"
-          />
-
-            </AutoForm>
+            ref="form">
+            <Field
+              label={translate('settings.firstName')}
+              fieldName="firstName"
+              type={Text}
+              fieldType="firstName"
+            />
+            <Field
+              label={translate('settings.lastName')}
+              fieldName="lastName"
+              type={Text}
+              fieldType="lastName"
+            />
+          </AutoForm>
           <br />
           <Button onClick={() => this.refs.form.submit()} primary>
             {translate('global.save')}
           </Button>
-          
         </Section>
 
-        <Section
-          title={"Master Key"}
-          description={"Aqui puedes obtener tu llave maestra."}
-        >
+        <Section title={'Master Key'} description={'Aqui puedes obtener tu llave maestra.'}>
           <div>
-            <span>Llave maestra: </span><span>ASDASD-123asd-ASSw-2</span>
+            <span>Llave maestra: </span>
+            <span>{this.props.getEmergencyKit.data}</span>
           </div>
           <Button onClick={() => this.getPdf()} primary>
             Descargar llave

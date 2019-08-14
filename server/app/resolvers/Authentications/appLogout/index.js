@@ -1,6 +1,6 @@
 import {resolver} from '@orion-js/app'
 import Users from 'app/collections/Users'
-import deleteEmergencyKit from 'app/resolvers/EmergencyKits/deleteEmergencyKit'
+import deleteEmergencyKit from 'app/resolvers/EmergencyKit/deleteEmergencyKit'
 
 export default resolver({
   params: {},

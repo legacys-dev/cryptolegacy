@@ -6,7 +6,7 @@ import {passwordValidator} from 'app/helpers/registration'
 import {accountCreated} from 'app/helpers/emails'
 import Registrations from 'app/collections/Registrations'
 import Users from 'app/collections/Users'
-import createEmergencyKit from 'app/resolvers/EmergencyKits/createEmergencyKit'
+import createEmergencyKit from 'app/resolvers/EmergencyKit/createEmergencyKit'
 import authResolvers from 'app/resolvers/Auth'
 import isEmpty from 'lodash/isEmpty'
 
