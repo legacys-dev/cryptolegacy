@@ -10,7 +10,10 @@ import {MdCloudUpload} from 'react-icons/md'
 import getSize from 'App/helpers/files/getSize'
 import gql from 'graphql-tag'
 import mime from 'mime-types'
+import awsCredentials from './awsCredentials'
 import translate from 'App/i18n/translate'
+import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import AWS from 'aws-sdk'
 
 @withMutation(gql`
   mutation createS3Upload(
@@ -39,6 +42,7 @@ import translate from 'App/i18n/translate'
     completeS3Upload(fileId: $fileId)
   }
 `)
+@withGraphQL(awsCredentials)
 @withMessage
 export default class Upload extends React.Component {
   static propTypes = {
@@ -63,10 +67,24 @@ export default class Upload extends React.Component {
 
   @autobind
   async onChange(event) {
-    const file = this.refs.input.files[0]
+    const fileMetadata = this.refs.input.files[0]
+
+    const file = await new Promise((resolve, reject) => {
+      let reader = new FileReader()
+
+      reader.onload = () => {
+        const data = reader.result
+        const buffer = new Int8Array(data)
+        resolve(buffer)
+      }
+
+      reader.readAsArrayBuffer(fileMetadata)
+    })
+
     this.setState({loading: true})
+
     try {
-      const {fileId, key, url, fields} = await this.createUpload(file)
+      const {fileId, key, url, fields} = await this.createUpload(fileMetadata)
       await this.uploadFile({key, file, url, fields})
       await this.complete({fileId})
       this.setState({loading: false})
@@ -77,9 +95,10 @@ export default class Upload extends React.Component {
   }
 
   @autobind
-  async createUpload(file, storage) {
+  async createUpload(file) {
     const {vaultId} = this.props
     if (!vaultId) return
+
     const {result} = await this.props.createS3Upload({
       name: file.name,
       size: file.size,
@@ -87,6 +106,7 @@ export default class Upload extends React.Component {
       storage: this.state.storage,
       vaultId
     })
+
     return result
   }
 
@@ -99,32 +119,56 @@ export default class Upload extends React.Component {
     this.props.onUploadProgressChange({progress: result, loaded, total})
   }
 
-  async uploadFile({key, file, url, fields}) {
-    var formData = new FormData()
+  async uploadFile({key, file}) {
+    const {accessKeyId, secretAccessKey, region, bucket} = this.props.getUploadCredentials
+    AWS.config.update({accessKeyId, secretAccessKey, region})
 
-    const data = {
-      ...fields,
-      key,
-      file
+    const uploadToS3 = new AWS.S3.ManagedUpload({params: {Key: key, Bucket: bucket, Body: file}})
+    uploadToS3.send() // Start upload
+    if (uploadToS3.failed) return
+
+    let totalProgress = 0
+    let loaded
+    let total
+    while (totalProgress < 100) {
+      const result = await new Promise((resolve, reject) => {
+        uploadToS3.on('httpUploadProgress', function(progress) {
+          totalProgress = Number(((progress.loaded * 100) / progress.total).toFixed(3))
+          loaded = progress.loaded
+          total = progress.total
+          resolve(totalProgress)
+        })
+      })
+      this.props.onUploadProgressChange(result, loaded, total)
     }
-
-    for (const name in data) {
-      formData.append(name, data[name])
-    }
-
-    await new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest()
-      xhr.upload.addEventListener('progress', this.onUploadProgress)
-      xhr.open('POST', url)
-      xhr.onload = () => {
-        resolve('upload complete')
-      }
-      xhr.onerror = error => {
-        reject(error)
-      }
-      xhr.send(formData)
-    })
   }
+
+  // async uploadFile({key, file, url, fields, passwordVault, archiveIv}) {
+  //   var formData = new FormData()
+  //
+  //   const data = {
+  //     ...fields,
+  //     key,
+  //     file
+  //   }
+  //
+  //   for (const name in data) {
+  //     formData.append(name, data[name])
+  //   }
+  //
+  //   await new Promise((resolve, reject) => {
+  //     const xhr = new XMLHttpRequest()
+  //     xhr.upload.addEventListener('progress', this.onUploadProgress)
+  //     xhr.open('POST', url)
+  //     xhr.onload = () => {
+  //       resolve('upload complete')
+  //     }
+  //     xhr.onerror = error => {
+  //       reject(error)
+  //     }
+  //     xhr.send(formData)
+  //   })
+  // }
 
   @autobind
   async complete({fileId}) {

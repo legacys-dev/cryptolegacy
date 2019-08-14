@@ -20,7 +20,7 @@ export default async function({key, bucket, params}) {
         ],
         Fields: {
           key: key,
-          'Content-Type': params.type
+          'Content-Type': 'application/octet-stream'
         }
       },
       function(error, data) {
