@@ -2,10 +2,9 @@
 }
 
 .all {
-  margin-left: -10px;
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 20px 0;
   padding-bottom: 16px;
 }
 
@@ -20,12 +19,12 @@
 .content a {
   color: #393939;
   border-radius: 8px;
-  padding: 5px 10px;
+  padding: 10px 0;
+  padding-right: 10px;
 }
 
 .content .last {
   border-radius: 8px;
-  padding: 5px 10px;
 }
 
 .content a:hover {
@@ -41,24 +40,23 @@
   height: 1px;
   background: #e2e2e2;
   margin: 0px 20px;
-
 }
 
-.rowBack{
+.rowBack {
   margin-right: 10px;
 }
 
-.backContainer{
+.backContainer {
   display: flex;
   align-items: flex-start;
-  flex-direction: column
+  flex-direction: column;
 }
 
-.pastContainer{
+.pastContainer {
   display: flex;
 }
 
-#arrowBack{
+#arrowBack {
   margin-right: 10px;
   margin-bottom: 6px;
   display: flex;
@@ -67,7 +65,6 @@
 
 :local(.titleHeader) {
   font-size: 28px;
-
 }
 
 :local(.descriptionHeaderBack) {

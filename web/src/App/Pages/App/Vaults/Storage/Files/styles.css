@@ -1,5 +1,4 @@
 :local(.container) {
-  padding: 20px;
 }
 
 :local(.searchBar) {
@@ -8,5 +7,5 @@
 
 :local(.rightContainer) {
   display: flex;
-  align-items: center
+  align-items: center;
 }
