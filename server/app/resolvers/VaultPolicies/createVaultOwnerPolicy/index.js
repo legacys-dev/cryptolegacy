@@ -2,7 +2,7 @@ import {resolver} from '@orion-js/app'
 import VaultPolicies from 'app/collections/VaultPolicies'
 import Users from 'app/collections/Users'
 import getVaultPassword from './getVaultPassword'
-import createFolder from 'app/helpers/googleDrive'
+import {createFolder} from 'app/helpers/googleDrive'
 
 export default resolver({
   params: {

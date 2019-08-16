@@ -3,7 +3,7 @@ import authentication from './authentication'
 import {generateId} from '@orion-js/app'
 
 export default async userEmail => {
-  const auth = authentication()
+  const auth = await authentication()
   const drive = google.drive({version: 'v3', auth})
 
   const folder = await drive.files.create({
