@@ -1,11 +1,10 @@
 :local(.container) {
   border-radius: 8px;
-  padding: 20px 20px;
 }
 
 :local(.title) {
   display: flex;
-  align-items: center;  
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   margin-right: 20px;
@@ -15,7 +14,7 @@
   font-size: 14px;
 }
 
-:local(.renderRigth){
+:local(.renderRigth) {
   display: flex;
   align-items: center;
 }
@@ -24,7 +23,7 @@
   font-size: 14px;
 }
 
-:local(.headTitle){ 
+:local(.headTitle) {
   font-size: 28px;
 }
 
@@ -35,7 +34,7 @@
   margin-right: 10px;
 }
 
-:local(.divider){
+:local(.divider) {
   height: 1px;
   width: 100%;
   text-align: center;

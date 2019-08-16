@@ -19,10 +19,11 @@ import {setVaultPasswords} from 'App/helpers/keys'
       vault(vaultId: $vaultId) {
         _id
         name
-        userCredentials
+        type
         fileCount
         storageUsed
         password
+        userCredentials
       }
     }
   `,
@@ -57,9 +58,9 @@ export default class Files extends React.Component {
   }
 
   renderFileManager() {
-    const {vaultId} = this.props.match.params
+    const {_id, type} = this.props.vault
     return (
-      <VaultProvider value={{vaultId}}>
+      <VaultProvider value={{vaultId: _id, vaultType: type}}>
         <FileManager />
       </VaultProvider>
     )

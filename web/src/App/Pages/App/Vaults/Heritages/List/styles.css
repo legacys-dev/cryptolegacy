@@ -2,10 +2,6 @@
   padding: 20px;
 }
 
-:local(.content) {
-  padding: 20px;
-}
-
 :local(.buttons) {
   flex: 1;
   text-align: right;

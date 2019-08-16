@@ -1,6 +1,8 @@
+import translate from 'App/i18n/translate'
+
 const message = (label, placeholder) => {
-  if (label !== 'This field') return label
-  return placeholder
+  if (label !== 'This field') return translate(label)
+  return translate(placeholder)
 }
 
 export default {
@@ -27,6 +29,8 @@ export default {
   notUnique: ({label, placeholder}) => `${message(label, placeholder)} no es único`,
   notFound: ({label, placeholder}) => `${message(label, placeholder)} no se encontró`,
   mustStartWithPlus: 'El teléfono debe empezar con +',
+  gmailRequired: ({label, placeholder}) => `Un email es requerido`,
+  gmailStructureRequired: ({label, placeholder}) => `El email debe tener la estructura de gmail`,
   userNotFound: ({label, placeholder}) => `No se encontró un usuario registrado con este email`,
   noPassword: ({label, placeholder}) => `El email ingresado no posee contraseña`,
   incorrectPassword: ({label, placeholder}) => `La contraseña es incorrecta`,
@@ -37,6 +41,7 @@ export default {
   invalidCode: ({label, placeholder}) => `El código ingresado es inválido`,
   invalidEmail: ({label, placeholder}) => `${message(label, placeholder)} no es válido`,
   passwordNotMatch: ({label, placeholder}) => `Contraseña de confirmación incorrecta`,
+  driveFolderRequired: ({label, placeholder}) => `Error al conectar con google drive`,
   passwordInvalidLength: ({label, placeholder}) =>
     `La contraseña debe tener un largo de al menos 8 caracteres`,
   passwordLowerCaseRequired: ({label, placeholder}) =>

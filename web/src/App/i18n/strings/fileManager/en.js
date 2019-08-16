@@ -12,5 +12,6 @@ export default{
     highType: 'HSS',
     highTypeDescription: 'High Security Storage',
     warning: 'Warning',
-    of: 'of'
+    of: 'of',
+    filesUpload: 'Files Upload'
 }

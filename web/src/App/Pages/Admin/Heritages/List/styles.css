@@ -12,7 +12,3 @@
 :local(.searchBar) {
   margin-left: 20px;
 }
-
-:local(.content) {
-  padding: 20px;
-}

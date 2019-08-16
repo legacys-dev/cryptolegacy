@@ -1,5 +1,4 @@
 :local(.container) {
-  padding: 20px;
 }
 
 :local(.title) {
@@ -11,9 +10,9 @@
 }
 
 :local(.searchBar) {
-  margin-right: 20px; 
+  margin-right: 20px;
 }
 
-:local(.topContainer){
+:local(.topContainer) {
   display: flex;
 }

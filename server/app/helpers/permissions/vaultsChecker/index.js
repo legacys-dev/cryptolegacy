@@ -1,10 +1,11 @@
 import cloneDeep from 'lodash/cloneDeep'
 import vaultOwnerPermission from './vaultOwnerPermission'
-import deleteVault from './deleteVault'
+import driveVaultChecker from './driveVaultChecker'
 import vaultNameChecker from './vaultNameChecker'
 import filesVaultPermission from './filesVaultPermission'
 import vaultAccessPermission from './vaultAccessPermission'
 import heritageFilesChecker from './heritageFilesChecker'
+import deleteVault from './deleteVault'
 
 export default async function(options, viewer, {params}) {
   params = cloneDeep(params)
@@ -15,7 +16,8 @@ export default async function(options, viewer, {params}) {
     filesVaultOwner,
     vaultForDelete,
     checkVaultName,
-    heritageChecker
+    heritageChecker,
+    checkDrive
   } = options
 
   const {vaultId, name} = params
@@ -43,5 +45,10 @@ export default async function(options, viewer, {params}) {
 
   if (heritageChecker) {
     await heritageFilesChecker({viewer, vaultId})
+  }
+
+  const {type} = params
+  if (checkDrive && type === 'drive') {
+    await driveVaultChecker({viewer})
   }
 }

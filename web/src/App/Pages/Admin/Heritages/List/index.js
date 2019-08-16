@@ -55,9 +55,7 @@ export default class List extends React.Component {
     return (
       <div className={styles.container}>
         <Header title={translate('admin.heritages')} />
-        <div className={styles.content}>
-          <Main filter={this.state.searchValue} status={this.state.status} />
-        </div>
+        <Main filter={this.state.searchValue} status={this.state.status} />
       </div>
     )
   }

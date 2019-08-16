@@ -30,7 +30,7 @@ const Manager = ({close}) => {
     <div className={styles.container}>
       <div className={getContentStyles()}>
         <div className={styles.header}>
-          <div className={styles.title}>{translate('fileManager.files')}</div>
+          <div className={styles.title}>{translate('fileManager.filesUpload')}</div>
           <div className={styles.close}>
             <IconButton tooltip={translate('fileManager.close')} icon={MdClose} onPress={close} />
           </div>
@@ -43,6 +43,7 @@ const Manager = ({close}) => {
               loaded={loaded}
               total={total}
               vaultId={providerProps.vaultId}
+              vaultType={providerProps.vaultType}
               onUploadProgressChange={items => onUploadProgressChange(items)}
             />
           )}

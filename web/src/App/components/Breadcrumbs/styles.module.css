@@ -2,7 +2,6 @@
 }
 
 .all {
-  margin-left: -10px;
   display: flex;
   align-items: center;
   padding: 20px;
@@ -43,25 +42,25 @@
   margin: 0 20px;
 }
 
-.rowBack{
+.rowBack {
   margin-right: 10px;
 }
 
-.backContainer{
+.backContainer {
   display: flex;
   align-items: center;
 }
 
-.pastContainer{
+.pastContainer {
   display: flex;
   align-items: center;
 }
 
-#arrowBack{
+#arrowBack {
   margin-bottom: 4px;
   margin-right: 4px;
 }
 
-#arrowRight{
+#arrowRight {
   margin-bottom: 4px;
 }

@@ -31,6 +31,18 @@ export default {
     type: String,
     private: true
   },
+  driveEmail: {
+    type: String,
+    optional: true,
+    private: true
+  },
+  driveFolderId: {
+    type: String,
+    optional: true,
+    async custom(driveFolderId, {doc}) {
+      if (doc.driveEmail && !driveFolderId) return 'driveFolderRequired'
+    }
+  },
   status: {
     type: String,
     private: true,

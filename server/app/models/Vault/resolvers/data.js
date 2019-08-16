@@ -10,13 +10,14 @@ export default resolver({
       name: vault.name,
       createdAt: vault.createdAt,
       fileCount: await vault.fileCount(),
-      storageUsed: await vault.storageUsed()
+      storageUsed: await vault.storageUsed(),
+      storageType: await vault.storageType()
     }
 
-    const user = await Users.findOne({_id: viewer.userId});
-    const {publicKey} = user.messageKeys;
-    const encryptData = publicEncrypt({toEncrypt: data, publicKey});
+    const user = await Users.findOne({_id: viewer.userId})
+    const {publicKey} = user.messageKeys
+    const encryptData = publicEncrypt({toEncrypt: data, publicKey})
 
-    return encryptData;
+    return encryptData
   }
 })

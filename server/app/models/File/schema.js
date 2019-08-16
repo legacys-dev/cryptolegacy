@@ -43,7 +43,7 @@ export default {
   storage: {
     type: String,
     private: true,
-    allowedValues: ['b2', 'glacier']
+    allowedValues: ['b2', 'glacier', 'drive']
   },
   status: {
     type: String,
