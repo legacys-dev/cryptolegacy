@@ -22,7 +22,6 @@ const Items = ({history, items, credentialType}) => {
     return vaults.map((vault, index) => {
       const messages = JSON.parse(window.localStorage.getItem('messages'))
       const decryptVault = privateDecrypt({toDecrypt: vault.data, privateKey: messages.privateKey})
-      console.log(decryptVault)
       const vaultType = translate(decryptVault.storageType)
       return (
         <tr className={styles.cell} key={index}>

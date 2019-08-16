@@ -11,6 +11,7 @@ export default resolver({
       type: file.type,
       size: file.s3Data.size,
       vaultId: file.vaultId,
+      vaultName:  await file.vaultName(),
       storageType: file.storage,
       status: file.status,
       createdAt: file.createdAt
