@@ -2,17 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import {MdExitToApp, MdWork} from 'react-icons/md'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import {Configuration} from 'App/components/Parts/Icons'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import withUserId from 'App/helpers/auth/withUserId'
+import {MdExitToApp, MdWork} from 'react-icons/md'
 import {withRouter, Link} from 'react-router-dom'
 import logout from 'App/helpers/auth/logout'
-import {Configuration} from 'App/components/Parts/Icons'
+import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
 import MenuButton from './MenuButton'
 import gql from 'graphql-tag'
-import translate from 'App/i18n/translate'
 
 @withGraphQL(
   gql`
@@ -93,7 +93,11 @@ export default class User extends React.Component {
           <div className={styles.email}>{this.props.me.email}</div>
         </Link>
         <Link to="/settings">
-          {this.renderOption(styles.options, <Configuration size={20} />, translate('sidebar.account'))}
+          {this.renderOption(
+            styles.options,
+            <Configuration size={20} />,
+            translate('sidebar.account')
+          )}
         </Link>
         {this.renderAdmin()}
         <div className={styles.logoutIcons}>

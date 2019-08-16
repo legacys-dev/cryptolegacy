@@ -54,14 +54,12 @@ export default class List extends React.Component {
     const {vault} = this.props
     return (
       <div className={styles.container}>
-        <Header past={{[`/vaults/storage-update/${vault._id}`]: translate('vaults.heritages')}}
-        right={this.renderButtons()}
-        title={`${translate('vaults.vault')} - ${vault.name}`}
+        <Header
+          past={{[`/vaults/storage-update/${vault._id}`]: translate('vaults.heritages')}}
+          right={this.renderButtons()}
+          title={`${translate('vaults.vault')} - ${vault.name}`}
         />
-
-        <div className={styles.content}>
-          <Main vaultId={vault._id} />
-        </div>
+        <Main vaultId={vault._id} />
       </div>
     )
   }

@@ -36,6 +36,7 @@ const Header = ({past, title, description, right}) => {
     if (!right) return
     return <div className={styles.right}>{right}</div>
   }
+
   return (
     <div className={styles.container}>
       <div className={styles.all}>
