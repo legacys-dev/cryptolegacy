@@ -10,10 +10,12 @@ import {MdCloudUpload} from 'react-icons/md'
 import getSize from 'App/helpers/files/getSize'
 import gql from 'graphql-tag'
 import mime from 'mime-types'
-import awsCredentials from './awsCredentials'
 import translate from 'App/i18n/translate'
-import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import AWS from 'aws-sdk'
+import awsCredentials from './awsCredentials'
+import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import {privateDecrypt, archiveEncryptWithPassword} from 'App/helpers/crypto'
+import {generateArchiveIv} from 'App/helpers/keys'
 
 @withMutation(gql`
   mutation createS3Upload(
@@ -49,7 +51,7 @@ export default class Upload extends React.Component {
     showMessage: PropTypes.func,
     createS3Upload: PropTypes.func,
     completeS3Upload: PropTypes.func,
-    getUploadCredentials: PropTypes.object,
+    getUploadCredentials: PropTypes.string,
     onUploadProgressChange: PropTypes.func,
     vaultId: PropTypes.string,
     progress: PropTypes.number,
@@ -68,14 +70,14 @@ export default class Upload extends React.Component {
   @autobind
   async onChange(event) {
     const fileMetadata = this.refs.input.files[0]
-
     const file = await new Promise((resolve, reject) => {
       let reader = new FileReader()
 
       reader.onload = () => {
         const data = reader.result
         const buffer = new Int8Array(data)
-        resolve(buffer)
+        console.log('buffer', buffer)
+        resolve(Buffer.from(buffer, 'base64'))
       }
 
       reader.readAsArrayBuffer(fileMetadata)
@@ -84,8 +86,8 @@ export default class Upload extends React.Component {
     this.setState({loading: true})
 
     try {
-      const {fileId, key, url, fields} = await this.createUpload(fileMetadata)
-      await this.uploadFile({key, file, url, fields})
+      const {fileId, key} = await this.createUpload(fileMetadata)
+      await this.uploadFile({key, file, fileId})
       await this.complete({fileId})
       this.setState({loading: false})
     } catch (error) {
@@ -119,11 +121,30 @@ export default class Upload extends React.Component {
     this.props.onUploadProgressChange({progress: result, loaded, total})
   }
 
-  async uploadFile({key, file}) {
-    const {accessKeyId, secretAccessKey, region, bucket} = this.props.getUploadCredentials
+  async uploadFile({key, file, fileId}) {
+    const messages = JSON.parse(localStorage.getItem('messages'))
+    const privateKey = messages['privateKey']
+    const credentials = privateDecrypt({
+      toDecrypt: this.props.getUploadCredentials,
+      privateKey: privateKey
+    })
+    const {accessKeyId, secretAccessKey, region, bucket} = credentials
     AWS.config.update({accessKeyId, secretAccessKey, region})
+    const url = window.location.pathname.split('/').slice(-1)[0]
+    const vault = JSON.parse(localStorage.getItem('vault'))
+    const cipherPassword = vault[url]
+    const id = fileId.slice(0, 16)
+    const iv = await generateArchiveIv(id)
 
-    const uploadToS3 = new AWS.S3.ManagedUpload({params: {Key: key, Bucket: bucket, Body: file}})
+    const encrypted = archiveEncryptWithPassword({
+      itemToEncrypt: file,
+      cipherPassword: cipherPassword,
+      archiveIv: iv
+    })
+    console.log('encrypted', encrypted)
+    const uploadToS3 = new AWS.S3.ManagedUpload({
+      params: {Key: key, Bucket: bucket, Body: encrypted}
+    })
     uploadToS3.send() // Start upload
     if (uploadToS3.failed) return
 
@@ -139,36 +160,9 @@ export default class Upload extends React.Component {
           resolve(totalProgress)
         })
       })
-      this.props.onUploadProgressChange(result, loaded, total)
+      this.props.onUploadProgressChange({progress: result, loaded, total})
     }
   }
-
-  // async uploadFile({key, file, url, fields, passwordVault, archiveIv}) {
-  //   var formData = new FormData()
-  //
-  //   const data = {
-  //     ...fields,
-  //     key,
-  //     file
-  //   }
-  //
-  //   for (const name in data) {
-  //     formData.append(name, data[name])
-  //   }
-  //
-  //   await new Promise((resolve, reject) => {
-  //     const xhr = new XMLHttpRequest()
-  //     xhr.upload.addEventListener('progress', this.onUploadProgress)
-  //     xhr.open('POST', url)
-  //     xhr.onload = () => {
-  //       resolve('upload complete')
-  //     }
-  //     xhr.onerror = error => {
-  //       reject(error)
-  //     }
-  //     xhr.send(formData)
-  //   })
-  // }
 
   @autobind
   async complete({fileId}) {
