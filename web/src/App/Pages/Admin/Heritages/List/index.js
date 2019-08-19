@@ -39,7 +39,7 @@ export default class List extends React.Component {
   }
 
   renderRight() {
-    return(
+    return (
       <div>
         <div>{this.renderOptions()}</div>
         <div className={styles.searchBar}>{this.renderSearch()}</div>
@@ -54,12 +54,8 @@ export default class List extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Header
-          title={translate('admin.heritages')}
-        />
-        <div className={styles.content}>
-          <Main filter={this.state.searchValue} status={this.state.status} />
-        </div>
+        <Header title={translate('admin.heritages')} />
+        <Main filter={this.state.searchValue} status={this.state.status} />
       </div>
     )
   }

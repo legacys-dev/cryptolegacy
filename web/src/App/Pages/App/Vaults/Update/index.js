@@ -76,11 +76,11 @@ export default class Update extends React.Component {
     const {vault} = this.props
     return (
       <div className={styles.container}>
-        <Header 
+        <Header
           past={{[`/vaults`]: translate('vaults.vaults')}}
           right={this.renderHeritageOptions()}
           title={`${translate('vaults.updateVault')} (${vault.name})`}
-          />
+        />
         <div className={styles.content}>
           <AutoForm
             mutation="updateVault"

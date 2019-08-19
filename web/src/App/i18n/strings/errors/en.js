@@ -1,6 +1,8 @@
+import translate from 'App/i18n/translate'
+
 const message = (label, placeholder) => {
-  if (label !== 'This field') return label
-  return placeholder
+  if (label !== 'This field') return translate(label)
+  return translate(placeholder)
 }
 
 export default {
@@ -26,6 +28,9 @@ export default {
   invalid: ({label, placeholder}) => `${message(label, placeholder)} is not a valid value`,
   mustStartWithPlus: 'The phone must start with +',
   userNotFound: ({label, placeholder}) => `User not found with this email`,
+  gmailRequired: ({label, placeholder}) => `Email is required`,
+  gmailStructureRequired: ({label, placeholder}) => `The email need a gmail structure`,
+  driveFolderRequired: ({label, placeholder}) => `Error connecting with google drive`,
   noPassword: ({label, placeholder}) => `The email hasn't password`,
   incorrectPassword: ({label, placeholder}) => `Incorrect password`,
   masterKeyNotFound: ({label, placeholder}) => `Master key is required`,

@@ -9,6 +9,7 @@ export default gql`
         createdAt
         fileCount
         storageUsed
+        storageType
       }
       totalPages
       hasNextPage

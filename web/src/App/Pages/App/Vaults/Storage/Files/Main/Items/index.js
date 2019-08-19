@@ -5,15 +5,10 @@ import {VaultConsumer} from 'App/helpers/contexts/vaultContext'
 import LengthName from 'App/components/User/LengthName'
 import FileIcon, {defaultStyles} from 'react-file-icon'
 import getSize from 'App/helpers/files/getSize'
-import moment from 'moment'
-import mime from 'mime-types'
-import Options from './Options'
 import translate from 'App/i18n/translate'
-
-const storage = {
-  b2: translate('fileManager.simpleType'),
-  glacier: translate('fileManager.highType')
-}
+import Options from './Options'
+import mime from 'mime-types'
+import moment from 'moment'
 
 export default class Items extends React.Component {
   static propTypes = {
@@ -40,7 +35,6 @@ export default class Items extends React.Component {
           </td>
           <td>{type}</td>
           <td>{getSize(data.size)}</td>
-          <td>{storage[data.storageType]}</td>
           <td>{moment(createdAt).format('LL')}</td>
           <td>
             <VaultConsumer>
@@ -68,7 +62,6 @@ export default class Items extends React.Component {
               <td style={{textAlign: 'left'}}>{translate('vaults.name')}</td>
               <td>{translate('vaults.type')}</td>
               <td>{translate('vaults.size')}</td>
-              <td>{translate('vaults.storage')}</td>
               <td>{translate('vaults.creationDate')}</td>
               <td>{translate('vaults.actions')}</td>
             </tr>

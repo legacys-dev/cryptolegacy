@@ -2,20 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import autobind from 'autobind-decorator'
+import {privateDecrypt, archiveEncryptWithPassword} from 'App/helpers/crypto'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withMutation from 'react-apollo-decorators/lib/withMutation'
-import {Line} from 'App/components/Parts/LoadProgress'
-import SelectStorage from './SelectStorage'
-import {MdCloudUpload} from 'react-icons/md'
-import getSize from 'App/helpers/files/getSize'
-import gql from 'graphql-tag'
-import mime from 'mime-types'
-import translate from 'App/i18n/translate'
-import AWS from 'aws-sdk'
-import awsCredentials from './awsCredentials'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import {privateDecrypt, archiveEncryptWithPassword} from 'App/helpers/crypto'
+import {Line} from 'App/components/Parts/LoadProgress'
 import {generateArchiveIv} from 'App/helpers/keys'
+import getSize from 'App/helpers/files/getSize'
+import awsCredentials from './awsCredentials'
+import {MdCloudUpload} from 'react-icons/md'
+import translate from 'App/i18n/translate'
+import Warning from './Warning'
+import mime from 'mime-types'
+import gql from 'graphql-tag'
+import AWS from 'aws-sdk'
 
 @withMutation(gql`
   mutation createS3Upload(
@@ -53,6 +53,7 @@ export default class Upload extends React.Component {
     completeS3Upload: PropTypes.func,
     getUploadCredentials: PropTypes.string,
     onUploadProgressChange: PropTypes.func,
+    vaultType: PropTypes.string,
     vaultId: PropTypes.string,
     progress: PropTypes.number,
     loaded: PropTypes.number,
@@ -60,12 +61,7 @@ export default class Upload extends React.Component {
     close: PropTypes.func
   }
 
-  state = {upload: 0, storage: null}
-
-  selectStorage = value => {
-    if (!value) return
-    this.setState({storage: value})
-  }
+  state = {upload: 0}
 
   @autobind
   async onChange(event) {
@@ -105,7 +101,7 @@ export default class Upload extends React.Component {
       name: file.name,
       size: file.size,
       type: mime.lookup(file.name) || 'application/octet-stream',
-      storage: this.state.storage,
+      storage: this.props.vaultType,
       vaultId
     })
 
@@ -171,16 +167,12 @@ export default class Upload extends React.Component {
     this.props.close()
   }
 
-  renderSelectStorage() {
-    return (
-      <div className={styles.select}>
-        <SelectStorage onChange={this.selectStorage} value={this.state.storage} />
-      </div>
-    )
+  renderWarning() {
+    return <Warning />
   }
 
   renderInput() {
-    if (this.state.loading || !this.state.storage) return
+    if (this.state.loading || !this.props.vaultType) return
     return (
       <div className={styles.inputContainer}>
         <label htmlFor="file-upload" className={styles.label}>
@@ -218,9 +210,9 @@ export default class Upload extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        {this.renderSelectStorage()}
         {this.renderLoading()}
         {this.renderInput()}
+        {this.renderWarning()}
       </div>
     )
   }

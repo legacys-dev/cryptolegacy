@@ -16,7 +16,7 @@
   composes: shadow from global;
   background-color: #fff;
   height: 90%;
-  max-height: 360px;
+  max-height: 300px;
   max-width: 550px;
   margin: 20px;
   flex: 1;
@@ -37,5 +37,4 @@
 .title {
   flex: 1;
   font-size: 20px;
-  font-weight: bold;
 }

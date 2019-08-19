@@ -51,7 +51,8 @@
     "react-router-dom": "^5.0.0",
     "react-select": "^3.0.4",
     "react-transition-group": "^4.0.1",
-    "simple-react-form": "^2.2.1"
+    "simple-react-form": "^2.2.1",
+    "zlib": "^1.0.5"
   },
   "scripts": {
     "start": "./node_modules/orionsoft-react-scripts/bin/react-scripts.js start",
