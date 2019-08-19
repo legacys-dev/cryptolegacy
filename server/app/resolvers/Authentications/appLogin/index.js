@@ -28,7 +28,6 @@ export default resolver({
     masterKey: {
       type: String,
       async custom(masterKey, {doc}) {
-        console.log('master key: ', masterKey)
         if (!masterKey) return 'masterKeyNotFound'
         if (masterKey.length !== 32) return 'invalidMasterKey'
 
@@ -68,7 +67,7 @@ export default resolver({
       userDataIv: iv
     })
     const userKeyObject = {original: masterKey}
-    const {emergencyKitId} = await createEmergencyKit(
+    await createEmergencyKit(
       {
         userMasterKey: userKeyObject,
         userId: user._id,

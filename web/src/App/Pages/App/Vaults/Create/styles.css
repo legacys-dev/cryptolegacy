@@ -15,7 +15,7 @@
 
 :local(.title) {
   display: flex;
-  align-items: center;  
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   margin-right: 20px;
@@ -25,17 +25,30 @@
   font-size: 12px;
 }
 
-:local(.headTitle){ 
+:local(.headTitle) {
   font-size: 24px;
 }
 
-:local(.description){
-  margin-left: -10px;
+:local(.description) {
 }
 
-:local(.divider){
+:local(.divider) {
   height: 1px;
   width: 100%;
   text-align: center;
   background-color: #e2e2e2;
+}
+
+.user-menu-enter,
+.user-menu-leave.user-menu-leave-active {
+  opacity: 0;
+  transform: rotateX(-15deg);
+  transform-origin: 50% -50px;
+}
+
+.user-menu-enter.user-menu-enter-active,
+.user-menu-leave {
+  opacity: 1;
+  transform: rotateX(0deg);
+  transition: all 300ms ease;
 }

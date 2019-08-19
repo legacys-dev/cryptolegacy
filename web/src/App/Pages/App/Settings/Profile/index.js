@@ -40,37 +40,34 @@ export default class Profile extends React.Component {
     showMessage: PropTypes.func
   }
 
-  state = {isKey:false,masterKey:'***************************'}
+  state = {isKey: false, masterKey: '***************************'}
 
-
-  decryptKey = (data) => {
+  decryptKey = data => {
     const messages = JSON.parse(window.localStorage.getItem('messages'))
     const decryptedKey = privateDecrypt({toDecrypt: data, privateKey: messages.privateKey})
-    this.setState({masterKey: decryptedKey.userMasterKey.original, isKey:true})
+    this.setState({masterKey: decryptedKey.userMasterKey.original, isKey: true})
   }
 
-  setKey = (key) =>{
-    if(this.state.isKey){
-      this.setState({masterKey:'***************************', isKey:false})
-    }else{
+  setKey = key => {
+    if (this.state.isKey) {
+      this.setState({masterKey: '***************************', isKey: false})
+    } else {
       this.decryptKey(key)
     }
   }
 
-  getPdf(data){
-
+  getPdf(data) {
     function saveByteArray(reportName, byte) {
-      var blob = new Blob([byte], {type: "application/pdf"});
-      var link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      var fileName = reportName;
-      link.download = fileName;
-      link.click();
+      var blob = new Blob([byte], {type: 'application/pdf'})
+      var link = document.createElement('a')
+      link.href = window.URL.createObjectURL(blob)
+      var fileName = reportName
+      link.download = fileName
+      link.click()
     }
-    let buff = new Buffer(data,"hex")
-    saveByteArray("secretKey",buff)
+    let buff = new Buffer(data, 'hex')
+    saveByteArray('secretKey', buff)
   }
-
 
   render() {
     if (!this.props.me) return
@@ -108,10 +105,10 @@ export default class Profile extends React.Component {
         <Section title={'Master Key'} description={'Aqui puedes obtener tu llave maestra.'}>
           <div className={styles.secretKey}>
             <span className={styles.title}>Llave maestra: </span>
-            <span >{this.state.masterKey}</span>
-            <a onClick={() => this.setKey(this.props.getEmergencyKit.key)} >
-              {this.state.isKey? 'Ocultar' : 'Mostrar'}
-              </a>
+            <span>{this.state.masterKey}</span>
+            <a onClick={() => this.setKey(this.props.getEmergencyKit.key)}>
+              {this.state.isKey ? 'Ocultar' : 'Mostrar'}
+            </a>
           </div>
           <Button onClick={() => this.getPdf(this.props.getEmergencyKit.data)} primary>
             Descargar llave

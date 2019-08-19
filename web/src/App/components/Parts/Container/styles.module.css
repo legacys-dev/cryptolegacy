@@ -1,5 +1,5 @@
 .os_container {
-  margin: 30px auto;
+  margin: 40px auto;
   padding: 0 20px;
   padding: 0 calc(20px + env(safe-area-inset-left));
 }

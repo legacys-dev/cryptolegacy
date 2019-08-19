@@ -6,12 +6,8 @@ import {MdArrowBack} from 'react-icons/md'
 const Header = ({past, title, description, right}) => {
   const renderPast = () => {
     const renderLink = !!past
-    let last = null
-    let history = null
-    if (renderLink) {
-      history = Object.keys(past)
-      last = history[history.length - 1]
-    }
+    const history = renderLink ? Object.keys(past) : null
+    const last = renderLink ? history[history.length - 1] : null
     return (
       <span key={last} className={styles.backContainer}>
         {renderLink ? (
@@ -31,7 +27,7 @@ const Header = ({past, title, description, right}) => {
             <div className={styles.titleHeader}>{title}</div>
             <div className={styles.descriptionHeader}>{description}</div>
           </div>
-        )}{' '}
+        )}
       </span>
     )
   }
@@ -40,6 +36,7 @@ const Header = ({past, title, description, right}) => {
     if (!right) return
     return <div className={styles.right}>{right}</div>
   }
+
   return (
     <div className={styles.container}>
       <div className={styles.all}>

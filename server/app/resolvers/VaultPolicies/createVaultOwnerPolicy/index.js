@@ -2,20 +2,26 @@ import {resolver} from '@orion-js/app'
 import VaultPolicies from 'app/collections/VaultPolicies'
 import Users from 'app/collections/Users'
 import getVaultPassword from './getVaultPassword'
+import {createFolder} from 'app/helpers/googleDrive'
 
 export default resolver({
   params: {
     vaultId: {
       type: 'ID'
     },
+    driveEmail: {
+      type: String,
+      optional: true
+    },
     credentials: {
       type: String
     }
   },
   returns: String,
+  private: true,
   mutation: true,
   requireLogin: true,
-  async resolve({vaultId, credentials}, viewer) {
+  async resolve({vaultId, driveEmail, credentials}, viewer) {
     const user = await Users.findOne({_id: viewer.userId})
     const {privateKey} = user.messageKeys
 
@@ -32,6 +38,8 @@ export default resolver({
       vaultId,
       credentialType: 'owner',
       vaultPassword,
+      driveEmail,
+      driveFolderId: driveEmail && (await createFolder(driveEmail)),
       status: 'active'
     }
 

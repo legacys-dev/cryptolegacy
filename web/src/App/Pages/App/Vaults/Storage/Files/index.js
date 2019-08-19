@@ -8,7 +8,6 @@ import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import Loading from 'App/components/Parts/Loading'
 import Text from 'App/components/fields/Text'
 import VaultWatcher from './VaultWatcher'
-import fragment from './fragment'
 import gql from 'graphql-tag'
 import Main from './Main'
 import translate from 'App/i18n/translate'
@@ -20,10 +19,11 @@ import {setVaultPasswords} from 'App/helpers/keys'
       vault(vaultId: $vaultId) {
         _id
         name
-        userCredentials
+        type
         fileCount
         storageUsed
         password
+        userCredentials
       }
     }
   `,
@@ -58,9 +58,9 @@ export default class Files extends React.Component {
   }
 
   renderFileManager() {
-    const {vaultId} = this.props.match.params
+    const {_id, type} = this.props.vault
     return (
-      <VaultProvider value={{vaultId}}>
+      <VaultProvider value={{vaultId: _id, vaultType: type}}>
         <FileManager />
       </VaultProvider>
     )
@@ -83,7 +83,6 @@ export default class Files extends React.Component {
 
   render() {
     const {vault} = this.props
-    console.log({vault})
     if (!vault) return <span />
     return (
       <div className={styles.container}>

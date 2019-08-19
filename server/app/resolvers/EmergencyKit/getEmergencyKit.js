@@ -21,7 +21,6 @@ export default resolver({
     }
     const result = await new Promise((resolve, reject)=> {
       pdf.create(generatepdf(userToPdf), {}).toBuffer((err,buff) => {  
-        console.log(buff)
         if(err) reject(err)
         if(buff) resolve(buff.toString('hex'))
       })
