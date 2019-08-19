@@ -15,13 +15,12 @@ export default resolver({
       type: String
     },
     userMessageKeys: {
-        type: 'blackbox',
+      type: 'blackbox'
     }
   },
   returns: String,
   async resolve(params, viewer) {
     const {userId, userMasterKey, email, userMessageKeys} = params
-    console.log("ke es: ",userMasterKey)
     const _id = generateId(201)
     const toEncrypt = {userId, userMasterKey, email, createdAt: new Date()}
     const {publicKey} = userMessageKeys

@@ -86,8 +86,9 @@ export default resolver({
 
     const session = await createSession(newUser)
 
+    const userKeyObject = {original: userMasterKey.original}
     const {emergencyKitId} = await createEmergencyKit({
-      userMasterKey,
+      userMasterKey: userKeyObject,
       userId: newUser._id,
       email,
       userMessageKeys
