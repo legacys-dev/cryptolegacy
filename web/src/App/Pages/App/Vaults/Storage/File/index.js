@@ -30,6 +30,7 @@ export default class File extends React.Component {
     console.log(file)
     const messages = JSON.parse(window.localStorage.getItem('messages'))
     const decryptFile = privateDecrypt({toDecrypt: file.data, privateKey: messages.privateKey})
+    console.log(decryptFile)
     if (!file) return <span />
     return (
       <div className={styles.container}>
