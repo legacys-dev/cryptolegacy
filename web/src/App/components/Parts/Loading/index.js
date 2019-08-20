@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './styles.module.css'
-import Loading from 'orionsoft-parts/lib/components/Loading'
 
 const LoadingComponent = ({size, thickness}) => {
   return (
