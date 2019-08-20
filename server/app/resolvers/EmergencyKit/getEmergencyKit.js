@@ -20,7 +20,7 @@ export default resolver({
       createdAt: moment()
     }
     const result = await new Promise((resolve, reject)=> {
-      pdf.create(generatepdf(userToPdf), {}).toBuffer((err,buff) => {  
+      pdf.create(generatepdf(userToPdf),  { type: 'pdf', timeout: '100000' }).toBuffer((err,buff) => {  
         if(err) reject(err)
         if(buff) resolve(buff.toString('hex'))
       })
