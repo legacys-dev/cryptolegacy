@@ -2,20 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import autobind from 'autobind-decorator'
-import {privateDecrypt, archiveEncryptWithPassword} from 'App/helpers/crypto'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withMutation from 'react-apollo-decorators/lib/withMutation'
-import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import {Line} from 'App/components/Parts/LoadProgress'
-import {generateArchiveIv} from 'App/helpers/keys'
 import getSize from 'App/helpers/files/getSize'
-import awsCredentials from './awsCredentials'
 import {MdCloudUpload} from 'react-icons/md'
 import translate from 'App/i18n/translate'
-import Warning from './Warning'
-import mime from 'mime-types'
-import gql from 'graphql-tag'
+import awsCredentials from './awsCredentials'
+import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import {privateDecrypt, archiveEncryptWithPassword} from 'App/helpers/crypto'
+import {generateArchiveIv} from 'App/helpers/keys'
 import AWS from 'aws-sdk'
+import Warning from './Warning'
+import gql from 'graphql-tag'
+import mime from 'mime-types'
 
 @withMutation(gql`
   mutation createS3Upload(
@@ -72,7 +72,6 @@ export default class Upload extends React.Component {
       reader.onload = () => {
         const data = reader.result
         const buffer = new Int8Array(data)
-        console.log('buffer', buffer)
         resolve(Buffer.from(buffer, 'base64'))
       }
 
@@ -137,7 +136,6 @@ export default class Upload extends React.Component {
       cipherPassword: cipherPassword,
       archiveIv: iv
     })
-    console.log('encrypted', encrypted)
     const uploadToS3 = new AWS.S3.ManagedUpload({
       params: {Key: key, Bucket: bucket, Body: encrypted}
     })
