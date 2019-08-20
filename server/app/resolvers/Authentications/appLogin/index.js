@@ -5,6 +5,7 @@ import {generateUserCipherKeys} from 'app/helpers/keys'
 import Users from 'app/collections/Users'
 import getSession from './getSession'
 import bcrypt from 'bcryptjs'
+import createEmergencyKit from 'app/resolvers/EmergencyKit/createEmergencyKit'
 
 export default resolver({
   params: {
@@ -65,6 +66,16 @@ export default resolver({
       cipherPassword: secret,
       userDataIv: iv
     })
+    const userKeyObject = {original: masterKey}
+    await createEmergencyKit(
+      {
+        userMasterKey: userKeyObject,
+        userId: user._id,
+        email,
+        userMessageKeys
+      },
+      viewer
+    )
 
     return {
       session,

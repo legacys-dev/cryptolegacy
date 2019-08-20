@@ -6,7 +6,7 @@ import {passwordValidator} from 'app/helpers/registration'
 import {accountCreated} from 'app/helpers/emails'
 import Registrations from 'app/collections/Registrations'
 import Users from 'app/collections/Users'
-import createEmergencyKit from './createEmergencyKit'
+import createEmergencyKit from 'app/resolvers/EmergencyKit/createEmergencyKit'
 import authResolvers from 'app/resolvers/Auth'
 import isEmpty from 'lodash/isEmpty'
 
@@ -86,12 +86,14 @@ export default resolver({
 
     const session = await createSession(newUser)
 
+    const userKeyObject = {original: userMasterKey.original}
     const {emergencyKitId} = await createEmergencyKit({
-      userMasterKey,
+      userMasterKey: userKeyObject,
       userId: newUser._id,
       email,
       userMessageKeys
-    })
+    }, viewer)
+
 
     const k = decomposeMasterKey({
       masterKey: temporaryUserMasterKey.original,
