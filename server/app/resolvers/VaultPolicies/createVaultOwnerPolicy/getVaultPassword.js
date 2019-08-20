@@ -11,7 +11,7 @@ export default async function({credentials, privateKey, vaultId, userId}) {
   const vaultPassphrase = vaultId + mainUserV
 
   const etherWallet = await createEtherWallet(vaultPassphrase)
-  const vaultPassword = etherWallet.privateKey.slice(2, 18) + etherWallet.publicKey.slice(18, 36)
+  const vaultPassword = etherWallet.privateKey.slice(2, 17) + etherWallet.publicKey.slice(17, 34)
 
   const params = {
     itemToEncrypt: vaultPassword,

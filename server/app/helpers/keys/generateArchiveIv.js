@@ -6,7 +6,7 @@ export default async function(archiveId) {
     throw new Error('Passphrase to create archive identificator vector is missing')
   }
 
-  if (archiveId.length !== 17) throw new Error('Invalid passphras for archive identificator vector')
+  if (archiveId.length !== 16) throw new Error('Invalid passphras for archive identificator vector')
 
   const walletCredentials = await createEtherWallet(archiveId)
   const {privateKey, publicKey} = walletCredentials

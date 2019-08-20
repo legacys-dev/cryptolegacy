@@ -9,7 +9,7 @@ import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import {MdCloudDownload} from 'react-icons/md'
 import autobind from 'autobind-decorator'
-import {saveAs} from './downloadFile'
+import downloadFile from './downloadFile'
 import Progress from './Progress'
 import messages from './messages'
 import gql from 'graphql-tag'
@@ -67,7 +67,12 @@ export default class DownloadButton extends React.Component {
         return this.downloadStatusHandler(status, minutesToWait)
       }
       this.setState({open: true})
-      await saveAs(downloadUrl, fileName, this.downloadProgress)
+      await downloadFile({
+        fileId: this.props.file._id,
+        downloadUrl: downloadUrl,
+        fileName: fileName,
+        downloadProgress: this.downloadProgress
+      })
       await finishDownload({activityId, status: true})
     } catch (error) {
       showMessage(error, {level: 'error'})
