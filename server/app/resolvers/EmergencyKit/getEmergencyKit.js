@@ -14,8 +14,8 @@ export default resolver({
     const decryptedKey = privateDecrypt({toDecrypt: key.encrypted, privateKey: user.messageKeys.privateKey})
     const pdf = require('html-pdf');
     const userToPdf ={
-      userName: await user.profile.firstName,
-      userLastName: await user.profile.firstName,
+      userName: user.profile.firstName,
+      userLastName: user.profile.lastName,
       userMasterKey: decryptedKey.userMasterKey.original,
       createdAt: moment()
     }
