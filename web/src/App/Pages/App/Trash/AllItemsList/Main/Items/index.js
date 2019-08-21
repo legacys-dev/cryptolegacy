@@ -10,6 +10,7 @@ import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 import translate from 'App/i18n/translate'
+import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 
 const storage = {
   b2: translate('fileManager.simpleType'),
@@ -44,8 +45,11 @@ export default class Items extends React.Component {
   renderTable() {
     const files = this.props.items || []
     return files.map((file, index) => {
+      console.log(file)
       const {data, vaultName} = file
-      const type = mime.extension(data.type)
+      const messages = JSON.parse(window.localStorage.getItem('messages'))
+      const decryptFile = privateDecrypt({toDecrypt: data, privateKey: messages.privateKey})
+      const type = mime.extension(decryptFile.type)
       return (
         <tr className={styles.cell} key={index}>
           <td>
@@ -54,13 +58,13 @@ export default class Items extends React.Component {
             </div>
           </td>
           <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
-            <LengthName name={data.name} />
+            <LengthName name={decryptFile.name} />
           </td>
           <td>{type}</td>
-          <td>{getSize(data.size)}</td>
+          <td>{getSize(decryptFile.size)}</td>
           <td>
-            <Tooltip content={this.getStorageDescription(storage[data.storageType])}>
-              {storage[data.storageType]}
+            <Tooltip content={this.getStorageDescription(storage[decryptFile.storageType])}>
+              {storage[decryptFile.storageType]}
             </Tooltip>
           </td>
           <td>
@@ -69,7 +73,7 @@ export default class Items extends React.Component {
           <td>
             <RestoreFile
               fileId={file._id}
-              vaultId={data.vaultId}
+              vaultId={decryptFile.vaultId}
               onRestoreSuccess={this.onRestoreSuccess}
             />
           </td>

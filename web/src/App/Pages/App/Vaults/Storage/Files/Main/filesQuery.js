@@ -6,7 +6,6 @@ export default gql`
       items {
         _id
         data
-        createdAt
       }
       totalPages
       hasNextPage

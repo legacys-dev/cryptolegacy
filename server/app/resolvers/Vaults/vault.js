@@ -12,6 +12,7 @@ export default resolver({
   requireLogin: true,
   returns: Vault,
   async resolve({vaultId}, viewer) {
-    return await Vaults.findOne(vaultId)
+    const vault = await Vaults.findOne(vaultId)
+    return vault
   }
 })

@@ -16,7 +16,6 @@ export default resolver({
     const limitTime = DateTime.local()
       .minus({minutes: 4})
       .toJSDate()
-
     const kit = await EmergencyKits.findOne({
       _id: emergencyKitId,
       userId: viewer.userId,

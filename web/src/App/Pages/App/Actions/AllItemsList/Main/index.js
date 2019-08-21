@@ -30,9 +30,7 @@ export default class Main extends React.Component {
       variables: {page, limit: 6},
       fetchPolicy: 'network-only'
     })
-
     const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.result
-
     this.setState({
       items,
       currentPage: page,

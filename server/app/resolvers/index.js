@@ -6,12 +6,12 @@ import Registrations from './Registrations'
 import Users from './Users'
 import Vaults from './Vaults'
 import Activities from './Activities'
-import EmergencyKits from './EmergencyKits'
+import EmergencyKit from './EmergencyKit'
 import VaultPolicies from './VaultPolicies'
 
 export default {
   ...VaultPolicies,
-  ...EmergencyKits,
+  ...EmergencyKit,
   ...Activities,
   ...resolversSchemas,
   ...Auth,

@@ -37,11 +37,10 @@ export default class Information extends React.Component {
       <div className={styles.container}>
         <Section top title={translate('information.infoTitle')} description={translate('information.description')}>
           <div className={styles.file}>
-            {this.renderInformation(translate('information.name'), file.data.name)}
-            {this.renderInformation(translate('information.type'), mime.extension(file.data.type))}
-            {this.renderInformation(translate('information.size'), getSize(file.data.size))}
+            {this.renderInformation(translate('information.name'), file.name)}
+            {this.renderInformation(translate('information.type'), mime.extension(file.type))}
+            {this.renderInformation(translate('information.size'), getSize(file.size))}
             {this.renderInformation(translate('information.vault'), file.vaultName)}
-            {this.renderInformation(translate('information.storageType'), storage[file.data.storageType])}
             {this.renderInformation(translate('information.createdDate'), moment(file.createdAt).format('LL'))}
           </div>
         </Section>

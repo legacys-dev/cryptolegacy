@@ -18,5 +18,4 @@ const KeyPdfGenerator = ({userData}) => {
     </div>
   )
 }
-
 export default KeyPdfGenerator

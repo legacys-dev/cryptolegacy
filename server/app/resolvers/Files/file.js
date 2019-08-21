@@ -12,6 +12,6 @@ export default resolver({
   requireLogin: true,
   filePermissions: true,
   async resolve({fileId}, viewer) {
-    return await Files.findOne(fileId)
+    return await Files.findOne(fileId) 
   }
 })
