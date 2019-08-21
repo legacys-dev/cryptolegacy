@@ -9,6 +9,7 @@ import Users from 'app/collections/Users'
 import createEmergencyKit from './createEmergencyKit'
 import authResolvers from 'app/resolvers/Auth'
 import isEmpty from 'lodash/isEmpty'
+import {createCustomer} from 'app/helpers/qvo'
 
 export default resolver({
   params: {
@@ -99,7 +100,10 @@ export default resolver({
     })
 
     const {userInformation} = registration
-    accountCreated({userInformation}) // await not necessary
+    accountCreated({userInformation})
+
+    let response = await createCustomer (email,name)
+    console.log({response})
 
     return {
       session,
