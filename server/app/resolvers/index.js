@@ -8,6 +8,7 @@ import Vaults from './Vaults'
 import Activities from './Activities'
 import EmergencyKit from './EmergencyKit'
 import VaultPolicies from './VaultPolicies'
+import Billing from './Billing'
 
 export default {
   ...VaultPolicies,
@@ -19,5 +20,6 @@ export default {
   ...Files,
   ...Registrations,
   ...Users,
-  ...Vaults
+  ...Vaults,
+  ...Billing
 }
