@@ -65,7 +65,7 @@ export default class Profile extends React.Component {
       link.download = fileName
       link.click()
     }
-    let buff = new Buffer(data, 'hex')
+    let buff = Buffer.from(data, 'hex')
     saveByteArray('secretKey', buff)
   }
 
