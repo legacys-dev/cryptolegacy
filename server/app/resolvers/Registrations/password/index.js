@@ -70,6 +70,9 @@ export default resolver({
       userDataIv: iv
     })
 
+    const qvoUser = await createCustomer(email, name)
+    if (!qvoUser) throw new Error('Error creating qvo user')
+
     await Users.update(
       {_id: newUser._id, 'emails.address': email},
       {
@@ -79,7 +82,8 @@ export default resolver({
           'messageKeys.publicKey': userMessageKeys.publicKey,
           'messageKeys.privateKey': userMessageKeys.privateKey,
           'messageKeys.passphrase': userMessageKeys.passphrase,
-          'emails.$.verified': true
+          'emails.$.verified': true,
+          'qvoCustomerId': qvoUser.id
         },
         $unset: {'services.emailVerify': ''}
       }
@@ -88,13 +92,15 @@ export default resolver({
     const session = await createSession(newUser)
 
     const userKeyObject = {original: userMasterKey.original}
-    const {emergencyKitId} = await createEmergencyKit({
-      userMasterKey: userKeyObject,
-      userId: newUser._id,
-      email,
-      userMessageKeys
-    }, viewer)
-
+    const {emergencyKitId} = await createEmergencyKit(
+      {
+        userMasterKey: userKeyObject,
+        userId: newUser._id,
+        email,
+        userMessageKeys
+      },
+      viewer
+    )
 
     const k = decomposeMasterKey({
       masterKey: temporaryUserMasterKey.original,
@@ -103,9 +109,6 @@ export default resolver({
 
     const {userInformation} = registration
     accountCreated({userInformation})
-
-    let response = await createCustomer (email,name)
-    console.log({response})
 
     return {
       session,

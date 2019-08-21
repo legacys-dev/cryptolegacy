@@ -25,5 +25,6 @@ export default {
   title: 'Ajustes',
   security: 'Seguridad',
   firstName: 'Nombre',
-  lastName: 'Apellido'
+  lastName: 'Apellido',
+  billing: 'Facturación'
 }

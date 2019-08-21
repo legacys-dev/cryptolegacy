@@ -25,5 +25,6 @@ export default {
   title: 'Settings',
   security: 'Security',
   firstName: 'First name',
-  lastName: 'Last name'
+  lastName: 'Last name',
+  billing: 'Billing'
 }
