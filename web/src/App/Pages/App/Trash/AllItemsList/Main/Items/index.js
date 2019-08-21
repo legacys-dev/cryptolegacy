@@ -15,7 +15,7 @@ import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 const storage = {
   b2: translate('fileManager.simpleType'),
   glacier: translate('fileManager.highType'),
-  drive: translate('fileManager.driveType')
+  drive: translate('fileManager.drive')
 }
 
 @withMessage
@@ -40,8 +40,7 @@ export default class Items extends React.Component {
       return translate('fileManager.simpleTypeDescription')
     } else if (type === 'HSS' || type === 'AAS') {
       return translate('fileManager.highTypeDescription')
-    }
-    else {
+    } else {
       return translate('fileManager.driveTypeDescription')
     }
   }

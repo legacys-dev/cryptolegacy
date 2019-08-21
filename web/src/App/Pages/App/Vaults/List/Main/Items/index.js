@@ -12,7 +12,7 @@ const Items = ({history, items, credentialType}) => {
   const getStorageDescription = type => {
     if (type === 'SS' || type === 'AS') {
       return translate('fileManager.simpleTypeDescription')
-    } else if (type === 'HSS' || type === 'AAS'){
+    } else if (type === 'HSS' || type === 'AAS') {
       return translate('fileManager.highTypeDescription')
     } else {
       return translate('fileManager.driveTypeDescription')
