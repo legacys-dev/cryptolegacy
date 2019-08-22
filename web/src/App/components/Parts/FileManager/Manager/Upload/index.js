@@ -72,7 +72,6 @@ export default class Upload extends React.Component {
       reader.onload = () => {
         const data = reader.result
         const buffer = new Int8Array(data)
-        console.log('buffer', buffer)
         resolve(Buffer.from(buffer, 'base64'))
       }
 
@@ -137,7 +136,6 @@ export default class Upload extends React.Component {
       cipherPassword: cipherPassword,
       archiveIv: iv
     })
-    console.log('encrypted', encrypted)
     const uploadToS3 = new AWS.S3.ManagedUpload({
       params: {Key: key, Bucket: bucket, Body: encrypted}
     })

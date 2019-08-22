@@ -22,7 +22,7 @@ export default resolver({
     confirmPassword: {
       type: String,
       async custom(confirmPassword, doc) {
-        if (!isEmpty(confirmPassword.localeCompare(doc.password))) return 'passwordNotMatch'
+        if (confirmPassword.localeCompare(doc.doc.password)) return 'passwordNotMatch'
         const result = passwordValidator(confirmPassword)
         if (result) return result.message
       }
@@ -87,13 +87,15 @@ export default resolver({
     const session = await createSession(newUser)
 
     const userKeyObject = {original: userMasterKey.original}
-    const {emergencyKitId} = await createEmergencyKit({
-      userMasterKey: userKeyObject,
-      userId: newUser._id,
-      email,
-      userMessageKeys
-    }, viewer)
-
+    const {emergencyKitId} = await createEmergencyKit(
+      {
+        userMasterKey: userKeyObject,
+        userId: newUser._id,
+        email,
+        userMessageKeys
+      },
+      viewer
+    )
 
     const k = decomposeMasterKey({
       masterKey: temporaryUserMasterKey.original,
