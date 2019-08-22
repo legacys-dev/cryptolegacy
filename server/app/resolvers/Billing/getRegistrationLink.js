@@ -10,7 +10,6 @@ export default resolver({
     const user = await Users.findOne({_id: viewer.userId});
     const qvoUserId = user.qvoCustomerId;
     const {inscription_uid,redirect_url,expiration_date} = await enrollCard(qvoUserId,'google.cl');
-    return {redirectUrl: redirect_url}
+    return redirect_url
   }
 })
-
