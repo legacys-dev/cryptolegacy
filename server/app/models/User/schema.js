@@ -33,5 +33,10 @@ export default {
     type: String,
     private: true,
     optional: true
+  },
+  qvoCustomerId: {
+    type: String,
+    private: true,
+    optional: true,
   }
 }

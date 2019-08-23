@@ -27,6 +27,7 @@ export default {
   security: 'Seguridad',
   firstName: 'Nombre',
   lastName: 'Apellido',
+  billing: 'Facturación'
   downloadMasterKey: 'Aquí puedes descargar tu llave maestra',
   masterKey: 'Llave maestra',
   downloadKey: 'Descargar llave',

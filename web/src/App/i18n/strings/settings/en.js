@@ -27,6 +27,7 @@ export default {
   security: 'Security',
   firstName: 'First name',
   lastName: 'Last name',
+  billing: 'Billing'
   downloadMasterKey: 'Here you can download your Master Key',
   masterKey: 'Master Key',
   downloadKey: 'Download Key',
