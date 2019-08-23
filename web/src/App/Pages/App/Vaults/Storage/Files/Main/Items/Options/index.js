@@ -20,8 +20,8 @@ export default class Options extends React.Component {
   }
 
   onDeleteSuccess(deletedTime) {
-    this.props.showMessage(translate('files.fileDeletedSuccesfully'))
     this.props.onDeleteFile(deletedTime)
+    this.props.showMessage(translate('files.fileDeletedSuccesfully'))
   }
 
   renderOptions() {

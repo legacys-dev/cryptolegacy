@@ -22,8 +22,8 @@ export default class Items extends React.Component {
 
   @autobind
   onDeleteSuccess() {
-    this.props.showMessage(translate('vaults.deleteHeritageMessage'))
     this.props.onDeleteItem(new Date())
+    this.props.showMessage(translate('vaults.deleteHeritageMessage'))
   }
 
   renderTable() {

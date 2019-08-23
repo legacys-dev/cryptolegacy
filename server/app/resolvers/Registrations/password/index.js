@@ -9,6 +9,7 @@ import Users from 'app/collections/Users'
 import createEmergencyKit from 'app/resolvers/EmergencyKit/createEmergencyKit'
 import authResolvers from 'app/resolvers/Auth'
 import isEmpty from 'lodash/isEmpty'
+import {createCustomer} from 'app/helpers/qvo'
 
 export default resolver({
   params: {
@@ -69,6 +70,9 @@ export default resolver({
       userDataIv: iv
     })
 
+    const qvoUser = await createCustomer(email, name)
+    if (!qvoUser) throw new Error('Error creating qvo user')
+
     await Users.update(
       {_id: newUser._id, 'emails.address': email},
       {
@@ -78,7 +82,8 @@ export default resolver({
           'messageKeys.publicKey': userMessageKeys.publicKey,
           'messageKeys.privateKey': userMessageKeys.privateKey,
           'messageKeys.passphrase': userMessageKeys.passphrase,
-          'emails.$.verified': true
+          'emails.$.verified': true,
+          'qvoCustomerId': qvoUser.id
         },
         $unset: {'services.emailVerify': ''}
       }
@@ -103,7 +108,7 @@ export default resolver({
     })
 
     const {userInformation} = registration
-    accountCreated({userInformation}) // await not necessary
+    accountCreated({userInformation})
 
     return {
       session,

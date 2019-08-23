@@ -33,7 +33,7 @@ import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 export default class Profile extends React.Component {
   static propTypes = {
     me: PropTypes.object,
-    getEmergencyKit: PropTypes.string,
+    getEmergencyKit: PropTypes.Object,
     showMessage: PropTypes.func
   }
 
@@ -89,13 +89,13 @@ export default class Profile extends React.Component {
               label={translate('settings.firstName')}
               fieldName="firstName"
               type={Text}
-              fieldType="firstName"
+              fieldtype="firstName"
             />
             <Field
               label={translate('settings.lastName')}
               fieldName="lastName"
               type={Text}
-              fieldType="lastName"
+              fieldtype="lastName"
             />
           </AutoForm>
           <br />
