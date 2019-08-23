@@ -55,11 +55,7 @@ export default class List extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Header
-          right={this.renderRigth()}
-          title={translate('vaults.vaults')}
-          description={'Aqui va la descripcion'}
-        />
+        <Header right={this.renderRigth()} title={translate('vaults.vaults')} />
         <Main filter={this.state.searchValue} credentialType={this.state.credentialType} />
       </div>
     )

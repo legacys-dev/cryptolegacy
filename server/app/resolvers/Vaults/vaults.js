@@ -7,10 +7,6 @@ import {getVaultsIds} from 'app/helpers/vaults'
 export default paginatedResolver({
   returns: Vault,
   params: {
-    filter: {
-      type: String,
-      optional: true
-    },
     credentialType: {
       type: String
     }
@@ -25,8 +21,6 @@ export default paginatedResolver({
     const vaultsId = getVaultsIds(userVaultsPolicies)
 
     const query = {_id: {$in: vaultsId}}
-
-    if (filter) query.searchSlug = {$regex: filter + '.*', $options: 'i'}
 
     return Vaults.find(query).sort({createdAt: -1}) // await not necessary
   }

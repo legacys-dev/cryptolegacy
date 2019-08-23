@@ -8,8 +8,11 @@ export default resolver({
     userId: {
       type: 'ID'
     },
-    profile: {
-      type: UserProfile
+    firstName: {
+      type: String
+    },
+    lastName: {
+      type: String
     }
   },
   returns: User,
@@ -18,7 +21,8 @@ export default resolver({
   checkPermission({userId}, viewer) {
     if (userId !== viewer.userId) return 'userNotAllowed'
   },
-  async resolve({userId, profile}, viewer) {
+  async resolve({userId, firstName, lastName}, viewer) {
+    const profile = {firstName, lastName}
     await Users.update(userId, {$set: {profile}})
     return await Users.findOne(userId)
   }

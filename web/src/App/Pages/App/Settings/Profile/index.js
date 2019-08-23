@@ -7,31 +7,28 @@ import AutoForm from 'App/components/AutoForm'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import translate from 'App/i18n/translate'
+import Loading from 'App/components/Parts/Loading'
 import gql from 'graphql-tag'
 import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 
-const fragment = gql`
-  fragment setUserProfileFragment on User {
-    _id
-    profile {
-      name
-      firstName
-      lastName
+@withGraphQL(
+  gql`
+    query getMyProfile {
+      me {
+        _id
+        profile {
+          name
+          firstName
+          lastName
+        }
+      }
+      getEmergencyKit
     }
-  }
-`
-
-@withGraphQL(gql`
-  query getMyProfile {
-    me {
-      ...setUserProfileFragment
-    }
-    getEmergencyKit
-  }
-  ${fragment}
-`)
+  `,
+  {loading: <Loading />}
+)
 @withMessage
 export default class Profile extends React.Component {
   static propTypes = {
@@ -71,6 +68,12 @@ export default class Profile extends React.Component {
 
   render() {
     if (!this.props.me) return
+    const profile = {
+      userId: this.props.me._id,
+      firstName: this.props.me.profile.firstName,
+      lastName: this.props.me.profile.lastName
+      //      profile: this.props.me.profile
+    }
     return (
       <div className={styles.container}>
         <Section
@@ -79,9 +82,8 @@ export default class Profile extends React.Component {
           description={translate('settings.profileDescription')}>
           <AutoForm
             mutation="setUserProfile"
-            doc={{userId: this.props.me._id, profile: this.props.me.profile}}
+            doc={profile}
             onSuccess={() => this.props.showMessage(translate('settings.yourProfileWasSaved'))}
-            fragment={fragment}
             ref="form">
             <Field
               label={translate('settings.firstName')}

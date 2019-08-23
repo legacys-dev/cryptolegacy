@@ -26,10 +26,10 @@ export default class Main extends React.Component {
 
   @autobind
   async search(page = 1) {
-    const {filter, client, credentialType} = this.props
+    const {client, credentialType} = this.props
     const result = await client.query({
       query: vaultsQuery,
-      variables: {filter, credentialType, page, limit: 6},
+      variables: {credentialType, page, limit: 6},
       fetchPolicy: 'network-only'
     })
     const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.vaults
@@ -46,14 +46,17 @@ export default class Main extends React.Component {
     const {items, currentPage, totalPages, hasNextPage, hasPreviousPage} = this.state
     return (
       <div className={styles.container}>
-        <Items items={items} credentialType={this.props.credentialType} />
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          search={this.search}
-          hasNextPage={hasNextPage}
-          hasPreviousPage={hasPreviousPage}
-        />
+        <div>
+          <Items items={items} credentialType={this.props.credentialType} />
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            search={this.search}
+            hasNextPage={hasNextPage}
+            hasPreviousPage={hasPreviousPage}
+          />
+        </div>
+        <div>asdf</div>
       </div>
     )
   }
