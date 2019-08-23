@@ -14,7 +14,8 @@ import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 
 const storage = {
   b2: translate('fileManager.simpleType'),
-  glacier: translate('fileManager.highType')
+  glacier: translate('fileManager.highType'),
+  drive: translate('fileManager.drive')
 }
 
 @withMessage
@@ -37,15 +38,16 @@ export default class Items extends React.Component {
   getStorageDescription(type) {
     if (type === 'SS' || type === 'AS') {
       return translate('fileManager.simpleTypeDescription')
-    } else {
+    } else if (type === 'HSS' || type === 'AAS') {
       return translate('fileManager.highTypeDescription')
+    } else {
+      return translate('fileManager.driveTypeDescription')
     }
   }
 
   renderTable() {
     const files = this.props.items || []
     return files.map((file, index) => {
-      console.log(file)
       const {data, vaultName} = file
       const messages = JSON.parse(window.localStorage.getItem('messages'))
       const decryptFile = privateDecrypt({toDecrypt: data, privateKey: messages.privateKey})

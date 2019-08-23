@@ -1,6 +1,7 @@
 export default {
   close: 'Cerrar',
   files: 'Archivos',
+  file: 'Archivo',
   startUpload: 'Iniciar subida',
   loadFileMessage: 'El archivo fue cargado correctamente',
   clickUploadFile: 'Presiona aquí para subir el archivo',
@@ -12,6 +13,8 @@ export default {
   simpleTypeDescription: 'Almacenamiento Simple',
   highType: 'AAS',
   highTypeDescription: 'Almacenamiento de Alta Seguridad',
+  drive: 'GD',
+  driveTypeDescription: 'Google Drive',
   warning: 'Advertencia',
   of: 'de',
   filesUpload: 'Subida de archivos'

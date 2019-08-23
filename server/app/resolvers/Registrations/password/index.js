@@ -6,9 +6,10 @@ import {passwordValidator} from 'app/helpers/registration'
 import {accountCreated} from 'app/helpers/emails'
 import Registrations from 'app/collections/Registrations'
 import Users from 'app/collections/Users'
-import createEmergencyKit from './createEmergencyKit'
+import createEmergencyKit from 'app/resolvers/EmergencyKit/createEmergencyKit'
 import authResolvers from 'app/resolvers/Auth'
 import isEmpty from 'lodash/isEmpty'
+import {createCustomer} from 'app/helpers/qvo'
 
 export default resolver({
   params: {
@@ -21,8 +22,8 @@ export default resolver({
     },
     confirmPassword: {
       type: String,
-      async custom(confirmPassword, doc) {
-        if (!isEmpty(confirmPassword.localeCompare(doc.password))) return 'passwordNotMatch'
+      async custom(confirmPassword, {doc}) {
+        if (confirmPassword.localeCompare(doc.password)) return 'passwordNotMatch'
         const result = passwordValidator(confirmPassword)
         if (result) return result.message
       }
@@ -69,6 +70,9 @@ export default resolver({
       userDataIv: iv
     })
 
+    const qvoUser = await createCustomer(email, name)
+    if (!qvoUser) throw new Error('Error creating qvo user')
+
     await Users.update(
       {_id: newUser._id, 'emails.address': email},
       {
@@ -78,7 +82,8 @@ export default resolver({
           'messageKeys.publicKey': userMessageKeys.publicKey,
           'messageKeys.privateKey': userMessageKeys.privateKey,
           'messageKeys.passphrase': userMessageKeys.passphrase,
-          'emails.$.verified': true
+          'emails.$.verified': true,
+          'qvoCustomerId': qvoUser.id
         },
         $unset: {'services.emailVerify': ''}
       }
@@ -86,12 +91,16 @@ export default resolver({
 
     const session = await createSession(newUser)
 
-    const {emergencyKitId} = await createEmergencyKit({
-      userMasterKey,
-      userId: newUser._id,
-      email,
-      userMessageKeys
-    })
+    const userKeyObject = {original: userMasterKey.original}
+    const {emergencyKitId} = await createEmergencyKit(
+      {
+        userMasterKey: userKeyObject,
+        userId: newUser._id,
+        email,
+        userMessageKeys
+      },
+      viewer
+    )
 
     const k = decomposeMasterKey({
       masterKey: temporaryUserMasterKey.original,
@@ -99,7 +108,7 @@ export default resolver({
     })
 
     const {userInformation} = registration
-    accountCreated({userInformation}) // await not necessary
+    accountCreated({userInformation})
 
     return {
       session,

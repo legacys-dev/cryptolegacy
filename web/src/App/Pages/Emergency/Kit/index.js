@@ -58,7 +58,6 @@ export default class Kit extends React.Component {
       createdAt: emergencyKit.createdAt,
       userMasterKey: this.state.decryptContent.userMasterKey.original
     }
-
     return (
       <Container>
         <div className={styles.container}>

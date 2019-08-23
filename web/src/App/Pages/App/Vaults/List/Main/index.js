@@ -24,11 +24,6 @@ export default class Main extends React.Component {
     this.search()
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.filter !== this.props.filter) this.search()
-    if (prevProps.credentialType !== this.props.credentialType) this.search()
-  }
-
   @autobind
   async search(page = 1) {
     const {filter, client, credentialType} = this.props

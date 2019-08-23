@@ -7,7 +7,7 @@ export default async (email, name) => {
       name: name
     })
   } catch (e) {
-    console.log('error')
+    console.log('error: ',e)
     return null
   }
 }

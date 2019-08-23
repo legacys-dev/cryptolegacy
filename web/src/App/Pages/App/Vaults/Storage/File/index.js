@@ -7,6 +7,7 @@ import Information from './Information'
 import Loading from 'App/components/Parts/Loading'
 import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 import gql from 'graphql-tag'
+import translate from 'App/i18n/translate'
 
 @withGraphQL(
   gql`
@@ -31,9 +32,8 @@ export default class File extends React.Component {
     if (!file) return <span />
     return (
       <div className={styles.container}>
-        <Header
-          past={{[`/vaults/storage/${decryptFile.vaultId}`]: `Bóveda - ${decryptFile.vaultName}`}}
-          title={`Archivo - ${decryptFile.name}`}
+        <Header past={{[`/vaults/storage/${decryptFile.vaultId}`]: `${translate('vaults.vault')} - ${decryptFile.vaultName}`}}
+          title={`${translate('fileManager.file')} - ${decryptFile.name}`}
         />
         <Information file={decryptFile} />
       </div>

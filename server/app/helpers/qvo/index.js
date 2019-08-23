@@ -12,8 +12,8 @@ import updateSubscription from './updateSubscription'
 import deleteCard from './deleteCard'
 
 export {
-  createCustomer,
   enrollCard,
+  createCustomer,
   createSubscription,
   getPlans,
   getInscription,

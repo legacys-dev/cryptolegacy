@@ -3,7 +3,8 @@ import getUrl from './getUrl'
 
 export default async (route, data) => {
   const url = `${getUrl()}/${route}`
-  const result = await axios.get({
+  const result = await axios({
+    method:'get',
     url,
     data,
     headers: {

@@ -26,6 +26,7 @@ export default class Options extends React.Component {
 
   renderOptions() {
     const {vaultId, file, history} = this.props
+
     return (
       <div className={styles.setting}>
         <FileView history={history} vaultId={vaultId} fileId={file._id} />
