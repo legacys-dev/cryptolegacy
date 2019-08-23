@@ -48,23 +48,17 @@ export default class ResetPassword extends React.Component {
   @autobind
   async onSuccess(session) {
     await setSession(session)
-    this.props.showMessage(translate('auth.yourPasswordHasBeenChanged'))
     this.props.onLogin()
+    this.props.showMessage(translate('auth.yourPasswordHasBeenChanged'))
   }
 
   @autobind
   onValidationError({token}) {
-    if (token === 'tokenNotFound') {
-      this.props.showMessage(translate('auth.resetLinkExpired'))
-    }
+    if (token === 'tokenNotFound') this.props.showMessage(translate('auth.resetLinkExpired'))
   }
 
   renderDescription() {
-    return (
-      <div className={styles.description}>
-        {translate('auth.passwordRequirements')}
-      </div>
-    )
+    return <div className={styles.description}>{translate('auth.passwordRequirements')}</div>
   }
 
   renderButton() {

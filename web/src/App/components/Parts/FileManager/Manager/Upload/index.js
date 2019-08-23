@@ -161,8 +161,8 @@ export default class Upload extends React.Component {
   @autobind
   async complete({fileId}) {
     await this.props.completeS3Upload({fileId}, {refetchQueries: ['getFiles']})
-    this.props.showMessage(translate('fileManager.loadFileMessage'))
     this.props.close()
+    this.props.showMessage(translate('fileManager.loadFileMessage'))
   }
 
   renderWarning() {

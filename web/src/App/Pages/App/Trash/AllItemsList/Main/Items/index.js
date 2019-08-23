@@ -31,8 +31,8 @@ export default class Items extends React.Component {
 
   @autobind
   onRestoreSuccess(updateDate) {
-    this.props.showMessage(translate('app.restoreFileMessage'))
     this.props.onUpdateArchive(updateDate)
+    this.props.showMessage(translate('app.restoreFileMessage'))
   }
 
   getStorageDescription(type) {

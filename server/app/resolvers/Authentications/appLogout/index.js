@@ -12,7 +12,7 @@ export default resolver({
     const {session} = viewer
 
     await user.update({$set: {messageKeys: null}})
-    await deleteEmergencyKit({userId: viewer.userId},viewer)
+    await deleteEmergencyKit({userId: viewer.userId}, viewer)
     await session.remove()
 
     return true

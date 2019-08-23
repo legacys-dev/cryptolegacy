@@ -59,11 +59,15 @@ export default class AllItemsList extends React.Component {
     )
   }
 
-  renderRight(id, onDeleteSuccess, filesCount) {
+  renderRight(userId, filesCount) {
     return (
       <div className={styles.topContainer}>
         <div className={styles.searchBar}>{this.renderSearch()}</div>
-        <EmptyTrash onDeleteSuccess={onDeleteSuccess} userId={id} filesCount={filesCount} />
+        <EmptyTrash
+          onDeleteSuccess={this.onDeleteSuccess}
+          userId={userId}
+          filesCount={filesCount}
+        />
       </div>
     )
   }
@@ -73,13 +77,9 @@ export default class AllItemsList extends React.Component {
     return (
       <div className={styles.container}>
         <Header
-          right={this.renderRight(
-            this.props.me._id,
-            this.onDeleteSuccess,
-            filesCount
-          )}
+          right={this.renderRight(this.props.me._id, filesCount)}
           title={translate('app.fileOnDelete')}
-          />
+        />
         <Main
           filter={searchValue}
           emptyTrashDate={emptyTrashDate}
