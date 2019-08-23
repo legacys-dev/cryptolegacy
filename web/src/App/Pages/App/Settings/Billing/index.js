@@ -16,7 +16,7 @@ export default class Billing extends React.Component {
   state = {}
 
   addCreditCard = () => {
-    window.open(this.state.regUrl)  
+    window.open(this.state.regUrl)
   }
 
   @autobind
@@ -26,12 +26,11 @@ export default class Billing extends React.Component {
       query: getRegistrationLinkQuery,
       fetchPolicy: 'network-only'
     })
-    if(result.data.result){
+    if (result.data.result) {
       this.setState({regUrl: result.data.result})
-    }else{
-      console.log("Error, no register url.")
+    } else {
+      console.log('Error, no register url.')
     }
-    
   }
 
   componentDidMount() {
@@ -45,7 +44,9 @@ export default class Billing extends React.Component {
     } else {
       return (
         <div className={styles.container}>
-          <div href={this.state.regUrl} target="blank">No tienes una cuenta bancaria asignada a tu cuenta</div>
+          <div href={this.state.regUrl} target="blank">
+            No tienes una cuenta bancaria asignada a tu cuenta
+          </div>
           <a className={styles.btnAdd} href={this.state.regUrl} target="blank">
             <Button> Añadir cuenta </Button>
           </a>
