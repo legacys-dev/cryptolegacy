@@ -3,12 +3,13 @@ import getUrl from './getUrl'
 
 export default async (route, data) => {
   const url = `${getUrl()}/${route}`
+  console.log({url})
   const result = await axios({
     method: 'post',
     url,
     data,
     headers: {
-      Authorization: `Bearer ${process.env.QVOAPITOKEN}`
+      Authorization: `Bearer ${process.env.QVO_API_TOKEN}`
     }
   })
 

@@ -60,7 +60,6 @@ export default class Main extends React.Component {
             hasPreviousPage={hasPreviousPage}
           />
         </div>
-        <div>asdf</div>
       </div>
     )
   }

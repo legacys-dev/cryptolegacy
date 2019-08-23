@@ -34,10 +34,10 @@ export default class Login extends React.Component {
     try {
       await setSession(session)
 
-      this.props.showMessage(translate('auth.loginSuccessfully'))
       await setUserMessageKeys(this.state.userMasterKey, encryptedKeysForMessages)
       this.setState({userMasterKey: undefined})
       this.props.onLogin()
+      this.props.showMessage(translate('auth.loginSuccessfully'))
     } catch (error) {
       console.log('Error:', error)
     }
@@ -85,25 +85,13 @@ export default class Login extends React.Component {
           ref="form"
           onSuccess={this.onSuccess}
           onChange={this.onChange}>
-          <Field
-            fieldName="email"
-            type={Text}
-            fieldType="email"
-            placeholder="Email"
-            autoComplete="new-password"
-          />
-          <Field
-            fieldName="masterKey"
-            type={Text}
-            placeholder={translate('auth.masterKey')}
-            autoComplete="new-password"
-          />
+          <Field fieldName="email" type={Text} placeholder="Email" />
+          <Field fieldName="masterKey" type={Text} placeholder={translate('auth.masterKey')} />
           <Field
             fieldName="password"
             type={Text}
-            fieldType="password"
             placeholder={translate('auth.password')}
-            autoComplete="new-password"
+            fieldType="password"
           />
           <Field
             fieldName="sharedHardware"

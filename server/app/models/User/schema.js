@@ -37,6 +37,6 @@ export default {
   qvoCustomerId: {
     type: String,
     private: true,
-    optional: true,
+    optional: true
   }
 }

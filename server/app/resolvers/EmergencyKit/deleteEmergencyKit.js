@@ -7,11 +7,19 @@ export default resolver({
       type: String
     }
   },
-  returns: String,
-  async resolve(params, viewer) {
-    const {userId} = params
-    let keyToDelete = await EmergencyKits.findOne({userId})
-    const result = keyToDelete.remove();
-    return {response : result}
+  returns: Boolean,
+  requireLogin: true,
+  async resolve({userId}, viewer) {
+    if (userId !== viewer.userId) throw new Error('Unauthorized')
+
+    const keyToDelete = await EmergencyKits.findOne({userId})
+
+    try {
+      await keyToDelete.remove()
+    } catch (error) {
+      console.log('Error:', error)
+    }
+
+    return true
   }
 })

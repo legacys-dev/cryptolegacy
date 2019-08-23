@@ -33,7 +33,7 @@ import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 export default class Profile extends React.Component {
   static propTypes = {
     me: PropTypes.object,
-    getEmergencyKit: PropTypes.Object,
+    getEmergencyKit: PropTypes.object,
     showMessage: PropTypes.func
   }
 
@@ -55,14 +55,14 @@ export default class Profile extends React.Component {
 
   getPdf(data) {
     function saveByteArray(reportName, byte) {
-      var blob = new Blob([byte], {type: 'application/pdf'})
-      var link = document.createElement('a')
+      const blob = new Blob([byte], {type: 'application/pdf'})
+      const link = document.createElement('a')
+      const fileName = reportName
       link.href = window.URL.createObjectURL(blob)
-      var fileName = reportName
       link.download = fileName
       link.click()
     }
-    let buff = Buffer.from(data, 'hex')
+    const buff = Buffer.from(data, 'hex')
     saveByteArray('secretKey', buff)
   }
 
@@ -103,7 +103,7 @@ export default class Profile extends React.Component {
             {translate('global.save')}
           </Button>
         </Section>
-
+        <div className={styles.divider} />
         <Section title={'Master Key'} description={translate('settings.downloadMasterKey')}>
           <div className={styles.secretKey}>
             <span className={styles.title}>{translate('settings.masterKey')} </span>

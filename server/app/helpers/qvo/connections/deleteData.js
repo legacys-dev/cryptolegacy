@@ -7,7 +7,7 @@ export default async route => {
     method: 'delete',
     url,
     headers: {
-      Authorization: `Bearer ${process.env.QVOAPITOKEN}`
+      Authorization: `Bearer ${process.env.QVO_API_TOKEN}`
     }
   })
 

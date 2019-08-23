@@ -32,10 +32,10 @@ export default class CreatePassword extends React.Component {
     await sleep(1000)
     try {
       await setSession(session)
-      this.props.showMessage(translate('auth.accountCreatedSuccessfully'))
       await setUserMessageKeys(k, encryptedKeysForMessages)
       const params = {emergencyKitId}
       this.props.onLogin(params)
+      this.props.showMessage(translate('auth.accountCreatedSuccessfully'))
     } catch (error) {
       console.log('Error:', error)
     }
@@ -75,7 +75,7 @@ export default class CreatePassword extends React.Component {
           fullWidth
           onClick={() => this.refs.form.submit()}
           disabled={!password || !confirmPassword}>
-            {translate('auth.createPassword')}
+          {translate('auth.createPassword')}
         </Button>
       </div>
     )

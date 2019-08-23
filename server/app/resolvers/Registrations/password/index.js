@@ -71,7 +71,10 @@ export default resolver({
     })
 
     const qvoUser = await createCustomer(email, name)
-    if (!qvoUser) throw new Error('Error creating qvo user')
+    if (!qvoUser) {
+      await newUser.remove()
+      throw new Error('Error creating qvo user')
+    }
 
     await Users.update(
       {_id: newUser._id, 'emails.address': email},
@@ -83,7 +86,7 @@ export default resolver({
           'messageKeys.privateKey': userMessageKeys.privateKey,
           'messageKeys.passphrase': userMessageKeys.passphrase,
           'emails.$.verified': true,
-          'qvoCustomerId': qvoUser.id
+          qvoCustomerId: qvoUser.id
         },
         $unset: {'services.emailVerify': ''}
       }
