@@ -7,11 +7,6 @@ import mime from 'mime-types'
 import moment from 'moment'
 import translate from 'App/i18n/translate'
 
-const storage = {
-  b2: translate('fileManager.simpleType'),
-  glacier: translate('fileManager.highType')
-}
-
 export default class Information extends React.Component {
   static propTypes = {
     file: PropTypes.object
@@ -35,13 +30,19 @@ export default class Information extends React.Component {
     if (!file) return <span />
     return (
       <div className={styles.container}>
-        <Section top title={translate('information.infoTitle')} description={translate('information.description')}>
+        <Section
+          top
+          title={translate('information.infoTitle')}
+          description={translate('information.description')}>
           <div className={styles.file}>
             {this.renderInformation(translate('information.name'), file.name)}
             {this.renderInformation(translate('information.type'), mime.extension(file.type))}
             {this.renderInformation(translate('information.size'), getSize(file.size))}
             {this.renderInformation(translate('information.vault'), file.vaultName)}
-            {this.renderInformation(translate('information.createdDate'), moment(file.createdAt).format('LL'))}
+            {this.renderInformation(
+              translate('information.createdDate'),
+              moment(file.createdAt).format('LL')
+            )}
           </div>
         </Section>
       </div>

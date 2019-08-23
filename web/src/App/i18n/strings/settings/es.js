@@ -4,7 +4,8 @@ export default {
   profileDescription: 'Actualiza tu información personal',
   yourProfileWasSaved: 'Tu perfil fue guardado',
   twoFactorAuthentication: 'Autentificación de dos factores',
-  twoFactorDescription: 'La autentificación de dos factores (2FA) agrega una capa adicional de protección más alla de las contraseñas',
+  twoFactorDescription:
+    'La autentificación de dos factores (2FA) agrega una capa adicional de protección más alla de las contraseñas',
   twoFactorNowYouMustConfirm: 'Ahora debes confirmar el código desde tu app',
   twoFactorEnabled: 'La autentificación de dos factores fue activada',
   enableTwoFactor: 'Activar autentificación de dos factores',
@@ -27,4 +28,9 @@ export default {
   firstName: 'Nombre',
   lastName: 'Apellido',
   billing: 'Facturación'
+  downloadMasterKey: 'Aquí puedes descargar tu llave maestra',
+  masterKey: 'Llave maestra',
+  downloadKey: 'Descargar llave',
+  show: 'Mostrar',
+  hide: 'Ocultar'
 }

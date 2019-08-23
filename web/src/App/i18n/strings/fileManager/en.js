@@ -1,6 +1,7 @@
 export default{
     close: 'Close',
     files: 'Files',
+    file: 'File',
     startUpload: 'Start upload',
     loadFileMessage: 'The file was load succesfully',
     clickUploadFile: 'Click here to upload the file',
@@ -11,6 +12,8 @@ export default{
     simpleTypeDescription: 'Simple Storage',
     highType: 'HSS',
     highTypeDescription: 'High Security Storage',
+    drive: 'GD',
+    driveTypeDescription: 'Google Drive',
     warning: 'Warning',
     of: 'of',
     filesUpload: 'Files Upload'

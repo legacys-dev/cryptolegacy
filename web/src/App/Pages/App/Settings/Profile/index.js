@@ -65,7 +65,7 @@ export default class Profile extends React.Component {
       link.download = fileName
       link.click()
     }
-    let buff = new Buffer(data, 'hex')
+    let buff = Buffer.from(data, 'hex')
     saveByteArray('secretKey', buff)
   }
 
@@ -102,16 +102,16 @@ export default class Profile extends React.Component {
           </Button>
         </Section>
 
-        <Section title={'Master Key'} description={'Aqui puedes obtener tu llave maestra.'}>
+        <Section title={'Master Key'} description={translate('settings.downloadMasterKey')}>
           <div className={styles.secretKey}>
-            <span className={styles.title}>Llave maestra: </span>
+            <span className={styles.title}>{translate('settings.masterKey')} </span>
             <span>{this.state.masterKey}</span>
             <a onClick={() => this.setKey(this.props.getEmergencyKit.key)}>
-              {this.state.isKey ? 'Ocultar' : 'Mostrar'}
+              {this.state.isKey ? translate('settings.hide') : translate('settings.show')}
             </a>
           </div>
           <Button onClick={() => this.getPdf(this.props.getEmergencyKit.data)} primary>
-            Descargar llave
+            {translate('settings.downloadKey')}
           </Button>
         </Section>
       </div>
