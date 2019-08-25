@@ -3,7 +3,7 @@ import getUrl from './getUrl'
 
 export default async (route, data) => {
   const url = `${getUrl()}/${route}`
-  console.log({url})
+
   const result = await axios({
     method: 'post',
     url,

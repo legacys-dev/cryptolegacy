@@ -2,7 +2,7 @@ import {postData} from './connections'
 
 export default async (customerId, planId) => {
   try {
-    return await postData('subscriptions', {
+    return postData('subscriptions', {
       customer_id: customerId,
       plan_id: planId
     })
