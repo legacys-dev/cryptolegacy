@@ -1,3 +1,3 @@
 import './home'
 import './getGlacierFile'
-import './qvo'
+import './updateUserCreditCard'

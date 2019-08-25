@@ -15,6 +15,7 @@ route('/enroll/creditCard/:customerId', async function({
 
   try {
     const customer = await getCustomer(customerId)
+
     if (!customer || !customer.cards || !customer.cards.length) {
       throw new Error('Error creating card')
     }

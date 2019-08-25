@@ -9,8 +9,10 @@ import Activities from './Activities'
 import EmergencyKit from './EmergencyKit'
 import VaultPolicies from './VaultPolicies'
 import Billing from './Billing'
+import Seats from './Seats'
 
 export default {
+  ...Seats,
   ...VaultPolicies,
   ...EmergencyKit,
   ...Activities,

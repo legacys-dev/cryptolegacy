@@ -14,10 +14,10 @@ export default resolver({
       storageType: await vault.storageType()
     }
 
-    const user = await Users.findOne({_id: viewer.userId});
-    const {publicKey} = user.messageKeys;
-    const encryptData = publicEncrypt({toEncrypt: data, publicKey});
+    const user = await Users.findOne({_id: viewer.userId})
+    const {publicKey} = user.messageKeys
+    const encryptData = publicEncrypt({toEncrypt: data, publicKey})
 
-    return encryptData;
+    return encryptData
   }
 })
