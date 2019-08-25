@@ -6,12 +6,20 @@ export default resolver({
   params: {},
   returns: String,
   async resolve(params, viewer) {
+    const local = process.env.ORION_LOCAL
+    const beta = process.env.ORION_BETA
+    const url = local
+      ? 'http://localhost:3000'
+      : beta
+      ? 'https://beta.cryptolegacy.io'
+      : 'production url'
+
     const user = await Users.findOne({_id: viewer.userId})
-    const qvoUserId = user.qvoCustomerId
-    const {inscription_uid, redirect_url, expiration_date} = await enrollCard(
-      qvoUserId,
-      'http://192.168.0.44:3000/responseQvo'
+    const result = await enrollCard(
+      user.qvo.customerId,
+      `${url}/enroll/creditCard/${user.qvo.customerId}`
     )
-    return redirect_url
+
+    return result.redirect_url
   }
 })
