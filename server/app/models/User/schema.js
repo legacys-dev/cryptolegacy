@@ -1,6 +1,7 @@
 import UserProfile from './UserProfile'
 import UserEmail from './UserEmail'
 import MessageKeys from './MessageKeys'
+import Qvo from './Qvo'
 
 export default {
   _id: {
@@ -34,9 +35,8 @@ export default {
     private: true,
     optional: true
   },
-  qvoCustomerId: {
-    type: String,
-    private: true,
+  qvo: {
+    type: Qvo,
     optional: true
   }
 }
