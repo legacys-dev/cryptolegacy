@@ -3,10 +3,12 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import autobind from 'autobind-decorator'
 import NoItemsFound from 'App/components/Parts/NoItemsFound'
+import {metaDataDecryptWithPassword as decrypt} from 'App/helpers/crypto'
+import encryptedVaultsQuery from './encryptedVaultsQuery'
 import Pagination from 'App/components/Parts/Pagination'
+import {getPageItems} from 'App/functions/paginated'
 import Loading from 'App/components/Parts/Loading'
 import {withApollo} from 'react-apollo'
-import vaultsQuery from './vaultsQuery'
 import isEmpty from 'lodash/isEmpty'
 import Items from './Items'
 
@@ -31,12 +33,27 @@ export default class Main extends React.Component {
   @autobind
   async search(page = 1) {
     const {client, credentialType} = this.props
-    const result = await client.query({
-      query: vaultsQuery,
-      variables: {credentialType, page, limit: 6},
+    const encrypted = await client.query({
+      query: encryptedVaultsQuery,
+      variables: {credentialType},
       fetchPolicy: 'network-only'
     })
-    const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.vaults
+
+    const {getEncryptedVaults} = encrypted.data
+
+    if (!getEncryptedVaults.items) {
+      this.setState({items: []})
+      return
+    }
+
+    const messages = JSON.parse(window.localStorage.getItem('messages'))
+    const dataArray = decrypt({
+      encryptedItem: getEncryptedVaults.items,
+      cipherPassword: messages.communicationPassword
+    })
+
+    const {items, totalPages, hasNextPage, hasPreviousPage} = getPageItems(dataArray, page, 6)
+
     this.setState({
       items,
       currentPage: page,

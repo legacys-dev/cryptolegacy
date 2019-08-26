@@ -7,8 +7,10 @@ import createDownload from './createDownload'
 import restoreFile from './restoreFile'
 import emptyTrash from './emptyTrash'
 import finishDownload from './finishDownload'
+import getEncryptedFiles from './getEncryptedFiles'
 
 export default {
+  getEncryptedFiles,
   finishDownload,
   emptyTrash,
   restoreFile,

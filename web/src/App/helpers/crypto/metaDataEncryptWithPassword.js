@@ -14,7 +14,7 @@ export default ({itemToEncrypt, cipherPassword}) => {
   if (iv.length !== 16) throw new Error('Invalid meta data identificator vector')
 
   const cipher = crypto.createCipheriv(algorithm, cipherPassword, iv)
-  const encrypted = cipher.update(itemToEncrypt)
+  const encrypted = cipher.update(JSON.stringify(itemToEncrypt))
   const finalBuffer = Buffer.concat([encrypted, cipher.final()])
 
   if (isEmpty(finalBuffer)) throw new Error('Error encrypting meta data, try again')

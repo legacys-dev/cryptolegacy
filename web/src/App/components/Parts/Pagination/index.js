@@ -44,24 +44,6 @@ const Pagination = ({currentPage, search, totalPages, hasNextPage, hasPreviousPa
     return renderPages(pages)
   }
 
-  const pagination = () => {
-    return (
-      <div className={styles.pagination}>
-        <div className="row center-sm">
-          <div className="col-xs-12 col-sm-3 end-sm">{renderLeft()}</div>
-          <div className="col-xs-12 col-sm-2">
-            <div className="row">{renderPreviousPages()}</div>
-          </div>
-          <div className="col-xs-12 col-sm-2">{renderCurrentPage()}</div>
-          <div className="col-xs-12 col-sm-2">
-            <div className="row">{renderNextPages()}</div>
-          </div>
-          <div className="col-xs-12 col-sm-3 start-sm">{renderRight()}</div>
-        </div>
-      </div>
-    )
-  }
-
   const renderLeft = () => {
     return (
       <div
@@ -88,7 +70,24 @@ const Pagination = ({currentPage, search, totalPages, hasNextPage, hasPreviousPa
     )
   }
 
-  if (totalPages) return <span />
+  const pagination = () => {
+    return (
+      <div className={styles.pagination}>
+        <div className="row center-sm">
+          <div className="col-xs-12 col-sm-3 end-sm">{renderLeft()}</div>
+          <div className="col-xs-12 col-sm-2">
+            <div className="row">{renderPreviousPages()}</div>
+          </div>
+          <div className="col-xs-12 col-sm-2">{renderCurrentPage()}</div>
+          <div className="col-xs-12 col-sm-2">
+            <div className="row">{renderNextPages()}</div>
+          </div>
+          <div className="col-xs-12 col-sm-3 start-sm">{renderRight()}</div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className={styles.container}>
       <div>{pagination()}</div>

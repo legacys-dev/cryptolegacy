@@ -1,16 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import LengthName from 'App/components/User/LengthName'
 import getSize from 'App/helpers/files/getSize'
-import FileIcon, {defaultStyles} from 'react-file-icon'
-import RestoreFile from 'App/components/Parts/RestoreFile'
-import mime from 'mime-types'
-import autobind from 'autobind-decorator'
+import LengthName from 'App/components/User/LengthName'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
+import RestoreFile from 'App/components/Parts/RestoreFile'
+import FileIcon, {defaultStyles} from 'react-file-icon'
 import translate from 'App/i18n/translate'
-import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
+import autobind from 'autobind-decorator'
+import mime from 'mime-types'
 
 const storage = {
   b2: translate('fileManager.simpleType'),
@@ -48,10 +47,7 @@ export default class Items extends React.Component {
   renderTable() {
     const files = this.props.items || []
     return files.map((file, index) => {
-      const {data, vaultName} = file
-      const messages = JSON.parse(window.localStorage.getItem('messages'))
-      const decryptFile = privateDecrypt({toDecrypt: data, privateKey: messages.privateKey})
-      const type = mime.extension(decryptFile.type)
+      const type = mime.extension(file.type)
       return (
         <tr className={styles.cell} key={index}>
           <td>
@@ -60,22 +56,22 @@ export default class Items extends React.Component {
             </div>
           </td>
           <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
-            <LengthName name={decryptFile.name} />
+            <LengthName name={file.name} />
           </td>
           <td>{type}</td>
-          <td>{getSize(decryptFile.size)}</td>
+          <td>{getSize(file.size)}</td>
           <td>
-            <Tooltip content={this.getStorageDescription(storage[decryptFile.storageType])}>
-              {storage[decryptFile.storageType]}
+            <Tooltip content={this.getStorageDescription(storage[file.storageType])}>
+              {storage[file.storageType]}
             </Tooltip>
           </td>
           <td>
-            <LengthName name={vaultName} />{' '}
+            <LengthName name={file.vaultName} />{' '}
           </td>
           <td>
             <RestoreFile
               fileId={file._id}
-              vaultId={decryptFile.vaultId}
+              vaultId={file.vaultId}
               onRestoreSuccess={this.onRestoreSuccess}
             />
           </td>

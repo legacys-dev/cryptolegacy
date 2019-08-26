@@ -6,7 +6,6 @@ import LengthName from 'App/components/User/LengthName'
 import FileIcon, {defaultStyles} from 'react-file-icon'
 import getSize from 'App/helpers/files/getSize'
 import translate from 'App/i18n/translate'
-import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 import Options from './Options'
 import mime from 'mime-types'
 import moment from 'moment'
@@ -22,9 +21,7 @@ export default class Items extends React.Component {
   renderTable() {
     const files = this.props.items || []
     return files.map((file, index) => {
-      const messages = JSON.parse(window.localStorage.getItem('messages'))
-      const decryptFile = privateDecrypt({toDecrypt: file.data, privateKey: messages.privateKey})
-      const type = mime.extension(decryptFile.type)
+      const type = mime.extension(file.type)
       return (
         <tr className={styles.cell} key={index}>
           <td>
@@ -33,11 +30,11 @@ export default class Items extends React.Component {
             </div>
           </td>
           <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
-            <LengthName name={decryptFile.name} />
+            <LengthName name={file.name} />
           </td>
           <td>{type}</td>
-          <td>{getSize(decryptFile.size)}</td>
-          <td>{moment(decryptFile.createdAt).format('LL')}</td>
+          <td>{getSize(file.size)}</td>
+          <td>{moment(file.createdAt).format('LL')}</td>
           <td>
             <VaultConsumer>
               {providerProps => (

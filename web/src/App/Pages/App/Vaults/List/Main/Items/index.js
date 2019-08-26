@@ -5,7 +5,6 @@ import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 import {Vault} from 'App/components/Parts/Icons'
 import getSize from 'App/helpers/files/getSize'
 import translate from 'App/i18n/translate'
-import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 import Options from './Options'
 
 const Items = ({history, items, credentialType}) => {
@@ -22,19 +21,17 @@ const Items = ({history, items, credentialType}) => {
   const renderTable = () => {
     const vaults = items || []
     return vaults.map((vault, index) => {
-      const messages = JSON.parse(window.localStorage.getItem('messages'))
-      const decryptVault = privateDecrypt({toDecrypt: vault.data, privateKey: messages.privateKey})
-      const vaultType = translate(decryptVault.storageType)
+      const vaultType = translate(vault.storageType)
       return (
         <tr className={styles.cell} key={index}>
           <td>
             <Vault size={25} />
           </td>
           <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
-            <LengthName name={decryptVault.name} />
+            <LengthName name={vault.name} />
           </td>
-          <td>{decryptVault.fileCount || '0'}</td>
-          <td>{getSize(decryptVault.storageUsed)}</td>
+          <td>{vault.fileCount || '0'}</td>
+          <td>{getSize(vault.storageUsed)}</td>
           <td>
             <Tooltip content={getStorageDescription(vaultType)}>
               <strong>{vaultType}</strong>

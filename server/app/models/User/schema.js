@@ -22,6 +22,11 @@ export default {
     private: true,
     optional: true
   },
+  communicationPassword: {
+    type: String,
+    private: true,
+    optional: true
+  },
   profile: {
     type: UserProfile,
     label: 'Profile'

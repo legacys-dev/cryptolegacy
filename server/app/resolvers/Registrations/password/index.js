@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import {resolver, generateId} from '@orion-js/app'
 import {createSession, hashPassword} from '@orion-js/auth'
 import {createMasterKey, generateUserCipherKeys, decomposeMasterKey} from 'app/helpers/keys'
 import {userDataEncryptWithPassword, createKeyPairs as generateCryptoKeys} from 'app/helpers/crypto'
@@ -44,6 +44,7 @@ export default resolver({
     const userMasterKey = createMasterKey()
     const temporaryUserMasterKey = createMasterKey()
     const userMessageKeys = generateCryptoKeys()
+    const communicationPassword = generateId(32)
     const temporaryUserMasterPassword = await generateUserCipherKeys(
       temporaryUserMasterKey.original
     )
@@ -65,7 +66,7 @@ export default resolver({
 
     const {secret, iv} = temporaryUserMasterPassword
     const encryptedKeysForMessages = userDataEncryptWithPassword({
-      itemToEncrypt: JSON.stringify(userMessageKeys),
+      itemToEncrypt: JSON.stringify({...userMessageKeys, communicationPassword}),
       cipherPassword: secret,
       userDataIv: iv
     })
@@ -86,6 +87,7 @@ export default resolver({
           'messageKeys.publicKey': userMessageKeys.publicKey,
           'messageKeys.privateKey': userMessageKeys.privateKey,
           'messageKeys.passphrase': userMessageKeys.passphrase,
+          communicationPassword,
           'emails.$.verified': true,
           'qvo.customerId': qvoUser.id
         },

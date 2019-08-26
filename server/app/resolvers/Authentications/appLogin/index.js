@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import {resolver, generateId} from '@orion-js/app'
 import {hasPassword, checkPassword} from 'app/helpers/authentication'
 import {userDataEncryptWithPassword, createKeyPairs as generateCryptoKeys} from 'app/helpers/crypto'
 import createEmergencyKit from 'app/resolvers/EmergencyKit/createEmergencyKit'
@@ -53,16 +53,23 @@ export default resolver({
     const session = await getSession(user)
 
     let userMessageKeys
+    let communicationPassword
     if (session) {
       userMessageKeys = generateCryptoKeys()
-      await user.update({$set: {messageKeys: {updatedAt: new Date(), ...userMessageKeys}}})
+      communicationPassword = generateId(32)
+      await user.update({
+        $set: {
+          messageKeys: {updatedAt: new Date(), ...userMessageKeys},
+          communicationPassword
+        }
+      })
     }
 
     const userMasterPassword = await generateUserCipherKeys(masterKey)
 
     const {secret, iv} = userMasterPassword
     const encryptedKeysForMessages = userDataEncryptWithPassword({
-      itemToEncrypt: JSON.stringify(userMessageKeys),
+      itemToEncrypt: JSON.stringify({...userMessageKeys, communicationPassword}),
       cipherPassword: secret,
       userDataIv: iv
     })

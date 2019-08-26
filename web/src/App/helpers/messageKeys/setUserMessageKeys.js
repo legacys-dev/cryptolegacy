@@ -15,11 +15,14 @@ export default async function(k, encryptedKeysForMessages) {
     userDataIv: iv
   }
 
-  const {publicKey, privateKey} = JSON.parse(userDataDecryptWithPassword(decipherParams))
+  const {publicKey, privateKey, communicationPassword} = JSON.parse(
+    userDataDecryptWithPassword(decipherParams)
+  )
 
   const messages = {
     publicKey,
-    privateKey
+    privateKey,
+    communicationPassword
   }
 
   window.localStorage.setItem('messages', JSON.stringify(messages))

@@ -21,5 +21,5 @@ export default ({encryptedItem, cipherPassword}) => {
 
   if (!finalBuffer) throw new Error('Error decrypting meta data')
 
-  return cloneDeep(finalBuffer.toString())
+  return JSON.parse(cloneDeep(finalBuffer.toString()))
 }

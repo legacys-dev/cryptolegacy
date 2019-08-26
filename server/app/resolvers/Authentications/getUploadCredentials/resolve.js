@@ -11,7 +11,6 @@ export default async function getUploadCredentials(params, viewer) {
     region: process.env.AWS_REGION,
     bucket: process.env.AWS_S3_LOCAL_BUCKET
   }
-  const encrypted = publicEncrypt({toEncrypt: credentials, publicKey: publicKey})
-  console.log('encrypted', encrypted)
-  return encrypted
+
+  return publicEncrypt({toEncrypt: credentials, publicKey: publicKey})
 }
