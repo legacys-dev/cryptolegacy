@@ -43,11 +43,18 @@ export default class Main extends React.Component {
     const {client, onQueryItems, filter} = this.props
     const deletedFiles = true
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     const items = filter
       ? nameSearch(filter, this.state.allItems)
       : await getQuery(client, {deletedFiles}, filesQuery)
 
+=======
+    const items = filter
+      ? nameSearch(filter, this.state.allItems)
+      : await getQuery(client, {deletedFiles}, filesQuery)
+
+>>>>>>> d20a7040857206012f0be941869909faf6602be5
 =======
     const items = filter
       ? nameSearch(filter, this.state.allItems)

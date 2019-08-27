@@ -51,7 +51,6 @@ export default class Main extends React.Component {
     const items = filter
       ? nameSearch(filter, this.state.allItems)
       : await getQuery(client, {vaultId}, filesQuery)
-
     const {totalPages, hasNextPage, hasPreviousPage} = getPageItems(items, page, 6)
 
     const allItems = filter ? {} : {allItems: items}

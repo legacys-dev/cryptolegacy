@@ -55,11 +55,18 @@ export default class Main extends React.Component {
   @autobind
   async search(page = 1) {
     const {client, credentialType, filter} = this.props
+<<<<<<< HEAD
 
     const items = filter
       ? nameSearch(filter, this.state.allItems)
       : await getQuery(client, {credentialType})
 
+=======
+
+    const items = filter
+      ? nameSearch(filter, this.state.allItems)
+      : await getQuery(client, {credentialType})
+>>>>>>> d20a7040857206012f0be941869909faf6602be5
     const {totalPages, hasNextPage, hasPreviousPage} = getPageItems(items, page, 6)
 
     const allItems = filter ? {} : {allItems: items}
