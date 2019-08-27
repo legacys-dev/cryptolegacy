@@ -42,11 +42,18 @@ export default class Main extends React.Component {
   async search(page = 1) {
     const {client, onQueryItems, filter} = this.props
     const deletedFiles = true
+<<<<<<< HEAD
 
     const items = filter
       ? nameSearch(filter, this.state.allItems)
       : await getQuery(client, {deletedFiles}, filesQuery)
 
+=======
+    const items = filter
+      ? nameSearch(filter, this.state.allItems)
+      : await getQuery(client, {deletedFiles}, filesQuery)
+
+>>>>>>> d20a7040857206012f0be941869909faf6602be5
     const {totalPages, hasNextPage, hasPreviousPage} = getPageItems(items, page, 6)
 
     onQueryItems(items.length)
