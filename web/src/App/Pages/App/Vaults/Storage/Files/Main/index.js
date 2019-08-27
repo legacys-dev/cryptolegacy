@@ -4,7 +4,6 @@ import styles from './styles.css'
 import {withApollo} from 'react-apollo'
 import Pagination from 'App/components/Parts/Pagination'
 import {VaultProvider} from 'App/helpers/contexts/vaultContext'
-import {metaDataDecryptWithPassword as decrypt} from 'App/helpers/crypto'
 import NoItemsFound from 'App/components/Parts/NoItemsFound'
 import {getPageItems} from 'App/functions/paginated'
 import Loading from 'App/components/Parts/Loading'
@@ -13,6 +12,7 @@ import {withRouter} from 'react-router'
 import filesQuery from './filesQuery'
 import isEmpty from 'lodash/isEmpty'
 import Items from './Items'
+import {getQuery, nameSearch} from 'App/helpers/search'
 
 @withApollo
 @withRouter
@@ -45,36 +45,24 @@ export default class Main extends React.Component {
 
   @autobind
   async search(page = 1) {
-    const {client, match} = this.props
+    const {client, match, filter} = this.props
     const {vaultId} = match.params
 
-    const encrypted = await client.query({
-      query: filesQuery,
-      variables: {vaultId},
-      fetchPolicy: 'network-only'
-    })
+    const items = filter
+      ? nameSearch(filter, this.state.allItems)
+      : await getQuery(client, {vaultId}, filesQuery)
 
-    const {getEncryptedFiles} = encrypted.data
+    const {totalPages, hasNextPage, hasPreviousPage} = getPageItems(items, page, 6)
 
-    if (!getEncryptedFiles.items) {
-      this.setState({items: []})
-      return
-    }
-
-    const messages = JSON.parse(window.localStorage.getItem('messages'))
-    const dataArray = decrypt({
-      encryptedItem: getEncryptedFiles.items,
-      cipherPassword: messages.communicationPassword
-    })
-
-    const {items, totalPages, hasNextPage, hasPreviousPage} = getPageItems(dataArray, page, 6)
+    const allItems = filter ? {} : {allItems: items}
 
     this.setState({
       items,
       currentPage: page,
       totalPages,
       hasNextPage,
-      hasPreviousPage
+      hasPreviousPage,
+      ...allItems
     })
   }
 

@@ -11,6 +11,27 @@ import Loading from 'App/components/Parts/Loading'
 import {withApollo} from 'react-apollo'
 import isEmpty from 'lodash/isEmpty'
 import Items from './Items'
+import {nameSearch} from 'App/helpers/search'
+
+async function getQuery(client, credentialType) {
+  const encrypted = await client.query({
+    query: encryptedVaultsQuery,
+    variables: credentialType,
+    fetchPolicy: 'network-only'
+  })
+
+  const {getEncryptedVaults} = encrypted.data
+  if (!getEncryptedVaults.items) {
+    return []
+  }
+
+  const messages = JSON.parse(window.localStorage.getItem('messages'))
+  const dataArray = decrypt({
+    encryptedItem: getEncryptedVaults.items,
+    cipherPassword: messages.communicationPassword
+  })
+  return dataArray
+}
 
 @withApollo
 export default class Main extends React.Component {
@@ -28,38 +49,28 @@ export default class Main extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.credentialType !== this.props.credentialType) this.search()
+    if (prevProps.filter !== this.props.filter) this.search()
   }
 
   @autobind
   async search(page = 1) {
-    const {client, credentialType} = this.props
-    const encrypted = await client.query({
-      query: encryptedVaultsQuery,
-      variables: {credentialType},
-      fetchPolicy: 'network-only'
-    })
+    const {client, credentialType, filter} = this.props
 
-    const {getEncryptedVaults} = encrypted.data
+    const items = filter
+      ? nameSearch(filter, this.state.allItems)
+      : await getQuery(client, {credentialType})
 
-    if (!getEncryptedVaults.items) {
-      this.setState({items: []})
-      return
-    }
+    const {totalPages, hasNextPage, hasPreviousPage} = getPageItems(items, page, 6)
 
-    const messages = JSON.parse(window.localStorage.getItem('messages'))
-    const dataArray = decrypt({
-      encryptedItem: getEncryptedVaults.items,
-      cipherPassword: messages.communicationPassword
-    })
-
-    const {items, totalPages, hasNextPage, hasPreviousPage} = getPageItems(dataArray, page, 6)
+    const allItems = filter ? {} : {allItems: items}
 
     this.setState({
       items,
       currentPage: page,
       totalPages,
       hasNextPage,
-      hasPreviousPage
+      hasPreviousPage,
+      ...allItems
     })
   }
 
