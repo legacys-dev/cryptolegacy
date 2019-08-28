@@ -32,5 +32,8 @@ export default {
   masterKey: 'Llave maestra',
   downloadKey: 'Descargar llave',
   show: 'Mostrar',
-  hide: 'Ocultar'
+  hide: 'Ocultar',
+  plan: 'Plan',
+  planDescription: 'Agrega, revisa o actualiza tu plan.',
+  seats: 'Asientos',
 }

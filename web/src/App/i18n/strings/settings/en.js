@@ -32,5 +32,9 @@ export default {
   masterKey: 'Master Key',
   downloadKey: 'Download Key',
   show: 'Show',
-  hide: 'Hide'
+  hide: 'Hide',
+  plan: 'Plan',
+  planDescription: 'Add, review or upgrade your plan',
+  seats: 'Seats',
+  
 }
