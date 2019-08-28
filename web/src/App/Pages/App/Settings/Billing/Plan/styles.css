@@ -5,3 +5,6 @@
 :local(.addPlanButton){
 
 }
+:local(.buttonsContainer){
+    display: flex;
+}

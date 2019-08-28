@@ -14,6 +14,7 @@ import Plan from './Plan'
       qvo {
         customerId
         cardId
+        subscriptionId
       }
       cardData
     }
@@ -33,14 +34,19 @@ export default class Billing extends React.Component {
   }
 
   render() {
-    if (!this.props.me.qvo.cardId) return this.renderEnrollCard()
     return (
       <div className={styles.container}>
         <Section
           top
           title={translate('settings.plan')}
           description={translate('settings.planDescription')}>
-          <Plan />
+          <Plan subscriptionId={this.props.me.qvo.subscriptionId} />
+        </Section>
+        <Section
+          top
+          title={translate('Tarjeta de crédito')}
+          description={translate('Aqui puedes revisar los datos de tu tarjeta o agregar una')}>
+          {!this.props.me.qvo.cardId ? this.renderEnrollCard() : <div> Tarjeta de crédito </div>}
         </Section>
       </div>
     )
