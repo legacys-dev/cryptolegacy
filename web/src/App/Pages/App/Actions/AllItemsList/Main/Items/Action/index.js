@@ -30,7 +30,7 @@ const Action = ({actions}) => {
     )
   }
 
-  const {action, vaultName, fileName, newVaultName} = actions.actions
+  const {action, vaultName, fileName, newVaultName} = actions.data
   if (action.includes('uploadFile')) {
     return renderLargeMessage(
       translate('app.uploadFile'),

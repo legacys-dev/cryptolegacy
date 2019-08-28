@@ -3,19 +3,13 @@ import styles from './styles.module.css'
 import actionIcons from './actionIcons'
 import Action from './Action'
 import moment from 'moment'
-import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 import translate from 'App/i18n/translate'
 
 const Items = ({items}) => {
   const renderTable = () => {
     const actions = items || []
     return actions.map((action, index) => {
-      const messages = JSON.parse(window.localStorage.getItem('messages'))
-      const decryptAction = privateDecrypt({
-        toDecrypt: action.actions,
-        privateKey: messages.privateKey
-      })
-      const Icon = actionIcons[decryptAction.actions.action]
+      const Icon = actionIcons[action.data.action]
       return (
         <tr className={styles.cell} key={index}>
           <td>
@@ -24,7 +18,7 @@ const Items = ({items}) => {
             </div>
           </td>
           <td style={{textAlign: 'left'}}>
-            <Action actions={decryptAction} />
+            <Action actions={action} />
           </td>
           <td>{moment(action.createdAt).format('LLLL')}</td>
         </tr>
