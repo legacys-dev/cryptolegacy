@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './styles.css'
-import Button from 'App/components/Parts/Button'
+import PlanModal from './PlanModal'
 
 const Plan = ({planData}) => {
   return (
@@ -9,7 +9,7 @@ const Plan = ({planData}) => {
         <div>Hay datos</div>
       ) : (
         <div className={styles.noData}>
-          <Button>Añade un plan </Button>
+          <PlanModal/>
         </div>
       )}
     </div>
