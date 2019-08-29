@@ -28,6 +28,7 @@ export default resolver({
   requireLogin: true,
   vaultOwner: true,
   checkUserStorage: true,
+  checkSize: true,
   async resolve(params, viewer) {
     const {bucket, basePath} = AWSCredentials
     const key = `${basePath}/${generateId(131)}`

@@ -6,6 +6,7 @@ import filesVaultPermission from './filesVaultPermission'
 import vaultAccessPermission from './vaultAccessPermission'
 import heritageFilesChecker from './heritageFilesChecker'
 import deleteVault from './deleteVault'
+import plansChecker from './plansChecker';
 
 export default async function(options, viewer, {params}) {
   params = cloneDeep(params)
@@ -17,7 +18,7 @@ export default async function(options, viewer, {params}) {
     vaultForDelete,
     checkVaultName,
     heritageChecker,
-    checkDrive
+    checkPlan
   } = options
 
   const {vaultId, name} = params
@@ -48,7 +49,7 @@ export default async function(options, viewer, {params}) {
   }
 
   const {type} = params
-  if (checkDrive && type === 'drive') {
-    await driveVaultChecker({viewer})
+  if(checkPlan){
+    await plansChecker({viewer,type})
   }
 }
