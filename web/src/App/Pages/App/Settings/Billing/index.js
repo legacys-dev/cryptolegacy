@@ -8,25 +8,26 @@ import Section from 'App/components/Section'
 import Plan from './Plan'
 import CreditCard from './CreditCard'
 import Loading from 'App/components/Parts/Loading'
+import Button from 'App/components/Parts/Button'
 
-@withGraphQL(gql`
-  query me {
-    me {
-      _id
-      qvo {
-        customerId
-        cardId
-        subscriptionId
+@withGraphQL(
+  gql`
+    query me {
+      me {
+        _id
+        qvo {
+          customerId
+          cardId
+          subscriptionId
+        }
+        cardData
+        name
+        name
       }
-      cardData
-      name
-      name
     }
-  }
-`,
-{loading: <Loading />}
+  `,
+  {loading: <Loading />}
 )
-
 export default class Billing extends React.Component {
   static propTypes = {
     me: PropTypes.object
@@ -56,11 +57,14 @@ export default class Billing extends React.Component {
           {!this.props.me.qvo.cardId ? (
             this.renderEnrollCard()
           ) : (
-            <CreditCard
-              data={this.props.me.cardData}
-              firstName={this.props.me.name}
-              lastName={this.props.me.name}
-            />
+            <div>
+              <CreditCard
+                data={this.props.me.cardData}
+                firstName={this.props.me.name}
+                lastName={this.props.me.name}
+              />
+              <Button className={styles.removeCard} danger> Remover tarjeta </Button>
+            </div>
           )}
         </Section>
       </div>

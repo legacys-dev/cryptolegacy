@@ -17,7 +17,9 @@ export default class Seats extends React.Component {
             mutation="getSeat"
             params={{data:'asd'}}
             onSuccess={() => console.log('He contratado el asiento')}
-            label="Contratar asiento"/>
+            label="Contratar asiento"
+            primary
+            />
         </Section>
       </div>
     )
