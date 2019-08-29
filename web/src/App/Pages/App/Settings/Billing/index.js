@@ -11,17 +11,16 @@ import CreditCard from './CreditCard'
 @withGraphQL(gql`
   query me {
     me {
-      _id,
+      _id
       qvo {
         customerId
         cardId
         subscriptionId
       }
-      cardData,
-      name,
+      cardData
+      name
       name
     }
-
   }
 `)
 export default class Billing extends React.Component {
@@ -50,7 +49,15 @@ export default class Billing extends React.Component {
           top
           title={translate('Tarjeta de crédito')}
           description={translate('Aqui puedes revisar los datos de tu tarjeta o agregar una')}>
-          {!this.props.me.qvo.cardId ? this.renderEnrollCard() : <CreditCard data={this.props.me.cardData} firstName={this.props.me.name} lastName={this.props.me.name}/>}
+          {!this.props.me.qvo.cardId ? (
+            this.renderEnrollCard()
+          ) : (
+            <CreditCard
+              data={this.props.me.cardData}
+              firstName={this.props.me.name}
+              lastName={this.props.me.name}
+            />
+          )}
         </Section>
       </div>
     )

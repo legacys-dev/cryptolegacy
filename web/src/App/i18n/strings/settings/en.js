@@ -35,6 +35,5 @@ export default {
   hide: 'Hide',
   plan: 'Plan',
   planDescription: 'Add, review or upgrade your plan',
-  seats: 'Seats',
-  
+  seats: 'Seats'
 }

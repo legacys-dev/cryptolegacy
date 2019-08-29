@@ -19,7 +19,7 @@ export default class Plan extends React.Component {
     </div>
   )
 
-  renderPlan = ({}) => <div>Soy tu plan actual</div>
+  renderPlan = () => <div>Soy tu plan actual</div>
 
   render() {
     return (
@@ -33,9 +33,11 @@ export default class Plan extends React.Component {
                 title={'Cancelar plan'}
                 message={'Está seguro de cancelar su plan'}
                 confirmText={'Cancelar plan'}
-                mutation={"cancelPlan"}
-                onSuccess={() => console.log("He cancelado el plan!")}
-              > <div className={styles.cancelPlan}>Cancelar plan</div> </MutationButton>
+                mutation={'cancelPlan'}
+                onSuccess={() => console.log('He cancelado el plan!')}>
+                {' '}
+                <div className={styles.cancelPlan}>Cancelar plan</div>{' '}
+              </MutationButton>
             </div>
           </div>
         ) : (

@@ -5,7 +5,6 @@ import styles from './styles.css'
 import PlanDetail from './PlanDetail'
 import plans from './plans'
 
-
 export default class PlanModal extends React.Component {
   constructor(props) {
     super(props)
@@ -18,7 +17,7 @@ export default class PlanModal extends React.Component {
     this.openModal = this.openModal.bind(this)
     this.closeModal = this.closeModal.bind(this)
     this.renderPlanList = this.renderPlanList.bind(this)
-  }  
+  }
 
   openModal() {
     this.setState({modalIsOpen: true})
@@ -29,11 +28,11 @@ export default class PlanModal extends React.Component {
   }
 
   renderPlanList() {
-    console.log("update: ",this.props.update)
+    console.log('update: ', this.props.update)
     return (
       <div className={styles.planListContainer}>
         {this.state.plans.map((planData, index) => (
-          <PlanDetail key={'planDetail-' + index} {...planData} update={this.props.update}/>
+          <PlanDetail key={'planDetail-' + index} {...planData} update={this.props.update} />
         ))}
       </div>
     )
@@ -51,7 +50,9 @@ export default class PlanModal extends React.Component {
     }
     return (
       <div>
-        <Button className={styles.upgradeButton} onClick={this.openModal}>{!this.props.update? "Suscribir plan": "Actualizar plan" } </Button>
+        <Button className={styles.upgradeButton} onClick={this.openModal}>
+          {!this.props.update ? 'Suscribir plan' : 'Actualizar plan'}{' '}
+        </Button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -60,7 +61,9 @@ export default class PlanModal extends React.Component {
           contentLabel="">
           <div className={styles.modalContent}>
             {this.renderPlanList()}
-            <Button className={styles.closeButtonContainer} onClick={this.closeModal}>Cerrar</Button>
+            <Button className={styles.closeButtonContainer} onClick={this.closeModal}>
+              Cerrar
+            </Button>
           </div>
         </Modal>
       </div>
