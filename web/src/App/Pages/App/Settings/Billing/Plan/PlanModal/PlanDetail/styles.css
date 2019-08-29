@@ -17,6 +17,7 @@
 :local(.upgradeButton){
     display: flex;
     justify-content: center;
+    margin: 0px auto;
     margin-top: auto;
 }
 
@@ -29,3 +30,8 @@
     -webkit-transition-property: font-weight, cursor;
     -webkit-transition-duration: 300ms;
 }
+
+
+
+
+

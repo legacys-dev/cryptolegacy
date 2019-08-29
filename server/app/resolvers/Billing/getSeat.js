@@ -4,7 +4,11 @@ import Users from 'app/collections/Users'
 import createSeat from 'app/resolvers/Seats/createSeat'
 
 export default resolver({
-  params: {},
+  params: {
+    data: {
+      type: String
+    }
+  },
   returns: String,
   mutation: true,
   requireLogin: true,

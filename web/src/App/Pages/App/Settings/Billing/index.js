@@ -7,6 +7,7 @@ import gql from 'graphql-tag'
 import Section from 'App/components/Section'
 import Plan from './Plan'
 import CreditCard from './CreditCard'
+import Loading from 'App/components/Parts/Loading'
 
 @withGraphQL(gql`
   query me {
@@ -22,7 +23,10 @@ import CreditCard from './CreditCard'
       name
     }
   }
-`)
+`,
+{loading: <Loading />}
+)
+
 export default class Billing extends React.Component {
   static propTypes = {
     me: PropTypes.object
@@ -39,12 +43,12 @@ export default class Billing extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        {/*<Section
+        <Section
           top
           title={translate('settings.plan')}
           description={translate('settings.planDescription')}>
           <Plan subscriptionId={this.props.me.qvo.subscriptionId} />
-        </Section>*/}
+        </Section>
         <Section
           top
           title={translate('Tarjeta de crédito')}

@@ -15,9 +15,9 @@ export default class Seats extends React.Component {
             message={'Está seguro de contratar un asiento? '}
             confirmText={'Contratar asiento'}
             mutation="getSeat"
-            onSuccess={() => console.log('He contratado el asiento')}>
-            <div className={styles.getSeat}>Contratar asiento</div>
-          </MutationButton>
+            params={{data:'asd'}}
+            onSuccess={() => console.log('He contratado el asiento')}
+            label="Contratar asiento"/>
         </Section>
       </div>
     )

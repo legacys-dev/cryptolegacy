@@ -28,16 +28,16 @@ export default class Plan extends React.Component {
           <div>
             <div> data </div>
             <div className={styles.buttonsContainer}>
-              <PlanModal update />
+              <PlanModal update subscriptionId={this.props.subscriptionId}/>
               <MutationButton
                 title={'Cancelar plan'}
                 message={'Está seguro de cancelar su plan'}
+                params={{data:"cancel"}} // Para que funcione. 
                 confirmText={'Cancelar plan'}
                 mutation={'cancelPlan'}
-                onSuccess={() => console.log('He cancelado el plan!')}>
-                {' '}
-                <div className={styles.cancelPlan}>Cancelar plan</div>{' '}
-              </MutationButton>
+                onSuccess={() => console.log('He cancelado el plan!')}
+                label="Cancelar plan"
+                danger/>
             </div>
           </div>
         ) : (

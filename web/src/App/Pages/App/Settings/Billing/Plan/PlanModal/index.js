@@ -50,7 +50,7 @@ export default class PlanModal extends React.Component {
     }
     return (
       <div>
-        <Button className={styles.upgradeButton} onClick={this.openModal}>
+        <Button className={styles.upgradeButton} onClick={this.openModal} primary>
           {!this.props.update ? 'Suscribir plan' : 'Actualizar plan'}{' '}
         </Button>
         <Modal
@@ -61,7 +61,7 @@ export default class PlanModal extends React.Component {
           contentLabel="">
           <div className={styles.modalContent}>
             {this.renderPlanList()}
-            <Button className={styles.closeButtonContainer} onClick={this.closeModal}>
+            <Button className={styles.closeButtonContainer} onClick={this.closeModal} danger>
               Cerrar
             </Button>
           </div>
