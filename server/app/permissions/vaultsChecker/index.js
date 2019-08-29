@@ -1,6 +1,5 @@
 import cloneDeep from 'lodash/cloneDeep'
 import vaultOwnerPermission from './vaultOwnerPermission'
-import driveVaultChecker from './driveVaultChecker'
 import vaultNameChecker from './vaultNameChecker'
 import filesVaultPermission from './filesVaultPermission'
 import vaultAccessPermission from './vaultAccessPermission'
