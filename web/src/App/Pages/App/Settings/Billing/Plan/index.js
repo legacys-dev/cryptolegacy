@@ -1,11 +1,10 @@
 import React from 'react'
 import styles from './styles.css'
 import PlanModal from './PlanModal'
-import Button from 'App/components/Parts/Button'
+import MutationButton from 'App/components/MutationButton'
 
 export default class Plan extends React.Component {
-  
-  state ={}
+  state = {}
 
   renderFreePlan = () => (
     <div>
@@ -13,14 +12,14 @@ export default class Plan extends React.Component {
       <div> - Crear una bóveda </div>
       <div> - Almacenamiento de 100 MB </div>
       <div> - No puedes tener Asientos </div>
-      <div> Puedes actualizar tu cuenta a alguno de los planes que tenemos para tí, presionando en: </div>
+      <div>
+        {' '}
+        Puedes actualizar tu cuenta a alguno de los planes que tenemos para tí, presionando en:{' '}
+      </div>
     </div>
   )
 
-  renderPlan = ({}) => (
-    <div>Soy tu plan actual</div>
-  )
-
+  renderPlan = ({}) => <div>Soy tu plan actual</div>
 
   render() {
     return (
@@ -29,8 +28,14 @@ export default class Plan extends React.Component {
           <div>
             <div> data </div>
             <div className={styles.buttonsContainer}>
-              <PlanModal />
-              <Button> Cancelar plan </Button>
+              <PlanModal update />
+              <MutationButton
+                title={'Cancelar plan'}
+                message={'Está seguro de cancelar su plan'}
+                confirmText={'Cancelar plan'}
+                mutation={"cancelPlan"}
+                onSuccess={() => console.log("He cancelado el plan!")}
+              > <div className={styles.cancelPlan}>Cancelar plan</div> </MutationButton>
             </div>
           </div>
         ) : (

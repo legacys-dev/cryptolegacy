@@ -1,6 +1,6 @@
 import {resolver} from '@orion-js/app'
 import Users from 'app/collections/Users'
-import {createSubscription} from 'app/helpers/qvo'
+import {createSubscription, getPlans} from 'app/helpers/qvo'
 
 export default resolver({
   params: {

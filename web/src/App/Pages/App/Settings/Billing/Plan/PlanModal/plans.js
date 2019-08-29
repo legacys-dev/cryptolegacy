@@ -1,6 +1,6 @@
 const plans =[
     {
-      id: 'multiple',
+      id: 'individual',
       title: 'Personal',
       size: '200 GB',
       seatsPrice: '$1.99',
@@ -8,7 +8,7 @@ const plans =[
       integration: 'No integrations'
     },
     {
-      id: 'individual',
+      id: 'multiple',
       title: 'Múltiple',
       size: '1 TB',
       seatsPrice: '$1.99',
