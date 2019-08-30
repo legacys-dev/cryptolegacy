@@ -28,7 +28,7 @@ export default class Plan extends React.Component {
           <div>
             <div> data </div>
             <div className={styles.buttonsContainer}>
-              <PlanModal update subscriptionId={this.props.subscriptionId}/>
+              <PlanModal subscriptionId={this.props.subscriptionId}/>
               <MutationButton
                 title={'Cancelar plan'}
                 message={'Está seguro de cancelar su plan'}

@@ -4,7 +4,18 @@ import Modal from 'react-modal'
 import styles from './styles.css'
 import PlanDetail from './PlanDetail'
 import plans from './plans'
+import Loading from 'App/components/Parts/Loading'
+import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import gql from 'graphql-tag'
 
+@withGraphQL(
+  gql`
+    query getSubscription {
+      getSubscription
+    }
+  `,
+  {loading: <Loading />}
+)
 export default class PlanModal extends React.Component {
   constructor(props) {
     super(props)
@@ -28,12 +39,21 @@ export default class PlanModal extends React.Component {
   }
 
   renderPlanList() {
-    console.log('update: ', this.props.update)
+    let plans = this.state.plans
+    if(this.props.getSubscription){
+      plans = this.state.plans.filter((plan,index,arr) => plan.id != this.props.getSubscription.id )
+    }
     return (
       <div className={styles.planListContainer}>
-        {this.state.plans.map((planData, index) => (
-          <PlanDetail key={'planDetail-' + index} {...planData} update={this.props.update} />
-        ))}
+        {plans.map((planData, index) => {
+          return (
+            <PlanDetail
+              key={'planDetail-' + index}
+              {...planData}
+              update = {this.props.getSubscription}
+            />
+          )
+        })}
       </div>
     )
   }
@@ -51,7 +71,7 @@ export default class PlanModal extends React.Component {
     return (
       <div>
         <Button className={styles.upgradeButton} onClick={this.openModal} primary>
-          {!this.props.update ? 'Suscribir plan' : 'Actualizar plan'}{' '}
+          {!this.props.subscriptionId ? 'Suscribir plan' : 'Actualizar plan'}{' '}
         </Button>
         <Modal
           isOpen={this.state.modalIsOpen}
