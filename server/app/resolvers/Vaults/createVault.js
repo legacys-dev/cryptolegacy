@@ -29,7 +29,7 @@ export default resolver({
   },
   returns: String,
   mutation: true,
-  checkDrive: true,
+  checkPlan: true,
   requireLogin: true,
   checkVaultName: true,
   async resolve({name, type, driveEmail, credentials}, viewer) {
