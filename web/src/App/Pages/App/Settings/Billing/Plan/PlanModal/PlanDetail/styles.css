@@ -9,18 +9,15 @@
     display: flex;
     flex-direction: column;
 }
-
 :local(.title){
     text-align: center;   
 }
-
 :local(.upgradeButton){
     display: flex;
     justify-content: center;
     margin: 0px auto;
     margin-top: auto;
 }
-
 :local(.getPlan){
     width: 150px;
     font-size: 15px;
