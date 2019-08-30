@@ -8,6 +8,7 @@ import getPlanList from './getPlanList'
 import deleteCreditCard from './deleteCreditCard'
 import getSubscription from './getSubscription'
 import getUpdatePlans from './getUpdatePlans'
+import getSeats from './getSeats'
 
 export default {
   cancelSeat,
@@ -19,5 +20,6 @@ export default {
   getPlanList,
   deleteCreditCard,
   getSubscription,
-  getUpdatePlans
+  getUpdatePlans,
+  getSeats
 }
