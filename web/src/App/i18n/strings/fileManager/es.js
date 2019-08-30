@@ -17,5 +17,6 @@ export default {
   driveTypeDescription: 'Google Drive',
   warning: 'Advertencia',
   of: 'de',
-  filesUpload: 'Subida de archivos'
+  filesUpload: 'Subida de archivos',
+  encrypting: 'Encriptando'
 }

@@ -16,6 +16,7 @@ import AWS from 'aws-sdk'
 import Warning from './Warning'
 import gql from 'graphql-tag'
 import mime from 'mime-types'
+import sleep from 'orionsoft-parts/lib/helpers/sleep'
 
 @withMutation(gql`
   mutation createS3Upload(
@@ -61,7 +62,7 @@ export default class Upload extends React.Component {
     close: PropTypes.func
   }
 
-  state = {upload: 0}
+  state = {upload: 0, encrypting: false}
 
   @autobind
   async onChange(event) {
@@ -130,12 +131,14 @@ export default class Upload extends React.Component {
     const cipherPassword = vault[url]
     const id = fileId.slice(0, 16)
     const iv = await generateArchiveIv(id)
-
+    this.setState({encrypting: true})
+    await sleep(100)
     const encrypted = archiveEncryptWithPassword({
       itemToEncrypt: file,
       cipherPassword: cipherPassword,
       archiveIv: iv
     })
+    this.setState({encrypting: false})
     const uploadToS3 = new AWS.S3.ManagedUpload({
       params: {Key: key, Bucket: bucket, Body: encrypted}
     })
@@ -167,6 +170,16 @@ export default class Upload extends React.Component {
 
   renderWarning() {
     return <Warning />
+  }
+
+  renderEncrypting() {
+    if (this.state.encrypting === true) {
+      return (
+        <div className={styles.encrypting}>
+          <p>{translate('fileManager.encrypting')}...</p>
+        </div>
+      )
+    }
   }
 
   renderInput() {
@@ -211,6 +224,7 @@ export default class Upload extends React.Component {
         {this.renderLoading()}
         {this.renderInput()}
         {this.renderWarning()}
+        {this.renderEncrypting()}
       </div>
     )
   }

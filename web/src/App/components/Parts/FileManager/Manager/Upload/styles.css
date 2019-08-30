@@ -39,3 +39,9 @@
   margin-top: 20px;
   padding: 0 20px;
 }
+
+:local(.encrypting) {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
