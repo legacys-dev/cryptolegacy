@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Logo from 'App/components/Parts/Logo'
-import {Route, Switch, withRouter} from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import Login from './Login'
 import RegisterEmail from './RegisterEmail'
 import Forgot from './Forgot'
@@ -14,7 +14,7 @@ import CreatePassword from './CreatePassword'
 
 @withRouter
 export default class Auth extends React.Component {
-  state = {isLoading: false, error: null}
+  state = { isLoading: false, error: null }
 
   static propTypes = {
     children: PropTypes.any,
@@ -26,18 +26,18 @@ export default class Auth extends React.Component {
 
   @autobind
   onLogin(params) {
-    const {location, history} = this.props
+    const { location, history } = this.props
     if (location.state && location.state.nextPathname) {
       history.replace('/')
     } else {
-      const {emergencyKitId} = params
+      const { emergencyKitId } = params
       if (!emergencyKitId) return
       history.replace(`/emergency-kit/${emergencyKitId}`)
     }
   }
 
   render() {
-    const otherProps = {onLogin: this.onLogin}
+    const otherProps = { onLogin: this.onLogin }
     return (
       <div className={styles.container}>
         <div className={styles.content}>
@@ -53,11 +53,11 @@ export default class Auth extends React.Component {
               <Route path="/forgot" render={() => <Forgot {...otherProps} />} />
               <Route
                 path="/reset/:token"
-                render={({match}) => <Reset token={match.params.token} {...otherProps} />}
+                render={({ match }) => <Reset token={match.params.token} {...otherProps} />}
               />
               <Route
                 path="/enroll/:token"
-                render={({match}) => <Enroll token={match.params.token} {...otherProps} />}
+                render={({ match }) => <Enroll token={match.params.token} {...otherProps} />}
               />
             </Switch>
           </div>

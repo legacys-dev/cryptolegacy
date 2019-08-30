@@ -5,12 +5,12 @@ import autobind from 'autobind-decorator'
 import Loading from 'App/components/Parts/Loading'
 import NoItemsFound from 'App/components/Parts/NoItemsFound'
 import Pagination from 'App/components/Parts/Pagination'
-import {getPageItems} from 'App/functions/paginated'
-import {withApollo} from 'react-apollo'
+import { getPageItems } from 'App/functions/paginated'
+import { withApollo } from 'react-apollo'
 import filesQuery from './filesQuery'
 import isEmpty from 'lodash/isEmpty'
 import Items from './Items'
-import {getQuery, nameSearch} from 'App/helpers/search'
+import { getQuery, nameSearch } from 'App/helpers/search'
 
 @withApollo
 export default class Main extends React.Component {
@@ -35,23 +35,23 @@ export default class Main extends React.Component {
 
   @autobind
   onUpdateArchive(updateDate) {
-    this.setState({updateDate})
+    this.setState({ updateDate })
   }
 
   @autobind
   async search(page = 1) {
-    const {client, onQueryItems, filter} = this.props
+    const { client, onQueryItems, filter } = this.props
     const deletedFiles = true
 
     const items = filter
       ? nameSearch(filter, this.state.allItems)
-      : await getQuery(client, {deletedFiles}, filesQuery)
+      : await getQuery(client, { deletedFiles }, filesQuery)
 
-    const {totalPages, hasNextPage, hasPreviousPage} = getPageItems(items, page, 6)
+    const { totalPages, hasNextPage, hasPreviousPage } = getPageItems(items, page, 6)
 
     onQueryItems(items.length)
 
-    const allItems = filter ? {} : {allItems: items}
+    const allItems = filter ? {} : { allItems: items }
 
     this.setState({
       items,
@@ -64,7 +64,7 @@ export default class Main extends React.Component {
   }
 
   renderItems() {
-    const {items, currentPage, totalPages, hasNextPage, hasPreviousPage} = this.state
+    const { items, currentPage, totalPages, hasNextPage, hasPreviousPage } = this.state
     return (
       <div className={styles.container}>
         <Items items={items} onUpdateArchive={this.onUpdateArchive} />

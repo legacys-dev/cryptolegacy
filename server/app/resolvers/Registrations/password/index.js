@@ -1,15 +1,18 @@
-import {resolver, generateId} from '@orion-js/app'
-import {createSession, hashPassword} from '@orion-js/auth'
-import {createMasterKey, generateUserCipherKeys, decomposeMasterKey} from 'app/helpers/keys'
-import {userDataEncryptWithPassword, createKeyPairs as generateCryptoKeys} from 'app/helpers/crypto'
-import {passwordValidator} from 'app/helpers/registration'
-import {accountCreated} from 'app/helpers/emails'
+import { resolver, generateId } from '@orion-js/app'
+import { createSession, hashPassword } from '@orion-js/auth'
+import { createMasterKey, generateUserCipherKeys, decomposeMasterKey } from 'app/helpers/keys'
+import {
+  userDataEncryptWithPassword,
+  createKeyPairs as generateCryptoKeys
+} from 'app/helpers/crypto'
+import { passwordValidator } from 'app/helpers/registration'
+import { accountCreated } from 'app/helpers/emails'
 import Registrations from 'app/collections/Registrations'
 import Users from 'app/collections/Users'
 import createEmergencyKit from 'app/resolvers/EmergencyKit/createEmergencyKit'
 import authResolvers from 'app/resolvers/Auth'
 import isEmpty from 'lodash/isEmpty'
-import {createCustomer} from 'app/helpers/qvo'
+import { createCustomer } from 'app/helpers/qvo'
 
 export default resolver({
   params: {
@@ -22,7 +25,7 @@ export default resolver({
     },
     confirmPassword: {
       type: String,
-      async custom(confirmPassword, {doc}) {
+      async custom(confirmPassword, { doc }) {
         if (confirmPassword.localeCompare(doc.password)) return 'passwordNotMatch'
         const result = passwordValidator(confirmPassword)
         if (result) return result.message
@@ -35,11 +38,11 @@ export default resolver({
   returns: 'blackbox',
   mutation: true,
   userCreatePermission: true,
-  async resolve({password, confirmPassword, token}, viewer) {
-    const registration = await Registrations.findOne({'confirmPassword.token': token})
+  async resolve({ password, confirmPassword, token }, viewer) {
+    const registration = await Registrations.findOne({ 'confirmPassword.token': token })
 
-    const {email, name, lastName} = registration.userInformation
-    const profile = {firstName: name, lastName}
+    const { email, name, lastName } = registration.userInformation
+    const profile = { firstName: name, lastName }
 
     const userMasterKey = createMasterKey()
     const temporaryUserMasterKey = createMasterKey()
@@ -57,16 +60,16 @@ export default resolver({
 
     if (invalidKeys) throw new Error('Error creating user')
 
-    const {createUser} = authResolvers
-    await createUser({email, password, profile})
+    const { createUser } = authResolvers
+    await createUser({ email, password, profile })
 
-    const newUser = await Users.findOne({'emails.address': email})
+    const newUser = await Users.findOne({ 'emails.address': email })
 
     if (!newUser) throw new Error('Error creating user')
 
-    const {secret, iv} = temporaryUserMasterPassword
+    const { secret, iv } = temporaryUserMasterPassword
     const encryptedKeysForMessages = userDataEncryptWithPassword({
-      itemToEncrypt: JSON.stringify({...userMessageKeys, communicationPassword}),
+      itemToEncrypt: JSON.stringify({ ...userMessageKeys, communicationPassword }),
       cipherPassword: secret,
       userDataIv: iv
     })
@@ -79,7 +82,7 @@ export default resolver({
     }
 
     await Users.update(
-      {_id: newUser._id, 'emails.address': email},
+      { _id: newUser._id, 'emails.address': email },
       {
         $set: {
           'services.masterKey.bcrypt': hashPassword(userMasterKey.original),
@@ -91,14 +94,14 @@ export default resolver({
           'emails.$.verified': true,
           'qvo.customerId': qvoUser.id
         },
-        $unset: {'services.emailVerify': ''}
+        $unset: { 'services.emailVerify': '' }
       }
     )
 
     const session = await createSession(newUser)
 
-    const userKeyObject = {original: userMasterKey.original}
-    const {emergencyKitId} = await createEmergencyKit(
+    const userKeyObject = { original: userMasterKey.original }
+    const { emergencyKitId } = await createEmergencyKit(
       {
         userMasterKey: userKeyObject,
         userId: newUser._id,
@@ -113,8 +116,8 @@ export default resolver({
       userId: newUser._id
     })
 
-    const {userInformation} = registration
-    accountCreated({userInformation})
+    const { userInformation } = registration
+    accountCreated({ userInformation })
 
     return {
       session,

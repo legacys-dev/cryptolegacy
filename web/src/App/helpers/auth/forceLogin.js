@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import withUserId from './withUserId'
 
 export default function(ComposedComponent) {
@@ -15,7 +15,7 @@ export default function(ComposedComponent) {
     redirect() {
       this.props.history.replace({
         pathname: '/login',
-        state: {nextPathname: window.location.pathname}
+        state: { nextPathname: window.location.pathname }
       })
 
       return <span />

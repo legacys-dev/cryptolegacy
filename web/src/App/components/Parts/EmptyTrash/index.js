@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 import MutationButton from 'App/components/MutationButton'
 import translate from 'App/i18n/translate'
 
-const DeleteFile = ({userId, filesCount, onDeleteSuccess}) => {
+const DeleteFile = ({ userId, filesCount, onDeleteSuccess }) => {
   return (
     <div className={styles.container}>
       <MutationButton
@@ -14,7 +14,7 @@ const DeleteFile = ({userId, filesCount, onDeleteSuccess}) => {
         mutation="emptyTrash"
         disabled={!filesCount}
         danger
-        params={{userId: userId}}
+        params={{ userId: userId }}
         onSuccess={() => onDeleteSuccess()}
       />
     </div>

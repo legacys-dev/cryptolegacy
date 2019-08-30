@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import {Contract} from 'App/components/Parts/Icons'
+import { Contract } from 'App/components/Parts/Icons'
 import DeleteHeritage from 'App/components/Parts/DeleteHeritage'
 import translate from 'App/i18n/translate'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
@@ -60,10 +60,10 @@ export default class Items extends React.Component {
         <table className={styles.table}>
           <thead>
             <tr>
-              <td style={{width: '1%'}} />
+              <td style={{ width: '1%' }} />
               <td>{translate('vaults.inheritor')}</td>
               <td>{translate('vaults.creationDate')}</td>
-              <td style={{width: '5%'}} />
+              <td style={{ width: '5%' }} />
             </tr>
           </thead>
           <tbody>{this.renderTable()}</tbody>

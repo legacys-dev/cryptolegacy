@@ -1,4 +1,4 @@
-import {deleteData} from './connections'
+import { deleteData } from './connections'
 
 export default async (customerId, cardId) => {
   try {

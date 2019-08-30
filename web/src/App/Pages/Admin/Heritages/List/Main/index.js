@@ -6,7 +6,7 @@ import NoItemsFound from 'App/components/Parts/NoItemsFound'
 import Pagination from 'App/components/Parts/Pagination'
 import Loading from 'App/components/Parts/Loading'
 import heritagesQuery from './heritagesQuery'
-import {withApollo} from 'react-apollo'
+import { withApollo } from 'react-apollo'
 import isEmpty from 'lodash/isEmpty'
 import Items from './Items'
 
@@ -18,7 +18,7 @@ export default class Main extends React.Component {
     status: PropTypes.string
   }
 
-  state = {newHeritage: null}
+  state = { newHeritage: null }
 
   componentDidMount() {
     this.search()
@@ -32,18 +32,18 @@ export default class Main extends React.Component {
 
   @autobind
   onHeritageEnabled(date) {
-    this.setState({newHeritage: date})
+    this.setState({ newHeritage: date })
   }
 
   @autobind
   async search(page = 1) {
-    const {status, filter, client} = this.props
+    const { status, filter, client } = this.props
     const result = await client.query({
       query: heritagesQuery,
-      variables: {adminPanel: true, status, filter, page, limit: 6},
+      variables: { adminPanel: true, status, filter, page, limit: 6 },
       fetchPolicy: 'network-only'
     })
-    const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.vaultPolicies
+    const { items, totalPages, hasNextPage, hasPreviousPage } = result.data.vaultPolicies
     this.setState({
       items,
       currentPage: page,
@@ -54,7 +54,7 @@ export default class Main extends React.Component {
   }
 
   renderItems() {
-    const {items, currentPage, totalPages, hasNextPage, hasPreviousPage} = this.state
+    const { items, currentPage, totalPages, hasNextPage, hasPreviousPage } = this.state
     return (
       <div className={styles.container}>
         <Items

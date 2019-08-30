@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.css'
 
-const LoadingComponent = ({size, thickness}) => {
+const LoadingComponent = ({ size, thickness }) => {
   return (
     <div className={styles.container}>
       <div className={styles.loading}>

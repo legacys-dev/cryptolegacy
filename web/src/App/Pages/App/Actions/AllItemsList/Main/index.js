@@ -2,11 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import autobind from 'autobind-decorator'
-import Loading from 'App/components/Parts/Loading'
 import NoItemsFound from 'App/components/Parts/NoItemsFound'
-import Pagination from 'App/components/Parts/Pagination'
-import {withApollo} from 'react-apollo'
+import { metaDataDecryptWithPassword as decrypt } from 'App/helpers/crypto'
 import actionsQuery from './actionsQuery'
+import Pagination from 'App/components/Parts/Pagination'
+import { getPageItems } from 'App/functions/paginated'
+import Loading from 'App/components/Parts/Loading'
+import { withApollo } from 'react-apollo'
 import isEmpty from 'lodash/isEmpty'
 import Items from './Items'
 
@@ -24,13 +26,27 @@ export default class Main extends React.Component {
 
   @autobind
   async search(page = 1) {
-    const {client} = this.props
-    const result = await client.query({
+    const { client } = this.props
+    const encrypted = await client.query({
       query: actionsQuery,
-      variables: {page, limit: 6},
       fetchPolicy: 'network-only'
     })
-    const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.result
+
+    const { getEncryptedActivities } = encrypted.data
+
+    if (!getEncryptedActivities.items) {
+      this.setState({ items: [] })
+      return
+    }
+
+    const messages = JSON.parse(window.localStorage.getItem('messages'))
+    const dataArray = decrypt({
+      encryptedItem: getEncryptedActivities.items,
+      cipherPassword: messages.communicationPassword
+    })
+
+    const { items, totalPages, hasNextPage, hasPreviousPage } = getPageItems(dataArray, page, 6)
+
     this.setState({
       items,
       currentPage: page,
@@ -41,7 +57,7 @@ export default class Main extends React.Component {
   }
 
   renderItems() {
-    const {items, currentPage, totalPages, hasNextPage, hasPreviousPage} = this.state
+    const { items, currentPage, totalPages, hasNextPage, hasPreviousPage } = this.state
     return (
       <div className={styles.container}>
         <Items items={items} />

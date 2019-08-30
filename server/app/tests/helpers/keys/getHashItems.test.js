@@ -1,9 +1,9 @@
-import {getHashItems} from 'app/helpers/keys'
+import { getHashItems } from 'app/helpers/keys'
 
 it('Should items pass type test', () => {
   const masterKey = '3:QM4WC5Q5-SCLZQRIGDY-HSSJYJ2D:1'
   const result = getHashItems(masterKey)
-  const {secretKeyInterval, ivKeyInterval, hashOne, hashTwo, hashThree, original} = result
+  const { secretKeyInterval, ivKeyInterval, hashOne, hashTwo, hashThree, original } = result
 
   expect(typeof secretKeyInterval).toBe('number')
   expect(typeof ivKeyInterval).toBe('number')

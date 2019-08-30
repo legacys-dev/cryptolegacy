@@ -1,5 +1,5 @@
-import {route} from '@orion-js/app'
-import {getJobOutput} from 'app/helpers/awsGlacier'
+import { route } from '@orion-js/app'
+import { getJobOutput } from 'app/helpers/awsGlacier'
 
 route('/get-aws-job-output/:vaultName/:jobId', async function({
   params,
@@ -10,11 +10,11 @@ route('/get-aws-job-output/:vaultName/:jobId', async function({
   response,
   getBody
 }) {
-  const {vaultName, jobId} = params
+  const { vaultName, jobId } = params
 
   let result
   try {
-    result = await getJobOutput({vaultName, jobId})
+    result = await getJobOutput({ vaultName, jobId })
   } catch (error) {
     console.log(error)
   }

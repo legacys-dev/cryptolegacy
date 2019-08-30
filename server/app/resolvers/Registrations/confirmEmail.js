@@ -1,6 +1,6 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Registrations from 'app/collections/Registrations'
-import {passwordRegistration} from 'app/helpers/registration'
+import { passwordRegistration } from 'app/helpers/registration'
 
 export default resolver({
   params: {
@@ -17,12 +17,12 @@ export default resolver({
   returns: String,
   mutation: true,
   confirmEmailPermission: true,
-  async resolve({code, token}, viewer) {
-    const query = {'confirmEmail.token': token}
+  async resolve({ code, token }, viewer) {
+    const query = { 'confirmEmail.token': token }
     const updateDate = new Date()
     const confirmPassword = passwordRegistration()
 
-    await Registrations.update(query, {$set: {confirmPassword, updateDate}})
+    await Registrations.update(query, { $set: { confirmPassword, updateDate } })
 
     return confirmPassword.token
   }

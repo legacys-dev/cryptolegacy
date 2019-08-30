@@ -1,4 +1,4 @@
-import {createEtherWallet} from 'app/helpers/ethers'
+import { createEtherWallet } from 'app/helpers/ethers'
 import isEmpty from 'lodash/isEmpty'
 
 export default async function(archiveId) {
@@ -9,7 +9,7 @@ export default async function(archiveId) {
   if (archiveId.length !== 16) throw new Error('Invalid passphras for archive identificator vector')
 
   const walletCredentials = await createEtherWallet(archiveId)
-  const {privateKey, publicKey} = walletCredentials
+  const { privateKey, publicKey } = walletCredentials
 
   const startIv = publicKey.slice(0, 7)
   const endIv = privateKey.slice(8, 15)

@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import autobind from 'autobind-decorator'
 import NoItemsFound from 'App/components/Parts/NoItemsFound'
-import {metaDataDecryptWithPassword as decrypt} from 'App/helpers/crypto'
+import { metaDataDecryptWithPassword as decrypt } from 'App/helpers/crypto'
 import encryptedVaultsQuery from './encryptedVaultsQuery'
 import Pagination from 'App/components/Parts/Pagination'
-import {getPageItems} from 'App/functions/paginated'
+import { getPageItems } from 'App/functions/paginated'
 import Loading from 'App/components/Parts/Loading'
-import {withApollo} from 'react-apollo'
+import { withApollo } from 'react-apollo'
 import isEmpty from 'lodash/isEmpty'
 import Items from './Items'
-import {nameSearch} from 'App/helpers/search'
+import { nameSearch } from 'App/helpers/search'
 
 async function getQuery(client, credentialType) {
   const encrypted = await client.query({
@@ -20,7 +20,7 @@ async function getQuery(client, credentialType) {
     fetchPolicy: 'network-only'
   })
 
-  const {getEncryptedVaults} = encrypted.data
+  const { getEncryptedVaults } = encrypted.data
   if (!getEncryptedVaults.items) {
     return []
   }
@@ -54,15 +54,15 @@ export default class Main extends React.Component {
 
   @autobind
   async search(page = 1) {
-    const {client, credentialType, filter} = this.props
+    const { client, credentialType, filter } = this.props
 
     const items = filter
       ? nameSearch(filter, this.state.allItems)
-      : await getQuery(client, {credentialType})
+      : await getQuery(client, { credentialType })
 
-    const {totalPages, hasNextPage, hasPreviousPage} = getPageItems(items, page, 6)
+    const { totalPages, hasNextPage, hasPreviousPage } = getPageItems(items, page, 6)
 
-    const allItems = filter ? {} : {allItems: items}
+    const allItems = filter ? {} : { allItems: items }
 
     this.setState({
       items,
@@ -75,7 +75,7 @@ export default class Main extends React.Component {
   }
 
   renderItems() {
-    const {items, currentPage, totalPages, hasNextPage, hasPreviousPage} = this.state
+    const { items, currentPage, totalPages, hasNextPage, hasPreviousPage } = this.state
     return (
       <div className={styles.container}>
         <div>

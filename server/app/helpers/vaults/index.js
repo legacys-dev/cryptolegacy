@@ -1,3 +1,3 @@
 import getVaultsIds from './getVaultsIds'
 
-export {getVaultsIds}
+export { getVaultsIds }

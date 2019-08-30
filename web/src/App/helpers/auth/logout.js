@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
-import {setSession} from '@orion-js/graphql-client'
-import {deleteUserMessageKeys} from 'App/helpers/messageKeys'
+import { setSession } from '@orion-js/graphql-client'
+import { deleteUserMessageKeys } from 'App/helpers/messageKeys'
 import {
   deleteUserMainCipherPassword,
   deleteUserEncryptedPassword,

@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './styles.module.css'
-import {Link} from 'react-router-dom'
-import {MdArrowBack} from 'react-icons/md'
+import { Link } from 'react-router-dom'
+import { MdArrowBack } from 'react-icons/md'
 
-const Header = ({past, title, description, right}) => {
+const Header = ({ past, title, description, right }) => {
   const renderPast = () => {
     const renderLink = !!past
     const history = renderLink ? Object.keys(past) : null

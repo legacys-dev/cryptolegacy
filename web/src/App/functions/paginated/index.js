@@ -1,3 +1,3 @@
 import getPageItems from './getPageItems'
 
-export {getPageItems}
+export { getPageItems }

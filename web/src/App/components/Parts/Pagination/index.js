@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './styles.module.css'
-import {MdKeyboardArrowLeft, MdKeyboardArrowRight} from 'react-icons/md'
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md'
 
 const offset = 3
 
-const Pagination = ({currentPage, search, totalPages, hasNextPage, hasPreviousPage}) => {
+const Pagination = ({ currentPage, search, totalPages, hasNextPage, hasPreviousPage }) => {
   const renderPages = pages => {
     return pages.map((page, index) => {
       return (

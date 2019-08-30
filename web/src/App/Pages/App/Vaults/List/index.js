@@ -4,10 +4,10 @@ import styles from './styles.css'
 import Header from 'App/components/Parts/Header'
 import Button from 'App/components/Parts/Button'
 import autobind from 'autobind-decorator'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import VaultType from './VaultType'
 import Main from './Main'
-import {FiPlus} from 'react-icons/fi'
+import { FiPlus } from 'react-icons/fi'
 import translate from 'App/i18n/translate'
 
 @withRouter
@@ -16,16 +16,16 @@ export default class List extends React.Component {
     history: PropTypes.object
   }
 
-  state = {credentialType: 'owner'}
+  state = { credentialType: 'owner' }
 
   @autobind
   onFilterChange(searchValue) {
-    this.setState({searchValue})
+    this.setState({ searchValue })
   }
 
   @autobind
   onVaultTypeChange(credentialType) {
-    this.setState({credentialType})
+    this.setState({ credentialType })
   }
 
   renderRigth() {

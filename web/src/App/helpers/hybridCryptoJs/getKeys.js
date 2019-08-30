@@ -1,4 +1,4 @@
-import {RSA} from 'App/helpers/hybridCryptoJs/functions'
+import { RSA } from 'App/helpers/hybridCryptoJs/functions'
 
 export default () => {
   const rsa = new RSA({

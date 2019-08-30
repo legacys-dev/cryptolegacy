@@ -1,4 +1,4 @@
-import {postData} from './connections'
+import { postData } from './connections'
 
 export default async (email, name) => {
   try {

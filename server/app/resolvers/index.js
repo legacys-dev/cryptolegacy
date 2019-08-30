@@ -1,4 +1,4 @@
-import {resolversSchemas} from '@orion-js/graphql'
+import { resolversSchemas } from '@orion-js/graphql'
 import Auth from './Auth'
 import Authentications from './Authentications'
 import Files from './Files'

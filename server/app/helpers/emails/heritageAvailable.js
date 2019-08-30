@@ -3,8 +3,8 @@ import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
 import setReceptor from './setReceptor'
 import getUrl from './getUrl'
 
-export default async function({user, accessToken, vaultName}) {
-  const {email, name, lastName} = user
+export default async function({ user, accessToken, vaultName }) {
+  const { email, name, lastName } = user
   const link = getUrl() + `/heritage/${accessToken}`
 
   const emailContent = (

@@ -1,7 +1,7 @@
 import moment from 'moment'
-export default function(userData){
-    const {userName, userLastName, userMasterKey, createdAt} = userData
-return `
+export default function(userData) {
+  const { userName, userLastName, userMasterKey, createdAt } = userData
+  return `
 <!doctype html>
     <html>
        <head>
@@ -77,7 +77,9 @@ return `
        <body>
           <div class="invoice-box">
               <div class="header">
-                <p class="date"> Creado para test prueba ${userName} ${userLastName} el ${moment(createdAt).format(`LL`)}  </p>
+                <p class="date"> Creado para test prueba ${userName} ${userLastName} el ${moment(
+    createdAt
+  ).format(`LL`)}  </p>
                 <img class="logoContainer" src="https://s3-us-west-2.amazonaws.com/cryptolegacy-internal-use/twoColorsBT.png"/>
             </div>
             <div class="kit">
@@ -87,12 +89,12 @@ return `
             <div class="headerKey">
                <p class="parKey">Tu llave maestra es: </p>
                <div class="keyCodeContainer">
-                  <p >${userMasterKey}</p> 
+                  <p >${userMasterKey}</p>
                </div>
                <p class="parKey">Recuerda guardar este documento en un lugar seguro. Este documento es de vital importancia para que puedas acceder a tu cuenta en la plataforma.</p>
             </div>
           </div>
        </body>
     </html>
-    `;
+    `
 }

@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Activities from 'app/collections/Activities'
 
 export default resolver({
@@ -29,7 +29,7 @@ export default resolver({
   async resolve(params, viewer) {
     if (!viewer.userId) throw new Error('User is not loged in')
 
-    const {activityType, actionType, fileName, vaultName, newVaultName, status} = params
+    const { activityType, actionType, fileName, vaultName, newVaultName, status } = params
 
     const insertParams = {
       userId: viewer.userId,

@@ -1,9 +1,9 @@
-import {google} from 'googleapis'
+import { google } from 'googleapis'
 import authentication from './authentication'
 
 export default async (fileName, fileType, file, folderId) => {
   const auth = await authentication()
-  const drive = google.drive({version: 'v3', auth})
+  const drive = google.drive({ version: 'v3', auth })
 
   const media = {
     mimeType: fileType,

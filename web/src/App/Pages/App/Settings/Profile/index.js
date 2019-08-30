@@ -9,7 +9,7 @@ import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import translate from 'App/i18n/translate'
 import Loading from 'App/components/Parts/Loading'
 import gql from 'graphql-tag'
-import {Field} from 'simple-react-form'
+import { Field } from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 
@@ -27,7 +27,7 @@ import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
       getEmergencyKit
     }
   `,
-  {loading: <Loading />}
+  { loading: <Loading /> }
 )
 @withMessage
 export default class Profile extends React.Component {
@@ -37,17 +37,17 @@ export default class Profile extends React.Component {
     showMessage: PropTypes.func
   }
 
-  state = {isKey: false, masterKey: '***************************'}
+  state = { isKey: false, masterKey: '***************************' }
 
   decryptKey = data => {
     const messages = JSON.parse(window.localStorage.getItem('messages'))
-    const decryptedKey = privateDecrypt({toDecrypt: data, privateKey: messages.privateKey})
-    this.setState({masterKey: decryptedKey.userMasterKey.original, isKey: true})
+    const decryptedKey = privateDecrypt({ toDecrypt: data, privateKey: messages.privateKey })
+    this.setState({ masterKey: decryptedKey.userMasterKey.original, isKey: true })
   }
 
   setKey = key => {
     if (this.state.isKey) {
-      this.setState({masterKey: '***************************', isKey: false})
+      this.setState({ masterKey: '***************************', isKey: false })
     } else {
       this.decryptKey(key)
     }
@@ -55,7 +55,7 @@ export default class Profile extends React.Component {
 
   getPdf(data) {
     function saveByteArray(reportName, byte) {
-      const blob = new Blob([byte], {type: 'application/pdf'})
+      const blob = new Blob([byte], { type: 'application/pdf' })
       const link = document.createElement('a')
       const fileName = reportName
       link.href = window.URL.createObjectURL(blob)

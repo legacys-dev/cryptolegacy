@@ -1,5 +1,5 @@
-import {resolver} from '@orion-js/app'
-import {getDownloadUrl, getHeadersElement} from 'app/helpers/awsS3'
+import { resolver } from '@orion-js/app'
+import { getDownloadUrl, getHeadersElement } from 'app/helpers/awsS3'
 
 export default resolver({
   params: {},

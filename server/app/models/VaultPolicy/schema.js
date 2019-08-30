@@ -39,7 +39,7 @@ export default {
   driveFolderId: {
     type: String,
     optional: true,
-    async custom(driveFolderId, {doc}) {
+    async custom(driveFolderId, { doc }) {
       if (doc.driveEmail && !driveFolderId) return 'driveFolderRequired'
     }
   },

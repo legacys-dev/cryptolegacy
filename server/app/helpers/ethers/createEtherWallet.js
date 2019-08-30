@@ -1,4 +1,4 @@
-import {ethers} from 'ethers'
+import { ethers } from 'ethers'
 import isEmpty from 'lodash/isEmpty'
 
 // DONT TOUCH THIS CODE
@@ -17,8 +17,8 @@ export default async function(passphrase) {
     throw new Error('Error creating credentials with ethers')
   }
 
-  const {privateKey, publicKey, compressedPublicKey} = wallet.signingKey.keyPair
-  const {address} = wallet.signingKey
+  const { privateKey, publicKey, compressedPublicKey } = wallet.signingKey.keyPair
+  const { address } = wallet.signingKey
 
   const copyPrivateKey = copyWallet.signingKey.keyPair.privateKey
   const copyPublicKey = copyWallet.signingKey.keyPair.publicKey

@@ -1,8 +1,8 @@
-import {resolver, PermissionsError} from '@orion-js/app'
+import { resolver, PermissionsError } from '@orion-js/app'
 import Vaults from 'app/collections/Vaults'
 import VaultPolicies from 'app/collections/VaultPolicies'
 import createActivity from 'app/resolvers/Activities/createActivity'
-import {slugify} from 'app/helpers/parts'
+import { slugify } from 'app/helpers/parts'
 import isEmpty from 'lodash/isEmpty'
 
 export default resolver({
@@ -19,9 +19,9 @@ export default resolver({
   vaultOwner: true,
   requireLogin: true,
   checkVaultName: true,
-  async resolve({vaultId, name}, viewer) {
+  async resolve({ vaultId, name }, viewer) {
     const vault = await Vaults.findOne(vaultId)
-    const vaultPolicies = await VaultPolicies.findOne({userId: viewer.userId, vaultId})
+    const vaultPolicies = await VaultPolicies.findOne({ userId: viewer.userId, vaultId })
 
     if (isEmpty(vault)) throw new Error('Vault not found')
     if (isEmpty(vaultPolicies)) throw new Error('User vault not found')
@@ -41,7 +41,7 @@ export default resolver({
       status: 'finished'
     }
 
-    vault.update({$set: {name, searchSlug: slugify(name)}}) // await not necessary
+    vault.update({ $set: { name, searchSlug: slugify(name) } }) // await not necessary
 
     createActivity(activityTypeParams, viewer) // await not necessary
 

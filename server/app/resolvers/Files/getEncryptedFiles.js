@@ -1,7 +1,7 @@
-import {resolver} from '@orion-js/app'
-import {metaDataEncryptWithPassword as encrypt} from 'app/helpers/crypto'
+import { resolver } from '@orion-js/app'
+import { metaDataEncryptWithPassword as encrypt } from 'app/helpers/crypto'
 import VaultPolicies from 'app/collections/VaultPolicies'
-import {getVaultsIds} from 'app/helpers/vaults'
+import { getVaultsIds } from 'app/helpers/vaults'
 import Files from 'app/collections/Files'
 import Users from 'app/collections/Users'
 import isEmpty from 'lodash/isEmpty'
@@ -19,12 +19,12 @@ export default resolver({
   },
   returns: 'blackbox',
   requireLogin: true,
-  async resolve({vaultId, deletedFiles}, viewer) {
+  async resolve({ vaultId, deletedFiles }, viewer) {
     const files = {
       $or: [
-        {'s3Data.status': 'uploaded'},
-        {'b2Data.status': 'uploaded'},
-        {'glacierData.status': 'uploaded'}
+        { 's3Data.status': 'uploaded' },
+        { 'b2Data.status': 'uploaded' },
+        { 'glacierData.status': 'uploaded' }
       ]
     }
 
@@ -38,25 +38,25 @@ export default resolver({
 
       const vaultsId = getVaultsIds(userVaultsPolicies)
 
-      typeQuery = {vaultId: {$in: vaultsId}, status: 'inTrash'}
+      typeQuery = { vaultId: { $in: vaultsId }, status: 'inTrash' }
     } else {
-      typeQuery = {vaultId, status: 'active'}
+      typeQuery = { vaultId, status: 'active' }
     }
 
-    const query = {...files, ...typeQuery}
+    const query = { ...files, ...typeQuery }
 
     const items = await Files.find(query)
-      .sort({createdAt: -1})
+      .sort({ createdAt: -1 })
       .toArray()
 
-    if (isEmpty(items)) return {items: null}
+    if (isEmpty(items)) return { items: null }
 
     const filesData = items.map(item => item.data())
 
     const itemToEncrypt = await Promise.all(filesData)
-    const user = await Users.findOne({_id: viewer.userId})
+    const user = await Users.findOne({ _id: viewer.userId })
     const cipherPassword = user.communicationPassword
 
-    return {items: encrypt({itemToEncrypt, cipherPassword})}
+    return { items: encrypt({ itemToEncrypt, cipherPassword }) }
   }
 })

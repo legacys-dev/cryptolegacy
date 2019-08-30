@@ -1,7 +1,7 @@
-import React, {Suspense} from 'react'
+import React, { Suspense } from 'react'
 import Loading from './Loading'
 
-const SuspenseLoading = ({children}) => {
+const SuspenseLoading = ({ children }) => {
   return <Suspense fallback={<Loading />}>{children}</Suspense>
 }
 

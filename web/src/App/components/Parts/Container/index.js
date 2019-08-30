@@ -6,7 +6,7 @@ Container.defaultProps = {
   size: 'big' // {fullWith, big, medium, small}
 }
 
-export default function Container({className, size, children}) {
+export default function Container({ className, size, children }) {
   const getClassName = () => {
     return `${styles.os_container} ${sizes[size]}`
   }

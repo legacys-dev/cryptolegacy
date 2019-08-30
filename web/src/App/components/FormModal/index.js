@@ -29,7 +29,7 @@ export default class FormModal extends React.Component {
 
   @autobind
   async submit() {
-    const {error} = await this.form.submit()
+    const { error } = await this.form.submit()
     return !error
   }
 

@@ -1,4 +1,4 @@
-import {createEtherWallet} from 'app/helpers/ethers'
+import { createEtherWallet } from 'app/helpers/ethers'
 
 // DONT TOUCH THIS CODE
 export default async function(heirCode) {

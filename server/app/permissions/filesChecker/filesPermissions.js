@@ -1,9 +1,9 @@
-import {PermissionsError} from '@orion-js/app'
+import { PermissionsError } from '@orion-js/app'
 import Files from 'app/collections/Files'
 import isEmpty from 'lodash/isEmpty'
 import VaultPolicies from 'app/collections/VaultPolicies'
 
-export default async function({fileId, viewer}) {
+export default async function({ fileId, viewer }) {
   const file = await Files.findOne(fileId)
 
   const vaultCredential = await VaultPolicies.findOne({
@@ -12,6 +12,6 @@ export default async function({fileId, viewer}) {
   })
 
   if (isEmpty(vaultCredential)) {
-    throw new PermissionsError('unauthorized', {message: 'Unauthorized file access'})
+    throw new PermissionsError('unauthorized', { message: 'Unauthorized file access' })
   }
 }

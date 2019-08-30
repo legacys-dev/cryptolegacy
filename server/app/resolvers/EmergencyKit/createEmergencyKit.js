@@ -1,5 +1,5 @@
-import {resolver, generateId} from '@orion-js/app'
-import {publicEncrypt as encryptMessage} from 'app/helpers/crypto'
+import { resolver, generateId } from '@orion-js/app'
+import { publicEncrypt as encryptMessage } from 'app/helpers/crypto'
 import EmergencyKits from 'app/collections/EmergencyKits'
 
 export default resolver({
@@ -18,18 +18,18 @@ export default resolver({
     }
   },
   returns: String,
-  async resolve({userId, userMasterKey, email, userMessageKeys}, viewer) {
+  async resolve({ userId, userMasterKey, email, userMessageKeys }, viewer) {
     const _id = generateId(201)
-    const toEncrypt = {userId, userMasterKey, email, createdAt: new Date()}
-    const {publicKey} = userMessageKeys
+    const toEncrypt = { userId, userMasterKey, email, createdAt: new Date() }
+    const { publicKey } = userMessageKeys
 
     try {
-      const encrypted = await encryptMessage({publicKey, toEncrypt})
-      await EmergencyKits.insert({_id, userId, encrypted})
+      const encrypted = await encryptMessage({ publicKey, toEncrypt })
+      await EmergencyKits.insert({ _id, userId, encrypted })
     } catch (error) {
       console.log('Error:', error)
     }
 
-    return {emergencyKitId: _id}
+    return { emergencyKitId: _id }
   }
 })

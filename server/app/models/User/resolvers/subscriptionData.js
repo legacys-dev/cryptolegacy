@@ -1,5 +1,5 @@
-import {resolver} from '@orion-js/app'
-import {getSubscription} from 'app/helpers/qvo'
+import { resolver } from '@orion-js/app'
+import { getSubscription } from 'app/helpers/qvo'
 
 export default resolver({
   params: {},

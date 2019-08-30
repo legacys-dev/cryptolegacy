@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Seats from 'app/collections/Seats'
 
 export default resolver({
@@ -14,8 +14,8 @@ export default resolver({
   mutation: true,
   private: true,
   requireLogin: true,
-  async resolve({ownerId, subscriptionId}, viewer) {
-    await Seats.insert({ownerId, subscriptionId})
+  async resolve({ ownerId, subscriptionId }, viewer) {
+    await Seats.insert({ ownerId, subscriptionId })
     return true
   }
 })

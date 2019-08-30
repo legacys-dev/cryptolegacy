@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './styles.module.css'
 import options from './options'
-import {Link} from 'react-router-dom'
-import {getRoutePath} from 'App/helpers/routes'
+import { Link } from 'react-router-dom'
+import { getRoutePath } from 'App/helpers/routes'
 import classNames from 'classnames'
 
 const MenuOptions = () => {

@@ -1,4 +1,4 @@
-import {Upload, Download, Trash, AddVault, Update} from 'App/components/Parts/Icons'
+import { Upload, Download, Trash, AddVault, Update } from 'App/components/Parts/Icons'
 
 export default {
   uploadFile: Upload,

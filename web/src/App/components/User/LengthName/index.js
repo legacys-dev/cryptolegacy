@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 import classnames from 'classnames'
 
-const Length = ({name, length, subString}) => {
+const Length = ({ name, length, subString }) => {
   const lengthAccepted = length || 22
   const stringCut = subString || 22
   const acceptedName = name.length > lengthAccepted ? name.substring(0, stringCut) + '... ' : name

@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import styles from './styles.module.css'
 import Manager from './Manager'
-import {MdFileUpload} from 'react-icons/md/'
+import { MdFileUpload } from 'react-icons/md/'
 import Button from 'App/components/Parts/Button'
 import translate from 'App/i18n/translate'
 
-const FileManager = ({value, label, errorMessage}) => {
+const FileManager = ({ value, label, errorMessage }) => {
   const [open, setOpen] = useState(false)
 
   const renderValue = () => {

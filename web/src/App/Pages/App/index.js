@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Route, Switch, Redirect} from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import forceLogin from 'App/helpers/auth/forceLogin'
 import InactivityTimer from 'App/components/InactivityTimer'
 import Actions from './Actions'

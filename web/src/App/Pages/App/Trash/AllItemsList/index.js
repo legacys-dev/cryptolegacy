@@ -23,7 +23,7 @@ import Header from 'App/components/Parts/Header'
       }
     }
   `,
-  {loading: <Loading />}
+  { loading: <Loading /> }
 )
 @withMessage
 export default class AllItemsList extends React.Component {
@@ -36,17 +36,17 @@ export default class AllItemsList extends React.Component {
 
   @autobind
   onQueryItems(filesCount) {
-    this.setState({filesCount})
+    this.setState({ filesCount })
   }
 
   @autobind
   onDeleteSuccess() {
-    this.setState({emptyTrashDate: new Date()})
+    this.setState({ emptyTrashDate: new Date() })
     this.props.showMessage(translate('app.deleteFileMessage'))
   }
 
   onFilterChange(searchValue) {
-    this.setState({searchValue})
+    this.setState({ searchValue })
   }
 
   renderSearch() {
@@ -73,7 +73,7 @@ export default class AllItemsList extends React.Component {
   }
 
   render() {
-    const {searchValue, emptyTrashDate, filesCount} = this.state
+    const { searchValue, emptyTrashDate, filesCount } = this.state
     return (
       <div className={styles.container}>
         <Header

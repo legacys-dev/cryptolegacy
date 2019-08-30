@@ -1,9 +1,9 @@
-import {resolver} from '@orion-js/app'
-import {metaDataEncryptWithPassword as encrypt} from 'app/helpers/crypto'
+import { resolver } from '@orion-js/app'
+import { metaDataEncryptWithPassword as encrypt } from 'app/helpers/crypto'
 import VaultPolicies from 'app/collections/VaultPolicies'
 import Vaults from 'app/collections/Vaults'
 import Users from 'app/collections/Users'
-import {getVaultsIds} from 'app/helpers/vaults'
+import { getVaultsIds } from 'app/helpers/vaults'
 import isEmpty from 'lodash/isEmpty'
 
 export default resolver({
@@ -13,7 +13,7 @@ export default resolver({
     }
   },
   returns: 'blackbox',
-  async resolve({credentialType}, viewer) {
+  async resolve({ credentialType }, viewer) {
     const userVaultsPolicies = await VaultPolicies.find({
       userId: viewer.userId,
       credentialType
@@ -21,16 +21,16 @@ export default resolver({
 
     const vaultsId = getVaultsIds(userVaultsPolicies)
 
-    const vaults = await Vaults.find({_id: {$in: vaultsId}}).toArray()
+    const vaults = await Vaults.find({ _id: { $in: vaultsId } }).toArray()
 
-    if (isEmpty(vaults)) return {items: null}
+    if (isEmpty(vaults)) return { items: null }
 
     const vaultsData = vaults.map(vault => vault.data())
 
     const itemToEncrypt = await Promise.all(vaultsData)
-    const user = await Users.findOne({_id: viewer.userId})
+    const user = await Users.findOne({ _id: viewer.userId })
     const cipherPassword = user.communicationPassword
 
-    return {items: encrypt({itemToEncrypt, cipherPassword})}
+    return { items: encrypt({ itemToEncrypt, cipherPassword }) }
   }
 })

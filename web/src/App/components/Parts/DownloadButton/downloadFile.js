@@ -1,5 +1,5 @@
-import {archiveDecryptWithPassword} from 'App/helpers/crypto'
-import {generateArchiveIv} from 'App/helpers/keys'
+import { archiveDecryptWithPassword } from 'App/helpers/crypto'
+import { generateArchiveIv } from 'App/helpers/keys'
 
 async function download(url, name, opts, fileId, _global) {
   const xhr = new XMLHttpRequest()
@@ -58,7 +58,7 @@ async function saveAs(blob, name, opts, fileId, _global) {
   }
 }
 
-export default async ({fileId, downloadUrl, fileName, downloadProgress}) => {
+export default async ({ fileId, downloadUrl, fileName, downloadProgress }) => {
   const _global =
     typeof window === 'object' && window.window === window
       ? window

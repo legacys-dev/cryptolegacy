@@ -5,5 +5,5 @@ export default function(fileSize) {
 
   while (fileSize / partSize > b2Max) partSize = Math.pow(2, (n += 1))
 
-  return {partSize, fileSize}
+  return { partSize, fileSize }
 }

@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Seats from 'app/collections/Seats'
 
 export default resolver({
@@ -11,8 +11,8 @@ export default resolver({
   mutation: true,
   private: true,
   requireLogin: true,
-  async resolve({seatId}, viewer) {
-    const seat = await Seats.findOne({_id: seatId})
+  async resolve({ seatId }, viewer) {
+    const seat = await Seats.findOne({ _id: seatId })
 
     if (!seat) throw new Error('Error deleting seat')
 

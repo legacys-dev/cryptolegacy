@@ -1,25 +1,25 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Files from 'app/collections/Files'
-import {planStorage} from 'app/helpers/plan'
+import { planStorage } from 'app/helpers/plan'
 import VaultPolicies from 'app/collections/VaultPolicies'
 import Users from 'app/collections/Users'
-import {getVaultsIds} from 'app/helpers/vaults'
+import { getVaultsIds } from 'app/helpers/vaults'
 
 export default resolver({
   params: {},
   returns: 'blackbox',
   requireLogin: true,
   async resolve(params, viewer) {
-    const user = await Users.findOne({_id: viewer.userId})
-    const userVaultsPolicies = await VaultPolicies.find({userId: viewer.userId}).toArray()
+    const user = await Users.findOne({ _id: viewer.userId })
+    const userVaultsPolicies = await VaultPolicies.find({ userId: viewer.userId }).toArray()
 
     const vaultsId = getVaultsIds(userVaultsPolicies)
 
     const acceptedStatusForStorage = ['active', 'inTrash']
 
     const files = await Files.find({
-      vaultId: {$in: vaultsId},
-      status: {$in: acceptedStatusForStorage}
+      vaultId: { $in: vaultsId },
+      status: { $in: acceptedStatusForStorage }
     }).toArray()
 
     const userPlan = user.plan || 'free'

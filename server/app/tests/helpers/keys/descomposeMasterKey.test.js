@@ -1,10 +1,10 @@
-import {generateId} from '@orion-js/app'
-import {createMasterKey, decomposeMasterKey} from 'app/helpers/keys'
+import { generateId } from '@orion-js/app'
+import { createMasterKey, decomposeMasterKey } from 'app/helpers/keys'
 
 it('Should descompose master key items pass content type', () => {
   const masterKey = '3:QM4WC5Q5-SCLZQRIGDY-HSSJYJ2D:1'
   const userId = generateId(11)
-  const result = decomposeMasterKey({masterKey, userId})
+  const result = decomposeMasterKey({ masterKey, userId })
 
   expect(result).toEqual({
     sInterval: 3,
@@ -17,11 +17,11 @@ it('Should descompose master key items pass content type', () => {
 })
 
 it('Should descompose master key items pass type test', () => {
-  const {original} = createMasterKey()
+  const { original } = createMasterKey()
   const userId = generateId(11)
 
-  const result = decomposeMasterKey({masterKey: original, userId})
-  const {sInterval, iInterval, initial, central, latest, secret} = result
+  const result = decomposeMasterKey({ masterKey: original, userId })
+  const { sInterval, iInterval, initial, central, latest, secret } = result
 
   expect(typeof result).toBe('object')
   expect(typeof sInterval).toBe('number')

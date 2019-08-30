@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import Header from 'App/components/Parts/Header'
 import Text from 'App/components/fields/Text'
@@ -17,15 +17,15 @@ export default class List extends React.Component {
     history: PropTypes.object
   }
 
-  state = {status: 'waiting'}
+  state = { status: 'waiting' }
 
   onFilterChange(searchValue) {
-    this.setState({searchValue})
+    this.setState({ searchValue })
   }
 
   @autobind
   setStatus(status) {
-    this.setState({status})
+    this.setState({ status })
   }
 
   renderSearch() {

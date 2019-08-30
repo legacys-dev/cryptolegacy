@@ -1,5 +1,5 @@
-import {resolver} from '@orion-js/app'
-import {getCard} from 'app/helpers/qvo'
+import { resolver } from '@orion-js/app'
+import { getCard } from 'app/helpers/qvo'
 
 export default resolver({
   params: {},
@@ -7,7 +7,7 @@ export default resolver({
   async resolve(user, params, viewer) {
     if (!user.qvo.cardId) return {}
 
-    const {customerId, cardId} = user.qvo
+    const { customerId, cardId } = user.qvo
     const card = await getCard(customerId, cardId)
 
     return {

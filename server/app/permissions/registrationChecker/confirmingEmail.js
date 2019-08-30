@@ -1,20 +1,20 @@
 import Registrations from 'app/collections/Registrations'
 import isEmpty from 'lodash/isEmpty'
-import {DateTime} from 'luxon'
+import { DateTime } from 'luxon'
 import bcrypt from 'bcryptjs'
 
-export default async function({viewer, code, token}) {
+export default async function({ viewer, code, token }) {
   if (!code) throw new Error('Verification code required')
 
   if (!token) throw new Error('Verification token required')
 
   const limitTime = DateTime.local()
-    .minus({minutes: 4})
+    .minus({ minutes: 4 })
     .toJSDate()
 
   const registration = await Registrations.findOne({
     'confirmEmail.token': token,
-    'confirmEmail.date': {$gte: limitTime}
+    'confirmEmail.date': { $gte: limitTime }
   })
 
   if (isEmpty(registration)) {

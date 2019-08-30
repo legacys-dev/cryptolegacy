@@ -6,7 +6,7 @@ const checkVersion = async function() {
   const path = '/waves-current-version.json'
   try {
     const response = await fetch(path)
-    const {version} = await response.json()
+    const { version } = await response.json()
     saveVersion(version)
   } catch (e) {
     // saveVersion(3)

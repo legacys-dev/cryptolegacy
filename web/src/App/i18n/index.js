@@ -8,6 +8,6 @@ export default function Translate(props) {
   const locale = useLocale()
   const params = omit(props, 'tr')
   const translation = translate(props.tr, params, locale)
-  if (props.html) return <span dangerouslySetInnerHTML={{__html: translation}} />
+  if (props.html) return <span dangerouslySetInnerHTML={{ __html: translation }} />
   return translation
 }

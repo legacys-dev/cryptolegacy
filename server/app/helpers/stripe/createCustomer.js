@@ -13,7 +13,7 @@ export default async function(user) {
     console.log(error)
   }
 
-  await user.update({$set: {stripeCustomerId: customer.id}})
+  await user.update({ $set: { stripeCustomerId: customer.id } })
 
   return customer.id
 }

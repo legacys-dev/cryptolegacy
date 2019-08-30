@@ -7,9 +7,9 @@ import withValidToken from 'App/helpers/registerTokens/withValidToken'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import autobind from 'autobind-decorator'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import translate from 'App/i18n/translate'
-import {Field} from 'simple-react-form'
+import { Field } from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 
 @withRouter
@@ -37,13 +37,13 @@ export default class VerifyEmail extends React.Component {
   }
 
   @autobind
-  onChange({code}) {
-    this.setState({code})
+  onChange({ code }) {
+    this.setState({ code })
   }
 
   render() {
-    const {params} = this.props.match
-    const {code} = this.state
+    const { params } = this.props.match
+    const { code } = this.state
     return (
       <div className={styles.container}>
         <AutoForm
@@ -51,9 +51,8 @@ export default class VerifyEmail extends React.Component {
           onChange={this.onChange}
           onSuccess={this.onSuccess}
           ref="form"
-          doc={{token: params.token}}
-          onError={this.onError}
-        >
+          doc={{ token: params.token }}
+          onError={this.onError}>
           <Field
             fieldName="code"
             type={Text}

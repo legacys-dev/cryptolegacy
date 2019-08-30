@@ -6,7 +6,7 @@ import NoItemsFound from 'App/components/Parts/NoItemsFound'
 import Pagination from 'App/components/Parts/Pagination'
 import Loading from 'App/components/Parts/Loading'
 import heritagesQuery from './heritagesQuery'
-import {withApollo} from 'react-apollo'
+import { withApollo } from 'react-apollo'
 import isEmpty from 'lodash/isEmpty'
 import Items from './Items'
 
@@ -26,7 +26,7 @@ export default class Main extends React.Component {
 
   @autobind
   onDeleteItem(onDeletedItem) {
-    this.setState({onDeletedItem})
+    this.setState({ onDeletedItem })
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -36,13 +36,13 @@ export default class Main extends React.Component {
 
   @autobind
   async search(page = 1) {
-    const {vaultId, filter, client} = this.props
+    const { vaultId, filter, client } = this.props
     const result = await client.query({
       query: heritagesQuery,
-      variables: {vaultId, filter, page, limit: 6},
+      variables: { vaultId, filter, page, limit: 6 },
       fetchPolicy: 'network-only'
     })
-    const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.vaultPolicies
+    const { items, totalPages, hasNextPage, hasPreviousPage } = result.data.vaultPolicies
     this.setState({
       items,
       currentPage: page,
@@ -53,7 +53,7 @@ export default class Main extends React.Component {
   }
 
   renderItems() {
-    const {items, currentPage, totalPages, hasNextPage, hasPreviousPage} = this.state
+    const { items, currentPage, totalPages, hasNextPage, hasPreviousPage } = this.state
     return (
       <div className={styles.container}>
         <Items items={items} onDeleteItem={this.onDeleteItem} />

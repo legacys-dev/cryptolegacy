@@ -2,9 +2,9 @@ import React from 'react'
 import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
 import setReceptor from './setReceptor'
 
-export default async function({registerData}) {
-  const {email, name, lastName} = registerData.userInformation
-  const {verifyCode} = registerData
+export default async function({ registerData }) {
+  const { email, name, lastName } = registerData.userInformation
+  const { verifyCode } = registerData
 
   const emailContent = (
     <div>

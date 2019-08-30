@@ -1,6 +1,6 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Users from 'app/collections/Users'
-import {enrollCard} from 'app/helpers/qvo'
+import { enrollCard } from 'app/helpers/qvo'
 
 export default resolver({
   params: {},
@@ -14,7 +14,7 @@ export default resolver({
       ? 'https://beta.cryptolegacy.io'
       : 'production url'
 
-    const user = await Users.findOne({_id: viewer.userId})
+    const user = await Users.findOne({ _id: viewer.userId })
     const result = await enrollCard(
       user.qvo.customerId,
       `${url}/enroll/creditCard/${user.qvo.customerId}`

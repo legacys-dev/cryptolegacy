@@ -1,4 +1,4 @@
-import {metaDataDecryptWithPassword as decrypt} from 'App/helpers/crypto'
+import { metaDataDecryptWithPassword as decrypt } from 'App/helpers/crypto'
 
 export default async (client, match, filesQuery) => {
   const encrypted = await client.query({
@@ -7,7 +7,7 @@ export default async (client, match, filesQuery) => {
     fetchPolicy: 'network-only'
   })
 
-  const {getEncryptedFiles} = encrypted.data
+  const { getEncryptedFiles } = encrypted.data
 
   if (!getEncryptedFiles.items) return []
 
