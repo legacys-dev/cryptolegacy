@@ -2,16 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
-import { Field } from 'simple-react-form'
+import {Field} from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 import Button from 'App/components/Parts/Button'
 import LoggedIn from '../LoggedIn'
-<<<<<<< HEAD
-import Login from '../Login'
 import {Link} from 'react-router-dom'
-=======
-import { Link } from 'react-router-dom'
->>>>>>> 1cef36dda80b7e8d6e7142a7587ddbb01ea47289
 import Title from 'App/components/Auth/Title'
 import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
@@ -36,7 +31,7 @@ export default class ForgotPassword extends React.Component {
     return (
       <div className={styles.link}>
         {translate('auth.ifYouHaveAnAccount')}{' '}
-        <Link to="/login" style={{ color: '#0053b3' }}>
+        <Link to="/login" style={{color: '#0053b3'}}>
           {translate('auth.loginNow')}
         </Link>
       </div>
