@@ -23,7 +23,6 @@ import MutationButton from 'App/components/MutationButton'
         }
         cardData
         name
-        name
       }
     }
   `,

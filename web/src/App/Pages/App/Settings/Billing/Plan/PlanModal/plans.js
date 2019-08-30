@@ -14,6 +14,14 @@ const plans = [
     seatsPrice: '$1.99',
     vaultsNum: '3 Vaults',
     integration: 'Integrations'
+  },
+  {
+    id: 'free',
+    title: 'Gratuito',
+    size: '100 MB',
+    seatsPrice: 'No seats',
+    vaultsNum: '1 Vaults',
+    integration: 'Integrations'
   }
 ]
 
