@@ -1,5 +1,5 @@
-import {route} from '@orion-js/app'
-import {getCustomer} from 'app/helpers/qvo'
+import { route } from '@orion-js/app'
+import { getCustomer } from 'app/helpers/qvo'
 import Users from 'app/collections/Users'
 
 route('/enroll/creditCard/:customerId', async function({
@@ -11,7 +11,7 @@ route('/enroll/creditCard/:customerId', async function({
   response,
   getBody
 }) {
-  const {customerId} = params
+  const { customerId } = params
 
   try {
     const customer = await getCustomer(customerId)
@@ -20,11 +20,11 @@ route('/enroll/creditCard/:customerId', async function({
       throw new Error('Error creating card')
     }
 
-    const user = await Users.findOne({'qvo.customerId': customerId})
-    await user.update({$set: {'qvo.cardId': customer.cards[0].id}})
+    const user = await Users.findOne({ 'qvo.customerId': customerId })
+    await user.update({ $set: { 'qvo.cardId': customer.cards[0].id } })
   } catch (error) {
-    console.log({error})
-    return {error: 'Ocurrio un error inscribiendo la tarjeta'}
+    console.log({ error })
+    return { error: 'Ocurrio un error inscribiendo la tarjeta' }
   }
 
   return 'Tarjeta inscrita correctamente, puedes cerrar esta ventana'

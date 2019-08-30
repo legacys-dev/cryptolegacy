@@ -7,5 +7,5 @@ export default function(fileSize) {
 
   const numPartsLeft = Math.ceil(fileSize / partSize)
 
-  return {partSize, numPartsLeft, fileSize}
+  return { partSize, numPartsLeft, fileSize }
 }

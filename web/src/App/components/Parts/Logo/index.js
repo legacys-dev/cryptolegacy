@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // import styles from './styles.css'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 
 @withRouter
 export default class Logo extends React.Component {
@@ -12,7 +12,7 @@ export default class Logo extends React.Component {
   }
 
   render() {
-    const {history, imgName, size} = this.props
+    const { history, imgName, size } = this.props
     const logoStyle = {
       height: size,
       width: 'auto'

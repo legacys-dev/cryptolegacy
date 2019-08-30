@@ -1,4 +1,4 @@
-import {MdSettingsApplications, MdStorage} from 'react-icons/md'
+import { MdSettingsApplications, MdStorage } from 'react-icons/md'
 import translate from 'App/i18n/translate'
 
 export default [

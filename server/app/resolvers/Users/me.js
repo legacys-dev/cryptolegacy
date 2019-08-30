@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Users from 'app/collections/Users'
 import User from 'app/models/User'
 
@@ -7,6 +7,6 @@ export default resolver({
   returns: User,
   mutation: false,
   async resolve(params, viewer) {
-    return await Users.findOne({_id: viewer.userId})
+    return await Users.findOne({ _id: viewer.userId })
   }
 })

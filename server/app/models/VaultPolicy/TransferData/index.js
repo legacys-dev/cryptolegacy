@@ -1,4 +1,4 @@
-import {Model} from '@orion-js/app'
+import { Model } from '@orion-js/app'
 
 export default new Model({
   name: 'TransferData',

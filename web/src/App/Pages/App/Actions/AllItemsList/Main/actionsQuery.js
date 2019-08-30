@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 export default gql`
-  query getEncryptedActivities{
+  query getEncryptedActivities {
     getEncryptedActivities
   }
 `

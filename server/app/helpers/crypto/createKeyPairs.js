@@ -16,7 +16,7 @@ export default function() {
     },
     (error, publicKey, privateKey) => {
       if (error) throw new Error('Error creating keys for user')
-      return {publicKey, privateKey}
+      return { publicKey, privateKey }
     }
   )
 }

@@ -8,7 +8,8 @@ const Warning = () => {
   const envType = getEnv()
   return (
     <div className={styles.message}>
-      <strong style={{color: 'red'}}>{translate('fileManager.warning')}</strong>: {typeMessages[envType]}
+      <strong style={{ color: 'red' }}>{translate('fileManager.warning')}</strong>:{' '}
+      {typeMessages[envType]}
     </div>
   )
 }

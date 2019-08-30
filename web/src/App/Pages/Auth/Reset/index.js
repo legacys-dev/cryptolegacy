@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
-import {Field} from 'simple-react-form'
+import { Field } from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 import Button from 'App/components/Parts/Button'
 import LoggedIn from '../LoggedIn'
 import autobind from 'autobind-decorator'
 import withUserId from 'App/helpers/auth/withUserId'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
-import {setSession} from '@orion-js/graphql-client'
+import { setSession } from '@orion-js/graphql-client'
 import translate from 'App/i18n/translate'
 
 @withUserId
@@ -32,7 +32,7 @@ export default class ResetPassword extends React.Component {
       custom(
         confirm,
         {
-          doc: {password}
+          doc: { password }
         }
       ) {
         if (confirm !== password) {
@@ -53,7 +53,7 @@ export default class ResetPassword extends React.Component {
   }
 
   @autobind
-  onValidationError({token}) {
+  onValidationError({ token }) {
     if (token === 'tokenNotFound') this.props.showMessage(translate('auth.resetLinkExpired'))
   }
 
@@ -77,7 +77,7 @@ export default class ResetPassword extends React.Component {
       <div>
         {translate('auth.resetPassword')}
         <AutoForm
-          doc={{token: this.props.token}}
+          doc={{ token: this.props.token }}
           mutation="resetPassword"
           ref="form"
           schema={this.schema}

@@ -1,8 +1,8 @@
-import {paginatedResolver} from '@orion-js/app'
+import { paginatedResolver } from '@orion-js/app'
 import VaultPolicies from 'app/collections/VaultPolicies'
 import Files from 'app/collections/Files'
 import File from 'app/models/File'
-import {getVaultsIds} from 'app/helpers/vaults'
+import { getVaultsIds } from 'app/helpers/vaults'
 
 export default paginatedResolver({
   returns: File,
@@ -22,12 +22,12 @@ export default paginatedResolver({
   },
   requireLogin: true,
   filesVaultOwner: true,
-  async getCursor({filter, vaultId, deletedFiles}, viewer) {
+  async getCursor({ filter, vaultId, deletedFiles }, viewer) {
     const files = {
       $or: [
-        {'s3Data.status': 'uploaded'},
-        {'b2Data.status': 'uploaded'},
-        {'glacierData.status': 'uploaded'}
+        { 's3Data.status': 'uploaded' },
+        { 'b2Data.status': 'uploaded' },
+        { 'glacierData.status': 'uploaded' }
       ]
     }
 
@@ -40,15 +40,15 @@ export default paginatedResolver({
 
       const vaultsId = getVaultsIds(userVaultsPolicies)
 
-      typeQuery = {vaultId: {$in: vaultsId}, status: 'inTrash'}
+      typeQuery = { vaultId: { $in: vaultsId }, status: 'inTrash' }
     } else {
-      typeQuery = {vaultId, status: 'active'}
+      typeQuery = { vaultId, status: 'active' }
     }
 
-    const query = {...files, ...typeQuery}
+    const query = { ...files, ...typeQuery }
 
-    if (filter) query.searchSlug = {$regex: filter + '.*', $options: 'i'}
+    if (filter) query.searchSlug = { $regex: filter + '.*', $options: 'i' }
 
-    return Files.find(query).sort({createdAt: -1}) // await not necessary
+    return Files.find(query).sort({ createdAt: -1 }) // await not necessary
   }
 })

@@ -6,7 +6,7 @@ import LengthName from 'App/components/User/LengthName'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 import RestoreFile from 'App/components/Parts/RestoreFile'
-import FileIcon, {defaultStyles} from 'react-file-icon'
+import FileIcon, { defaultStyles } from 'react-file-icon'
 import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
 import mime from 'mime-types'
@@ -55,7 +55,7 @@ export default class Items extends React.Component {
               <FileIcon extension={type} size={25} {...defaultStyles[type]} />
             </div>
           </td>
-          <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
+          <td style={{ textAlign: 'left', fontWeigth: 'bold' }}>
             <LengthName name={file.name} />
           </td>
           <td>{type}</td>
@@ -86,13 +86,13 @@ export default class Items extends React.Component {
         <table className={styles.table}>
           <thead>
             <tr>
-              <td style={{width: '5%'}} />
-              <td style={{textAlign: 'left'}}>{translate('app.name')}</td>
+              <td style={{ width: '5%' }} />
+              <td style={{ textAlign: 'left' }}>{translate('app.name')}</td>
               <td>{translate('app.type')}</td>
               <td>{translate('app.weight')}</td>
               <td>{translate('app.storage')}</td>
               <td>{translate('app.vault')}</td>
-              <td style={{width: '5%'}} />
+              <td style={{ width: '5%' }} />
             </tr>
           </thead>
           <tbody>{this.renderTable()}</tbody>

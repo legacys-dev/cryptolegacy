@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Activities from 'app/collections/Activities'
 
 export default resolver({
@@ -13,12 +13,12 @@ export default resolver({
   returns: Boolean,
   mutation: true,
   requireLogin: true,
-  async resolve({activityId, status}, viewer) {
+  async resolve({ activityId, status }, viewer) {
     const activity = await Activities.findOne(activityId)
     if (!activity) return
 
     if (!status) await activity.remove()
-    else await activity.update({$set: {status: 'finished'}})
+    else await activity.update({ $set: { status: 'finished' } })
 
     return true
   }

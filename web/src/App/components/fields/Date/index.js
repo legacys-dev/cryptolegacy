@@ -1,11 +1,20 @@
 import React from 'react'
 import Flatpickr from 'react-flatpickr'
-import {Spanish} from 'flatpickr/dist/l10n/es'
+import { Spanish } from 'flatpickr/dist/l10n/es'
 import moment from 'moment'
 import translate from 'App/i18n/translate'
 import 'flatpickr/dist/themes/material_blue.css'
 
-const Date = ({value, onChange, errorMessage, format, enableTime, locale, label, description}) => {
+const Date = ({
+  value,
+  onChange,
+  errorMessage,
+  format,
+  enableTime,
+  locale,
+  label,
+  description
+}) => {
   const getOptions = () => {
     return {
       locale,

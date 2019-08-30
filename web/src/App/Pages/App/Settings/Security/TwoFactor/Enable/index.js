@@ -5,7 +5,7 @@ import Button from 'App/components/Parts/Button'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withMutation from 'react-apollo-decorators/lib/withMutation'
 import SixDigitInput from 'App/components/fields/SixDigitInput'
-import {Form, Field} from 'simple-react-form'
+import { Form, Field } from 'simple-react-form'
 import autobind from 'autobind-decorator'
 import translate from 'App/i18n/translate'
 import gql from 'graphql-tag'
@@ -39,7 +39,7 @@ export default class Enable extends React.Component {
   @autobind
   async generate() {
     try {
-      const {result} = await this.props.generateTwoFactorSecret()
+      const { result } = await this.props.generateTwoFactorSecret()
       this.props.showMessage(translate('settings.twoFactorNowYouMustConfirm'))
       this.setState(result)
     } catch (error) {
@@ -50,7 +50,7 @@ export default class Enable extends React.Component {
   @autobind
   async activate() {
     try {
-      await this.props.activateTwoFactor({code: this.state.code})
+      await this.props.activateTwoFactor({ code: this.state.code })
       this.props.showMessage(translate('settings.twoFactorEnabled'))
     } catch (error) {
       this.props.showMessage(error)
@@ -61,9 +61,7 @@ export default class Enable extends React.Component {
     if (this.state.base32) return
     return (
       <div>
-        <div>
-          {translate('settings.enableTwoFactor')}
-        </div>
+        <div>{translate('settings.enableTwoFactor')}</div>
         <br />
         <Button onClick={this.generate} primary>
           {translate('global.start')}
@@ -76,9 +74,7 @@ export default class Enable extends React.Component {
     if (!this.state.base32) return
     return (
       <div>
-        <p className={styles.instructionStep}>'
-          {translate('settings.twoFactorStep1')}
-        </p>
+        <p className={styles.instructionStep}>{translate('settings.twoFactorStep1')}</p>
         <div>
           <a
             href="https://play.google.com/store/apps/details?id=com.authy.authy&hl=es"
@@ -101,25 +97,19 @@ export default class Enable extends React.Component {
             />
           </a>
         </div>
-        <p className={styles.instructionStep}>
-          {translate('settings.twoFactorStep2')}
-        </p>
-        <div style={{width: 250}} dangerouslySetInnerHTML={{__html: this.state.qrCode}} />
+        <p className={styles.instructionStep}>{translate('settings.twoFactorStep2')}</p>
+        <div style={{ width: 250 }} dangerouslySetInnerHTML={{ __html: this.state.qrCode }} />
         <p className={styles.addManually}>
           {translate('settings.twoFactorOrManuallyAddTheCode')}
           <code className={styles.addManuallyPre}>{this.state.base32}</code>
         </p>
         <br />
-        <p className={styles.instructionStep}>
-          {translate('settings.twoFactorStep3')}
-        </p>
+        <p className={styles.instructionStep}>{translate('settings.twoFactorStep3')}</p>
         <Form state={this.state} onChange={changes => this.setState(changes)}>
           <Field fieldName="code" type={SixDigitInput} />
         </Form>
         <br />
-        <Button onClick={this.activate}>
-          {translate('global.confirm')}
-        </Button>
+        <Button onClick={this.activate}>{translate('global.confirm')}</Button>
       </div>
     )
   }

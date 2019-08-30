@@ -1,4 +1,4 @@
-import {Collection} from '@orion-js/app'
+import { Collection } from '@orion-js/app'
 import DownloadRequest from 'app/models/DownloadRequest'
 
 export default new Collection({

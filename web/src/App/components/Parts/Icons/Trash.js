@@ -28,7 +28,7 @@ PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iNTEyIiB2aWV3Qm94
   }
 
   render() {
-    const {size, active} = this.props
+    const { size, active } = this.props
     const logoStyle = {
       height: size || 20,
       width: 'auto',

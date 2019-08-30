@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 import MutationButton from 'App/components/MutationButton'
 import translate from 'App/i18n/translate'
 
-const DeleteFile = ({vaultPolicyId, vaultId, onDeleteSuccess}) => {
+const DeleteFile = ({ vaultPolicyId, vaultId, onDeleteSuccess }) => {
   return (
     <div className={styles.container}>
       <MutationButton
@@ -12,7 +12,7 @@ const DeleteFile = ({vaultPolicyId, vaultId, onDeleteSuccess}) => {
         confirmText={translate('deleteHeritages.delete')}
         mutation="deleteHeritage"
         danger
-        params={{vaultPolicyId, vaultId}}
+        params={{ vaultPolicyId, vaultId }}
         onSuccess={() => onDeleteSuccess()}>
         <div className={styles.delete}>{translate('deleteHeritages.delete')}</div>
       </MutationButton>

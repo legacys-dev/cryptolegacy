@@ -1,9 +1,9 @@
-import {privateDecrypt as decryptMessage, userDataEncryptWithPassword} from 'app/helpers/crypto'
-import {createEtherWallet} from 'app/helpers/ethers'
+import { privateDecrypt as decryptMessage, userDataEncryptWithPassword } from 'app/helpers/crypto'
+import { createEtherWallet } from 'app/helpers/ethers'
 
 // DONT TOUCH THIS CODE
-export default async function({credentials, privateKey, vaultId, userId}) {
-  const {mainCipherPassword, mainUserV, mainIv} = decryptMessage({
+export default async function({ credentials, privateKey, vaultId, userId }) {
+  const { mainCipherPassword, mainUserV, mainIv } = decryptMessage({
     toDecrypt: credentials,
     privateKey
   })

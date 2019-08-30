@@ -26,7 +26,7 @@ export default class AllItemsList extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-        <Header title={translate('app.actions')}/>
+        <Header title={translate('app.actions')} />
         <Main />
       </div>
     )

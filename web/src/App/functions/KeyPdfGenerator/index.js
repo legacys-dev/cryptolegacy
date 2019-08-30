@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './styles.module.css'
-import {PDFViewer, Document} from '@react-pdf/renderer'
+import { PDFViewer, Document } from '@react-pdf/renderer'
 import Resume from './Resume'
 import translate from 'App/i18n/translate'
-const KeyPdfGenerator = ({userData}) => {
+const KeyPdfGenerator = ({ userData }) => {
   return (
     <div className={styles.container}>
       <PDFViewer className={styles.viewer}>

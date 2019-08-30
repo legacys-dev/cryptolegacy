@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 import LengthName from 'App/components/User/LengthName'
 import translate from 'App/i18n/translate'
 
-const Action = ({actions}) => {
+const Action = ({ actions }) => {
   const renderLargeMessage = (firstText, firstName, secondText, secondName) => {
     return (
       <div className={styles.message}>
@@ -30,7 +30,7 @@ const Action = ({actions}) => {
     )
   }
 
-  const {action, vaultName, fileName, newVaultName} = actions.data
+  const { action, vaultName, fileName, newVaultName } = actions.data
   if (action.includes('uploadFile')) {
     return renderLargeMessage(
       translate('app.uploadFile'),

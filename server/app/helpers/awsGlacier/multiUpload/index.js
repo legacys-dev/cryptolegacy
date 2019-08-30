@@ -1,13 +1,13 @@
 import AWS from 'aws-sdk'
-import {AWSCredentials} from '../credentials'
+import { AWSCredentials } from '../credentials'
 import getPartSize from './getPartSize'
 
-export default async function({file, archiveDescription}) {
-  const {vaultName} = AWSCredentials
+export default async function({ file, archiveDescription }) {
+  const { vaultName } = AWSCredentials
   const fileContent = file.Body
 
-  let {partSize, numPartsLeft, fileSize} = getPartSize(fileContent.length)
-  const params = {partSize: partSize.toString()}
+  let { partSize, numPartsLeft, fileSize } = getPartSize(fileContent.length)
+  const params = { partSize: partSize.toString() }
 
   const glacier = new AWS.Glacier(AWSCredentials)
   const treeHash = glacier.computeChecksums(fileContent).treeHash
@@ -53,7 +53,7 @@ export default async function({file, archiveDescription}) {
         if (error) reject(error)
         else {
           const delta = (new Date() - startTime) / 1000
-          resolve({completeSeconds: delta, ...data})
+          resolve({ completeSeconds: delta, ...data })
         }
       })
     })

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
@@ -21,7 +21,7 @@ import Main from './Main'
       }
     }
   `,
-  {loading: <Loading />}
+  { loading: <Loading /> }
 )
 @withRouter
 @withMessage
@@ -34,13 +34,13 @@ export default class List extends React.Component {
 
   @autobind
   onSuccess() {
-    const {showMessage, vault, history} = this.props
+    const { showMessage, vault, history } = this.props
     showMessage(translate('vaults.createHeritage'))
     history.push(`/vaults/storage-update/${vault._id}`)
   }
 
   renderButtons() {
-    const {vault, history} = this.props
+    const { vault, history } = this.props
     return (
       <div className={styles.buttons}>
         <Button primary onClick={() => history.push(`/vaults/heritages/${vault._id}/create`)}>
@@ -51,11 +51,11 @@ export default class List extends React.Component {
   }
 
   render() {
-    const {vault} = this.props
+    const { vault } = this.props
     return (
       <div className={styles.container}>
         <Header
-          past={{[`/vaults/storage-update/${vault._id}`]: translate('vaults.heritages')}}
+          past={{ [`/vaults/storage-update/${vault._id}`]: translate('vaults.heritages') }}
           right={this.renderButtons()}
           title={`${translate('vaults.vault')} - ${vault.name}`}
         />

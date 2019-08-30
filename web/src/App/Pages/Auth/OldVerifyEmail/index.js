@@ -7,7 +7,7 @@ import withMutation from 'react-apollo-decorators/lib/withMutation'
 import gql from 'graphql-tag'
 import autobind from 'autobind-decorator'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
-import {setSession} from '@orion-js/graphql-client'
+import { setSession } from '@orion-js/graphql-client'
 
 @withMutation(gql`
   mutation verifyEmail($token: String) {
@@ -37,29 +37,27 @@ export default class VerifyEmail extends React.Component {
   async verify() {
     await sleep(2000)
     try {
-      const {session} = await this.props.verifyEmail({
+      const { session } = await this.props.verifyEmail({
         token: this.props.token
       })
       await setSession(session)
       this.props.onLogin()
     } catch (error) {
       if (error.message.includes('Validation Error')) {
-        this.setState({errorMessage: translate('auth.emailVerficationCodeExpired')})
+        this.setState({ errorMessage: translate('auth.emailVerficationCodeExpired') })
       } else {
-        this.setState({errorMessage: error.message})
+        this.setState({ errorMessage: error.message })
       }
     }
   }
 
   render() {
-    const {errorMessage} = this.state
+    const { errorMessage } = this.state
     if (this.state.errorMessage) return <div className={styles.error}>{errorMessage}</div>
     return (
       <div className={styles.loading}>
         <Loading size={40} />
-        <p>
-          {translate('auth.weAreVerifyingYourEmail')}
-        </p>
+        <p>{translate('auth.weAreVerifyingYourEmail')}</p>
       </div>
     )
   }

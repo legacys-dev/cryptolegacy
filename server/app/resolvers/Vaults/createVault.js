@@ -1,8 +1,8 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Vaults from 'app/collections/Vaults'
 import createActivity from 'app/resolvers/Activities/createActivity'
 import createVaultOwnerPolicy from '../VaultPolicies/createVaultOwnerPolicy'
-import {slugify} from 'app/helpers/parts'
+import { slugify } from 'app/helpers/parts'
 
 export default resolver({
   params: {
@@ -17,7 +17,7 @@ export default resolver({
     driveEmail: {
       type: String,
       optional: true,
-      async custom(driveEmail, {doc}) {
+      async custom(driveEmail, { doc }) {
         if (doc.type !== 'drive') return
         if (!driveEmail) return 'gmailRequired'
         if (!/@gmail\.com$/.test(driveEmail)) return 'gmailStructureRequired'
@@ -32,7 +32,7 @@ export default resolver({
   checkPlan: true,
   requireLogin: true,
   checkVaultName: true,
-  async resolve({name, type, driveEmail, credentials}, viewer) {
+  async resolve({ name, type, driveEmail, credentials }, viewer) {
     const params = {
       name,
       type,
@@ -43,7 +43,7 @@ export default resolver({
     const vaultId = await Vaults.insert(params)
 
     try {
-      await createVaultOwnerPolicy({vaultId, driveEmail, credentials}, viewer)
+      await createVaultOwnerPolicy({ vaultId, driveEmail, credentials }, viewer)
     } catch (error) {
       const vault = await Vaults.findOne(vaultId)
       vault.remove() // await not necessary

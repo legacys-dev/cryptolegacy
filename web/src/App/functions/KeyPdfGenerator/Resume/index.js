@@ -1,10 +1,10 @@
 import React from 'react'
 import moment from 'moment'
-import {Body, Header, Title, Images, Logo, Picture, Paragraph, Code} from './pdfItems'
+import { Body, Header, Title, Images, Logo, Picture, Paragraph, Code } from './pdfItems'
 import translate from 'App/i18n/translate'
 
-const Resume = ({userData}) => {
-  const {userName, userLastName, userMasterKey, createdAt} = userData
+const Resume = ({ userData }) => {
+  const { userName, userLastName, userMasterKey, createdAt } = userData
   if (!userMasterKey) return <span />
   return (
     <Body wrap size="B6">

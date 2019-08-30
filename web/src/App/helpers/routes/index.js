@@ -1,3 +1,3 @@
 import getRoutePath from './getRoutePath'
 
-export {getRoutePath}
+export { getRoutePath }

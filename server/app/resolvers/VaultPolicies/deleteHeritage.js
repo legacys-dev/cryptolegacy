@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import VaultPolicies from 'app/collections/VaultPolicies'
 
 export default resolver({
@@ -15,7 +15,7 @@ export default resolver({
   vaultOwner: true,
   vaultPolicyOwner: true,
   requireLogin: true,
-  async resolve({vaultPolicyId, vaultId}, viewer) {
+  async resolve({ vaultPolicyId, vaultId }, viewer) {
     const heritage = await VaultPolicies.findOne({
       _id: vaultPolicyId,
       vaultId,

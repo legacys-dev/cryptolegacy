@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react'
+import React, { useEffect, useRef } from 'react'
 import ReactSelect from 'react-select'
 import isEqual from 'lodash/isEqual'
 import styles from './styles'

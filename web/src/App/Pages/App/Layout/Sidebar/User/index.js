@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import {Configuration} from 'App/components/Parts/Icons'
+import { Configuration } from 'App/components/Parts/Icons'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import withUserId from 'App/helpers/auth/withUserId'
-import {MdExitToApp, MdWork} from 'react-icons/md'
-import {withRouter, Link} from 'react-router-dom'
+import { MdExitToApp, MdWork } from 'react-icons/md'
+import { withRouter, Link } from 'react-router-dom'
 import logout from 'App/helpers/auth/logout'
 import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
@@ -38,7 +38,7 @@ export default class User extends React.Component {
     userId: PropTypes.string
   }
 
-  state = {open: false}
+  state = { open: false }
 
   componentDidMount() {
     window.addEventListener('mouseup', this.closeMenu, false)
@@ -52,11 +52,11 @@ export default class User extends React.Component {
   async closeMenu(event) {
     if (!this.state.open) return true
     await sleep(100)
-    this.setState({open: false})
+    this.setState({ open: false })
   }
 
   toggleMenu = () => {
-    this.setState({open: !this.state.open})
+    this.setState({ open: !this.state.open })
   }
 
   @autobind
@@ -65,7 +65,7 @@ export default class User extends React.Component {
   }
 
   renderAdmin() {
-    const {me} = this.props
+    const { me } = this.props
     if (!me || !me.roles || !me.roles.includes('admin')) return
     return (
       <Link to="/admin">
@@ -78,7 +78,7 @@ export default class User extends React.Component {
     return (
       <div className={style}>
         <div>{icon}</div>
-        <div style={{width: '150px', marginLeft: '60px'}}>{title}</div>
+        <div style={{ width: '150px', marginLeft: '60px' }}>{title}</div>
       </div>
     )
   }

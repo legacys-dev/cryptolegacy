@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.css'
 import Button from 'App/components/Parts/Button'
-import {withApollo} from 'react-apollo'
+import { withApollo } from 'react-apollo'
 import PropTypes from 'prop-types'
 import autobind from 'autobind-decorator'
 import getRegistrationLinkQuery from './getRegistrationLinkQuery'
@@ -22,7 +22,7 @@ export default class Billing extends React.Component {
   @autobind
   async getCardRegisterUrl() {
     try {
-      const {client} = this.props
+      const { client } = this.props
       const result = await client.query({
         query: getRegistrationLinkQuery,
         fetchPolicy: 'network-only'

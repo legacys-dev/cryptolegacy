@@ -1,4 +1,4 @@
-import {putData} from './connections'
+import { putData } from './connections'
 
 export default async (subscriptionId, planId) => {
   try {

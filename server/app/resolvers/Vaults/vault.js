@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Vaults from 'app/collections/Vaults'
 import Vault from 'app/models/Vault'
 
@@ -11,7 +11,7 @@ export default resolver({
   vaultAccess: true,
   requireLogin: true,
   returns: Vault,
-  async resolve({vaultId}, viewer) {
+  async resolve({ vaultId }, viewer) {
     const vault = await Vaults.findOne(vaultId)
     return vault
   }

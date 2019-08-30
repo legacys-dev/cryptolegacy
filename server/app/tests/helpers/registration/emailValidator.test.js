@@ -1,5 +1,5 @@
-import {generateId} from '@orion-js/app'
-import {emailValidator} from 'app/helpers/registration'
+import { generateId } from '@orion-js/app'
+import { emailValidator } from 'app/helpers/registration'
 
 it('Should return true by a valid email', () => {
   const email = (generateId(10) + '@' + generateId(5) + '.sss').toLowerCase()

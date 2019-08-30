@@ -4,4 +4,4 @@ import heritageCreated from './heritageCreated'
 import heritageAvailable from './heritageAvailable'
 import claimedHeritage from './claimedHeritage'
 
-export {verifyEmail, accountCreated, heritageCreated, claimedHeritage, heritageAvailable}
+export { verifyEmail, accountCreated, heritageCreated, claimedHeritage, heritageAvailable }

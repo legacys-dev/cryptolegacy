@@ -1,11 +1,11 @@
 import * as openpgp from 'openpgp'
-import {generateId} from '@orion-js/app'
+import { generateId } from '@orion-js/app'
 
 export default async function() {
   const passphrase = generateId(51)
   const keyOptions = {
     numBits: 2048, // Take some seconds
-    userIds: [{id: passphrase, date: new Date()}],
+    userIds: [{ id: passphrase, date: new Date() }],
     passphrase: passphrase
   }
 
@@ -14,7 +14,7 @@ export default async function() {
       if (key) {
         const privateKey = key.privateKeyArmored
         const publicKey = key.publicKeyArmored
-        resolve({privateKey, publicKey})
+        resolve({ privateKey, publicKey })
       }
     })
   })

@@ -18,14 +18,14 @@ const heritagesTypes = [
   }
 ]
 
-const Options = ({setStatus, status}) => {
+const Options = ({ setStatus, status }) => {
   const options = () => {
     return heritagesTypes.map((heritageType, index) => {
-      const {name, type} = heritageType
+      const { name, type } = heritageType
       return (
         <div key={index}>
           <Button
-            style={{marginLeft: '5px'}}
+            style={{ marginLeft: '5px' }}
             disabled={status === type}
             onClick={() => setStatus(type)}>
             {name}

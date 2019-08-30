@@ -20,23 +20,23 @@ export default class Number extends React.Component {
     description: PropTypes.node
   }
 
-  state = {didMount: false}
+  state = { didMount: false }
 
   static getDerivedStateFromProps(props, state) {
     if (props.value && !state.didMount) {
       const label = isNumber(props.value)
         ? numeral(props.value).format('0,0.[000000000000000000000]')
         : ''
-      return {label, didMount: true}
+      return { label, didMount: true }
     }
     if (state.didMount && state.value !== props.value) {
       if (props.value) {
         const label = isNumber(props.value)
           ? numeral(props.value).format('0,0.[000000000000000000000]')
           : ''
-        return {label, value: props.value}
+        return { label, value: props.value }
       } else {
-        return {label: '', value: props.value}
+        return { label: '', value: props.value }
       }
     }
 
@@ -54,26 +54,26 @@ export default class Number extends React.Component {
   @autobind
   onChange(event) {
     const label = event.target.value
-    const {onChange} = this.props
+    const { onChange } = this.props
 
     if (!label) {
-      this.setState({label: ''})
+      this.setState({ label: '' })
       onChange(null)
       return
     }
     const value = this.unformatValue(label)
     const formatted = this.formatValue(event.target.value)
     if (formatted) {
-      this.setState({label: formatted, value})
+      this.setState({ label: formatted, value })
     } else {
-      this.setState({label, value})
+      this.setState({ label, value })
     }
     onChange(value)
   }
 
   getValue() {
-    const {label} = this.state
-    const {value} = this.props
+    const { label } = this.state
+    const { value } = this.props
 
     if (label) return label
     if (!value) return ''
@@ -84,23 +84,23 @@ export default class Number extends React.Component {
   onBlur(event) {
     if (!event.target.value) return
     const real = this.formatValue(event.target.value)
-    this.setState({label: real})
+    this.setState({ label: real })
   }
 
   @autobind
   onKeyDown(event) {
-    const {value, onChange} = this.props
+    const { value, onChange } = this.props
 
     if (event.keyCode === 8) {
       if (String(value).length <= 1 || value === 0) {
-        this.setState({label: ''})
+        this.setState({ label: '' })
         onChange(null)
       }
     }
   }
 
   render() {
-    const {label, passProps, description, errorMessage} = this.props
+    const { label, passProps, description, errorMessage } = this.props
 
     return (
       <div>

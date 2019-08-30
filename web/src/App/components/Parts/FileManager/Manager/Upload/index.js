@@ -4,14 +4,14 @@ import styles from './styles.css'
 import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withMutation from 'react-apollo-decorators/lib/withMutation'
-import {Line} from 'App/components/Parts/LoadProgress'
+import { Line } from 'App/components/Parts/LoadProgress'
 import getSize from 'App/helpers/files/getSize'
-import {MdCloudUpload} from 'react-icons/md'
+import { MdCloudUpload } from 'react-icons/md'
 import translate from 'App/i18n/translate'
 import awsCredentials from './awsCredentials'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import {privateDecrypt, archiveEncryptWithPassword} from 'App/helpers/crypto'
-import {generateArchiveIv} from 'App/helpers/keys'
+import { privateDecrypt, archiveEncryptWithPassword } from 'App/helpers/crypto'
+import { generateArchiveIv } from 'App/helpers/keys'
 import AWS from 'aws-sdk'
 import Warning from './Warning'
 import gql from 'graphql-tag'
@@ -61,7 +61,7 @@ export default class Upload extends React.Component {
     close: PropTypes.func
   }
 
-  state = {upload: 0}
+  state = { upload: 0 }
 
   @autobind
   async onChange(event) {
@@ -78,25 +78,25 @@ export default class Upload extends React.Component {
       reader.readAsArrayBuffer(fileMetadata)
     })
 
-    this.setState({loading: true})
+    this.setState({ loading: true })
 
     try {
-      const {fileId, key} = await this.createUpload(fileMetadata)
-      await this.uploadFile({key, file, fileId})
-      await this.complete({fileId})
-      this.setState({loading: false})
+      const { fileId, key } = await this.createUpload(fileMetadata)
+      await this.uploadFile({ key, file, fileId })
+      await this.complete({ fileId })
+      this.setState({ loading: false })
     } catch (error) {
       this.props.showMessage(error)
-      this.setState({loading: false})
+      this.setState({ loading: false })
     }
   }
 
   @autobind
   async createUpload(file) {
-    const {vaultId} = this.props
+    const { vaultId } = this.props
     if (!vaultId) return
 
-    const {result} = await this.props.createS3Upload({
+    const { result } = await this.props.createS3Upload({
       name: file.name,
       size: file.size,
       type: mime.lookup(file.name) || 'application/octet-stream',
@@ -113,18 +113,18 @@ export default class Upload extends React.Component {
     const result = Number(((progress.loaded * 100) / progress.total).toFixed(3))
     const loaded = progress.loaded
     const total = progress.total
-    this.props.onUploadProgressChange({progress: result, loaded, total})
+    this.props.onUploadProgressChange({ progress: result, loaded, total })
   }
 
-  async uploadFile({key, file, fileId}) {
+  async uploadFile({ key, file, fileId }) {
     const messages = JSON.parse(localStorage.getItem('messages'))
     const privateKey = messages['privateKey']
     const credentials = privateDecrypt({
       toDecrypt: this.props.getUploadCredentials,
       privateKey: privateKey
     })
-    const {accessKeyId, secretAccessKey, region, bucket} = credentials
-    AWS.config.update({accessKeyId, secretAccessKey, region})
+    const { accessKeyId, secretAccessKey, region, bucket } = credentials
+    AWS.config.update({ accessKeyId, secretAccessKey, region })
     const url = window.location.pathname.split('/').slice(-1)[0]
     const vault = JSON.parse(localStorage.getItem('vault'))
     const cipherPassword = vault[url]
@@ -137,7 +137,7 @@ export default class Upload extends React.Component {
       archiveIv: iv
     })
     const uploadToS3 = new AWS.S3.ManagedUpload({
-      params: {Key: key, Bucket: bucket, Body: encrypted}
+      params: { Key: key, Bucket: bucket, Body: encrypted }
     })
     uploadToS3.send() // Start upload
     if (uploadToS3.failed) return
@@ -154,13 +154,13 @@ export default class Upload extends React.Component {
           resolve(totalProgress)
         })
       })
-      this.props.onUploadProgressChange({progress: result, loaded, total})
+      this.props.onUploadProgressChange({ progress: result, loaded, total })
     }
   }
 
   @autobind
-  async complete({fileId}) {
-    await this.props.completeS3Upload({fileId}, {refetchQueries: ['getFiles']})
+  async complete({ fileId }) {
+    await this.props.completeS3Upload({ fileId }, { refetchQueries: ['getFiles'] })
     this.props.close()
     this.props.showMessage(translate('fileManager.loadFileMessage'))
   }
@@ -190,7 +190,7 @@ export default class Upload extends React.Component {
 
   renderLoading() {
     if (!this.state.loading) return
-    const {progress, loaded, total} = this.props
+    const { progress, loaded, total } = this.props
     return (
       <div>
         <div className={styles.loading}>

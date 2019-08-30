@@ -3,10 +3,10 @@ import styles from './styles.css'
 import PropTypes from 'prop-types'
 import autobind from 'autobind-decorator'
 import Transition from 'react-transition-group/Transition'
-import {Form, Field} from 'simple-react-form'
+import { Form, Field } from 'simple-react-form'
 import SixDigitInput from 'App/components/fields/SixDigitInput'
 import IconButton from 'orionsoft-parts/lib/components/IconButton'
-import {MdClose} from 'react-icons/md'
+import { MdClose } from 'react-icons/md'
 
 let instance = null
 
@@ -35,12 +35,12 @@ export default class Prompt extends React.Component {
   @autobind
   prompt() {
     return new Promise(resolve => {
-      this.setState({resolve, open: true, code: ''})
+      this.setState({ resolve, open: true, code: '' })
     })
   }
 
   clear() {
-    this.setState({resolve: null, open: false})
+    this.setState({ resolve: null, open: false })
   }
 
   @autobind

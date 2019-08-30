@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import Button from 'App/components/Parts/Button'
-import {Line} from 'App/components/Parts/LoadProgress'
+import { Line } from 'App/components/Parts/LoadProgress'
 import forceLogin from 'App/helpers/auth/forceLogin'
-import {Cloud} from 'App/components/Parts/Icons'
+import { Cloud } from 'App/components/Parts/Icons'
 import gql from 'graphql-tag'
 import numeral from 'numeral'
 import translate from 'App/i18n/translate'
@@ -34,7 +34,7 @@ export default class Storage extends React.Component {
   }
 
   render() {
-    const {percentageUsed} = this.props.totalStorageUsed
+    const { percentageUsed } = this.props.totalStorageUsed
     return (
       <div className={styles.container}>
         <div className={styles.content}>

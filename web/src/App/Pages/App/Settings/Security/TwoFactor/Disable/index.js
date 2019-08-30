@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import {MdLock} from 'react-icons/md'
+import { MdLock } from 'react-icons/md'
 import Button from 'App/components/Parts/Button'
 import withMutation from 'react-apollo-decorators/lib/withMutation'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'

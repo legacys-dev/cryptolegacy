@@ -9,8 +9,8 @@ const waitTypes = [
   '1 and 5 minutes'
 ]
 
-export default async function({file}) {
-  const downloadRequest = await DownloadRequests.findOne({fileId: file._id})
+export default async function({ file }) {
+  const downloadRequest = await DownloadRequests.findOne({ fileId: file._id })
 
   const timeStart = new Date(downloadRequest.createdAt).getHours()
   const timeEnd = new Date().getHours()

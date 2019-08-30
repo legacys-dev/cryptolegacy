@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import EmergencyKits from 'app/collections/EmergencyKits'
 
 export default resolver({
@@ -9,10 +9,10 @@ export default resolver({
   },
   returns: Boolean,
   requireLogin: true,
-  async resolve({userId}, viewer) {
+  async resolve({ userId }, viewer) {
     if (userId !== viewer.userId) throw new Error('Unauthorized')
 
-    const keyToDelete = await EmergencyKits.findOne({userId})
+    const keyToDelete = await EmergencyKits.findOne({ userId })
 
     try {
       await keyToDelete.remove()

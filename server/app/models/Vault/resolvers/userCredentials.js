@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import VaultPolicies from 'app/collections/VaultPolicies'
 
 export default resolver({

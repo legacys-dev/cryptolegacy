@@ -8,7 +8,7 @@ export default class ErrorHandler extends React.Component {
 
   static getDerivedStateFromError(error) {
     if (!error.isApolloError) throw error
-    return {error}
+    return { error }
   }
 
   componentDidCatch(error, info) {

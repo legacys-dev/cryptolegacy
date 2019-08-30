@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Button from 'App/components/Parts/Button'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import translate from 'App/i18n/translate'
 
 @withRouter
