@@ -1,18 +1,18 @@
 import { resolver, generateId } from '@orion-js/app'
 import { createSession, hashPassword } from '@orion-js/auth'
 import { createMasterKey, generateUserCipherKeys, decomposeMasterKey } from 'app/helpers/keys'
+import { passwordValidator } from 'app/helpers/registration'
+import { accountCreated } from 'app/helpers/emails'
+import Registrations from 'app/collections/Registrations'
+import createEmergencyKit from 'app/resolvers/EmergencyKit/createEmergencyKit'
+import { createCustomer } from 'app/helpers/qvo'
+import authResolvers from 'app/resolvers/Auth'
+import Users from 'app/collections/Users'
+import isEmpty from 'lodash/isEmpty'
 import {
   userDataEncryptWithPassword,
   createKeyPairs as generateCryptoKeys
 } from 'app/helpers/crypto'
-import { passwordValidator } from 'app/helpers/registration'
-import { accountCreated } from 'app/helpers/emails'
-import Registrations from 'app/collections/Registrations'
-import Users from 'app/collections/Users'
-import createEmergencyKit from 'app/resolvers/EmergencyKit/createEmergencyKit'
-import authResolvers from 'app/resolvers/Auth'
-import isEmpty from 'lodash/isEmpty'
-import { createCustomer } from 'app/helpers/qvo'
 
 export default resolver({
   params: {

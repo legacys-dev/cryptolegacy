@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.css'
 
-export default function Card({data, firstName, lastName}) {
+export default function Card({ data, firstName, lastName }) {
   return (
     <div className={styles.container}>
       <div className={styles.logo}>Asd</div>

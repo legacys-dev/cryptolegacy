@@ -22,11 +22,11 @@ export default class Billing extends React.Component {
   @autobind
   async getCardRegisterUrl() {
     try {
-      const { client } = this.props
-      const result = await client.query({
+      const result = await this.props.client.query({
         query: getRegistrationLinkQuery,
         fetchPolicy: 'network-only'
       })
+
       this.addCreditCard(result.data.result)
     } catch (error) {
       console.log('Error:', error)

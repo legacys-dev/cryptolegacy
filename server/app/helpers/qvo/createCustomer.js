@@ -2,12 +2,12 @@ import { postData } from './connections'
 
 export default async (email, name) => {
   try {
-    return postData('customers', {
+    return await postData('customers', {
       email: email,
       name: name
     })
   } catch (e) {
-    console.log('error: ', e)
+    console.log('erxror: ', e)
     return null
   }
 }

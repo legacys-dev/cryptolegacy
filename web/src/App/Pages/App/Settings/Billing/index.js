@@ -2,14 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import EnrrolCard from './EnrrolCard'
+import MutationButton from 'App/components/MutationButton'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import gql from 'graphql-tag'
-import Section from 'App/components/Section'
-import Plan from './Plan'
-import CreditCard from './CreditCard'
 import Loading from 'App/components/Parts/Loading'
 import Button from 'App/components/Parts/Button'
-import MutationButton from 'App/components/MutationButton'
+import Section from 'App/components/Section'
+import CreditCard from './CreditCard'
+import translate from 'App/i18n/translate'
+import gql from 'graphql-tag'
+import Plan from './Plan'
 
 @withGraphQL(
   gql`
@@ -26,7 +27,7 @@ import MutationButton from 'App/components/MutationButton'
       }
     }
   `,
-  {loading: <Loading />}
+  { loading: <Loading /> }
 )
 export default class Billing extends React.Component {
   static propTypes = {
@@ -57,15 +58,18 @@ export default class Billing extends React.Component {
                 firstName={this.props.me.name}
                 lastName={this.props.me.name}
               />
-               <MutationButton
+              <MutationButton
                 title={'Eliminar tarjeta'}
                 message={'Está seguro de que desea eliminar esta tarjeta?'}
-                params={{userId:this.props.me['_id']}} // Para que funcione. 
+                params={{ userId: this.props.me['_id'] }} // Para que funcione.
                 confirmText={'Eliminar tarjeta'}
                 mutation={'deleteCreditCard'}
                 onSuccess={() => console.log('He eliminado la tarjeta')}>
-                  <Button className={styles.removeCard} danger> Remover tarjeta </Button>
-                </MutationButton>
+                <Button className={styles.removeCard} danger>
+                  {' '}
+                  Remover tarjeta{' '}
+                </Button>
+              </MutationButton>
             </div>
           )}
         </Section>

@@ -12,7 +12,7 @@ import gql from 'graphql-tag'
       getSeats
     }
   `,
-  {loading: <Loading />}
+  { loading: <Loading /> }
 )
 export default class Seats extends React.Component {
   state = {}
@@ -27,11 +27,11 @@ export default class Seats extends React.Component {
             message={'Está seguro de contratar un asiento? '}
             confirmText={'Contratar asiento'}
             mutation="getSeat"
-            params={{data:'asd'}}
+            params={{ data: 'asd' }}
             onSuccess={() => console.log('He contratado el asiento')}
             label="Contratar asiento"
             primary
-            />
+          />
         </Section>
       </div>
     )

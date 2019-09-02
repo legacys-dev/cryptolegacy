@@ -11,7 +11,7 @@ export default class PlanModal extends React.Component {
 
     this.state = {
       modalIsOpen: false,
-      plans:plans
+      plans: plans
     }
 
     this.openModal = this.openModal.bind(this)
@@ -20,22 +20,17 @@ export default class PlanModal extends React.Component {
   }
 
   openModal() {
-    this.setState({modalIsOpen: true})
+    this.setState({ modalIsOpen: true })
   }
 
   closeModal() {
-    this.setState({modalIsOpen: false})
+    this.setState({ modalIsOpen: false })
   }
 
   renderPlanList() {
-    let plans = this.state.plans.filter(
-      (plan, index, arr) => plan.id !== 'free'
-    )
+    let plans = this.state.plans.filter((plan, index, arr) => plan.id !== 'free')
     if (this.props.subscriptionData) {
-      plans = plans.filter(
-        (plan, index, arr) => plan.id !== this.props.subscriptionData.id
-        
-      )
+      plans = plans.filter((plan, index, arr) => plan.id !== this.props.subscriptionData.id)
     }
     return (
       <div className={styles.planListContainer}>
