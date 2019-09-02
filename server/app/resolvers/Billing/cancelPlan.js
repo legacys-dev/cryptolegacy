@@ -3,7 +3,11 @@ import Users from 'app/collections/Users'
 import { cancelSubscription } from 'app/helpers/qvo'
 
 export default resolver({
-  params: {},
+  params: {
+    data: {
+      type: String
+    }
+  },
   returns: Boolean,
   mutation: true,
   requireLogin: true,
@@ -18,7 +22,6 @@ export default resolver({
     } catch (error) {
       console.log('Error:', error)
     }
-
     return true
   }
 })

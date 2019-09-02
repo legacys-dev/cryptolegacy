@@ -1,0 +1,20 @@
+:local(.noData){
+    
+}
+
+:local(.addPlanButton){
+
+}
+:local(.buttonsContainer){
+    display: flex;
+}
+
+:local(.cancelPlan){
+    width: 150px;
+    font-size: 15px;
+    color: #fff;
+    background-color: red;
+    border-radius: 8px;
+    -webkit-transition-property: font-weight, cursor;
+    -webkit-transition-duration: 300ms;
+}

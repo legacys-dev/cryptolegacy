@@ -22,7 +22,6 @@ export default resolver({
     } catch (error) {
       console.log('Error:', error)
     }
-
     return true
   }
 })

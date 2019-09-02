@@ -7,6 +7,7 @@ import Security from './Security'
 import Profile from './Profile'
 import translate from 'App/i18n/translate'
 import Billing from './Billing'
+import Seats from './Seats'
 
 const Layout = ({ children }) => {
   return (
@@ -18,14 +19,16 @@ const Layout = ({ children }) => {
           items={[
             { title: translate('settings.profile'), path: '/settings' },
             { title: translate('settings.security'), path: '/settings/security' },
-            { title: translate('settings.billing'), path: '/settings/billing' }
+            { title: translate('settings.billing'), path: '/settings/billing' },
+            { title: translate('settings.seats'), path: '/settings/seats' }
           ]}
         />
       </div>
       <Switch>
         <Route exact path="/settings" component={Profile} />
         <Route path="/settings/security" component={Security} />
-        <Route path="/settings/Billing" component={Billing} />
+        <Route path="/settings/billing" component={Billing} />
+        <Route path="/settings/seats" component={Seats} />
       </Switch>
     </div>
   )

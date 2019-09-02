@@ -8,12 +8,20 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
   }
 :local(.btnContainer){
-    
+  display: flex;
+  justify-content: center;
 }
 :local(.btnAdd){
   width: fit-content;
   margin: 0 auto;
+}
+:local(.removeCard){
+  display: flex;
+  justify-content: center;
+}
+:local(.divider) {
+  height: 1px;
+  background-color: #eee;
 }
