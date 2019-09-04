@@ -60,6 +60,7 @@ export default class Plan extends React.Component {
               <PlanModal
                 subscriptionId={this.props.subscriptionId}
                 subscriptionData={this.props.getSubscription}
+                cardId={this.props.cardId}
               />
               <MutationButton
                 title={'Cancelar plan'}
