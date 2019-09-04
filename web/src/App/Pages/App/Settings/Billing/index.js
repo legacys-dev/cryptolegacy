@@ -66,8 +66,7 @@ export default class Billing extends React.Component {
                 mutation={'deleteCreditCard'}
                 onSuccess={() => console.log('He eliminado la tarjeta')}>
                 <Button className={styles.removeCard} danger>
-                  {' '}
-                  Remover tarjeta{' '}
+                  Remover tarjeta
                 </Button>
               </MutationButton>
             </div>
@@ -78,7 +77,10 @@ export default class Billing extends React.Component {
           top
           title={translate('settings.plan')}
           description={translate('settings.planDescription')}>
-          <Plan subscriptionId={this.props.me.qvo.subscriptionId} />
+          <Plan
+            subscriptionId={this.props.me.qvo.subscriptionId}
+            cardId={this.props.me.qvo.cardId}
+          />
         </Section>
       </div>
     )

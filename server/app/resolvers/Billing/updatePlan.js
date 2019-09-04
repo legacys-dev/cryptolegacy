@@ -15,16 +15,12 @@ export default resolver({
     const user = await Users.findOne({ _id: viewer.userId })
 
     try {
-      console.log('plan id: ', planId)
       const subscription = await updateSubscription(user.qvo.subscriptionId, planId)
-      console.log('suscription: ', subscription)
-      console.log('User: ', user)
       if (subscription.status !== 'active') throw new Error('Error updating subscription')
 
-      const newUser = await user.update({
+      await user.update({
         $set: { 'qvo.subscriptionId': subscription.id, 'qvo.plan': subscription.plan.id }
       })
-      console.log("Nuevo usuario: ",newUser)
     } catch (error) {
       console.log('Error:', error)
     }
