@@ -76,7 +76,7 @@ export default class Plan extends React.Component {
         ) : (
           <div className={styles.noData}>
             {this.renderPlan('free')}
-            <PlanModal />
+            <PlanModal cardId={this.props.cardId} />
           </div>
         )}
       </div>

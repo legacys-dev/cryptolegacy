@@ -8,6 +8,7 @@
 }
 :local(.modalContent) {
   height: 100%;
+  margin: auto 0px;
 }
 :local(.planListContainer) {
   display: flex;
@@ -24,4 +25,8 @@
 :local(.upgradeButton) {
     display: flex;
     justify-content: center;
+}
+:local(.noCreditCard){
+  padding: 24px 40px 0px 40px;
+
 }

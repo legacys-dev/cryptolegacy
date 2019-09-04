@@ -18,7 +18,6 @@ export default resolver({
 
     try {
       const subscription = await createSubscription(user.qvo.customerId, planId)
-      console.log('suscribe: ', subscription)
       if (subscription.status !== 'active') throw new Error('Error creating subscription')
 
       await user.update({
