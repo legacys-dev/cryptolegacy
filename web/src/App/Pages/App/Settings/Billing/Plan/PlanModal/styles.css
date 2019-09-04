@@ -14,6 +14,7 @@
   flex-direction: row;
   align-items: stretch;
   height: 90%;
+  justify-content: center;
 }
 :local(.plan) {
   width: 100%;

@@ -7,11 +7,15 @@ const PlanDetail = ({ id, title, size, seatsPrice, vaultsNum, integration, updat
   return (
     <div className={styles.container}>
       <h1 className={styles.title}> {title}</h1>
-      <div>
-        <div className={styles.size}> {size}</div>
-        <div className={styles.seatsPrice}> {seatsPrice}</div>
-        <div className={styles.vaultsNum}> {vaultsNum}</div>
-        <div className={styles.integration}> {integration}</div>
+      <div className={styles.details}>
+        <div className={styles.categories}><strong>Capacidad máxima</strong></div>
+        <div className={styles.data}> {size}</div>
+        <div className={styles.categories}><strong>Valor de asiento</strong></div>
+        <div className={styles.data}> {seatsPrice}</div>
+        <div className={styles.categories}><strong>Cantidad máxima de bóvedas</strong></div>
+        <div className={styles.data}> {vaultsNum}</div>
+        <div className={styles.categories}><strong>Google Drive</strong></div>
+        <div className={styles.data}>{integration}</div>
       </div>
       <MutationButton
         title={!update ? 'Suscribir plan' : 'Actualizar plan'}
