@@ -7,5 +7,8 @@ export default {
   },
   cardId: {
     type: String
+  },
+  plan :{
+    type: String
   }
 }
