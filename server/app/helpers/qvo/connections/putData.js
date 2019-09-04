@@ -6,6 +6,7 @@ export default async (route, data) => {
   const result = await axios({
     method: 'put',
     url,
+    data,
     headers: {
       Authorization: `Bearer ${process.env.QVO_API_TOKEN}`
     }
