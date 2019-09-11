@@ -25,7 +25,21 @@ export default resolver({
 
     if (isEmpty(vaults)) return { items: null }
 
-    const vaultsData = vaults.map(vault => vault.data())
+    const vaultsData = vaults.map(async function(vault) {
+      let vaultData = await vault.data()
+      let heritages = await VaultPolicies.find({
+        vaultId: vaultData['_id'],
+        credentialType: 'heritage'
+      }).toArray()
+      heritages = heritages.map(heritage => ({
+        status: heritage.status,
+        name: heritage.userEmail
+      }))
+      return {
+        ...vaultData,
+        heritages
+      }
+    })
 
     const itemToEncrypt = await Promise.all(vaultsData)
     const user = await Users.findOne({ _id: viewer.userId })

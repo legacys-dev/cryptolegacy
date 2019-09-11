@@ -1,15 +1,39 @@
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import styles from './styles.module.css'
 import { MdMoreVert } from 'react-icons/md'
 import translate from 'App/i18n/translate'
+import Options from './Options'
+const VaultCard = ({ heirsData, numberFiles, size, vaultName, owner, vaultId }) => {
+  const [showOptions, setShowOptions] = useState(false)
 
-const VaultCard = ({ heirsData, numberFiles, size, vaultName, owner }) => {
+  function useOutsideAlerter(ref) {
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setShowOptions(false)
+      }
+    }
+
+    useEffect(() => {
+      // Bind the event listener
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    })
+  }
+
   const renderHeader = () => {
+    const wrapRef = useRef(null)
+    useOutsideAlerter(wrapRef)
     return (
       <div className={styles.header}>
         <p className={styles.title}>{vaultName}</p>
         <span>
-          <MdMoreVert className={styles.icon} />
+          <div className={styles.dropdown} ref={wrapRef}>
+            <MdMoreVert onClick={() => setShowOptions(!showOptions)} className={styles.icon} />
+            <Options showOptions = {showOptions} vaultId={vaultId}/>
+          </div>
         </span>
       </div>
     )
@@ -30,12 +54,18 @@ const VaultCard = ({ heirsData, numberFiles, size, vaultName, owner }) => {
   }
 
   const renderHeirsAvatar = () => {
+    if (!heirsData) {
+      return <div>No hay herencias</div>
+    }
     return heirsData.map((heir, index) => {
-      return <img key={index} className={styles.avatar} src={heir.image} />
+      if (heir.image) <img key={index} className={styles.avatar} src={heir.image} />
     })
   }
 
   const renderHeirsList = () => {
+    if (heirsData.length === 0) {
+      return <div>No hay herencias</div>
+    }
     return heirsData.map((heir, index) => {
       return (
         <div key={index} className={styles.listiItem}>

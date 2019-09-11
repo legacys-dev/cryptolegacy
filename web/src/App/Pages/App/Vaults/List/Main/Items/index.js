@@ -6,6 +6,8 @@ import { Vault } from 'App/components/Parts/Icons'
 import getSize from 'App/helpers/files/getSize'
 import translate from 'App/i18n/translate'
 import Options from './Options'
+import VaultCard from 'src/App/components/Parts/VaultCard'
+
 
 const Items = ({ history, items, credentialType }) => {
   const getStorageDescription = type => {
@@ -22,7 +24,7 @@ const Items = ({ history, items, credentialType }) => {
     const vaults = items || []
     return vaults.map((vault, index) => {
       const vaultType = translate(vault.storageType)
-      return (
+      /* return (
         <tr className={styles.cell} key={index}>
           <td>
             <Vault size={25} />
@@ -41,6 +43,18 @@ const Items = ({ history, items, credentialType }) => {
             <Options vaultId={vault._id} credentialType={credentialType} />
           </td>
         </tr>
+      )*/ 
+      return(
+        <VaultCard 
+        vaultId={vault['_id']}
+        heirsData = {vault.heritages}
+        key={'vaultCard'+index}
+        numberFiles = {vault.fileCount}
+        size={vault.storageUsed}
+        vaultName={vault.name}
+        owner 
+        
+        />
       )
     })
   }
@@ -48,19 +62,7 @@ const Items = ({ history, items, credentialType }) => {
   const renderVaults = () => {
     return (
       <div className={styles.vaults}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <td style={{ width: '1%' }} />
-              <td style={{ textAlign: 'left' }}>{translate('vaults.name')}</td>
-              <td>{translate('vaults.files')}</td>
-              <td>{translate('vaults.size')}</td>
-              <td>{translate('vaults.vaultType')}</td>
-              <td>{translate('vaults.actions')}</td>
-            </tr>
-          </thead>
-          <tbody>{renderTable()}</tbody>
-        </table>
+        {renderTable()}
       </div>
     )
   }
