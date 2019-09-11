@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './styles.module.css'
 
-const Section = ({top}) => {
+const Section = ({ top }) => {
   return (
     <div className={top ? styles.containerNoBorder : styles.container}>
       <div className="row">

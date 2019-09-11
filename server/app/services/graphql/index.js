@@ -1,11 +1,11 @@
-import {setCorsOptions} from '@orion-js/app'
-import {startGraphQL} from '@orion-js/graphql'
+import { setCorsOptions } from '@orion-js/app'
+import { startGraphQL } from '@orion-js/graphql'
 import resolvers from 'app/resolvers'
 import subscriptions from 'app/subscriptions'
 
-const {ORION_LOCAL, ORION_DEVELOPMENT, ORION_BETA} = process.env
+const { ORION_LOCAL, ORION_DEVELOPMENT, ORION_BETA } = process.env
 
-const useGraphiql = false // Activate Graphql IDE in browser
+const useGraphiql = true // Activate Graphql IDE in browser
 const origin = ORION_LOCAL
   ? '*'
   : ORION_DEVELOPMENT

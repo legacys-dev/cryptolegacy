@@ -1,8 +1,8 @@
-import {resolver, generateId} from '@orion-js/app'
+import { resolver, generateId } from '@orion-js/app'
 import CreateS3Upload from 'app/models/File/CreateS3Upload'
-import {AWSCredentials} from 'app/helpers/awsS3/credentials'
-import {presignedPost} from 'app/helpers/awsS3'
-import {slugify} from 'app/helpers/parts'
+import { AWSCredentials } from 'app/helpers/awsS3/credentials'
+import { presignedPost } from 'app/helpers/awsS3'
+import { slugify } from 'app/helpers/parts'
 import Files from 'app/collections/Files'
 
 export default resolver({
@@ -28,8 +28,9 @@ export default resolver({
   requireLogin: true,
   vaultOwner: true,
   checkUserStorage: true,
+  checkSize: true,
   async resolve(params, viewer) {
-    const {bucket, basePath} = AWSCredentials
+    const { bucket, basePath } = AWSCredentials
     const key = `${basePath}/${generateId(131)}`
 
     const s3Data = {
@@ -51,7 +52,7 @@ export default resolver({
       storage: params.storage
     })
 
-    const result = await presignedPost({key, bucket, params})
+    const result = await presignedPost({ key, bucket, params })
 
     return {
       fileId,

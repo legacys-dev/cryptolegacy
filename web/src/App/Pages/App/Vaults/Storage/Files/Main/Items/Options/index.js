@@ -20,12 +20,13 @@ export default class Options extends React.Component {
   }
 
   onDeleteSuccess(deletedTime) {
-    this.props.showMessage(translate('files.fileDeletedSuccesfully'))
     this.props.onDeleteFile(deletedTime)
+    this.props.showMessage(translate('files.fileDeletedSuccesfully'))
   }
 
   renderOptions() {
     const {vaultId, file, history} = this.props
+
     return (
       <div className={styles.setting}>
         <FileView history={history} vaultId={vaultId} fileId={file._id} />

@@ -1,9 +1,9 @@
-import {postData} from './connections'
+import { postData } from './connections'
 
 export default async (customerId, callbackUrl) => {
   try {
     return await postData(`customers/${customerId}/cards/inscriptions`, {
-      return_url: 'http://a28abfaf.ngrok.io/enroll'
+      return_url: callbackUrl
     })
   } catch (e) {
     console.log('error')

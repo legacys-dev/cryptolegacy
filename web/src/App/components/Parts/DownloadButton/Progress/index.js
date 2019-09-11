@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from './styles.module.css'
-import {MdClose} from 'react-icons/md'
+import { MdClose } from 'react-icons/md'
 import IconButton from 'orionsoft-parts/lib/components/IconButton'
 import getSize from 'App/helpers/files/getSize'
-import {Line} from '../../LoadProgress'
+import { Line } from '../../LoadProgress'
 import translate from 'App/i18n/translate'
 
-const Progress = ({total, loaded, close}) => {
+const Progress = ({ total, loaded, close }) => {
   const renderProgress = () => {
     const totalProgress = loaded ? Number(((loaded * 100) / total).toFixed(3)) : 0
     return (

@@ -21,8 +21,7 @@ export default class Items extends React.Component {
   renderTable() {
     const files = this.props.items || []
     return files.map((file, index) => {
-      const {data, createdAt} = file
-      const type = mime.extension(data.type)
+      const type = mime.extension(file.type)
       return (
         <tr className={styles.cell} key={index}>
           <td>
@@ -31,11 +30,11 @@ export default class Items extends React.Component {
             </div>
           </td>
           <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
-            <LengthName name={data.name} />
+            <LengthName name={file.name} />
           </td>
           <td>{type}</td>
-          <td>{getSize(data.size)}</td>
-          <td>{moment(createdAt).format('LL')}</td>
+          <td>{getSize(file.size)}</td>
+          <td>{moment(file.createdAt).format('LL')}</td>
           <td>
             <VaultConsumer>
               {providerProps => (

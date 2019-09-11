@@ -9,9 +9,10 @@ import LoggedIn from '../LoggedIn'
 import autobind from 'autobind-decorator'
 import withUserId from 'App/helpers/auth/withUserId'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
-import {setSession} from '@orion-js/graphql-client'
 import translate from 'App/i18n/translate'
+import {withRouter} from 'react-router-dom'
 
+@withRouter
 @withUserId
 @withMessage
 export default class ResetPassword extends React.Component {
@@ -19,7 +20,8 @@ export default class ResetPassword extends React.Component {
     showMessage: PropTypes.func,
     onLogin: PropTypes.func,
     userId: PropTypes.string,
-    token: PropTypes.string
+    token: PropTypes.string,
+    history: PropTypes.func
   }
 
   schema = {
@@ -46,25 +48,18 @@ export default class ResetPassword extends React.Component {
   }
 
   @autobind
-  async onSuccess(session) {
-    await setSession(session)
+  async onSuccess() {
     this.props.showMessage(translate('auth.yourPasswordHasBeenChanged'))
-    this.props.onLogin()
+    this.props.history.push('/login')
   }
 
   @autobind
   onValidationError({token}) {
-    if (token === 'tokenNotFound') {
-      this.props.showMessage(translate('auth.resetLinkExpired'))
-    }
+    if (token === 'tokenNotFound') this.props.showMessage(translate('auth.resetLinkExpired'))
   }
 
   renderDescription() {
-    return (
-      <div className={styles.description}>
-        {translate('auth.passwordRequirements')}
-      </div>
-    )
+    return <div className={styles.description}>{translate('auth.passwordRequirements')}</div>
   }
 
   renderButton() {

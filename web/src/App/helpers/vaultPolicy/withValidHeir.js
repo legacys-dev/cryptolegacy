@@ -11,25 +11,25 @@ export default function(ComposedComponent) {
         validHeirs(accessToken: $accessToken)
       }
     `,
-    {loading: <Loading />}
+    { loading: <Loading /> }
   )
   class withValidHeir extends React.Component {
     static propTypes = {
       validHeirs: PropTypes.string
     }
 
-    state = {isValidHeir: false}
+    state = { isValidHeir: false }
 
     static getDerivedStateFromProps(props, state) {
-      const {validHeirs} = props
-      if (!validHeirs) return {isValidHeir: false}
-      return {isValidHeir: true, vaultName: validHeirs}
+      const { validHeirs } = props
+      if (!validHeirs) return { isValidHeir: false }
+      return { isValidHeir: true, vaultName: validHeirs }
     }
 
     redirectHome() {
       this.props.history.replace({
         pathname: '/',
-        state: {invalidHeir: true}
+        state: { invalidHeir: true }
       })
 
       return <span />

@@ -1,10 +1,10 @@
-import {google} from 'googleapis'
+import { google } from 'googleapis'
 import authentication from './authentication'
-import {generateId} from '@orion-js/app'
+import { generateId } from '@orion-js/app'
 
 export default async userEmail => {
   const auth = await authentication()
-  const drive = google.drive({version: 'v3', auth})
+  const drive = google.drive({ version: 'v3', auth })
 
   const folder = await drive.files.create({
     resource: {

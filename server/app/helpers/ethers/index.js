@@ -1,3 +1,3 @@
 import createEtherWallet from './createEtherWallet'
 
-export {createEtherWallet}
+export { createEtherWallet }

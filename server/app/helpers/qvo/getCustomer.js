@@ -1,4 +1,4 @@
-import {getData} from './connections'
+import { getData } from './connections'
 
 export default async customerId => {
   try {

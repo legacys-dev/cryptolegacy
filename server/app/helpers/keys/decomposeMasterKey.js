@@ -1,7 +1,7 @@
-import {hashPassword} from '@orion-js/auth'
+import { hashPassword } from '@orion-js/auth'
 import getHashItems from './getHashItems'
 
-export default function({masterKey, userId}) {
+export default function({ masterKey, userId }) {
   const keysItems = getHashItems(masterKey)
 
   return {

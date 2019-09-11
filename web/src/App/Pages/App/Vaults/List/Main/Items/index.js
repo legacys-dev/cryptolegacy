@@ -2,17 +2,19 @@ import React from 'react'
 import styles from './styles.module.css'
 import LengthName from 'App/components/User/LengthName'
 import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
-import {Vault} from 'App/components/Parts/Icons'
+import { Vault } from 'App/components/Parts/Icons'
 import getSize from 'App/helpers/files/getSize'
 import translate from 'App/i18n/translate'
 import Options from './Options'
 
-const Items = ({history, items, credentialType}) => {
+const Items = ({ history, items, credentialType }) => {
   const getStorageDescription = type => {
     if (type === 'SS' || type === 'AS') {
       return translate('fileManager.simpleTypeDescription')
-    } else {
+    } else if (type === 'HSS' || type === 'AAS') {
       return translate('fileManager.highTypeDescription')
+    } else {
+      return translate('fileManager.driveTypeDescription')
     }
   }
 
@@ -25,7 +27,7 @@ const Items = ({history, items, credentialType}) => {
           <td>
             <Vault size={25} />
           </td>
-          <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
+          <td style={{ textAlign: 'left', fontWeigth: 'bold' }}>
             <LengthName name={vault.name} />
           </td>
           <td>{vault.fileCount || '0'}</td>
@@ -49,8 +51,8 @@ const Items = ({history, items, credentialType}) => {
         <table className={styles.table}>
           <thead>
             <tr>
-              <td style={{width: '1%'}} />
-              <td style={{textAlign: 'left'}}>{translate('vaults.name')}</td>
+              <td style={{ width: '1%' }} />
+              <td style={{ textAlign: 'left' }}>{translate('vaults.name')}</td>
               <td>{translate('vaults.files')}</td>
               <td>{translate('vaults.size')}</td>
               <td>{translate('vaults.vaultType')}</td>

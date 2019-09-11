@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import AutoForm from 'App/components/AutoForm'
 import Button from 'App/components/Parts/Button'
-import {Field} from 'simple-react-form'
+import { Field } from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withValidToken from 'App/helpers/registerTokens/withValidToken'
-import {setUserMessageKeys} from 'App/helpers/messageKeys'
+import { setUserMessageKeys } from 'App/helpers/messageKeys'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
-import {setSession} from '@orion-js/graphql-client'
+import { setSession } from '@orion-js/graphql-client'
 import autobind from 'autobind-decorator'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import translate from 'App/i18n/translate'
 
 @withRouter
@@ -28,27 +28,27 @@ export default class CreatePassword extends React.Component {
   state = {}
   @autobind
   async onSuccess(response) {
-    const {session, emergencyKitId, encryptedKeysForMessages, k} = response
+    const { session, emergencyKitId, encryptedKeysForMessages, k } = response
     await sleep(1000)
     try {
       await setSession(session)
-      this.props.showMessage(translate('auth.accountCreatedSuccessfully'))
       await setUserMessageKeys(k, encryptedKeysForMessages)
-      const params = {emergencyKitId}
+      const params = { emergencyKitId }
       this.props.onLogin(params)
+      this.props.showMessage(translate('auth.accountCreatedSuccessfully'))
     } catch (error) {
       console.log('Error:', error)
     }
   }
 
   @autobind
-  onChange({password, confirmPassword}) {
-    this.setState({password, confirmPassword})
+  onChange({ password, confirmPassword }) {
+    this.setState({ password, confirmPassword })
   }
 
   render() {
-    const {params} = this.props.match
-    const {password, confirmPassword} = this.state
+    const { params } = this.props.match
+    const { password, confirmPassword } = this.state
     return (
       <div className={styles.container}>
         <AutoForm
@@ -56,7 +56,7 @@ export default class CreatePassword extends React.Component {
           onChange={this.onChange}
           onSuccess={this.onSuccess}
           ref="form"
-          doc={{token: params.token}}>
+          doc={{ token: params.token }}>
           <Field
             placeholder={translate('auth.enterPassword')}
             fieldName="password"
@@ -75,7 +75,7 @@ export default class CreatePassword extends React.Component {
           fullWidth
           onClick={() => this.refs.form.submit()}
           disabled={!password || !confirmPassword}>
-            {translate('auth.createPassword')}
+          {translate('auth.createPassword')}
         </Button>
       </div>
     )

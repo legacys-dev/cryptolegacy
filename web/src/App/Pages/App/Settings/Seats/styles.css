@@ -1,0 +1,18 @@
+:local(.container) {
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 20px;
+    -webkit-box-shadow: 4px 6px 14px -1px #e6ecfe;
+    -moz-box-shadow: 4px 6px 14px -1px #e6ecfe;
+    box-shadow: 4px 6px 14px -1px #e6ecfe;
+  }
+
+:local(.getSeat){
+  width: 150px;
+  font-size: 15px;
+  color: #fff;
+  background-color: red;
+  border-radius: 8px;
+  -webkit-transition-property: font-weight, cursor;
+  -webkit-transition-duration: 300ms;
+}

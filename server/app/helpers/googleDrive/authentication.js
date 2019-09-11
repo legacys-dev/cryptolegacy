@@ -1,4 +1,4 @@
-import {google} from 'googleapis'
+import { google } from 'googleapis'
 
 export default async () => {
   const scope = 'https://www.googleapis.com/auth/drive'

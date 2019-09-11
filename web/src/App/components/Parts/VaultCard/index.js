@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './styles.module.css'
-import {MdMoreVert} from 'react-icons/md'
+import { MdMoreVert } from 'react-icons/md'
 import translate from 'App/i18n/translate'
 
-const VaultCard = ({heirsData, numberFiles, size, vaultName, owner}) => {
+const VaultCard = ({ heirsData, numberFiles, size, vaultName, owner }) => {
   const renderHeader = () => {
     return (
       <div className={styles.header}>
@@ -31,13 +31,7 @@ const VaultCard = ({heirsData, numberFiles, size, vaultName, owner}) => {
 
   const renderHeirsAvatar = () => {
     return heirsData.map((heir, index) => {
-      return (
-        <img
-          key={index}
-          className={styles.avatar}
-          src={heir.image}
-        />
-      )
+      return <img key={index} className={styles.avatar} src={heir.image} />
     })
   }
 

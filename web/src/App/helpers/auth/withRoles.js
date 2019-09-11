@@ -9,7 +9,7 @@ export default ComposedComponent => {
     }
 
     render() {
-      const {roles} = this.props.session
+      const { roles } = this.props.session
       return <ComposedComponent {...this.props} roles={roles} />
     }
   }

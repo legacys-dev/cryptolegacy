@@ -1,5 +1,5 @@
 import React from 'react'
-import {getSession} from '@orion-js/graphql-client'
+import { getSession } from '@orion-js/graphql-client'
 import autobind from 'autobind-decorator'
 
 export default function(ComposedComponent) {

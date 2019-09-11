@@ -17,18 +17,18 @@ export default function(ComposedComponent) {
       itsValidKitHorary: PropTypes.bool
     }
 
-    state = {itsValidKitHorary: false}
+    state = { itsValidKitHorary: false }
 
     static getDerivedStateFromProps(props, state) {
-      const {itsValidKitHorary} = props
-      if (!itsValidKitHorary) return {itsValidKitHorary: false}
-      return {itsValidKitHorary: true}
+      const { itsValidKitHorary } = props
+      if (!itsValidKitHorary) return { itsValidKitHorary: false }
+      return { itsValidKitHorary: true }
     }
 
     redirectHome() {
       this.props.history.replace({
         pathname: '/',
-        state: {invalidHorary: true}
+        state: { invalidHorary: true }
       })
 
       return <span />

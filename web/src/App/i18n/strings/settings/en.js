@@ -4,7 +4,8 @@ export default {
   profileDescription: 'Update your personal information',
   yourProfileWasSaved: 'Your profile was saved',
   twoFactorAuthentication: 'Two factor authentication',
-  twoFactorDescription: 'Two factor authentication (2FA) adds an additional layer of protection beyond passwords',
+  twoFactorDescription:
+    'Two factor authentication (2FA) adds an additional layer of protection beyond passwords',
   twoFactorNowYouMustConfirm: 'You you must confirm the code from your app',
   twoFactorEnabled: 'Two factor authenticacion has been enabled',
   enableTwoFactor: 'Enable two factor authentication',
@@ -25,5 +26,14 @@ export default {
   title: 'Settings',
   security: 'Security',
   firstName: 'First name',
-  lastName: 'Last name'
+  lastName: 'Last name',
+  billing: 'Billing',
+  downloadMasterKey: 'Here you can download your Master Key',
+  masterKey: 'Master Key',
+  downloadKey: 'Download Key',
+  show: 'Show',
+  hide: 'Hide',
+  plan: 'Plan',
+  planDescription: 'Add, review or upgrade your plan',
+  seats: 'Seats'
 }

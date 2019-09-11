@@ -1,4 +1,4 @@
-import {generateHeritagePassword} from 'app/helpers/keys'
+import { generateHeritagePassword } from 'app/helpers/keys'
 import {
   userDataEncryptWithPassword,
   userDataDecryptWithPassword,
@@ -12,7 +12,7 @@ export default async function({
   encryptedVaultCredentials,
   heirCode
 }) {
-  const {mainCipherPassword, mainIv} = decryptMessage({
+  const { mainCipherPassword, mainIv } = decryptMessage({
     toDecrypt: ownerEncryptedCredentials,
     privateKey
   })
@@ -24,7 +24,7 @@ export default async function({
   }
 
   const decryptedVaultPassword = userDataDecryptWithPassword(toDecryptParams)
-  const {claimPassword, claimIv} = await generateHeritagePassword(heirCode)
+  const { claimPassword, claimIv } = await generateHeritagePassword(heirCode)
 
   const encryptParams = {
     itemToEncrypt: decryptedVaultPassword,

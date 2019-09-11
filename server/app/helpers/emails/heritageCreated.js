@@ -3,9 +3,9 @@ import sendEmailWithMessage from 'app/helpers/createEmail/sendEmailWithMessage'
 import setReceptor from './setReceptor'
 import getUrl from './getUrl'
 
-export default async function({owner, user, code, vaultName}) {
-  const {email, name, lastName} = user
-  const {ownerEmail, ownerName, ownerLastName} = owner
+export default async function({ owner, user, code, vaultName }) {
+  const { email, name, lastName } = user
+  const { ownerEmail, ownerName, ownerLastName } = owner
   const hasAccount = name && lastName
   const link = getUrl() + `/register`
 

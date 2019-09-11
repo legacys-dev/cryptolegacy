@@ -5,13 +5,13 @@ import AutoForm from 'App/components/AutoForm'
 import Button from 'App/components/Parts/Button'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import LoggedIn from '../LoggedIn'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Title from 'App/components/Auth/Title'
 import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
 import withUserId from 'App/helpers/auth/withUserId'
-import {withRouter} from 'react-router'
-import {Field} from 'simple-react-form'
+import { withRouter } from 'react-router'
+import { Field } from 'simple-react-form'
 import Text from 'App/components/fields/Text'
 
 @withUserId
@@ -33,7 +33,7 @@ export default class Register extends React.Component {
     return (
       <div className={styles.link}>
         {translate('auth.ifYouHaveAnAccount')}{' '}
-        <Link to="/login" style={{color: '#0053b3'}}>
+        <Link to="/login" style={{ color: '#0053b3' }}>
           {translate('auth.loginNow')}
         </Link>
       </div>
@@ -56,12 +56,7 @@ export default class Register extends React.Component {
       <div>
         <Title text="auth.register" />
         <AutoForm mutation="emailRegister" ref="form" onSuccess={this.onSuccess}>
-          <Field
-            fieldName="email"
-            type={Text}
-            fieldType="email"
-            placeholder="Email"
-          />
+          <Field fieldName="email" type={Text} fieldType="email" placeholder="Email" />
           <Field
             fieldName="name"
             type={Text}
@@ -74,7 +69,6 @@ export default class Register extends React.Component {
             fieldType="lastName"
             placeholder={translate('auth.lastName')}
           />
-
         </AutoForm>
         {this.renderButton()}
         {this.renderLogInLink()}

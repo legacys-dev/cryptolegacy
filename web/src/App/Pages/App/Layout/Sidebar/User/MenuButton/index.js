@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from './styles.module.css'
-import {MdArrowDropDown} from 'react-icons/md'
-import {UserIcon} from 'App/components/Parts/Icons'
+import { MdArrowDropDown } from 'react-icons/md'
+import { UserIcon } from 'App/components/Parts/Icons'
 import AppTypeMesssage from 'App/components/AppTypeMesssage'
 import translate from 'App/i18n/translate'
 
-const MenuButton = ({user, toggleMenu}) => {
+const MenuButton = ({ user, toggleMenu }) => {
   const renderUserPic = () => {
     return (
       <div className={styles.pic}>

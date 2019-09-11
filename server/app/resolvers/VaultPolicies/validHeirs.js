@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Users from 'app/collections/Users'
 import VaultPolicies from 'app/collections/VaultPolicies'
 
@@ -10,7 +10,7 @@ export default resolver({
   },
   returns: String,
   requireLogin: true,
-  async resolve({accessToken}, viewer) {
+  async resolve({ accessToken }, viewer) {
     const vaultPolicy = await VaultPolicies.findOne({
       'transferData.accessToken': accessToken,
       status: 'available'
@@ -18,7 +18,7 @@ export default resolver({
 
     if (!vaultPolicy) return
 
-    const user = await Users.findOne({'emails.address': vaultPolicy.userEmail})
+    const user = await Users.findOne({ 'emails.address': vaultPolicy.userEmail })
 
     if (!user) return
     if (user._id !== viewer.userId) return

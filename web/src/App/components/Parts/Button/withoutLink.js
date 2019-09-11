@@ -56,10 +56,10 @@ export default class Button extends React.Component {
       return
     }
 
-    this.setState({loading: true})
+    this.setState({ loading: true })
     await this.props.onClick()
     if (this.mounted) {
-      this.setState({loading: false})
+      this.setState({ loading: false })
     }
   }
 
@@ -89,7 +89,7 @@ export default class Button extends React.Component {
     }
 
     if (this.props.icon) {
-      const iconStyle = {display: 'flex', alignItems: 'center'}
+      const iconStyle = { display: 'flex', alignItems: 'center' }
       return (
         <span style={iconStyle}>
           {this.renderIcon()}
@@ -104,7 +104,7 @@ export default class Button extends React.Component {
   renderIcon() {
     const Icon = this.props.icon
     if (!Icon) return
-    return <Icon style={{marginRight: 10}} size={20} />
+    return <Icon style={{ marginRight: 10 }} size={20} />
   }
 
   renderButton() {

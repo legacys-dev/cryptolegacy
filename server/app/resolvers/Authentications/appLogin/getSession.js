@@ -1,4 +1,4 @@
-import {createSession} from '@orion-js/auth'
+import { createSession } from '@orion-js/auth'
 
 export default async function(user) {
   let session

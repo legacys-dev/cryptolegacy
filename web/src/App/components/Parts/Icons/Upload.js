@@ -17,7 +17,7 @@ export default class Upload extends React.Component {
   }
 
   render() {
-    const {size} = this.props
+    const { size } = this.props
     const logoStyle = {
       height: size || 20,
       width: 'auto',

@@ -1,4 +1,4 @@
-import {resolversSchemas} from '@orion-js/graphql'
+import { resolversSchemas } from '@orion-js/graphql'
 import Auth from './Auth'
 import Authentications from './Authentications'
 import Files from './Files'
@@ -6,12 +6,15 @@ import Registrations from './Registrations'
 import Users from './Users'
 import Vaults from './Vaults'
 import Activities from './Activities'
-import EmergencyKits from './EmergencyKits'
+import EmergencyKit from './EmergencyKit'
 import VaultPolicies from './VaultPolicies'
+import Billing from './Billing'
+import Seats from './Seats'
 
 export default {
+  ...Seats,
   ...VaultPolicies,
-  ...EmergencyKits,
+  ...EmergencyKit,
   ...Activities,
   ...resolversSchemas,
   ...Auth,
@@ -19,5 +22,6 @@ export default {
   ...Files,
   ...Registrations,
   ...Users,
-  ...Vaults
+  ...Vaults,
+  ...Billing
 }

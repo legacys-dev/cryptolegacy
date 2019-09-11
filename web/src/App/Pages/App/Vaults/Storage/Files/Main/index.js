@@ -4,13 +4,15 @@ import styles from './styles.css'
 import {withApollo} from 'react-apollo'
 import Pagination from 'App/components/Parts/Pagination'
 import {VaultProvider} from 'App/helpers/contexts/vaultContext'
-import Loading from 'App/components/Parts/Loading'
 import NoItemsFound from 'App/components/Parts/NoItemsFound'
+import {getPageItems} from 'App/functions/paginated'
+import Loading from 'App/components/Parts/Loading'
 import autobind from 'autobind-decorator'
 import {withRouter} from 'react-router'
 import filesQuery from './filesQuery'
 import isEmpty from 'lodash/isEmpty'
 import Items from './Items'
+import {getQuery, nameSearch} from 'App/helpers/search'
 
 @withApollo
 @withRouter
@@ -43,22 +45,23 @@ export default class Main extends React.Component {
 
   @autobind
   async search(page = 1) {
-    const {client, filter, match} = this.props
+    const {client, match, filter} = this.props
     const {vaultId} = match.params
-    this.setState({loading: true})
-    const result = await client.query({
-      query: filesQuery,
-      variables: {filter, vaultId, page, limit: 6},
-      fetchPolicy: 'network-only'
-    })
-    const {items, totalPages, hasNextPage, hasPreviousPage} = result.data.files
+
+    const items = filter
+      ? nameSearch(filter, this.state.allItems)
+      : await getQuery(client, {vaultId}, filesQuery)
+    const {totalPages, hasNextPage, hasPreviousPage} = getPageItems(items, page, 6)
+
+    const allItems = filter ? {} : {allItems: items}
+
     this.setState({
       items,
       currentPage: page,
       totalPages,
       hasNextPage,
       hasPreviousPage,
-      loading: false
+      ...allItems
     })
   }
 

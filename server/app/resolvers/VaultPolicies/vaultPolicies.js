@@ -1,4 +1,4 @@
-import {paginatedResolver} from '@orion-js/app'
+import { paginatedResolver } from '@orion-js/app'
 import VaultPolicies from 'app/collections/VaultPolicies'
 import VaultPolicy from 'app/models/VaultPolicy'
 import escape from 'escape-string-regexp'
@@ -29,9 +29,9 @@ export default paginatedResolver({
   },
   requireLogin: true,
   vaultPoliciesPaginatedPermissions: true,
-  async getCursor({vaultId, filter, adminPanel, status, credentialType}, viewer) {
-    const filterSearch = filter ? {userEmail: {$regex: new RegExp(`^${escape(filter)}`)}} : {}
-    const query = {...filterSearch}
+  async getCursor({ vaultId, filter, adminPanel, status, credentialType }, viewer) {
+    const filterSearch = filter ? { userEmail: { $regex: new RegExp(`^${escape(filter)}`) } } : {}
+    const query = { ...filterSearch }
 
     if (adminPanel) {
       query.status = status || 'waiting'
@@ -41,6 +41,6 @@ export default paginatedResolver({
       query.status = 'waiting'
     }
 
-    return VaultPolicies.find(query).sort({createdAt: -1}) // await not necessary
+    return VaultPolicies.find(query).sort({ createdAt: -1 }) // await not necessary
   }
 })

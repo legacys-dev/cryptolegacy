@@ -1,7 +1,7 @@
 import AWS from 'aws-sdk'
-import {AWSCredentials} from './credentials'
+import { AWSCredentials } from './credentials'
 
-export default async function({vaultName}) {
+export default async function({ vaultName }) {
   const glacier = new AWS.Glacier(AWSCredentials)
 
   const params = {

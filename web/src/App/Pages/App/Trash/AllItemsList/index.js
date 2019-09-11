@@ -23,7 +23,7 @@ import Header from 'App/components/Parts/Header'
       }
     }
   `,
-  {loading: <Loading />}
+  { loading: <Loading /> }
 )
 @withMessage
 export default class AllItemsList extends React.Component {
@@ -36,17 +36,17 @@ export default class AllItemsList extends React.Component {
 
   @autobind
   onQueryItems(filesCount) {
-    this.setState({filesCount})
+    this.setState({ filesCount })
   }
 
   @autobind
   onDeleteSuccess() {
-    this.setState({emptyTrashDate: new Date()})
+    this.setState({ emptyTrashDate: new Date() })
     this.props.showMessage(translate('app.deleteFileMessage'))
   }
 
   onFilterChange(searchValue) {
-    this.setState({searchValue})
+    this.setState({ searchValue })
   }
 
   renderSearch() {
@@ -59,27 +59,27 @@ export default class AllItemsList extends React.Component {
     )
   }
 
-  renderRight(id, onDeleteSuccess, filesCount) {
+  renderRight(userId, filesCount) {
     return (
       <div className={styles.topContainer}>
         <div className={styles.searchBar}>{this.renderSearch()}</div>
-        <EmptyTrash onDeleteSuccess={onDeleteSuccess} userId={id} filesCount={filesCount} />
+        <EmptyTrash
+          onDeleteSuccess={this.onDeleteSuccess}
+          userId={userId}
+          filesCount={filesCount}
+        />
       </div>
     )
   }
 
   render() {
-    const {searchValue, emptyTrashDate, filesCount} = this.state
+    const { searchValue, emptyTrashDate, filesCount } = this.state
     return (
       <div className={styles.container}>
         <Header
-          right={this.renderRight(
-            this.props.me._id,
-            this.onDeleteSuccess,
-            filesCount
-          )}
+          right={this.renderRight(this.props.me._id, filesCount)}
           title={translate('app.fileOnDelete')}
-          />
+        />
         <Main
           filter={searchValue}
           emptyTrashDate={emptyTrashDate}

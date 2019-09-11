@@ -58,7 +58,7 @@ export default class FormModal extends React.Component {
   @autobind
   async open(mutate) {
     this.mutate = mutate
-    const {renderChildren} = this.props
+    const { renderChildren } = this.props
 
     await this.props.showModal({
       title: this.props.title,
@@ -69,11 +69,11 @@ export default class FormModal extends React.Component {
     })
   }
 
-  getFragment({name, result, basicResultQuery, params}) {
+  getFragment({ name, result, basicResultQuery, params }) {
     if (this.props.fragment) {
       return this.props.fragment
     } else {
-      return getFragment({name, result, basicResultQuery, params})
+      return getFragment({ name, result, basicResultQuery, params })
     }
   }
 
@@ -88,17 +88,17 @@ export default class FormModal extends React.Component {
   }
 
   renderButton() {
-    const {children} = this.props
+    const { children } = this.props
     return (
       <WithParams name={this.props.mutation}>
-        {({name, result, basicResultQuery, params}) => (
+        {({ name, result, basicResultQuery, params }) => (
           <WithMutation
             params={params}
-            fragment={this.getFragment({name, result, basicResultQuery, params})}
+            fragment={this.getFragment({ name, result, basicResultQuery, params })}
             mutation={this.props.mutation}>
             {mutate =>
               children ? (
-                React.cloneElement(children, {onClick: () => this.open(mutate)})
+                React.cloneElement(children, { onClick: () => this.open(mutate) })
               ) : (
                 <Button
                   disabled={this.props.disabled}

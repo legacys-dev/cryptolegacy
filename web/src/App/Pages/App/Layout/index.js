@@ -3,7 +3,7 @@ import styles from './styles.module.css'
 import Sidebar from './Sidebar'
 import Container from 'App/components/Parts/Container/'
 
-const Layout = ({children}) => {
+const Layout = ({ children }) => {
   return (
     <div className={styles.container}>
       <div className={styles.sidebar}>

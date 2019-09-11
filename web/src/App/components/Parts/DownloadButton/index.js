@@ -7,9 +7,9 @@ import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import Loading from 'orionsoft-parts/lib/components/Loading'
 import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
-import {MdCloudDownload} from 'react-icons/md'
+import { MdCloudDownload } from 'react-icons/md'
 import autobind from 'autobind-decorator'
-import {saveAs} from './downloadFile'
+import downloadFile from './downloadFile'
 import Progress from './Progress'
 import messages from './messages'
 import gql from 'graphql-tag'
@@ -35,49 +35,54 @@ export default class DownloadButton extends React.Component {
     showMessage: PropTypes.func
   }
 
-  state = {open: false, loading: false}
+  state = { open: false, loading: false }
 
   @autobind
   async downloadProgress(event) {
-    const {loaded, total} = event
-    this.setState({loaded, total})
+    const { loaded, total } = event
+    this.setState({ loaded, total })
     if (loaded === total) {
       this.props.showMessage(translate('parts.completeDownloadMessage'))
       await sleep(1250)
-      this.setState({open: false, loading: false, loaded: 0})
+      this.setState({ open: false, loading: false, loaded: 0 })
     }
   }
 
   downloadStatusHandler(status, minutesToWait) {
-    this.setState({open: false, loading: false, loaded: 0})
+    this.setState({ open: false, loading: false, loaded: 0 })
     const event = messages[status]
     const message = event.minutes ? event.message + minutesToWait : event.message
-    this.props.showMessage(message, event.error && {level: 'error'})
+    this.props.showMessage(message, event.error && { level: 'error' })
   }
 
   @autobind
   async download() {
-    this.setState({loading: true})
-    const {file, createDownload, finishDownload, showMessage} = this.props
+    this.setState({ loading: true })
+    const { file, createDownload, finishDownload, showMessage } = this.props
     try {
-      const response = await createDownload({fileId: file._id})
-      const {status, fileName, downloadUrl, minutesToWait, activityId} = response.createDownload
+      const response = await createDownload({ fileId: file._id })
+      const { status, fileName, downloadUrl, minutesToWait, activityId } = response.createDownload
       if (status !== 'available') {
-        await finishDownload({activityId, status: false})
+        await finishDownload({ activityId, status: false })
         return this.downloadStatusHandler(status, minutesToWait)
       }
-      this.setState({open: true})
-      await saveAs(downloadUrl, fileName, this.downloadProgress)
-      await finishDownload({activityId, status: true})
+      this.setState({ open: true })
+      await downloadFile({
+        fileId: this.props.file._id,
+        downloadUrl: downloadUrl,
+        fileName: fileName,
+        downloadProgress: this.downloadProgress
+      })
+      await finishDownload({ activityId, status: true })
     } catch (error) {
-      showMessage(error, {level: 'error'})
+      showMessage(error, { level: 'error' })
     }
   }
 
   renderDownloading() {
     if (!this.state.open) return
-    const {total, loaded} = this.state
-    return <Progress total={total} loaded={loaded} close={() => this.setState({open: false})} />
+    const { total, loaded } = this.state
+    return <Progress total={total} loaded={loaded} close={() => this.setState({ open: false })} />
   }
 
   renderButton() {

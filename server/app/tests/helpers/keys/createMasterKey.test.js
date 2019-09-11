@@ -1,7 +1,7 @@
-import {createMasterKey} from 'app/helpers/keys'
+import { createMasterKey } from 'app/helpers/keys'
 
 it('Should return a master key', () => {
-  const {original, secretKeyInterval, ivKeyInterval, rest, range} = createMasterKey()
+  const { original, secretKeyInterval, ivKeyInterval, rest, range } = createMasterKey()
 
   expect(typeof original).toBe('string')
   expect(typeof secretKeyInterval).toBe('number')

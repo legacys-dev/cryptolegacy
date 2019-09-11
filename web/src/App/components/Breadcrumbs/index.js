@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './styles.module.css'
-import {Link} from 'react-router-dom'
-import {MdKeyboardArrowRight, MdArrowBack} from 'react-icons/md'
+import { Link } from 'react-router-dom'
+import { MdKeyboardArrowRight, MdArrowBack } from 'react-icons/md'
 
-const Breadcrumbs = ({past, children, right, divider}) => {
+const Breadcrumbs = ({ past, children, right, divider }) => {
   const getPast = () => {
     if (!past) return []
     return Object.keys(past).map(path => {
@@ -24,18 +24,16 @@ const Breadcrumbs = ({past, children, right, divider}) => {
       return (
         <span key={item.path} className={styles.backContainer}>
           {renderLink ? (
-            <Link to={item.path} >
+            <Link to={item.path}>
               <div className={styles.pastContainer}>
-                <MdArrowBack id={styles.arrowBack}/>
+                <MdArrowBack id={styles.arrowBack} />
                 {item.title}
               </div>
             </Link>
-           ) : (
+          ) : (
             item.title
           )}{' '}
-          {renderArrow ? (
-            <MdKeyboardArrowRight id={styles.arrowRight}/>
-          ) : null}
+          {renderArrow ? <MdKeyboardArrowRight id={styles.arrowRight} /> : null}
         </span>
       )
     })

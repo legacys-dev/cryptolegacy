@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Vaults from 'app/collections/Vaults'
 import createActivity from 'app/resolvers/Activities/createActivity'
 
@@ -13,7 +13,7 @@ export default resolver({
   requireLogin: true,
   vaultOwner: true,
   vaultForDelete: true,
-  async resolve({vaultId}, viewer) {
+  async resolve({ vaultId }, viewer) {
     const vault = await Vaults.findOne(vaultId)
     if (!vault) return
 

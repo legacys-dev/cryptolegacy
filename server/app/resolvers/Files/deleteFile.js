@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Files from 'app/collections/Files'
 import createActivity from 'app/resolvers/Activities/createActivity'
 
@@ -16,9 +16,9 @@ export default resolver({
   vaultOwner: true,
   requireLogin: true,
   filePermissions: true,
-  async resolve({fileId, vaultId}, viewer) {
+  async resolve({ fileId, vaultId }, viewer) {
     const file = await Files.findOne(fileId)
-    file.update({$set: {status: 'inTrash', updateAt: new Date()}}) // await not necessary
+    file.update({ $set: { status: 'inTrash', updateAt: new Date() } }) // await not necessary
 
     const activityTypeParams = {
       activityType: 'file',

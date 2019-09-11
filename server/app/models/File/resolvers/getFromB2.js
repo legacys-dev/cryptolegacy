@@ -1,5 +1,5 @@
-import {resolver} from '@orion-js/app'
-import {getDownloadUrl} from 'app/helpers/backblazeB2'
+import { resolver } from '@orion-js/app'
+import { getDownloadUrl } from 'app/helpers/backblazeB2'
 
 export default resolver({
   params: {},
