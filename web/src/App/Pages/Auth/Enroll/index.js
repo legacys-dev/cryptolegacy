@@ -1,9 +1,7 @@
 import React from 'react'
 
-export default class Component extends React.Component {
-  static propTypes = {}
-
-  render() {
-    return <div>todo</div>
-  }
+const Component = () => {
+  return <div>todo</div>
 }
+
+export default Component

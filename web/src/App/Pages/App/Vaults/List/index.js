@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import Breadcrumbs from 'App/components/Breadcrumbs'
+import Header from 'App/components/Parts/Header'
 import Button from 'App/components/Parts/Button'
 import autobind from 'autobind-decorator'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import VaultType from './VaultType'
 import Main from './Main'
+import { FiPlus } from 'react-icons/fi'
+import translate from 'App/i18n/translate'
 
 @withRouter
 export default class List extends React.Component {
@@ -14,43 +16,46 @@ export default class List extends React.Component {
     history: PropTypes.object
   }
 
-  state = {credentialType: 'owner'}
+  state = { credentialType: 'owner' }
 
   @autobind
   onFilterChange(searchValue) {
-    this.setState({searchValue})
+    this.setState({ searchValue })
   }
 
   @autobind
   onVaultTypeChange(credentialType) {
-    this.setState({credentialType})
+    this.setState({ credentialType })
   }
 
-  renderCreateVault() {
-    if (this.state.credentialType === 'heritage') return
+  renderRigth() {
+    const renderCreateVault = () => {
+      if (this.state.credentialType === 'heritage') return
+      return (
+        <Button primary icon={FiPlus} onClick={() => this.props.history.push('/vaults/create')}>
+          {translate('vaults.createVault')}
+        </Button>
+      )
+    }
     return (
-      <Button primary onClick={() => this.props.history.push('/vaults/create')}>
-        Crear bóveda
-      </Button>
+      <div className={styles.renderRigth}>
+        <div className={styles.searchBar}>
+          <VaultType
+            onVaultTypeChange={this.onVaultTypeChange}
+            onFilterChange={this.onFilterChange}
+            vaultTypeValue={this.state.credentialType}
+            filterValue={this.state.searchValue}
+          />
+        </div>
+        {renderCreateVault()}
+      </div>
     )
   }
 
   render() {
     return (
       <div className={styles.container}>
-        <Breadcrumbs right={this.renderCreateVault()}>
-          <div className={styles.title}>
-            <div className={styles.subTitle}>Bóvedas</div>
-            <div className={styles.searchBar}>
-              <VaultType
-                onVaultTypeChange={this.onVaultTypeChange}
-                onFilterChange={this.onFilterChange}
-                vaultTypeValue={this.state.credentialType}
-                filterValue={this.state.searchValue}
-              />
-            </div>
-          </div>
-        </Breadcrumbs>
+        <Header right={this.renderRigth()} title={translate('vaults.vaults')} />
         <Main filter={this.state.searchValue} credentialType={this.state.credentialType} />
       </div>
     )

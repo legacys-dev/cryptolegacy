@@ -5,11 +5,7 @@ import Section from 'App/components/Section'
 import getSize from 'App/helpers/files/getSize'
 import mime from 'mime-types'
 import moment from 'moment'
-
-const storage = {
-  b2: 'simple storage',
-  glacier: 'high security storage'
-}
+import translate from 'App/i18n/translate'
 
 export default class Information extends React.Component {
   static propTypes = {
@@ -34,14 +30,19 @@ export default class Information extends React.Component {
     if (!file) return <span />
     return (
       <div className={styles.container}>
-        <Section top title="Archivo" description="description">
+        <Section
+          top
+          title={translate('information.infoTitle')}
+          description={translate('information.description')}>
           <div className={styles.file}>
-            {this.renderInformation('Nombre:', file.data.name)}
-            {this.renderInformation('Tipo:', mime.extension(file.data.type))}
-            {this.renderInformation('Peso:', getSize(file.data.size))}
-            {this.renderInformation('Bóveda:', file.vaultName)}
-            {this.renderInformation('Tipo de almacenamiento:', storage[file.data.storageType])}
-            {this.renderInformation('Creado:', moment(file.createdAt).format('LL'))}
+            {this.renderInformation(translate('information.name'), file.name)}
+            {this.renderInformation(translate('information.type'), mime.extension(file.type))}
+            {this.renderInformation(translate('information.size'), getSize(file.size))}
+            {this.renderInformation(translate('information.vault'), file.vaultName)}
+            {this.renderInformation(
+              translate('information.createdDate'),
+              moment(file.createdAt).format('LL')
+            )}
           </div>
         </Section>
       </div>

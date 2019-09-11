@@ -1,0 +1,15 @@
+.container {
+  max-height: 25px;
+}
+
+.icon {
+  -webkit-transition-property: color;
+  -webkit-transition-duration: 300ms;
+  margin: 0 5px;
+  height: auto;
+}
+
+.icon:hover {
+  cursor: pointer;
+  color: #ff0000;
+}

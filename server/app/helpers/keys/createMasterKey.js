@@ -1,4 +1,4 @@
-import {generateId} from '@orion-js/app'
+import { generateId } from '@orion-js/app'
 import cloneDeep from 'lodash/cloneDeep'
 
 export default function() {

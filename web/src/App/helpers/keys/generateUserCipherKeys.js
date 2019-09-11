@@ -1,14 +1,14 @@
-import {createEtherWallet} from 'App/helpers/ethers'
+import { createEtherWallet } from 'App/helpers/ethers'
 import getHashItems from './getHashItems'
 
 // DONT TOUCH THIS CODE
-export default async function(masterHash) {
+export default async masterHash => {
   const hash = getHashItems(masterHash)
   const walletCredentials = await createEtherWallet(hash.original)
 
-  const {privateKey, publicKey} = walletCredentials
+  const { privateKey, publicKey } = walletCredentials
 
-  const {secretKeyInterval, ivKeyInterval} = hash
+  const { secretKeyInterval, ivKeyInterval } = hash
   const secretEnd = parseInt(secretKeyInterval) + 32
   const ivEnd = parseInt(ivKeyInterval) + 16
 

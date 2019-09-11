@@ -1,20 +1,23 @@
 import React from 'react'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import MutationButton from 'App/components/MutationButton'
+import translate from 'App/i18n/translate'
 
-export default function DeleteFile(props) {
+const DeleteFile = ({ vaultPolicyId, vaultId, onDeleteSuccess }) => {
   return (
     <div className={styles.container}>
       <MutationButton
-        title="Eliminar"
-        message="¿Confirmas que quieres eliminar esta herencia?"
-        confirmText="Eliminar"
+        title={translate('deleteHeritages.delete')}
+        message={translate('deleteHeritages.deleteHeritageMessage')}
+        confirmText={translate('deleteHeritages.delete')}
         mutation="deleteHeritage"
         danger
-        params={{vaultPolicyId: props.vaultPolicyId, vaultId: props.vaultId}}
-        onSuccess={() => props.onDeleteSuccess()}>
-        <div className={styles.delete}>Eliminar</div>
+        params={{ vaultPolicyId, vaultId }}
+        onSuccess={() => onDeleteSuccess()}>
+        <div className={styles.delete}>{translate('deleteHeritages.delete')}</div>
       </MutationButton>
     </div>
   )
 }
+
+export default DeleteFile

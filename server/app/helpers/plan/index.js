@@ -1,3 +1,3 @@
 import planStorage from './planStorage'
 
-export {planStorage}
+export { planStorage }

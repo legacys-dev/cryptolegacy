@@ -1,0 +1,16 @@
+.container {
+  margin: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 350px;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.message {
+  font-size: 20px;
+  margin-left: 10px;
+}

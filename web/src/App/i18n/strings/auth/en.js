@@ -24,5 +24,13 @@ export default {
   forgotPassword: 'Forgot password?',
   confirmEmail: 'Confirm email',
   createPassword: 'Create password',
-  sharedHardware: 'This is a public or shared computer'
+  sharedHardware: 'This is a public or shared computer',
+  accountCreatedSuccessfully: 'Account created successfully',
+  enterPassword: 'Enter your password',
+  loginSuccessfully: 'Login successfully',
+  masterKey: 'Master key',
+  codePlaceholder: '9 digit code',
+  codeDescription: 'A code was sent to your email to confirm your account. You have 4 minutes.',
+  timeLimitMessage: 'The time to send the confirmation code expired',
+  returnToLogin: 'Return to login'
 }

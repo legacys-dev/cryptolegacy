@@ -5,12 +5,14 @@ import AutoForm from 'App/components/AutoForm'
 import Button from 'App/components/Parts/Button'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import LoggedIn from '../LoggedIn'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Title from 'App/components/Auth/Title'
-import Translate from 'App/i18n'
+import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
 import withUserId from 'App/helpers/auth/withUserId'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
+import { Field } from 'simple-react-form'
+import Text from 'App/components/fields/Text'
 
 @withUserId
 @withRouter
@@ -30,9 +32,9 @@ export default class Register extends React.Component {
   renderLogInLink() {
     return (
       <div className={styles.link}>
-        <Translate tr="auth.ifYouHaveAnAccount" />{' '}
-        <Link to="/login" style={{color: '#0053b3'}}>
-          <Translate tr="auth.loginNow" />
+        {translate('auth.ifYouHaveAnAccount')}{' '}
+        <Link to="/login" style={{ color: '#0053b3' }}>
+          {translate('auth.loginNow')}
         </Link>
       </div>
     )
@@ -42,7 +44,7 @@ export default class Register extends React.Component {
     return (
       <div className={styles.button}>
         <Button primary fullWidth onClick={() => this.refs.form.submit()}>
-          <Translate tr="auth.createAccount" />
+          {translate('auth.createAccount')}
         </Button>
       </div>
     )
@@ -53,7 +55,21 @@ export default class Register extends React.Component {
     return (
       <div>
         <Title text="auth.register" />
-        <AutoForm mutation="emailRegister" ref="form" onSuccess={this.onSuccess} />
+        <AutoForm mutation="emailRegister" ref="form" onSuccess={this.onSuccess}>
+          <Field fieldName="email" type={Text} fieldType="email" placeholder="Email" />
+          <Field
+            fieldName="name"
+            type={Text}
+            fieldType="name"
+            placeholder={translate('auth.name')}
+          />
+          <Field
+            fieldName="lastName"
+            type={Text}
+            fieldType="lastName"
+            placeholder={translate('auth.lastName')}
+          />
+        </AutoForm>
         {this.renderButton()}
         {this.renderLogInLink()}
       </div>

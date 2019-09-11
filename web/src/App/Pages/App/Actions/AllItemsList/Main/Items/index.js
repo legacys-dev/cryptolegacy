@@ -1,17 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import actionIcons from './actionIcons'
 import Action from './Action'
 import moment from 'moment'
+import translate from 'App/i18n/translate'
 
-export default class Items extends React.Component {
-  static propTypes = {
-    items: PropTypes.array
-  }
-
-  renderTable() {
-    const actions = this.props.items || []
+const Items = ({ items }) => {
+  const renderTable = () => {
+    const actions = items || []
     return actions.map((action, index) => {
       const Icon = actionIcons[action.data.action]
       return (
@@ -21,8 +17,8 @@ export default class Items extends React.Component {
               <Icon size={20} />
             </div>
           </td>
-          <td style={{textAlign: 'left'}}>
-            <Action action={action} />
+          <td style={{ textAlign: 'left' }}>
+            <Action actions={action} />
           </td>
           <td>{moment(action.createdAt).format('LLLL')}</td>
         </tr>
@@ -30,24 +26,23 @@ export default class Items extends React.Component {
     })
   }
 
-  renderFiles() {
+  const renderFiles = () => {
     return (
       <div className={styles.files}>
         <table className={styles.table}>
           <thead>
             <tr>
-              <td style={{width: '1%'}} />
-              <td style={{textAlign: 'left'}}>Acción</td>
-              <td style={{width: '10%'}}>Fecha</td>
+              <td style={{ width: '1%' }} />
+              <td style={{ textAlign: 'left' }}>{translate('actions.action')}</td>
+              <td style={{ width: '10%' }}>{translate('actions.date')}</td>
             </tr>
           </thead>
-          <tbody>{this.renderTable()}</tbody>
+          <tbody>{renderTable()}</tbody>
         </table>
       </div>
     )
   }
-
-  render() {
-    return <div className={styles.container}>{this.renderFiles()}</div>
-  }
+  return <div className={styles.container}>{renderFiles()}</div>
 }
+
+export default Items

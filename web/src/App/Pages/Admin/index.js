@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import {Route, Switch, Redirect} from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import InactivityTimer from 'App/components/InactivityTimer'
 import forceLogin from 'App/helpers/auth/forceLogin'
@@ -9,6 +9,7 @@ import Heritages from './Heritages'
 import SideMenu from './SideMenu'
 import gql from 'graphql-tag'
 import links from './links'
+import translate from 'App/i18n/translate'
 
 @forceLogin
 @withGraphQL(gql`
@@ -25,11 +26,11 @@ export default class Admin extends React.Component {
   }
 
   renderWithoutPermissions() {
-    return <div className={styles.permissions}>No tienes permisos</div>
+    return <div className={styles.permissions}>{translate('admin.youHaveNotPermissions')}</div>
   }
 
   render() {
-    const {me} = this.props
+    const { me } = this.props
     if (!me.roles || !me.roles.includes('admin')) return this.renderWithoutPermissions()
     return (
       <div className={styles.container}>

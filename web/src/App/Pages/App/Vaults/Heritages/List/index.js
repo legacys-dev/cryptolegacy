@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import Breadcrumbs from 'App/components/Breadcrumbs'
+import Header from 'App/components/Parts/Header'
 import Loading from 'App/components/Parts/Loading'
 import Button from 'App/components/Parts/Button'
-import Section from 'App/components/Section'
+import translate from 'App/i18n/translate'
 import gql from 'graphql-tag'
 import Main from './Main'
 
@@ -21,7 +21,7 @@ import Main from './Main'
       }
     }
   `,
-  {loading: <Loading />}
+  { loading: <Loading /> }
 )
 @withRouter
 @withMessage
@@ -34,36 +34,32 @@ export default class List extends React.Component {
 
   @autobind
   onSuccess() {
-    const {showMessage, vault, history} = this.props
-    showMessage('Se ha creado una herencia')
+    const { showMessage, vault, history } = this.props
+    showMessage(translate('vaults.createHeritage'))
     history.push(`/vaults/storage-update/${vault._id}`)
   }
 
   renderButtons() {
-    const {vault, history} = this.props
+    const { vault, history } = this.props
     return (
       <div className={styles.buttons}>
         <Button primary onClick={() => history.push(`/vaults/heritages/${vault._id}/create`)}>
-          Crear herencia
+          {translate('vaults.create')}
         </Button>
       </div>
     )
   }
 
   render() {
-    const {vault} = this.props
+    const { vault } = this.props
     return (
       <div className={styles.container}>
-        <Breadcrumbs
-          past={{[`/vaults/storage-update/${vault._id}`]: 'Herencias'}}
-          right={this.renderButtons()}>
-          Bóveda ({vault.name})
-        </Breadcrumbs>
-        <div className={styles.content}>
-          <Section top title="Herencias" description="description">
-            <Main vaultId={vault._id} />
-          </Section>
-        </div>
+        <Header
+          past={{ [`/vaults/storage-update/${vault._id}`]: translate('vaults.heritages') }}
+          right={this.renderButtons()}
+          title={`${translate('vaults.vault')} - ${vault.name}`}
+        />
+        <Main vaultId={vault._id} />
       </div>
     )
   }

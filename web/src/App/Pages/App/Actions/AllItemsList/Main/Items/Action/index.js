@@ -1,14 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import LengthName from 'App/components/User/LengthName'
+import translate from 'App/i18n/translate'
 
-export default class Action extends React.Component {
-  static propTypes = {
-    action: PropTypes.object
-  }
-
-  renderLargeMessage(firstText, firstName, secondText, secondName) {
+const Action = ({ actions }) => {
+  const renderLargeMessage = (firstText, firstName, secondText, secondName) => {
     return (
       <div className={styles.message}>
         <div>{firstText}</div>
@@ -23,7 +19,7 @@ export default class Action extends React.Component {
     )
   }
 
-  renderShortMessage(text, name) {
+  const renderShortMessage = (text, name) => {
     return (
       <div className={styles.message}>
         <div>{text}</div>
@@ -34,38 +30,53 @@ export default class Action extends React.Component {
     )
   }
 
-  render() {
-    const {action, vaultName, fileName, newVaultName} = this.props.action.data
-    if (action.includes('uploadFile')) {
-      return this.renderLargeMessage('Subiste el archivo', fileName, 'a la bóveda', vaultName)
-    }
-    if (action.includes('downloadFile')) {
-      return this.renderLargeMessage(
-        'Descargaste el archivo',
-        fileName,
-        'desde la bóveda',
-        vaultName
-      )
-    }
-    if (action.includes('deleteFile')) {
-      return this.renderLargeMessage('Elimiaste el archivo', fileName, 'desde la bóveda', vaultName)
-    }
-    if (action.includes('restoreFile')) {
-      return this.renderLargeMessage('Restauraste el archivo', fileName, 'a la bóveda', vaultName)
-    }
-    if (action.includes('createVault')) {
-      return this.renderShortMessage('Creaste la bóveda', vaultName)
-    }
-    if (action.includes('updateVault')) {
-      return this.renderLargeMessage(
-        'Actualizaste el nombre de la bóveda',
-        vaultName,
-        'a',
-        newVaultName
-      )
-    }
-    if (action.includes('deleteVault')) {
-      return this.renderShortMessage('Eliminaste la bóveda', vaultName)
-    }
+  const { action, vaultName, fileName, newVaultName } = actions.data
+  if (action.includes('uploadFile')) {
+    return renderLargeMessage(
+      translate('app.uploadFile'),
+      fileName,
+      translate('app.toVault'),
+      vaultName
+    )
+  }
+  if (action.includes('downloadFile')) {
+    return renderLargeMessage(
+      translate('app.downloadFile'),
+      fileName,
+      translate('app.fromVault'),
+      vaultName
+    )
+  }
+  if (action.includes('deleteFile')) {
+    return renderLargeMessage(
+      translate('app.deleteFile'),
+      fileName,
+      translate('app.fromVault'),
+      vaultName
+    )
+  }
+  if (action.includes('restoreFile')) {
+    return renderLargeMessage(
+      translate('app.restoreFile'),
+      fileName,
+      translate('app.toVault'),
+      vaultName
+    )
+  }
+  if (action.includes('createVault')) {
+    return renderShortMessage(translate('app.createVault'), vaultName)
+  }
+  if (action.includes('updateVault')) {
+    return renderLargeMessage(
+      translate('app.updateVault'),
+      vaultName,
+      translate('app.to'),
+      newVaultName
+    )
+  }
+  if (action.includes('deleteVault')) {
+    return renderShortMessage(translate('app.deleteVault'), vaultName)
   }
 }
+
+export default Action

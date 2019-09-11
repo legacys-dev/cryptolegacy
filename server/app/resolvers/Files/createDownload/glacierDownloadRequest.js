@@ -1,7 +1,7 @@
-import {initiateRetrievalArchiveJob} from 'app/helpers/awsGlacier'
+import { initiateRetrievalArchiveJob } from 'app/helpers/awsGlacier'
 import DownloadRequests from 'app/collections/DownloadRequests'
 
-export default async function({file, type}) {
+export default async function({ file, type }) {
   const params = {
     vaultName: file.glacierData.vaultName,
     archiveId: file.glacierData.archiveId,
@@ -28,7 +28,7 @@ export default async function({file, type}) {
   }
 
   if (type === 'create') {
-    const insertParams = {fileId: file._id, vaultName: params.vaultName, ...requestParams}
+    const insertParams = { fileId: file._id, vaultName: params.vaultName, ...requestParams }
 
     try {
       await DownloadRequests.insert(insertParams)
@@ -39,10 +39,10 @@ export default async function({file, type}) {
 
     if (retrievalError) return
   } else if (type === 'update') {
-    const downloadRequest = await DownloadRequests.findOne({fileId: file._id})
+    const downloadRequest = await DownloadRequests.findOne({ fileId: file._id })
 
     try {
-      await downloadRequest.update({$set: requestParams})
+      await downloadRequest.update({ $set: requestParams })
     } catch (error) {
       retrievalError = !!error
       console.log(error)

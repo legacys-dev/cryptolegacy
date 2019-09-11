@@ -15,7 +15,7 @@ export default function LocaleProvider(props) {
   }
 
   return (
-    <LocaleContext.Provider value={{locale: getLocale(), setLocale}}>
+    <LocaleContext.Provider value={{ locale: getLocale(), setLocale }}>
       {props.children}
     </LocaleContext.Provider>
   )

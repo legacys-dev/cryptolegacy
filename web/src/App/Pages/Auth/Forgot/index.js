@@ -8,7 +8,6 @@ import Button from 'App/components/Parts/Button'
 import LoggedIn from '../LoggedIn'
 import {Link} from 'react-router-dom'
 import Title from 'App/components/Auth/Title'
-import Translate from 'App/i18n'
 import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
 import withUserId from 'App/helpers/auth/withUserId'
@@ -21,18 +20,19 @@ export default class ForgotPassword extends React.Component {
     showMessage: PropTypes.func,
     userId: PropTypes.string
   }
+  state = {sentEmail: false}
 
   @autobind
   onSuccess() {
-    this.props.showMessage(translate('auth.followInstructionsInEmail'))
+    this.setState({sentEmail: true})
   }
 
   renderLogInLink() {
     return (
       <div className={styles.link}>
-        <Translate tr="auth.ifYouHaveAnAccount" />{' '}
+        {translate('auth.ifYouHaveAnAccount')}{' '}
         <Link to="/login" style={{color: '#0053b3'}}>
-          <Translate tr="auth.loginNow" />
+          {translate('auth.loginNow')}
         </Link>
       </div>
     )
@@ -42,18 +42,31 @@ export default class ForgotPassword extends React.Component {
     return (
       <div className={styles.button}>
         <Button primary fullWidth onClick={() => this.refs.form.submit()}>
-          <Translate tr="auth.resetPassword" />
+          {translate('auth.resetPassword')}
         </Button>
       </div>
     )
   }
 
+  renderButtonLogin() {
+    return (
+      <Link to="/login">
+        <div className={styles.button}>
+          <Button primary fullWidth>
+            {translate('auth.returnToLogin')}
+          </Button>
+        </div>
+      </Link>
+    )
+  }
+  // usar estado para cambiar la pantalla al mandar el correo
   render() {
     if (this.props.userId) return <LoggedIn />
+    if (this.state.sentEmail === true) return <div>{this.renderButtonLogin()}</div>
     return (
       <div>
         <Title text="auth.forgotPassword" />
-        <AutoForm mutation="forgotPassword" ref="form" onSuccess={this.onSuccess}>
+        <AutoForm mutation="missedPassword" ref="form" onSuccess={this.onSuccess}>
           <Field fieldName="email" type={Text} placeholder="Email" fieldType="email" />
         </AutoForm>
         {this.renderButton()}

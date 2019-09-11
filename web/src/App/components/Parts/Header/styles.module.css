@@ -1,0 +1,79 @@
+.container {
+  max-height: 60px;
+  margin: 25px 0;
+}
+
+.all {
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  flex: 1;
+  font-size: 25px;
+  color: #393939;
+  display: flex;
+  align-items: center;
+}
+
+.content a {
+  color: #393939;
+  border-radius: 8px;
+  padding: 10px 0;
+  padding-right: 10px;
+}
+
+.content .last {
+  border-radius: 8px;
+}
+
+.content a:hover {
+  background: #53caff30;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.divider {
+  height: 1px;
+  background: #e2e2e2;
+  margin: 10px 20px;
+}
+
+.rowBack {
+  margin-right: 10px;
+}
+
+.backContainer {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.pastContainer {
+  display: flex;
+}
+
+#arrowBack {
+  margin-right: 10px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.titleHeader {
+  font-size: 28px;
+}
+
+.descriptionHeaderBack {
+  font-size: 14px;
+  margin-left: 56px;
+  margin-top: -4px;
+}
+
+.descriptionHeader {
+  font-size: 14px;
+  margin-top: -4px;
+}

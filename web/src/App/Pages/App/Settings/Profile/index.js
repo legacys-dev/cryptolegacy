@@ -7,39 +7,73 @@ import AutoForm from 'App/components/AutoForm'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import translate from 'App/i18n/translate'
-import Translate from 'App/i18n'
+import Loading from 'App/components/Parts/Loading'
 import gql from 'graphql-tag'
+import { Field } from 'simple-react-form'
+import Text from 'App/components/fields/Text'
+import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 
-const fragment = gql`
-  fragment setUserProfileFragment on User {
-    _id
-    profile {
-      name
-      firstName
-      lastName
+@withGraphQL(
+  gql`
+    query getMyProfile {
+      me {
+        _id
+        profile {
+          name
+          firstName
+          lastName
+        }
+      }
+      getEmergencyKit
     }
-  }
-`
-
-@withGraphQL(gql`
-  query getMyProfile {
-    me {
-      ...setUserProfileFragment
-    }
-  }
-  ${fragment}
-`)
+  `,
+  { loading: <Loading /> }
+)
 @withMessage
 export default class Profile extends React.Component {
   static propTypes = {
     me: PropTypes.object,
+    getEmergencyKit: PropTypes.object,
     showMessage: PropTypes.func
   }
 
-  state = {}
+  state = { isKey: false, masterKey: '***************************' }
+
+  decryptKey = data => {
+    const messages = JSON.parse(window.localStorage.getItem('messages'))
+    const decryptedKey = privateDecrypt({ toDecrypt: data, privateKey: messages.privateKey })
+    this.setState({ masterKey: decryptedKey.userMasterKey.original, isKey: true })
+  }
+
+  setKey = key => {
+    if (this.state.isKey) {
+      this.setState({ masterKey: '***************************', isKey: false })
+    } else {
+      this.decryptKey(key)
+    }
+  }
+
+  getPdf(data) {
+    function saveByteArray(reportName, byte) {
+      const blob = new Blob([byte], { type: 'application/pdf' })
+      const link = document.createElement('a')
+      const fileName = reportName
+      link.href = window.URL.createObjectURL(blob)
+      link.download = fileName
+      link.click()
+    }
+    const buff = Buffer.from(data, 'hex')
+    saveByteArray('secretKey', buff)
+  }
 
   render() {
     if (!this.props.me) return
+    const profile = {
+      userId: this.props.me._id,
+      firstName: this.props.me.profile.firstName,
+      lastName: this.props.me.profile.lastName
+      //      profile: this.props.me.profile
+    }
     return (
       <div className={styles.container}>
         <Section
@@ -48,15 +82,38 @@ export default class Profile extends React.Component {
           description={translate('settings.profileDescription')}>
           <AutoForm
             mutation="setUserProfile"
-            doc={{userId: this.props.me._id, profile: this.props.me.profile}}
+            doc={profile}
             onSuccess={() => this.props.showMessage(translate('settings.yourProfileWasSaved'))}
-            fragment={fragment}
-            omit={['userId']}
-            ref="form"
-          />
+            ref="form">
+            <Field
+              label={translate('settings.firstName')}
+              fieldName="firstName"
+              type={Text}
+              fieldtype="firstName"
+            />
+            <Field
+              label={translate('settings.lastName')}
+              fieldName="lastName"
+              type={Text}
+              fieldtype="lastName"
+            />
+          </AutoForm>
           <br />
           <Button onClick={() => this.refs.form.submit()} primary>
-            <Translate tr="global.save" />
+            {translate('global.save')}
+          </Button>
+        </Section>
+        <div className={styles.divider} />
+        <Section title={'Master Key'} description={translate('settings.downloadMasterKey')}>
+          <div className={styles.secretKey}>
+            <span className={styles.title}>{translate('settings.masterKey')} </span>
+            <span>{this.state.masterKey}</span>
+            <a onClick={() => this.setKey(this.props.getEmergencyKit.key)}>
+              {this.state.isKey ? translate('settings.hide') : translate('settings.show')}
+            </a>
+          </div>
+          <Button onClick={() => this.getPdf(this.props.getEmergencyKit.data)} primary>
+            {translate('settings.downloadKey')}
           </Button>
         </Section>
       </div>

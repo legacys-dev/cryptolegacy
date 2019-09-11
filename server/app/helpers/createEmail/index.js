@@ -1,5 +1,5 @@
 import React from 'react'
-import {renderToString} from 'react-dom/server'
+import { renderToString } from 'react-dom/server'
 import Layout from './templates/Layout'
 import getContent from './getContent'
 import juice from 'juice'

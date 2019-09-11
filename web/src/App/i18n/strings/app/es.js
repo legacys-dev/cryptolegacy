@@ -1,0 +1,22 @@
+export default{
+    actions: 'Acciones',
+    search: 'Buscar',
+    uploadFile: 'Subiste el archivo',
+    downloadFile: 'Descargaste el archivo',
+    deleteFile: 'Eliminaste el archivo',
+    restoreFile: 'Restauraste el archivo',
+    createVault: 'Creaste la bóveda',
+    updateVault: 'Actualizaste el nombre de la bóveda',
+    deleteVault: 'Eliminaste la bóveda',
+    fromVault: 'dese la bóveda',
+    deleteFileMessage: 'Se han eliminado los archivos correctamente',
+    restoreFileMessage: 'Archivo restaurado correctamente',
+    fileOnDelete: 'Archivos en eliminación',
+    type: 'Tipo',
+    weight: 'Peso',
+    storage: 'Almacenamiento',
+    vault: 'Bóveda',
+    to: 'a',
+    toVault: 'a la bóveda',
+    name: 'Nombre'
+}

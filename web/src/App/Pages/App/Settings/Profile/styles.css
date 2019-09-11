@@ -1,6 +1,32 @@
 :local(.container) {
   padding: 40px;
   background-color: #fff;
-  box-shadow: 0 18px 35px rgba(50, 50, 93, 0.1), 0 8px 15px rgba(0, 0, 0, 0.07);
-  border-radius: 8px;
+  border-radius: 20px;
+  -webkit-box-shadow: 4px 6px 14px -1px #e6ecfe;
+  -moz-box-shadow: 4px 6px 14px -1px #e6ecfe;
+  box-shadow: 4px 6px 14px -1px #e6ecfe;
+}
+
+:local(.divider) {
+  height: 1px;
+  background-color: #eee;
+}
+
+:local(.secretKey) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+:local(.title) {
+  flex-grow: 1;
+  font-size: 16px;
+}
+
+:local(.secretKey > span) {
+  flex-grow: 2;
+}
+
+:local(.secretKey > a) {
+  flex-grow: 10;
 }

@@ -1,7 +1,7 @@
-import {resolver, generateId} from '@orion-js/app'
-import {hashPassword} from '@orion-js/auth'
-import {heritageCreated} from 'app/helpers/emails'
-import {emailValidator} from 'app/helpers/registration'
+import { resolver, generateId } from '@orion-js/app'
+import { hashPassword } from '@orion-js/auth'
+import { heritageCreated } from 'app/helpers/emails'
+import { emailValidator } from 'app/helpers/registration'
 import VaultPolicies from 'app/collections/VaultPolicies'
 import getEncryptedCredentialsForHeir from './getEncryptedCredentialsForHeir'
 import Users from 'app/collections/Users'
@@ -14,7 +14,6 @@ export default resolver({
     },
     email: {
       type: String,
-      label: 'Email del heredero',
       async custom(email) {
         email = email.toLowerCase()
         if (!emailValidator(email)) return 'invalidEmail'
@@ -30,15 +29,15 @@ export default resolver({
   requireLogin: true,
   heritageChecker: true,
   vaultPolicyOwner: true,
-  async resolve({vaultId, email, credentials}, viewer) {
-    const vaultOwner = await Users.findOne({_id: viewer.userId})
+  async resolve({ vaultId, email, credentials }, viewer) {
+    const vaultOwner = await Users.findOne({ _id: viewer.userId })
     const ownerVaultCredentials = await VaultPolicies.findOne({
       vaultId,
       userId: viewer.userId,
       status: 'active'
     })
 
-    const {privateKey} = vaultOwner.messageKeys
+    const { privateKey } = vaultOwner.messageKeys
     const heirCode = generateId(16)
 
     const createHeirCredentialsParams = {
@@ -82,7 +81,7 @@ export default resolver({
       if (hasError) throw new Error('Error creating a heritage')
     }
 
-    const inheritor = await Users.findOne({'emails.address': userEmail})
+    const inheritor = await Users.findOne({ 'emails.address': userEmail })
 
     const owner = {
       ownerEmail: await vaultOwner.email(),
@@ -100,7 +99,7 @@ export default resolver({
       owner,
       user,
       code: heirCode,
-      vaultName: await getVaultName({heritage, vaultId})
+      vaultName: await getVaultName({ heritage, vaultId })
     })
 
     return true

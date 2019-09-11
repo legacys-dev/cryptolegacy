@@ -5,7 +5,7 @@ import HooksApolloProvider from 'apollo-hooks/lib/ApolloProvider'
 import TwoFactorPromptProvider from './TwoFactorPromptProvider'
 import ErrorHandler from 'App/components/ErrorHandler'
 import LocaleProvider from 'App/i18n/LocaleProvider'
-import {ApolloProvider} from 'react-apollo'
+import { ApolloProvider } from 'react-apollo'
 
 export default function Root(props) {
   return (

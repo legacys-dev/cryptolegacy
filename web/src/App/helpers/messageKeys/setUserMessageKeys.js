@@ -1,13 +1,13 @@
 import regenerateKey from './regenerateKey'
-import {generateUserCipherKeys} from 'App/helpers/keys'
-import {userDataDecryptWithPassword} from 'App/helpers/crypto'
-import {setUserCipherPassword} from '../keys'
+import { generateUserCipherKeys } from 'App/helpers/keys'
+import { userDataDecryptWithPassword } from 'App/helpers/crypto'
+import { setUserCipherPassword } from '../keys'
 
 export default async function(k, encryptedKeysForMessages) {
   const isString = k && typeof k === 'string'
   const userMasterKey = isString ? k : regenerateKey(k)
 
-  const {secret, iv, userV} = await generateUserCipherKeys(userMasterKey)
+  const { secret, iv, userV } = await generateUserCipherKeys(userMasterKey)
 
   const decipherParams = {
     encryptedItem: encryptedKeysForMessages,
@@ -15,11 +15,14 @@ export default async function(k, encryptedKeysForMessages) {
     userDataIv: iv
   }
 
-  const {publicKey, privateKey} = JSON.parse(userDataDecryptWithPassword(decipherParams))
+  const { publicKey, privateKey, communicationPassword } = JSON.parse(
+    userDataDecryptWithPassword(decipherParams)
+  )
 
   const messages = {
     publicKey,
-    privateKey
+    privateKey,
+    communicationPassword
   }
 
   window.localStorage.setItem('messages', JSON.stringify(messages))

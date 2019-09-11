@@ -1,6 +1,6 @@
-import {RSA} from 'App/helpers/hybridCryptoJs/functions'
+import { RSA } from 'App/helpers/hybridCryptoJs/functions'
 
-export default function() {
+export default () => {
   const rsa = new RSA({
     keySize: 2048,
     rsaStandard: 'RSA-OAEP' // RSA-OAEP - RSAES-PKCS1-V1_5

@@ -1,54 +1,56 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
+import React, {useState} from 'react'
+import styles from './styles.module.css'
 import {MdClose} from 'react-icons/md'
 import IconButton from 'orionsoft-parts/lib/components/IconButton'
 import {VaultConsumer} from 'App/helpers/contexts/vaultContext'
 import Upload from './Upload'
 import classnames from 'classnames'
 import getEnv from 'App/Root/getEnv'
+import translate from 'App/i18n/translate'
 
-export default class Manager extends React.Component {
-  static propTypes = {
-    close: PropTypes.func
+const Manager = ({close}) => {
+  const [progress, setProgress] = useState(0)
+  const [loaded, setLoaded] = useState(0)
+  const [total, setTotal] = useState(0)
+
+  const onUploadProgressChange = items => {
+    const {progress, loaded, total} = items
+    setProgress(progress)
+    setLoaded(loaded)
+    setTotal(total)
   }
 
-  state = {progress: 0}
-
-  onUploadProgressChange = (progress, loaded, total) => {
-    this.setState({progress, loaded, total})
-  }
-
-  getContentStyles() {
+  const getContentStyles = () => {
     const envType = getEnv()
     if (envType === 'local' || envType === 'app') return styles.content
     return classnames(styles.content, styles.hasMessage)
   }
 
-  render() {
-    return (
-      <div className={styles.container}>
-        <div className={this.getContentStyles()}>
-          <div className={styles.header}>
-            <div className={styles.title}>Archivos</div>
-            <div className={styles.close}>
-              <IconButton tooltip="Cerrar" icon={MdClose} onPress={this.props.close} />
-            </div>
+  return (
+    <div className={styles.container}>
+      <div className={getContentStyles()}>
+        <div className={styles.header}>
+          <div className={styles.title}>{translate('fileManager.filesUpload')}</div>
+          <div className={styles.close}>
+            <IconButton tooltip={translate('fileManager.close')} icon={MdClose} onPress={close} />
           </div>
-          <VaultConsumer>
-            {providerProps => (
-              <Upload
-                close={this.props.close}
-                progress={this.state.progress}
-                loaded={this.state.loaded}
-                total={this.state.total}
-                vaultId={providerProps.vaultId}
-                onUploadProgressChange={this.onUploadProgressChange}
-              />
-            )}
-          </VaultConsumer>
         </div>
+        <VaultConsumer>
+          {providerProps => (
+            <Upload
+              close={close}
+              progress={progress}
+              loaded={loaded}
+              total={total}
+              vaultId={providerProps.vaultId}
+              vaultType={providerProps.vaultType}
+              onUploadProgressChange={items => onUploadProgressChange(items)}
+            />
+          )}
+        </VaultConsumer>
       </div>
-    )
-  }
+    </div>
+  )
 }
+
+export default Manager

@@ -1,4 +1,4 @@
-import {subscription} from '@orion-js/graphql'
+import { subscription } from '@orion-js/graphql'
 import Vault from 'app/models/Vault'
 
 export default subscription({

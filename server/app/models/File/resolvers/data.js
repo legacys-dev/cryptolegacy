@@ -1,17 +1,19 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 
 export default resolver({
   params: {},
-  returns: 'blackbox',
+  returns: String,
   async resolve(file, params, viewer) {
-    const {s3Data} = file
     return {
+      _id: file._id,
       name: file.name,
       type: file.type,
-      size: s3Data.size,
+      size: file.s3Data.size,
       vaultId: file.vaultId,
+      vaultName: await file.vaultName(),
       storageType: file.storage,
-      status: file.status
+      status: file.status,
+      createdAt: file.createdAt
     }
   }
 })

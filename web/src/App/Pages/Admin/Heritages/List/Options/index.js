@@ -1,39 +1,41 @@
 import React from 'react'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import Button from 'App/components/Parts/Button'
-
-const getStatus = function(props, status) {
-  return props.status === status
-}
+import translate from 'App/i18n/translate'
 
 const heritagesTypes = [
   {
-    name: 'Pendientes',
+    name: translate('admin.pendings'),
     type: 'waiting'
   },
   {
-    name: 'En proceso',
+    name: translate('admin.inProcess'),
     type: 'available'
   },
   {
-    name: 'Reclamadas',
+    name: translate('admin.claimed'),
     type: 'active'
   }
 ]
 
-export default function Options(props) {
-  const options = heritagesTypes.map((heritageType, index) => {
-    const {name, type} = heritageType
-    return (
-      <div key={index}>
-        <Button
-          style={{marginLeft: '5px'}}
-          disabled={getStatus(props, type)}
-          onClick={() => props.setStatus(type)}>
-          {name}
-        </Button>
-      </div>
-    )
-  })
+const Options = ({ setStatus, status }) => {
+  const options = () => {
+    return heritagesTypes.map((heritageType, index) => {
+      const { name, type } = heritageType
+      return (
+        <div key={index}>
+          <Button
+            style={{ marginLeft: '5px' }}
+            disabled={status === type}
+            onClick={() => setStatus(type)}>
+            {name}
+          </Button>
+        </div>
+      )
+    })
+  }
+
   return <div className={styles.container}>{options}</div>
 }
+
+export default Options

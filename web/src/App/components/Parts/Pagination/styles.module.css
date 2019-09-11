@@ -1,0 +1,19 @@
+.container {
+  margin-top: 20px;
+}
+
+.currentPage {
+  font-size: 17px;
+  color: #626262;
+}
+
+.page {
+  cursor: pointer;
+  color: #91a2b0;
+  -webkit-transition-property: color;
+  -webkit-transition-duration: 300ms;
+}
+
+.page:hover {
+  color: #0053b3;
+}

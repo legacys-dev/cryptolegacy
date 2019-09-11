@@ -1,38 +1,37 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
-import {Route, Switch} from 'react-router-dom'
+import styles from './styles.module.css'
+import { Route, Switch } from 'react-router-dom'
 import Tabs from 'orionsoft-parts/lib/components/Tabs'
-import Breadcrumbs from 'App/components/Breadcrumbs'
+import Header from 'App/components/Parts/Header'
 import Security from './Security'
 import Profile from './Profile'
-import Translate from 'App/i18n'
+import translate from 'App/i18n/translate'
+import Billing from './Billing'
+import Seats from './Seats'
 
-export default class Layout extends React.Component {
-  static propTypes = {
-    children: PropTypes.node
-  }
-
-  render() {
-    return (
-      <div>
-        <div className={styles.header}>
-          <Breadcrumbs>
-            <Translate tr="settings.title" />
-          </Breadcrumbs>
-          <br />
-          <Tabs
-            items={[
-              {title: <Translate tr="settings.profile" />, path: '/settings'},
-              {title: <Translate tr="settings.security" />, path: '/settings/security'}
-            ]}
-          />
-        </div>
-        <Switch>
-          <Route exact path="/settings" component={Profile} />
-          <Route path="/settings/security" component={Security} />
-        </Switch>
+const Layout = ({ children }) => {
+  return (
+    <div>
+      <div className={styles.header}>
+        <Header title={translate('settings.title')} />
+        <br />
+        <Tabs
+          items={[
+            { title: translate('settings.profile'), path: '/settings' },
+            { title: translate('settings.security'), path: '/settings/security' },
+            { title: translate('settings.billing'), path: '/settings/billing' },
+            { title: translate('settings.seats'), path: '/settings/seats' }
+          ]}
+        />
       </div>
-    )
-  }
+      <Switch>
+        <Route exact path="/settings" component={Profile} />
+        <Route path="/settings/security" component={Security} />
+        <Route path="/settings/billing" component={Billing} />
+        <Route path="/settings/seats" component={Seats} />
+      </Switch>
+    </div>
+  )
 }
+
+export default Layout

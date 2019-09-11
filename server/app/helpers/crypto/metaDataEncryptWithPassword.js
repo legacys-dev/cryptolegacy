@@ -3,7 +3,7 @@ import algorithm from './algorithm'
 import isEmpty from 'lodash/isEmpty'
 import cloneDeep from 'lodash/cloneDeep'
 
-export default function({itemToEncrypt, cipherPassword}) {
+export default function({ itemToEncrypt, cipherPassword }) {
   if (isEmpty(itemToEncrypt)) throw new Error('Missing meta data to encrypt')
   if (isEmpty(cipherPassword)) throw new Error('Missing meta data encrypt password')
 
@@ -14,7 +14,7 @@ export default function({itemToEncrypt, cipherPassword}) {
   if (iv.length !== 16) throw new Error('Invalid meta data identificator vector')
 
   const cipher = crypto.createCipheriv(algorithm, cipherPassword, iv)
-  const encrypted = cipher.update(itemToEncrypt)
+  const encrypted = cipher.update(JSON.stringify(itemToEncrypt))
   const finalBuffer = Buffer.concat([encrypted, cipher.final()])
 
   if (isEmpty(finalBuffer)) throw new Error('Error encrypting meta data, try again')

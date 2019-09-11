@@ -3,7 +3,7 @@ import algorithm from './algorithm'
 import isEmpty from 'lodash/isEmpty'
 import cloneDeep from 'lodash/cloneDeep'
 
-export default function({itemToEncrypt, cipherPassword, userDataIv}) {
+export default ({ itemToEncrypt, cipherPassword, userDataIv }) => {
   if (isEmpty(itemToEncrypt)) throw new Error('Missing user data to encrypt')
   if (isEmpty(cipherPassword)) throw new Error('Missing user data encrypt password')
   if (isEmpty(userDataIv)) throw new Error('Missing user data identificator vector')

@@ -6,6 +6,7 @@ import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import DownloadButton from 'App/components/Parts/DownloadButton'
 import DeleteFile from 'App/components/Parts/DeleteFile'
 import FileView from './FileView'
+import translate from 'App/i18n/translate'
 
 @withRouter
 @withMessage
@@ -19,12 +20,13 @@ export default class Options extends React.Component {
   }
 
   onDeleteSuccess(deletedTime) {
-    this.props.showMessage('Archivo eliminado correctamente')
     this.props.onDeleteFile(deletedTime)
+    this.props.showMessage(translate('files.fileDeletedSuccesfully'))
   }
 
   renderOptions() {
     const {vaultId, file, history} = this.props
+
     return (
       <div className={styles.setting}>
         <FileView history={history} vaultId={vaultId} fileId={file._id} />

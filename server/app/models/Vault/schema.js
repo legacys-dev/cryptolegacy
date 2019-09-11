@@ -5,6 +5,10 @@ export default {
   name: {
     type: String
   },
+  type: {
+    type: String,
+    allowedValues: ['b2', 'glacier', 'drive']
+  },
   searchSlug: {
     type: String
   },

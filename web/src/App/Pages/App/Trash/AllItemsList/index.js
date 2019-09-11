@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import Breadcrumbs from 'App/components/Breadcrumbs'
 import EmptyTrash from 'App/components/Parts/EmptyTrash'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
@@ -11,6 +10,8 @@ import Text from 'App/components/fields/Text'
 import autobind from 'autobind-decorator'
 import gql from 'graphql-tag'
 import Main from './Main'
+import translate from 'App/i18n/translate'
+import Header from 'App/components/Parts/Header'
 
 @forceLogin
 @withGraphQL(
@@ -22,7 +23,7 @@ import Main from './Main'
       }
     }
   `,
-  {loading: <Loading />}
+  { loading: <Loading /> }
 )
 @withMessage
 export default class AllItemsList extends React.Component {
@@ -35,46 +36,50 @@ export default class AllItemsList extends React.Component {
 
   @autobind
   onQueryItems(filesCount) {
-    this.setState({filesCount})
+    this.setState({ filesCount })
   }
 
   @autobind
   onDeleteSuccess() {
-    this.setState({emptyTrashDate: new Date()})
-    this.props.showMessage('Se han eliminado los archivos correctamente')
+    this.setState({ emptyTrashDate: new Date() })
+    this.props.showMessage(translate('app.deleteFileMessage'))
   }
 
   onFilterChange(searchValue) {
-    this.setState({searchValue})
+    this.setState({ searchValue })
   }
 
   renderSearch() {
     return (
       <Text
-        placeholder="Search"
+        placeholder={translate('app.search')}
         value={this.state.searchValue}
         onChange={searchValue => this.onFilterChange(searchValue)}
       />
     )
   }
 
+  renderRight(userId, filesCount) {
+    return (
+      <div className={styles.topContainer}>
+        <div className={styles.searchBar}>{this.renderSearch()}</div>
+        <EmptyTrash
+          onDeleteSuccess={this.onDeleteSuccess}
+          userId={userId}
+          filesCount={filesCount}
+        />
+      </div>
+    )
+  }
+
   render() {
-    const {searchValue, emptyTrashDate, filesCount} = this.state
+    const { searchValue, emptyTrashDate, filesCount } = this.state
     return (
       <div className={styles.container}>
-        <Breadcrumbs
-          right={
-            <EmptyTrash
-              onDeleteSuccess={this.onDeleteSuccess}
-              userId={this.props.me._id}
-              filesCount={filesCount}
-            />
-          }>
-          <div className={styles.title}>
-            <div className={styles.subTitle}>Archivos en eliminación</div>
-            <div className={styles.searchBar}>{this.renderSearch()}</div>
-          </div>
-        </Breadcrumbs>
+        <Header
+          right={this.renderRight(this.props.me._id, filesCount)}
+          title={translate('app.fileOnDelete')}
+        />
         <Main
           filter={searchValue}
           emptyTrashDate={emptyTrashDate}

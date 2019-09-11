@@ -1,11 +1,9 @@
 import React from 'react'
 import styles from './styles.module.css'
-import Translate from 'App/i18n'
+import translate from 'App/i18n/translate'
 
-export default function Title({text}) {
-  return (
-    <div className={styles.container}>
-      <Translate tr={text} />
-    </div>
-  )
+const Title = ({ text }) => {
+  return <div className={styles.container}>{translate(text)}</div>
 }
+
+export default Title

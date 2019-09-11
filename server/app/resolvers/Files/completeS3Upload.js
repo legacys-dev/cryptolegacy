@@ -1,4 +1,4 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Files from 'app/collections/Files'
 import createActivity from 'app/resolvers/Activities/createActivity'
 
@@ -12,18 +12,18 @@ export default resolver({
   mutation: true,
   requireLogin: true,
   filePermissions: true,
-  async resolve({fileId}, viewer) {
-    const file = await Files.findOne({_id: fileId})
+  async resolve({ fileId }, viewer) {
+    const file = await Files.findOne({ _id: fileId })
     const status = file.storage.includes('b2')
-      ? {'b2Data.status': 'pending'}
-      : {'glacierData.status': 'pending'}
+      ? { 'b2Data.status': 'pending' }
+      : { 'glacierData.status': 'pending' }
 
     const updateData = {
-      ...{'s3Data.status': 'uploaded'},
+      ...{ 's3Data.status': 'uploaded' },
       ...status
     }
 
-    await file.update({$set: updateData})
+    await file.update({ $set: updateData })
     await file.updateVault()
 
     const activityTypeParams = {

@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './styles.module.css'
-import {Link} from 'react-router-dom'
-import {MdKeyboardArrowRight} from 'react-icons/md'
+import { Link } from 'react-router-dom'
+import { MdKeyboardArrowRight, MdArrowBack } from 'react-icons/md'
 
-export default function Breadcrumbs({past, children, right, divider}) {
+const Breadcrumbs = ({ past, children, right, divider }) => {
   const getPast = () => {
     if (!past) return []
     return Object.keys(past).map(path => {
@@ -22,13 +22,18 @@ export default function Breadcrumbs({past, children, right, divider}) {
       const renderArrow = children || !isLast
       const renderLink = typeof item.title === 'string'
       return (
-        <span key={item.path}>
-          {renderLink ? <Link to={item.path}>{item.title}</Link> : item.title}{' '}
-          {renderArrow ? (
-            <span className="bread-divider">
-              <MdKeyboardArrowRight />
-            </span>
-          ) : null}
+        <span key={item.path} className={styles.backContainer}>
+          {renderLink ? (
+            <Link to={item.path}>
+              <div className={styles.pastContainer}>
+                <MdArrowBack id={styles.arrowBack} />
+                {item.title}
+              </div>
+            </Link>
+          ) : (
+            item.title
+          )}{' '}
+          {renderArrow ? <MdKeyboardArrowRight id={styles.arrowRight} /> : null}
         </span>
       )
     })
@@ -52,3 +57,5 @@ export default function Breadcrumbs({past, children, right, divider}) {
     </div>
   )
 }
+
+export default Breadcrumbs

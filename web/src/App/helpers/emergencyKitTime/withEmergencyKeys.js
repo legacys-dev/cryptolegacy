@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 
 export default function(ComposedComponent) {
   @withRouter
@@ -10,7 +10,7 @@ export default function(ComposedComponent) {
     }
 
     render() {
-      const {params} = this.props.match
+      const { params } = this.props.match
       return <ComposedComponent emergencyKitId={params.emergencyKitId} {...this.props} />
     }
   }

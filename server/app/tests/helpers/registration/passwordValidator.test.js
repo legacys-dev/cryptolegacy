@@ -1,4 +1,4 @@
-import {passwordValidator} from 'app/helpers/registration'
+import { passwordValidator } from 'app/helpers/registration'
 
 it('Should return false, its a valid password', () => {
   const validPassword = 'Cgfsrasdfaf123'

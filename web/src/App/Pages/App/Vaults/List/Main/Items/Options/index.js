@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 import optionItems from './optionItems'
 
@@ -36,7 +36,7 @@ export default class Options extends React.Component {
   }
 
   render() {
-    const {vaultId} = this.props
+    const { vaultId } = this.props
     if (!vaultId) return <span />
     return <div className={styles.container}>{this.renderOptions(vaultId)}</div>
   }

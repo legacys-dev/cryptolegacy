@@ -1,6 +1,7 @@
 import UserProfile from './UserProfile'
 import UserEmail from './UserEmail'
 import MessageKeys from './MessageKeys'
+import Qvo from './Qvo'
 
 export default {
   _id: {
@@ -21,6 +22,11 @@ export default {
     private: true,
     optional: true
   },
+  communicationPassword: {
+    type: String,
+    private: true,
+    optional: true
+  },
   profile: {
     type: UserProfile,
     label: 'Profile'
@@ -32,6 +38,10 @@ export default {
   stripeCustomerId: {
     type: String,
     private: true,
+    optional: true
+  },
+  qvo: {
+    type: Qvo,
     optional: true
   }
 }

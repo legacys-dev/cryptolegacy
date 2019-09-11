@@ -1,4 +1,4 @@
-import {Model, resolver} from '@orion-js/app'
+import { Model, resolver } from '@orion-js/app'
 
 export default new Model({
   name: 'UserProfile',

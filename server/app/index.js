@@ -1,3 +1,3 @@
-import './helpers/permissions'
+import './permissions'
 import './services'
 import './jobs'

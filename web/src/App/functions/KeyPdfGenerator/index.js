@@ -1,20 +1,21 @@
 import React from 'react'
-import styles from './styles.css'
-import {PDFViewer, Document} from '@react-pdf/renderer'
+import styles from './styles.module.css'
+import { PDFViewer, Document } from '@react-pdf/renderer'
 import Resume from './Resume'
-
-export default function KeyPdfGenerator(props) {
+import translate from 'App/i18n/translate'
+const KeyPdfGenerator = ({ userData }) => {
   return (
     <div className={styles.container}>
       <PDFViewer className={styles.viewer}>
         <Document
           author="CryptoLegacy"
           keywords="Secret"
-          subject="This document shown only once"
-          title="CryptoLegacy secret user kit">
-          <Resume userData={props.userData} />
+          subject={translate('emergencyKit.subjectSecretKit')}
+          title={translate('emergencyKit.titleSecretKit')}>
+          <Resume userData={userData} />
         </Document>
       </PDFViewer>
     </div>
   )
 }
+export default KeyPdfGenerator

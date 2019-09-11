@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import enhancer from './enhancer'
-import {propTypes, defaultProps} from './types'
+import { propTypes, defaultProps } from './types'
 
 class Line extends Component {
   paths = {}

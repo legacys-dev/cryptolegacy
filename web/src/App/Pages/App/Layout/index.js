@@ -1,24 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import Sidebar from './Sidebar'
-import Container from 'orionsoft-parts/lib/components/Container'
+import Container from 'App/components/Parts/Container/'
 
-export default class Layout extends React.Component {
-  static propTypes = {
-    children: PropTypes.node
-  }
-
-  render() {
-    return (
-      <div className={styles.container}>
-        <div className={styles.sidebar}>
-          <Sidebar />
-        </div>
-        <div className={styles.content}>
-          <Container>{this.props.children}</Container>
-        </div>
+const Layout = ({ children }) => {
+  return (
+    <div className={styles.container}>
+      <div className={styles.sidebar}>
+        <Sidebar />
       </div>
-    )
-  }
+      <div className={styles.content}>
+        <Container>{children}</Container>
+      </div>
+    </div>
+  )
 }
+
+export default Layout

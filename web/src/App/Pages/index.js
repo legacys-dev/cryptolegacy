@@ -1,7 +1,7 @@
-import React, {lazy} from 'react'
+import React, { lazy } from 'react'
 import PropTypes from 'prop-types'
 import authRouteRegex from './Auth/routeRegex'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import SuspenseLoading from 'App/components/Parts/SuspenseLoading'
 import App from './App'
 
@@ -12,7 +12,7 @@ export default class Pages extends React.Component {
   }
 
   renderComponents() {
-    const {pathname} = this.props.location
+    const { pathname } = this.props.location
 
     if (authRouteRegex.test(pathname)) {
       const Auth = lazy(() => import('./Auth'))

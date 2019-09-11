@@ -17,18 +17,18 @@ export default function(ComposedComponent) {
       itsValidToken: PropTypes.bool
     }
 
-    state = {itsValidToken: false}
+    state = { itsValidToken: false }
 
     static getDerivedStateFromProps(props, state) {
-      const {itsValidToken} = props
-      if (!itsValidToken) return {itsValidToken: false}
-      return {itsValidToken: true}
+      const { itsValidToken } = props
+      if (!itsValidToken) return { itsValidToken: false }
+      return { itsValidToken: true }
     }
 
     redirectRegister() {
       this.props.history.replace({
         pathname: '/register',
-        state: {invalidToken: true}
+        state: { invalidToken: true }
       })
 
       return <span />

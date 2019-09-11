@@ -1,24 +1,27 @@
 import React from 'react'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import MutationButton from 'App/components/MutationButton'
 import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
-import {MdDelete} from 'react-icons/md'
+import { MdDelete } from 'react-icons/md'
+import translate from 'App/i18n/translate'
 
-export default function DeleteFile(props) {
+const DeleteFile = ({ fileId, vaultId, onDeleteSuccess }) => {
   return (
     <div className={styles.container}>
-      <Tooltip content="Eliminar archivo" place="top">
+      <Tooltip content={translate('deleteFile.deleteFile')} place="top">
         <MutationButton
-          title="Eliminar"
-          message="¿Confirmas que quieres eliminar este archivo?"
-          confirmText="Eliminar"
+          title={translate('deleteFile.delete')}
+          message={translate('deleteFile.deleteFileMessage')}
+          confirmText={translate('deleteFile.delete')}
           mutation="deleteFile"
           danger
-          params={{fileId: props.fileId, vaultId: props.vaultId}}
-          onSuccess={() => props.onDeleteSuccess()}>
+          params={{ fileId, vaultId }}
+          onSuccess={() => onDeleteSuccess()}>
           <MdDelete className={styles.icon} size={25} />
         </MutationButton>
       </Tooltip>
     </div>
   )
 }
+
+export default DeleteFile

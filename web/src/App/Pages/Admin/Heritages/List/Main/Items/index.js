@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import {Contract} from 'App/components/Parts/Icons'
+import { Contract } from 'App/components/Parts/Icons'
 import EnableHeritage from 'App/components/Parts/EnableHeritage'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import autobind from 'autobind-decorator'
 import moment from 'moment'
+import translate from 'App/i18n/translate'
 
 @withMessage
 export default class Items extends React.Component {
@@ -20,8 +21,8 @@ export default class Items extends React.Component {
 
   @autobind
   onEnableSuccess() {
-    this.props.showMessage('The heritage was enabled')
     this.props.onHeritageEnabled(new Date())
+    this.props.showMessage(translate('admin.enableHeritageMessage'))
   }
 
   renderEnableHeritageButton(vaultPolicyId) {
@@ -32,7 +33,7 @@ export default class Items extends React.Component {
   renderTable() {
     const heritages = this.props.items || []
     return heritages.map((heritage, index) => {
-      const {data, creatorEmail} = heritage
+      const { data, creatorEmail } = heritage
       return (
         <tr className={styles.cell} key={index}>
           <td>
@@ -53,11 +54,11 @@ export default class Items extends React.Component {
         <table className={styles.table}>
           <thead>
             <tr>
-              <td style={{width: '1%'}} />
-              <td>Creador de herencia</td>
-              <td>Heredero</td>
-              <td>Fecha de creación</td>
-              <td style={{width: '5%'}} />
+              <td style={{ width: '1%' }} />
+              <td>{translate('admin.heritageCreator')}</td>
+              <td>{translate('admin.inheritor')}</td>
+              <td>{translate('admin.creationDate')}</td>
+              <td style={{ width: '5%' }} />
             </tr>
           </thead>
           <tbody>{this.renderTable()}</tbody>

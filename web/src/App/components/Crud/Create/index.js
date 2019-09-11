@@ -6,6 +6,7 @@ import getFragment from '../getFragment'
 import autobind from 'autobind-decorator'
 import Form from './Form'
 import {withRouter} from 'react-router'
+import translate from 'App/i18n/translate'
 
 @withMessage
 @withRouter
@@ -28,7 +29,7 @@ export default class CreateItem extends React.Component {
 
   @autobind
   onSuccess({_id: itemId}) {
-    this.props.showMessage(`The ${this.props.singular} profile was saved`)
+    this.props.showMessage(`${translate('components.the')} ${this.props.singular} ${translate('components.profileSaved')}`)
     this.props.history.push(`${this.props.basePath}/${itemId}`)
   }
 

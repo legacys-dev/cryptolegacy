@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Button from 'App/components/Parts/Button'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
+import translate from 'App/i18n/translate'
 
 @withRouter
 export default class Footer extends React.Component {
@@ -14,7 +15,7 @@ export default class Footer extends React.Component {
     return (
       <div className={styles.container}>
         <Button primary onClick={() => this.props.history.push('/')}>
-          He guardado mi kit de emergencia y estoy listo para continuar
+          {translate('emergency.emergencyMessage')}
         </Button>
       </div>
     )

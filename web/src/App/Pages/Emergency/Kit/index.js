@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import Container from 'orionsoft-parts/lib/components/Container'
+import Container from 'App/components/Parts/Container/'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import {privateDecrypt as decryptMessage} from 'App/helpers/crypto'
+import { privateDecrypt as decryptMessage } from 'App/helpers/crypto'
 import withValidKitHorary from 'App/helpers/emergencyKitTime/withValidKitHorary'
-import {setUserCipherPassword, generateUserCipherKeys} from 'App/helpers/keys'
+import { setUserCipherPassword, generateUserCipherKeys } from 'App/helpers/keys'
 import KeyPdfGenerator from 'App/functions/KeyPdfGenerator'
-import {getMessagePrivateKey} from 'App/helpers/user'
-import forceLogin from 'App/helpers/auth/forceLogin'
+import { getMessagePrivateKey } from 'App/helpers/user'
 import Loading from 'App/components/Parts/Loading'
+import forceLogin from 'App/helpers/auth/forceLogin'
 import gql from 'graphql-tag'
 import Footer from './Footer'
 import Header from './Header'
@@ -27,7 +27,7 @@ import Header from './Header'
       emergencyKit(emergencyKitId: $emergencyKitId)
     }
   `,
-  {loading: <Loading />}
+  { loading: <Loading /> }
 )
 export default class Kit extends React.Component {
   static propTypes = {
@@ -36,7 +36,7 @@ export default class Kit extends React.Component {
     emergencyKit: PropTypes.object
   }
 
-  state = {decryptContent: null}
+  state = { decryptContent: null }
 
   async componentDidMount() {
     const decryptParams = {
@@ -44,21 +44,22 @@ export default class Kit extends React.Component {
       toDecrypt: this.props.emergencyKit.encrypted
     }
     const decryptContent = decryptMessage(decryptParams)
-    const {secret, iv, userV} = await generateUserCipherKeys(decryptContent.userMasterKey.original)
+    const { secret, iv, userV } = await generateUserCipherKeys(
+      decryptContent.userMasterKey.original
+    )
     await setUserCipherPassword(secret, iv, userV)
-    this.setState({decryptContent})
+    this.setState({ decryptContent })
   }
 
   render() {
     if (!this.state.decryptContent) return <Loading />
-    const {me, emergencyKit} = this.props
+    const { me, emergencyKit } = this.props
     const userData = {
       userName: me.name,
       userLastName: me.lastName,
       createdAt: emergencyKit.createdAt,
       userMasterKey: this.state.decryptContent.userMasterKey.original
     }
-
     return (
       <Container>
         <div className={styles.container}>

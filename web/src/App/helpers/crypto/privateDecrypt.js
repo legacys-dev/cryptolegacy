@@ -1,7 +1,7 @@
 import crypto from 'crypto'
 import isEmpty from 'lodash/isEmpty'
 
-export default function({toDecrypt, privateKey}) {
+export default ({ toDecrypt, privateKey }) => {
   if (isEmpty(toDecrypt)) throw new Error('Element to decrypt not found')
   if (isEmpty(privateKey)) throw new Error('Private key not found')
 

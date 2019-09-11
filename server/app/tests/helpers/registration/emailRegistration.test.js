@@ -1,5 +1,5 @@
-import {emailRegistration} from 'app/helpers/registration'
-import {generateId} from '@orion-js/app'
+import { emailRegistration } from 'app/helpers/registration'
+import { generateId } from '@orion-js/app'
 import bcrypt from 'bcryptjs'
 
 it('Should return object with user information', () => {
@@ -10,8 +10,8 @@ it('Should return object with user information', () => {
   }
 
   const result = emailRegistration(registerParams)
-  const {userRegisterData, verifyCode} = result
-  const {confirmEmail} = userRegisterData
+  const { userRegisterData, verifyCode } = result
+  const { confirmEmail } = userRegisterData
 
   expect(typeof result).toBe('object')
   expect(typeof userRegisterData).toBe('object')

@@ -1,8 +1,8 @@
 import B2 from 'backblaze-b2'
-import {B2Credentials} from './credentials'
+import { B2Credentials } from './credentials'
 
-export default async function({bucketId, fileName}) {
-  const {accountId, applicationKey} = B2Credentials
+export default async function({ bucketId, fileName }) {
+  const { accountId, applicationKey } = B2Credentials
   const b2 = new B2({
     accountId,
     applicationKey
@@ -16,5 +16,8 @@ export default async function({bucketId, fileName}) {
     validDurationInSeconds: 350
   })
 
-  return {url: logInb2.data.downloadUrl, authorizationToken: authorization.data.authorizationToken}
+  return {
+    url: logInb2.data.downloadUrl,
+    authorizationToken: authorization.data.authorizationToken
+  }
 }

@@ -1,4 +1,4 @@
-import {Collection} from '@orion-js/app'
+import { Collection } from '@orion-js/app'
 import Registration from 'app/models/Registration'
 
 export default new Collection({

@@ -7,6 +7,8 @@ import metaDataEncryptWithPassword from './metaDataEncryptWithPassword'
 import metaDataDecryptWithPassword from './metaDataDecryptWithPassword'
 import userDataEncryptWithPassword from './userDataEncryptWithPassword'
 import userDataDecryptWithPassword from './userDataDecryptWithPassword'
+import compressFile from './compressFile'
+import decompressFile from './decompressFile'
 
 export {
   algorithm,
@@ -17,5 +19,7 @@ export {
   metaDataEncryptWithPassword,
   metaDataDecryptWithPassword,
   userDataEncryptWithPassword,
-  userDataDecryptWithPassword
+  userDataDecryptWithPassword,
+  compressFile,
+  decompressFile
 }

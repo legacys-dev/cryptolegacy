@@ -1,8 +1,8 @@
-import {generateId} from '@orion-js/app'
-import {hashPassword} from '@orion-js/auth'
+import { generateId } from '@orion-js/app'
+import { hashPassword } from '@orion-js/auth'
 import isEmpty from 'lodash/isEmpty'
 
-export default function({email, name, lastName}) {
+export default function({ email, name, lastName }) {
   const missingData = isEmpty(email) || isEmpty(name) || isEmpty(lastName)
   if (missingData) throw new Error('Missing user data for register email')
 
@@ -20,7 +20,7 @@ export default function({email, name, lastName}) {
       confirm: false,
       token: generateId(201),
       date: new Date(),
-      code: {bcrypt: hashPassword(verifyCode)}
+      code: { bcrypt: hashPassword(verifyCode) }
     },
     updateDate: new Date()
   }

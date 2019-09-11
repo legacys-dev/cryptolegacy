@@ -1,5 +1,5 @@
-export default function() {
-  const {encryptedPassword} = window.localStorage
+export default () => {
+  const { encryptedPassword } = window.localStorage
   if (!encryptedPassword) return
   return encryptedPassword
 }

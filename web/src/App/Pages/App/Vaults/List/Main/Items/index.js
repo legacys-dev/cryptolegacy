@@ -1,64 +1,71 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
+import styles from './styles.module.css'
 import LengthName from 'App/components/User/LengthName'
-import {Vault} from 'App/components/Parts/Icons'
+import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
+import { Vault } from 'App/components/Parts/Icons'
 import getSize from 'App/helpers/files/getSize'
+import translate from 'App/i18n/translate'
 import Options from './Options'
-import moment from 'moment'
 
-export default class Items extends React.Component {
-  static propTypes = {
-    history: PropTypes.object,
-    items: PropTypes.array,
-    credentialType: PropTypes.string
+const Items = ({ history, items, credentialType }) => {
+  const getStorageDescription = type => {
+    if (type === 'SS' || type === 'AS') {
+      return translate('fileManager.simpleTypeDescription')
+    } else if (type === 'HSS' || type === 'AAS') {
+      return translate('fileManager.highTypeDescription')
+    } else {
+      return translate('fileManager.driveTypeDescription')
+    }
   }
 
-  state = {}
-
-  renderTable() {
-    const vaults = this.props.items || []
+  const renderTable = () => {
+    const vaults = items || []
     return vaults.map((vault, index) => {
+      const vaultType = translate(vault.storageType)
       return (
         <tr className={styles.cell} key={index}>
           <td>
             <Vault size={25} />
           </td>
-          <td style={{textAlign: 'left', fontWeigth: 'bold'}}>
+          <td style={{ textAlign: 'left', fontWeigth: 'bold' }}>
             <LengthName name={vault.name} />
           </td>
           <td>{vault.fileCount || '0'}</td>
           <td>{getSize(vault.storageUsed)}</td>
-          <td>{moment(vault.createdAt).format('LL')}</td>
           <td>
-            <Options vaultId={vault._id} credentialType={this.props.credentialType} />
+            <Tooltip content={getStorageDescription(vaultType)}>
+              <strong>{vaultType}</strong>
+            </Tooltip>
+          </td>
+          <td>
+            <Options vaultId={vault._id} credentialType={credentialType} />
           </td>
         </tr>
       )
     })
   }
 
-  renderVaults() {
+  const renderVaults = () => {
     return (
       <div className={styles.vaults}>
         <table className={styles.table}>
           <thead>
             <tr>
-              <td style={{width: '1%'}} />
-              <td style={{textAlign: 'left'}}>Nombre</td>
-              <td>Archivos</td>
-              <td>Almacenamiento</td>
-              <td>Fecha de creación</td>
-              <td>Acciones</td>
+              <td style={{ width: '1%' }} />
+              <td style={{ textAlign: 'left' }}>{translate('vaults.name')}</td>
+              <td>{translate('vaults.files')}</td>
+              <td>{translate('vaults.size')}</td>
+              <td>{translate('vaults.vaultType')}</td>
+              <td>{translate('vaults.actions')}</td>
             </tr>
           </thead>
-          <tbody>{this.renderTable()}</tbody>
+          <tbody>{renderTable()}</tbody>
         </table>
       </div>
     )
   }
 
-  render() {
-    return <div className={styles.container}>{this.renderVaults()}</div>
-  }
+  return <div className={styles.container}>{renderVaults()}</div>
 }
+
+export default Items

@@ -4,8 +4,9 @@ export default gql`
   fragment vaultData on Vault {
     _id
     name
-    userCredentials
+    type
     fileCount
     storageUsed
+    userCredentials
   }
 `

@@ -1,25 +1,18 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import styles from './styles.css'
-import {MdClose} from 'react-icons/md'
+import styles from './styles.module.css'
+import { MdClose } from 'react-icons/md'
 import IconButton from 'orionsoft-parts/lib/components/IconButton'
 import getSize from 'App/helpers/files/getSize'
-import {Line} from '../../LoadProgress'
+import { Line } from '../../LoadProgress'
+import translate from 'App/i18n/translate'
 
-export default class Progress extends React.Component {
-  static propTypes = {
-    total: PropTypes.number,
-    loaded: PropTypes.number,
-    close: PropTypes.func
-  }
-
-  renderProgress() {
-    const {loaded, total} = this.props
+const Progress = ({ total, loaded, close }) => {
+  const renderProgress = () => {
     const totalProgress = loaded ? Number(((loaded * 100) / total).toFixed(3)) : 0
     return (
       <div>
         <div className={styles.loading}>
-          Downloading file ({totalProgress.toFixed(2)}%)
+          {translate('parts.downloading')} ({totalProgress.toFixed(2)}%)
           <br />
           {getSize(loaded)} of {getSize(total)}
         </div>
@@ -30,19 +23,19 @@ export default class Progress extends React.Component {
     )
   }
 
-  render() {
-    return (
-      <div className={styles.container}>
-        <div className={styles.content}>
-          <div className={styles.header}>
-            <div className={styles.title}>Download archive</div>
-            <div className={styles.close}>
-              <IconButton tooltip="Cerrar" icon={MdClose} onPress={this.props.close} />
-            </div>
+  return (
+    <div className={styles.container}>
+      <div className={styles.content}>
+        <div className={styles.header}>
+          <div className={styles.title}>{translate('parts.downloadArchiveOption')}</div>
+          <div className={styles.close}>
+            <IconButton tooltip={translate('global.close')} icon={MdClose} onPress={close} />
           </div>
-          {this.renderProgress()}
         </div>
+        {renderProgress()}
       </div>
-    )
-  }
+    </div>
+  )
 }
+
+export default Progress

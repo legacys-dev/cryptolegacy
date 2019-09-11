@@ -1,6 +1,6 @@
-import {resolver} from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import Users from 'app/collections/Users'
-import {heritageAvailable} from 'app/helpers/emails'
+import { heritageAvailable } from 'app/helpers/emails'
 import VaultPolicies from 'app/collections/VaultPolicies'
 
 export default resolver({
@@ -13,15 +13,15 @@ export default resolver({
   mutation: true,
   requireRole: 'admin',
   requireLogin: true,
-  async resolve({vaultPolicyId}, viewer) {
-    const vaultPolicy = await VaultPolicies.findOne({_id: vaultPolicyId, status: 'waiting'})
+  async resolve({ vaultPolicyId }, viewer) {
+    const vaultPolicy = await VaultPolicies.findOne({ _id: vaultPolicyId, status: 'waiting' })
     if (!vaultPolicy) throw new Error('Vault policy not found')
 
-    const user = await Users.findOne({'emails.address': vaultPolicy.userEmail})
+    const user = await Users.findOne({ 'emails.address': vaultPolicy.userEmail })
 
     if (!user) throw new Error('Inheritor not found')
 
-    await vaultPolicy.update({$set: {status: 'available'}})
+    await vaultPolicy.update({ $set: { status: 'available' } })
 
     const userInformation = {
       email: await user.email(),
@@ -29,7 +29,7 @@ export default resolver({
       lastName: await user.lastName()
     }
 
-    const {accessToken} = vaultPolicy.transferData
+    const { accessToken } = vaultPolicy.transferData
 
     await heritageAvailable({
       user: userInformation,

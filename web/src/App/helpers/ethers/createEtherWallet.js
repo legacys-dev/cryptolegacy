@@ -1,7 +1,7 @@
-import {ethers} from './function'
+import { ethers } from './function'
 import isEmpty from 'lodash/isEmpty'
 
-export default async function(passphrase) {
+export default async passphrase => {
   if (isEmpty(passphrase)) throw new Error('Passphrase to create keys is missing')
 
   const dataInHex = Buffer.from(passphrase).toString('hex')
@@ -16,8 +16,8 @@ export default async function(passphrase) {
     throw new Error('Error creating credentials with ethers')
   }
 
-  const {privateKey, publicKey, compressedPublicKey} = wallet.signingKey.keyPair
-  const {address} = wallet.signingKey
+  const { privateKey, publicKey, compressedPublicKey } = wallet.signingKey.keyPair
+  const { address } = wallet.signingKey
 
   const copyPrivateKey = copyWallet.signingKey.keyPair.privateKey
   const copyPublicKey = copyWallet.signingKey.keyPair.publicKey

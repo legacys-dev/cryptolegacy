@@ -1,3 +1,3 @@
 import getUserStorageAvailable from './getUserStorageAvailable'
 
-export {getUserStorageAvailable}
+export { getUserStorageAvailable }

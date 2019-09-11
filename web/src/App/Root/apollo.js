@@ -1,4 +1,4 @@
-import {createClient} from '@orion-js/graphql-client'
+import { createClient } from '@orion-js/graphql-client'
 import url from './url'
 import TwoFactorPromptProvider from './TwoFactorPromptProvider'
 

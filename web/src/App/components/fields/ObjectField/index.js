@@ -1,5 +1,5 @@
 import React from 'react'
-import {ObjectComponent} from 'simple-react-form'
+import { ObjectComponent } from 'simple-react-form'
 import PropTypes from 'prop-types'
 
 export default class ObjectField extends ObjectComponent {
@@ -24,7 +24,7 @@ export default class ObjectField extends ObjectComponent {
 
   renderErrorMessage() {
     if (!this.props.errorMessage) return
-    return <div style={{color: 'red'}}>{this.props.errorMessage}</div>
+    return <div style={{ color: 'red' }}>{this.props.errorMessage}</div>
   }
 
   render() {

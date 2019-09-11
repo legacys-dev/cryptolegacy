@@ -1,9 +1,9 @@
 import B2 from 'backblaze-b2'
-import {B2Credentials} from './credentials'
+import { B2Credentials } from './credentials'
 import crypto from 'crypto'
 
-export default async function({file, fileName, type}) {
-  const {accountId, applicationKey, bucketId, bucketName} = B2Credentials
+export default async function({ file, fileName, type }) {
+  const { accountId, applicationKey, bucketId, bucketName } = B2Credentials
   const b2 = new B2({
     accountId,
     applicationKey
@@ -15,7 +15,7 @@ export default async function({file, fileName, type}) {
     bucketId
   })
 
-  const {authorizationToken, uploadUrl} = responseData.data
+  const { authorizationToken, uploadUrl } = responseData.data
   const hash = crypto
     .createHash('sha1')
     .update(file.Body)

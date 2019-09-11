@@ -1,0 +1,27 @@
+:local(.container) {
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 20px;
+    -webkit-box-shadow: 4px 6px 14px -1px #e6ecfe;
+    -moz-box-shadow: 4px 6px 14px -1px #e6ecfe;
+    box-shadow: 4px 6px 14px -1px #e6ecfe;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+:local(.btnContainer){
+  display: flex;
+  justify-content: center;
+}
+:local(.btnAdd){
+  width: fit-content;
+  margin: 0 auto;
+}
+:local(.removeCard){
+  display: flex;
+  justify-content: center;
+}
+:local(.divider) {
+  height: 1px;
+  background-color: #eee;
+}
