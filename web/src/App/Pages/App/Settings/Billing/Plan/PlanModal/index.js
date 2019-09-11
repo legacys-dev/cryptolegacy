@@ -40,12 +40,16 @@ export default class PlanModal extends React.Component {
       </div>
     )
   }
-  
-  renderNoCard(){
+
+  renderNoCard() {
     return (
-      <p className={styles.noCreditCard}> No tienes tarjeta de crédito enlazada, asegurate de agregar una en la sección Tarjeta de crédito para contratar un plan</p>
+      <p className={styles.noCreditCard}>
+        {' '}
+        No tienes tarjeta de crédito enlazada, asegurate de agregar una en la sección tarjeta de
+        crédito para contratar un plan.
+      </p>
     )
-  } 
+  }
 
   render() {
     const customStyles = {
@@ -61,12 +65,12 @@ export default class PlanModal extends React.Component {
       content: {
         margin: 'auto auto',
         display: 'flex',
-        'justify-content':'center',
+        'justify-content': 'center',
         padding: '2px 2px',
         width: '30%',
-        height: '36%',
+        height: '24%',
         border: '0px',
-        'background-color':'#F4F6FC'
+        'background-color': '#F4F6FC'
       }
     }
     return (
@@ -81,9 +85,7 @@ export default class PlanModal extends React.Component {
           style={!this.props.cardId ? noCreditCardStyles : customStyles}
           contentLabel="">
           <div className={styles.modalContent}>
-            {this.props.cardId ? (
-              this.renderPlanList()
-            ) : this.renderNoCard()  }
+            {this.props.cardId ? this.renderPlanList() : this.renderNoCard()}
             <Button className={styles.closeButtonContainer} onClick={this.closeModal} danger>
               Cerrar
             </Button>
