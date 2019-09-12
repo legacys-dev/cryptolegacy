@@ -21,6 +21,8 @@ export default resolver({
       await user.update({
         $set: { 'qvo.subscriptionId': subscription.id, 'qvo.plan': subscription.plan.id }
       })
+
+      await user.updateUserData()
     } catch (error) {
       console.log('Error:', error)
     }

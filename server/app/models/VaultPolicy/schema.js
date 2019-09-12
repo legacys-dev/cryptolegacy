@@ -20,7 +20,12 @@ export default {
   credentialType: {
     type: String,
     private: true,
-    allowedValues: ['owner', 'heritage']
+    allowedValues: ['owner', 'heritage', 'invitation']
+  },
+  role: {
+    type: String,
+    private: true,
+    allowedValues: ['admin', 'viewer']
   },
   creatorId: {
     type: String,

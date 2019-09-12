@@ -8,10 +8,15 @@ export default resolver({
   requireLogin: true,
   async resolve({ subscriptionId }, viewer) {
     const user = await Users.findOne({ _id: viewer.userId })
+
     try {
       const subscription = await getSubscription(user.qvo.subscriptionId)
-      if (subscription.status !== 'active') throw new Error('Error getting subscription')
+      if (!subscription || subscription.status !== 'active') {
+        throw new Error('Error getting subscription')
+      }
+
       const { plan } = subscription
+
       return plan
     } catch (error) {
       console.log('Error:', error)

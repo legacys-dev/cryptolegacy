@@ -22,6 +22,7 @@ route('/enroll/creditCard/:customerId', async function({
 
     const user = await Users.findOne({ 'qvo.customerId': customerId })
     await user.update({ $set: { 'qvo.cardId': customer.cards[0].id } })
+    await user.updateUserData()
   } catch (error) {
     console.log({ error })
     return { error: 'Ocurrio un error inscribiendo la tarjeta' }

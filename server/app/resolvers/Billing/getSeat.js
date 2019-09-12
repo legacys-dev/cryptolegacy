@@ -16,7 +16,7 @@ export default resolver({
     const user = await Users.findOne({ _id: viewer.userId })
     try {
       const seat = await createSubscription(user.qvo.customerId, 'asiento')
-      if (seat.status !== 'active') throw new Error('Error creating subscription')
+      if (!seat || seat.status !== 'active') throw new Error('Error creating subscription')
 
       await createSeat({ ownerId: viewer.userId, subscriptionId: seat.id }, viewer)
     } catch (error) {

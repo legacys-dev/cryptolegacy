@@ -1,11 +1,13 @@
 import createHeritage from './createHeritage'
 import claimHeritage from './claimHeritage'
 import releaseHeritage from './releaseHeritage'
-import validHeirs from './validHeirs'
 import vaultPolicies from './vaultPolicies'
 import deleteHeritage from './deleteHeritage'
 import createVaultOwnerPolicy from './createVaultOwnerPolicy'
 import deleteVaultPolicy from './deleteVaultPolicy'
+import claimInvitation from './claimInvitation'
+import inviteUser from './inviteUser'
+import validHeirs from './validHeirs'
 
 export default {
   deleteVaultPolicy,
@@ -15,5 +17,7 @@ export default {
   releaseHeritage,
   claimHeritage,
   createHeritage,
-  createVaultOwnerPolicy
+  createVaultOwnerPolicy,
+  inviteUser,
+  claimInvitation
 }

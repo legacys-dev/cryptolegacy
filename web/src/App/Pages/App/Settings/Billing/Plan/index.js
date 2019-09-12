@@ -1,9 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styles from './styles.css'
 import PlanModal from './PlanModal'
 import MutationButton from 'App/components/MutationButton'
-import Loading from 'App/components/Parts/Loading'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import Loading from 'App/components/Parts/Loading'
 import plans from './PlanModal/plans'
 import gql from 'graphql-tag'
 
@@ -16,70 +17,80 @@ import gql from 'graphql-tag'
   { loading: <Loading /> }
 )
 export default class Plan extends React.Component {
+  static propTypes = {
+    getSubscription: PropTypes.object,
+    cardId: PropTypes.string
+  }
+
   state = {}
 
   renderFreePlan = () => (
     <div>
       <div>Por ahora tienes el plan gratuito, con él puedes hacer: </div>
-      <div> - Crear una bóveda </div>
+      <div> - Solo puedes tener una bóveda</div>
       <div> - Almacenamiento de 100 MB </div>
-      <div> - No puedes tener Asientos </div>
       <div>
-        {' '}
         Puedes actualizar tu cuenta a alguno de los planes que tenemos para tí, presionando en:{' '}
       </div>
     </div>
   )
 
   renderPlan = planId => {
+    if (!planId) return
     const { title, size, seatsPrice, vaultsNum } = plans.find(plan => plan.id === planId)
     return (
       <div>
         <div>Por ahora tienes el plan {title}, con él puedes hacer: </div>
         <div> - Crear {vaultsNum} Bóvedas </div>
         <div> - Almacenamiento de {size} </div>
-        <div>
-          {' '}
-          - {planId === 'free' ? 'No puedes tener asientos' : `Asientos por ${seatsPrice}`}{' '}
+        <div>{planId === 'multiple' && `- Asientos por ${seatsPrice}`}</div>
+      </div>
+    )
+  }
+
+  renderActualPlan() {
+    const { getSubscription, cardId } = this.props
+    if (!getSubscription) return
+    return (
+      <div className={styles.getPlan}>
+        {this.renderPlan(this.props.getSubscription.id)}
+        <div className={styles.buttonsContainer}>
+          <PlanModal
+            subscriptionId={getSubscription.id}
+            subscriptionData={getSubscription}
+            cardId={cardId}
+          />
+          <MutationButton
+            title={'Cancelar plan'}
+            message={'Está seguro de cancelar su plan'}
+            params={{ data: 'cancel' }} // Para que funcione.
+            confirmText={'Cancelar plan'}
+            mutation={'cancelPlan'}
+            onSuccess={() => console.log('He cancelado el plan!')}
+            label="Cancelar plan"
+            danger
+          />
         </div>
-        <div>
-          {' '}
-          Puedes actualizar tu cuenta a alguno de los planes que tenemos para tí, presionando en:{' '}
-        </div>
+      </div>
+    )
+  }
+
+  renderGetPlan() {
+    const { getSubscription } = this.props
+    if (getSubscription) return
+    return (
+      <div className={styles.noData}>
+        {this.renderPlan('free')}
+        <PlanModal cardId={this.props.cardId} />
       </div>
     )
   }
 
   render() {
     return (
-      <div>
-        {this.props.subscriptionId ? (
-          <div>
-            {this.renderPlan(this.props.getSubscription.id)}
-            <div className={styles.buttonsContainer}>
-              <PlanModal
-                subscriptionId={this.props.subscriptionId}
-                subscriptionData={this.props.getSubscription}
-                cardId={this.props.cardId}
-              />
-              <MutationButton
-                title={'Cancelar plan'}
-                message={'Está seguro de cancelar su plan'}
-                params={{ data: 'cancel' }} // Para que funcione.
-                confirmText={'Cancelar plan'}
-                mutation={'cancelPlan'}
-                onSuccess={() => console.log('He cancelado el plan!')}
-                label="Cancelar plan"
-                danger
-              />
-            </div>
-          </div>
-        ) : (
-          <div className={styles.noData}>
-            {this.renderPlan('free')}
-            <PlanModal cardId={this.props.cardId} />
-          </div>
-        )}
+      <div className={styles.container}>
+        {this.renderGetPlan()}
+        {this.renderActualPlan()}
       </div>
     )
   }
