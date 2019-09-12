@@ -1,3 +1,9 @@
 :local(.container) {
 
 }
+:local(.decryptLoading){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

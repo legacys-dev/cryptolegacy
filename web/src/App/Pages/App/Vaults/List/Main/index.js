@@ -13,26 +13,6 @@ import isEmpty from 'lodash/isEmpty'
 import Items from './Items'
 import { nameSearch } from 'App/helpers/search'
 
-async function getQuery(client, credentialType) {
-  const encrypted = await client.query({
-    query: encryptedVaultsQuery,
-    variables: credentialType,
-    fetchPolicy: 'network-only'
-  })
-
-  const { getEncryptedVaults } = encrypted.data
-  if (!getEncryptedVaults.items) {
-    return []
-  }
-
-  const messages = JSON.parse(window.localStorage.getItem('messages'))
-  const dataArray = decrypt({
-    encryptedItem: getEncryptedVaults.items,
-    cipherPassword: messages.communicationPassword
-  })
-  return dataArray
-}
-
 @withApollo
 export default class Main extends React.Component {
   static propTypes = {
@@ -41,7 +21,7 @@ export default class Main extends React.Component {
     credentialType: PropTypes.string
   }
 
-  state = {}
+  state = { loading: true, decrypt: false }
 
   componentDidMount() {
     this.search()
@@ -53,12 +33,42 @@ export default class Main extends React.Component {
   }
 
   @autobind
+  async getQuery(client, credentialType) {
+    const encrypted = await client.query({
+      query: encryptedVaultsQuery,
+      variables: credentialType,
+      fetchPolicy: 'network-only'
+    })
+
+    const { getEncryptedVaults } = encrypted.data
+    if (!getEncryptedVaults.items) {
+      return []
+    }
+
+    const messages = JSON.parse(window.localStorage.getItem('messages'))
+    const metaDataProm = new Promise(resolve => {
+      this.setState({ decrypt: true }, async () => {
+        const dataArray = decrypt({
+          encryptedItem: getEncryptedVaults.items,
+          cipherPassword: messages.communicationPassword
+        })
+        resolve(dataArray)
+      })
+    })
+
+    return metaDataProm
+  }
+
+  @autobind
   async search(page = 1) {
     const { client, credentialType, filter } = this.props
 
     const items = filter
       ? nameSearch(filter, this.state.allItems)
-      : await getQuery(client, { credentialType })
+      : await this.getQuery(client, { credentialType }).then(result => {
+          this.setState({ decrypt: false })
+          return result;
+        })
 
     const { totalPages, hasNextPage, hasPreviousPage } = getPageItems(items, page, 6)
 
@@ -70,6 +80,7 @@ export default class Main extends React.Component {
       totalPages,
       hasNextPage,
       hasPreviousPage,
+      loading:false,
       ...allItems
     })
   }
@@ -92,8 +103,23 @@ export default class Main extends React.Component {
     )
   }
 
+  encryptLoading = () => {
+    return (
+      <div className={styles.decryptLoading}>
+        <Loading />
+        <div>Desencriptando...</div>
+      </div>
+    )
+  }
+
   render() {
-    if (!this.state.items || this.state.loading) return <Loading />
+    if (this.state.loading) {
+      if (this.state.decrypt) {
+        return this.encryptLoading()
+      } else {
+        return <Loading />
+      }
+    }
     if (isEmpty(this.state.items)) return <NoItemsFound message="vaults.notFound" />
     return this.renderItems()
   }

@@ -11,7 +11,6 @@ import Loading from 'App/components/Parts/Loading'
 import { withApollo } from 'react-apollo'
 import isEmpty from 'lodash/isEmpty'
 import Items from './Items'
-import { selectHttpOptionsAndBody } from 'apollo-link-http-common';
 
 @withApollo
 export default class Main extends React.Component {
@@ -19,7 +18,7 @@ export default class Main extends React.Component {
     client: PropTypes.object
   }
 
-  state = {loading:true, encrypt:false}
+  state = { loading: true, encrypt: false }
 
   componentDidMount() {
     this.search()
@@ -41,35 +40,27 @@ export default class Main extends React.Component {
     }
 
     const messages = JSON.parse(window.localStorage.getItem('messages'))
-
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     let metadataProm = new Promise(resolve => {
-      this.setState({encrypt:true},async () =>{
+      this.setState({ encrypt: true }, async () => {
         const dataArray = decrypt({
           encryptedItem: getEncryptedActivities.items,
           cipherPassword: messages.communicationPassword
         })
-        await sleep(3000)
         resolve(getPageItems(dataArray, page, 6))
       })
-      
-      
     })
     metadataProm.then(result => {
-      const { items, totalPages, hasNextPage, hasPreviousPage } = result;
+      const { items, totalPages, hasNextPage, hasPreviousPage } = result
       this.setState({
         items,
         currentPage: page,
         totalPages,
         hasNextPage,
         hasPreviousPage,
-        loading:false
-      });
+        loading: false,
+        encrypt:false
+      })
     })
-    
   }
 
   renderItems() {
@@ -88,8 +79,8 @@ export default class Main extends React.Component {
     )
   }
 
-  encryptLoading = () =>{
-    return(
+  encryptLoading = () => {
+    return (
       <div className={styles.decryptLoading}>
         <Loading />
         <div>Desencriptando...</div>
@@ -99,9 +90,9 @@ export default class Main extends React.Component {
 
   render() {
     if (this.state.loading) {
-      if(this.state.encrypt){
+      if (this.state.encrypt) {
         return this.encryptLoading()
-      }else{
+      } else {
         return <Loading />
       }
     }
