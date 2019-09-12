@@ -11,6 +11,7 @@ import Loading from 'App/components/Parts/Loading'
 import { withApollo } from 'react-apollo'
 import isEmpty from 'lodash/isEmpty'
 import Items from './Items'
+import { selectHttpOptionsAndBody } from 'apollo-link-http-common';
 
 @withApollo
 export default class Main extends React.Component {
@@ -18,7 +19,7 @@ export default class Main extends React.Component {
     client: PropTypes.object
   }
 
-  state = {loading:true}
+  state = {loading:true, encrypt:false}
 
   componentDidMount() {
     this.search()
@@ -40,13 +41,22 @@ export default class Main extends React.Component {
     }
 
     const messages = JSON.parse(window.localStorage.getItem('messages'))
-    
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     let metadataProm = new Promise(resolve => {
-      const dataArray = decrypt({
-        encryptedItem: getEncryptedActivities.items,
-        cipherPassword: messages.communicationPassword
+      this.setState({encrypt:true},async () =>{
+        const dataArray = decrypt({
+          encryptedItem: getEncryptedActivities.items,
+          cipherPassword: messages.communicationPassword
+        })
+        await sleep(3000)
+        resolve(getPageItems(dataArray, page, 6))
       })
-      resolve(getPageItems(dataArray, page, 6))
+      
+      
     })
     metadataProm.then(result => {
       const { items, totalPages, hasNextPage, hasPreviousPage } = result;
@@ -78,8 +88,23 @@ export default class Main extends React.Component {
     )
   }
 
+  encryptLoading = () =>{
+    return(
+      <div className={styles.decryptLoading}>
+        <Loading />
+        <div>Desencriptando...</div>
+      </div>
+    )
+  }
+
   render() {
-    if (this.state.loading) return <Loading />
+    if (this.state.loading) {
+      if(this.state.encrypt){
+        return this.encryptLoading()
+      }else{
+        return <Loading />
+      }
+    }
     if (isEmpty(this.state.items)) return <NoItemsFound message="actions.notFound" />
     return this.renderItems()
   }
