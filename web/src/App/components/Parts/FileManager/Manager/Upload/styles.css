@@ -43,5 +43,10 @@
 :local(.encrypting) {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+}
+:local(.loadingIcon){
+  margin-bottom: 8px;
+  margin-right: 16px;
 }
