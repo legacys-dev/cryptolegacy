@@ -18,7 +18,7 @@ export default class Main extends React.Component {
     client: PropTypes.object
   }
 
-  state = {}
+  state = {loading:true}
 
   componentDidMount() {
     this.search()
@@ -40,20 +40,26 @@ export default class Main extends React.Component {
     }
 
     const messages = JSON.parse(window.localStorage.getItem('messages'))
-    const dataArray = decrypt({
-      encryptedItem: getEncryptedActivities.items,
-      cipherPassword: messages.communicationPassword
+    
+    let metadataProm = new Promise(resolve => {
+      const dataArray = decrypt({
+        encryptedItem: getEncryptedActivities.items,
+        cipherPassword: messages.communicationPassword
+      })
+      resolve(getPageItems(dataArray, page, 6))
     })
-
-    const { items, totalPages, hasNextPage, hasPreviousPage } = getPageItems(dataArray, page, 6)
-
-    this.setState({
-      items,
-      currentPage: page,
-      totalPages,
-      hasNextPage,
-      hasPreviousPage
+    metadataProm.then(result => {
+      const { items, totalPages, hasNextPage, hasPreviousPage } = result;
+      this.setState({
+        items,
+        currentPage: page,
+        totalPages,
+        hasNextPage,
+        hasPreviousPage,
+        loading:false
+      });
     })
+    
   }
 
   renderItems() {
@@ -73,7 +79,7 @@ export default class Main extends React.Component {
   }
 
   render() {
-    if (!this.state.items || this.state.loading) return <Loading />
+    if (this.state.loading) return <Loading />
     if (isEmpty(this.state.items)) return <NoItemsFound message="actions.notFound" />
     return this.renderItems()
   }
