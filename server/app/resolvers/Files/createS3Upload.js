@@ -30,6 +30,10 @@ export default resolver({
   checkUserStorage: true,
   checkSize: true,
   async resolve(params, viewer) {
+    if(params.size > 1024*1024*6){
+      throw new Error("No puedes subir un archivo de más de 6 mb.")
+    }
+    
     const { bucket, basePath } = AWSCredentials
     const key = `${basePath}/${generateId(131)}`
 
