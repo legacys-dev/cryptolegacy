@@ -35,6 +35,7 @@ export default resolver({
 
       if (!downloadUrlFromS3) return responseError
 
+      console.log(downloadUrlFromS3)
       return { status: 'available', fileName, downloadUrl: downloadUrlFromS3, activityId }
     } else if (storage.includes('b2')) {
       if (!b2Data.status.includes('uploaded')) return responseError
