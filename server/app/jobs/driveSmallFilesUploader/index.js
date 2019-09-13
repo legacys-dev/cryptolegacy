@@ -36,7 +36,7 @@ export default job({
       try {
         driveResult = await uploadFile({
           file: downloadedFile,
-          fileName: file.name,
+          fileName: file.cloudName,
           fileType: file.type,
           folderId: folderDriveId
         })

@@ -7,6 +7,7 @@ import b2SmallFilesUploader from './b2SmallFilesUploader'
 import b2MediumFilesUploader from './b2MediumFilesUploader'
 import b2BigFilesUploader from './b2BigFilesUploader'
 import b2DeleteFromS3 from './b2DeleteFromS3'
+import driveDeleteFromS3 from './driveDeleteFromS3'
 import driveSmallFilesUploader from './driveSmallFilesUploader'
 import glacierUpdatePendingDownloads from './glacierUpdatePendingDownloads'
 import glacierUpdateDeletedJobs from './glacierUpdateDeletedJobs'
@@ -16,6 +17,7 @@ start({
   glacierUpdateDeletedJobs,
   glacierUpdatePendingDownloads,
   b2DeleteFromS3,
+  driveDeleteFromS3,
   b2BigFilesUploader,
   b2MediumFilesUploader,
   b2SmallFilesUploader,
