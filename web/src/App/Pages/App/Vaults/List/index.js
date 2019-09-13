@@ -29,8 +29,9 @@ export default class List extends React.Component {
   }
 
   renderRigth() {
+    const { credentialType } = this.state
     const renderCreateVault = () => {
-      if (this.state.credentialType === 'heritage') return
+      if (credentialType === 'heritage' || credentialType === 'invitation') return
       return (
         <Button primary icon={FiPlus} onClick={() => this.props.history.push('/vaults/create')}>
           {translate('vaults.createVault')}

@@ -59,6 +59,10 @@ export default {
     type: TransferData,
     optional: true
   },
+  viewed: {
+    type: Boolean,
+    optional: true
+  },
   createdAt: {
     type: Date,
     defaultValue: () => new Date()

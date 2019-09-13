@@ -28,8 +28,10 @@
 :local(.menu) a {
   display: inline-block;
   padding: 15px 35px;
-  flex: 1;
   cursor: pointer;
+  flex: 1;
+  -webkit-transition-property: background-color;
+  -webkit-transition-duration: 300ms;
 }
 
 :local(.menu) a:hover {
@@ -50,6 +52,17 @@
 :local(.email) {
   font-size: 13px;
   color: #454545;
+}
+
+:local(.ball) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #07f;
+  color: #fff;
+  height: 22px;
+  width: 22px;
+  border-radius: 10px;
 }
 
 :local(.menuLink) {

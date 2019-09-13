@@ -5,16 +5,7 @@ import Text from 'App/components/fields/Text'
 import { withRouter } from 'react-router'
 import Select from 'App/components/fields/Select'
 import translate from 'App/i18n/translate'
-const vaultoptions = [
-  {
-    label: translate('vaults.own'),
-    value: 'owner'
-  },
-  {
-    label: translate('vaults.heritages'),
-    value: 'heritage'
-  }
-]
+import vaultTypesOptions from './options'
 
 @withRouter
 export default class VaultType extends React.Component {
@@ -33,7 +24,7 @@ export default class VaultType extends React.Component {
         <div className={styles.select}>
           <Select
             onChange={vaultType => onVaultTypeChange(vaultType)}
-            options={vaultoptions}
+            options={vaultTypesOptions}
             value={vaultTypeValue}
           />
         </div>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import { Configuration } from 'App/components/Parts/Icons'
+import { Configuration, Contract } from 'App/components/Parts/Icons'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import withUserId from 'App/helpers/auth/withUserId'
 import { MdExitToApp, MdWork } from 'react-icons/md'
@@ -22,6 +22,7 @@ import gql from 'graphql-tag'
         name
         email
         roles
+        getUncheckedPolicies
       }
     }
   `,
@@ -74,6 +75,24 @@ export default class User extends React.Component {
     )
   }
 
+  renderInvitationsNumber() {
+    const { getUncheckedPolicies } = this.props.me
+    if (!parseInt(getUncheckedPolicies)) return
+    return <div className={styles.ball}>{getUncheckedPolicies}</div>
+  }
+
+  renderInvitations() {
+    return (
+      <div className={styles.options}>
+        <div>
+          <Contract size={20} />
+        </div>
+        <div style={{ width: '150px', marginLeft: '60px' }}>{translate('app.invitations')}</div>
+        <div>{this.renderInvitationsNumber()}</div>
+      </div>
+    )
+  }
+
   renderOption(style, icon, title) {
     return (
       <div className={style}>
@@ -99,6 +118,7 @@ export default class User extends React.Component {
             translate('sidebar.account')
           )}
         </Link>
+        <Link to="/invitations">{this.renderInvitations()}</Link>
         {this.renderAdmin()}
         <div className={styles.logoutIcons}>
           <a onClick={this.logout} className={styles.menuLink}>

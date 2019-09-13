@@ -82,6 +82,7 @@ export default resolver({
       role,
       credentialType: 'invitation',
       status: 'available',
+      viewed: false,
       ...requiredParams
     }
 
