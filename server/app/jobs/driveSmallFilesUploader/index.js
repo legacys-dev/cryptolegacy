@@ -30,6 +30,7 @@ export default job({
       const downloadedFile = await downloadElement({ bucket, key })
       const vaultPolicy = await VaultPolicies.findOne({ vaultId: file.vaultId }) // This is for find the folderId
       const folderDriveId = vaultPolicy.driveFolderId // Maybe exist other form to avoid get vaultPolicy for each file
+
       file.update({ $set: { 'driveData.status': 'uploading' } }) // await not necessary
 
       let driveResult

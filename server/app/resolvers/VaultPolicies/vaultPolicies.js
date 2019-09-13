@@ -43,7 +43,7 @@ export default paginatedResolver({
     } else {
       query.vaultId = vaultId
 
-      if (type === 'heritage') query.status = 'pending'
+      if (type === 'heritage') query.status = 'waiting'
 
       query.credentialType = type
     }

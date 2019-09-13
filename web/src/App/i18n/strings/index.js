@@ -19,6 +19,7 @@ import deleteFile from './deleteFile'
 import restoreFile from './restoreFile'
 import invitations from './invitations'
 import information from './information'
+import policies from './policies'
 import parts from './parts'
 import admin from './admin'
 import app from './app'
@@ -47,5 +48,6 @@ export default {
   parts,
   information,
   admin,
-  invitations
+  invitations,
+  policies
 }

@@ -77,6 +77,7 @@ export default resolver({
     const insertParams = {
       creatorId: viewer.userId,
       vaultId,
+      userId: invitedUser._id,
       userEmail,
       role,
       credentialType: 'invitation',

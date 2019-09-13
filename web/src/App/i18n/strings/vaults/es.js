@@ -38,5 +38,6 @@ export default {
   search: 'Buscar',
   own: 'Dueño',
   type: 'Tipo',
-  name: 'Nombre'
+  name: 'Nombre',
+  status: 'Estado'
 }

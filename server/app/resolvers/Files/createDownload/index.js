@@ -94,6 +94,7 @@ export default resolver({
       if (!driveData.status.includes('uploaded')) return responseError
       else {
         const downloadUrlFromDrive = await file.getFromDrive()
+        console.log({ downloadUrlFromDrive })
         if (!downloadUrlFromDrive) return responseError
 
         return { status: 'available', fileName, downloadUrl: downloadUrlFromDrive, activityId }

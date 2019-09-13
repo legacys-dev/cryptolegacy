@@ -25,6 +25,7 @@ export default {
   role: {
     type: String,
     private: true,
+    optional: true,
     allowedValues: ['admin', 'viewer']
   },
   creatorId: {

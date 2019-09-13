@@ -38,5 +38,6 @@ export default {
   search: 'Search',
   own: 'Own',
   type: 'Type',
-  name: 'Name'
+  name: 'Name',
+  status: 'Status'
 }
