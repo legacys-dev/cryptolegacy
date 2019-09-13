@@ -24,7 +24,6 @@ export default resolver({
       status = { 'driveData.status': 'pending' }
     }
 
-    console.log('status: ', status)
     const updateData = {
       ...{ 's3Data.status': 'uploaded' },
       ...status
