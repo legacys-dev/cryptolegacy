@@ -16,7 +16,7 @@ export default resolver({
   filePermissions: true,
   async resolve({ fileId }, viewer) {
     const file = await Files.findOne(fileId)
-    const { s3Data, b2Data, glacierData, storage } = file
+    const { s3Data, b2Data, glacierData, driveData, storage } = file
     const fileName = file.name
 
     const activityTypeParams = {
@@ -89,6 +89,14 @@ export default resolver({
             }
           }
         }
+      }
+    } else if (storage.includes('drive')) {
+      if (!driveData.status.includes('uploaded')) return responseError
+      else {
+        const downloadUrlFromDrive = await file.getFromDrive()
+        if (!downloadUrlFromDrive) return responseError
+
+        return { status: 'available', fileName, downloadUrl: downloadUrlFromDrive, activityId }
       }
     }
   }

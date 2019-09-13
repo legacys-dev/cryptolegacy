@@ -50,7 +50,7 @@ export default async function({ viewer, type }) {
 
     if (subscription.plan.id === 'multiple') {
       const vaults = await Vaults.findOne({ _id: { $in: vaultsIds }, type: 'drive' })
-      if (vaults) throw new Error('You already have a google drive vault')
+      if (vaults && type === 'drive') throw new Error('You already have a google drive vault')
     }
   }
 }

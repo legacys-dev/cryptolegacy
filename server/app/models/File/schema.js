@@ -1,6 +1,7 @@
 import S3Data from './S3Data'
 import GlacierData from './GlacierData'
 import B2Data from './B2Data'
+import DriveData from './DriveData'
 
 export default {
   _id: {
@@ -37,6 +38,11 @@ export default {
   },
   glacierData: {
     type: GlacierData,
+    private: true,
+    optional: true
+  },
+  driveData: {
+    type: DriveData,
     private: true,
     optional: true
   },
