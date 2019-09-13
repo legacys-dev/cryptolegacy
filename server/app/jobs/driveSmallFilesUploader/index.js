@@ -22,9 +22,9 @@ export default job({
     })
       .sort({ createdAt: 1 })
       .toArray()
-    console.log('HOLA')
+
     if (isEmpty(files)) return
-    console.log('No está vacío')
+
     for (const file of files) {
       const { bucket, key } = file.s3Data
       const downloadedFile = await downloadElement({ bucket, key })
