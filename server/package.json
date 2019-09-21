@@ -37,7 +37,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "stream-to-buffer": "^0.1.0"
+    "stream-to-buffer": "0.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
