@@ -24,6 +24,14 @@ export default class Main extends React.Component {
     this.search()
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.mustUpdate !== this.state.mustUpdate) this.search()
+  }
+
+  onUpdate = change => {
+    this.setState({ mustUpdate: change })
+  }
+
   @autobind
   async search(page = 1) {
     const { client } = this.props
@@ -63,7 +71,7 @@ export default class Main extends React.Component {
     const { items, currentPage, totalPages, hasNextPage, hasPreviousPage } = this.state
     return (
       <div className={styles.container}>
-        <Items items={items} />
+        <Items items={items} onUpdate={this.onUpdate} />
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}

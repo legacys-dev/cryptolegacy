@@ -6,12 +6,29 @@ import AcceptInvitation from 'App/components/Parts/AcceptInvitation'
 import DeclineInvitation from 'App/components/Parts/DeclineInvitation'
 import moment from 'moment'
 
-const Items = ({ items }) => {
-  const renderButtons = vaultPolicyId => {
+const Items = ({ items, onUpdate }) => {
+  const onDeclineSuccess = () => {
+    const updateDate = new Date()
+    onUpdate(updateDate)
+  }
+
+  const onAcceptSuccess = response => {
+    onUpdate(response)
+  }
+
+  const renderButtons = (vaultPolicyId, token) => {
     return (
       <div className={styles.actions}>
-        <AcceptInvitation vaultPolicyId={vaultPolicyId} />
-        <DeclineInvitation vaultPolicyId={vaultPolicyId} />
+        <AcceptInvitation
+          vaultPolicyId={vaultPolicyId}
+          accessToken={token}
+          onAcceptSuccess={onAcceptSuccess}
+        />
+        <DeclineInvitation
+          vaultPolicyId={vaultPolicyId}
+          accessToken={token}
+          onDeclineSuccess={onDeclineSuccess}
+        />
       </div>
     )
   }
@@ -28,7 +45,7 @@ const Items = ({ items }) => {
           <td>{invitation.role}</td>
           <td>{invitation.creatorEmail}</td>
           <td>{moment(invitation.createdAt).format('L')}</td>
-          <td>{renderButtons(invitation.vaultPolicyId)}</td>
+          <td>{renderButtons(invitation.vaultPolicyId, invitation.token)}</td>
         </tr>
       )
     })

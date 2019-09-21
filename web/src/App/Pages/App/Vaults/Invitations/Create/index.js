@@ -6,24 +6,25 @@ import AutoForm from 'App/components/AutoForm'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import { getEncryptedPassword } from 'App/helpers/user'
-import Header from 'App/components/Parts/Header'
 import Loading from 'App/components/Parts/Loading'
-import Button from 'App/components/Parts/Button'
-import autobind from 'autobind-decorator'
-import translate from 'App/i18n/translate'
-import { Field } from 'simple-react-form'
-import Text from 'App/components/fields/Text'
 import Select from 'App/components/fields/Select'
-import gql from 'graphql-tag'
+import Button from 'App/components/Parts/Button'
+import Header from 'App/components/Parts/Header'
+import Text from 'App/components/fields/Text'
+import translate from 'App/i18n/translate'
+import autobind from 'autobind-decorator'
+import { Field } from 'simple-react-form'
 import options from './options'
+import gql from 'graphql-tag'
 
 @withGraphQL(
   gql`
-    query getVault($vaultId: ID) {
+    query getInformation($vaultId: ID) {
       vault(vaultId: $vaultId) {
         _id
         name
       }
+      getAvailableSeats
     }
   `,
   { loading: <Loading /> }
@@ -33,6 +34,7 @@ import options from './options'
 export default class Create extends React.Component {
   static propTypes = {
     showMessage: PropTypes.func,
+    getAvailableSeats: PropTypes.number,
     history: PropTypes.object,
     vault: PropTypes.object
   }
@@ -60,6 +62,17 @@ export default class Create extends React.Component {
     )
   }
 
+  renderSeats() {
+    return (
+      <div className={styles.seatsContainer}>
+        <div className={styles.seats} onClick={() => this.props.history.push('/settings/seats')}>
+          {translate('invitations.availableSeats')}
+          <div className={styles.number}>{this.props.getAvailableSeats}</div>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     const { vault } = this.props
     return (
@@ -71,6 +84,7 @@ export default class Create extends React.Component {
           title={translate('vaults.inherit')}
         />
         <div className={styles.content}>
+          {this.renderSeats()}
           <AutoForm
             mutation="inviteUser"
             ref="form"

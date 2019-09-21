@@ -8,5 +8,6 @@ export default {
   declineConfirmText: 'Do you confirm that you want decline this invitation?',
   decline: 'Decline',
   accept: 'Accept invitation',
-  acceptConfirmMessage: 'Do you confirm that you want accept this invitation?'
+  acceptConfirmMessage: 'Do you confirm that you want accept this invitation?',
+  availableSeats: 'Available seats'
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Section from 'App/components/Section'
 import MutationButton from 'App/components/MutationButton'
@@ -15,6 +16,10 @@ import gql from 'graphql-tag'
   { loading: <Loading /> }
 )
 export default class Seats extends React.Component {
+  static propTypes = {
+    getSeats: PropTypes.number
+  }
+
   state = {}
 
   render() {
