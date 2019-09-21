@@ -17,7 +17,7 @@ export default resolver({
     }
 
     const user = await Users.findOne({ _id: viewer.userId })
-    console.log({ user })
+
     const { publicKey } = user.messageKeys
     const encryptData = publicEncrypt({ toEncrypt: data, publicKey })
 

@@ -7,8 +7,8 @@ export default async ({ fileName, fileType, file, folderId }) => {
   const drive = google.drive({ version: 'v3', auth })
 
   const bStream = new stream.PassThrough()
-  bStream.end(file.Body.toString())
-  console.log({ file })
+  bStream.end(file.Body)
+
   const media = {
     mimeType: fileType,
     body: bStream

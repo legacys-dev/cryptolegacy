@@ -5,7 +5,7 @@ import stream from 'stream'
 
 export default async ({ fileId, cloudName, fileType }) => {
   const auth = await authentication()
-  const drive = google.drive({ version: 'v3', auth, encoding: null })
+  const drive = google.drive({ version: 'v3', auth })
 
   const spreadsheet = await drive.files.get({
     fileId,
@@ -16,12 +16,18 @@ export default async ({ fileId, cloudName, fileType }) => {
   const bStream = new stream.PassThrough()
   bStream.end(spreadsheet.data)
 
-  const buffer = await new Promise((resolve, reject) => {
-    streamToBuffer(bStream, function(error, buffer) {
-      if (error) reject(error)
-      if (buffer) resolve(buffer)
+  let newBuffer
+  try {
+    newBuffer = await new Promise((resolve, reject) => {
+      streamToBuffer(bStream, (err, buffer) => {
+        if (err) reject(err)
+        if (buffer) resolve(buffer)
+      })
     })
-  })
+  } catch (error) {
+    console.log('Error:', error)
+    return
+  }
 
-  return Buffer.from(buffer, 'utf8')
+  return newBuffer
 }

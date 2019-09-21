@@ -1,9 +1,10 @@
-import { resolver, PermissionsError } from '@orion-js/app'
+import { resolver } from '@orion-js/app'
 import VaultPolicies from 'app/collections/VaultPolicies'
-import Users from 'app/collections/Users'
 import getInvitedUserVaultPassword from './getInvitedUserVaultPassword'
 import { claimedInvitation } from 'app/helpers/emails'
-import bcrypt from 'bcryptjs'
+import Users from 'app/collections/Users'
+import Seats from 'app/collections/Seats'
+import checkPermissions from './checkPermissions'
 
 export default resolver({
   params: {
@@ -14,7 +15,7 @@ export default resolver({
       type: String
     }
   },
-  returns: Boolean,
+  returns: String,
   mutation: true,
   requireLogin: true,
   async resolve({ accessToken, credentials }, viewer) {
@@ -23,24 +24,13 @@ export default resolver({
       'transferData.accessToken': accessToken,
       status: 'available'
     })
+    const seat = await Seats.findOne({ ownerId: vaultPolicy.creatorId, available: true })
+
+    if (!seat) throw new Error('Seats not availables')
 
     const code = viewer.userId.slice(0, 16)
 
-    if (!vaultPolicy) {
-      throw new PermissionsError('unauthorized', { message: 'Unauthorized credentials access' })
-    }
-
-    if (!user) {
-      throw new PermissionsError('unauthorized', { message: 'Unauthorized credentials access' })
-    }
-
-    if ((await user.email()) !== vaultPolicy.userEmail) {
-      throw new PermissionsError('unauthorized', { message: 'Unauthorized credentials access' })
-    }
-
-    if (!bcrypt.compareSync(code, vaultPolicy.transferData.code.bcrypt)) {
-      throw new PermissionsError('unauthorized', { message: 'Wrong code' })
-    }
+    await checkPermissions(vaultPolicy, user, code)
 
     const { privateKey } = user.messageKeys
     const claimParams = {
@@ -56,6 +46,15 @@ export default resolver({
       $set: { userId: viewer.userId, vaultPassword: encryptedUserVaultPassword, status: 'active' }
     })
 
+    await seat.update({
+      $set: {
+        userId: viewer.userId,
+        vaultId: vaultPolicy.vaultId,
+        available: false,
+        updatedAt: new Date()
+      }
+    })
+
     const userInformation = {
       email: await user.email(),
       name: await user.name(),
@@ -64,6 +63,6 @@ export default resolver({
 
     claimedInvitation({ user: userInformation, vaultName: await vaultPolicy.vaultName() }) // await not necessary
 
-    return true
+    return vaultPolicy._id
   }
 })

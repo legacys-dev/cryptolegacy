@@ -5,6 +5,9 @@ export default resolver({
   params: {
     vaultPolicyId: {
       type: String
+    },
+    accessToken: {
+      type: String
     }
   },
   returns: Boolean,

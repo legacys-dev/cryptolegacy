@@ -14,14 +14,19 @@ export default resolver({
     },
     email: {
       type: String,
-      async custom(email) {
+      async custom(email, { doc }) {
         email = email.toLowerCase()
         if (!emailValidator(email)) return 'invalidEmail'
 
         const invited = await Users.findOne({ 'emails.address': email })
         if (!invited) return 'userNotFound'
 
-        const policy = await VaultPolicies.findOne({ userEmail: email })
+        const policy = await VaultPolicies.findOne({
+          userEmail: email,
+          vaultId: doc.vaultId,
+          credentialType: 'invitation'
+        })
+
         if (policy) return 'userHasInvitation'
       }
     },
@@ -46,6 +51,10 @@ export default resolver({
       status: 'active'
     })
 
+    if ((await vaultOwner.email()) === (await invitedUser.email())) {
+      throw new Error('You cant invite yourself')
+    }
+
     const { privateKey } = vaultOwner.messageKeys
     const heirCode = invitedUser._id.slice(0, 16)
 
@@ -61,12 +70,6 @@ export default resolver({
     )
 
     const userEmail = email.toLowerCase()
-    const heritage = await VaultPolicies.findOne({
-      userEmail,
-      creatorId: viewer.userId,
-      status: 'available'
-    })
-
     const requiredParams = {
       vaultPassword: invitedVaultPassword,
       'transferData.code.bcrypt': hashPassword(heirCode),
@@ -86,9 +89,7 @@ export default resolver({
       ...requiredParams
     }
 
-    if (heritage) await heritage.remove() // await not necessary
-
-    await VaultPolicies.insert(insertParams)
+    const invitation = await VaultPolicies.insert(insertParams)
 
     const owner = {
       ownerEmail: await vaultOwner.email(),
@@ -105,7 +106,7 @@ export default resolver({
     vaultInvitation({
       owner,
       user,
-      vaultName: await getVaultName({ heritage, vaultId })
+      vaultName: await getVaultName({ invitation, vaultId })
     })
 
     return true

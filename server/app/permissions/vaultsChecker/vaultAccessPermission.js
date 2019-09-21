@@ -11,7 +11,10 @@ export default async function({ viewer, vaultId }) {
 
   const { credentialType } = vaultPolicy
 
-  if (isEmpty(credentialType) || (credentialType !== 'owner' && credentialType !== 'heritage')) {
+  if (
+    isEmpty(credentialType) ||
+    (credentialType !== 'owner' && credentialType !== 'heritage' && credentialType !== 'invitation')
+  ) {
     throw new PermissionsError('unauthorized', { message: 'Vault permissions denied' })
   }
 }

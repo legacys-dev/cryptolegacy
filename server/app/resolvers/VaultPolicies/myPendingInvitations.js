@@ -26,7 +26,8 @@ export default resolver({
         createdAt: invitation.createdAt,
         status: invitation.status,
         creatorEmail: await invitation.creatorEmail(),
-        role: invitation.role
+        role: invitation.role,
+        token: invitation.transferData.accessToken
       }
     })
 
