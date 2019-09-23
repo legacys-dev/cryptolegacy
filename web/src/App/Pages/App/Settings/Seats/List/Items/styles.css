@@ -1,16 +1,4 @@
 :local(.container) {
-  padding: 20px;
-  background-color: white;
-  padding-bottom: 16px;
-  padding-left: 32px;
-  padding-right: 32px;
-  border-radius: 20px;
-  -webkit-box-shadow: 4px 6px 14px -1px #e6ecfe;
-  -moz-box-shadow: 4px 6px 14px -1px #e6ecfe;
-  box-shadow: 4px 6px 14px -1px #e6ecfe;
-}
-
-:local(.files) {
 }
 
 :local(.table) {
@@ -62,28 +50,4 @@
 :local(.table) > tbody > tr > td {
   padding: 18px;
   vertical-align: middle;
-}
-
-:local(.buttons) {
-}
-
-:local(.update) {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-:local(.updateButton) {
-  width: 150px;
-  font-size: 15px;
-  color: #fff;
-  background-color: #1f6dfb;
-  border-radius: 8px;
-  -webkit-transition-property: font-weight, cursor;
-  -webkit-transition-duration: 300ms;
-}
-
-:local(.updateButton):hover {
-  cursor: pointer;
-  font-weight: 700;
 }

@@ -1,4 +1,5 @@
 export default {
+  emptyInvitations: 'You dont have any invitation to vaults right now',
   notFound: 'No invitations were found',
   invitedEmail: "Guest's email",
   invitedRole: "Guest's role",
@@ -9,5 +10,6 @@ export default {
   decline: 'Decline',
   accept: 'Accept invitation',
   acceptConfirmMessage: 'Do you confirm that you want accept this invitation?',
-  availableSeats: 'Available seats'
+  availableSeats: 'Available seats',
+  updateInvitation: 'Update invitation'
 }

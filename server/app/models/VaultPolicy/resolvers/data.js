@@ -13,7 +13,8 @@ export default resolver({
       vaultName: await vaultPolicy.vaultName(),
       userEmail: vaultPolicy.userEmail,
       createdAt: vaultPolicy.createdAt,
-      status: vaultPolicy.status
+      status: vaultPolicy.status,
+      role: vaultPolicy.role
     }
 
     const user = await Users.findOne({ _id: viewer.userId })

@@ -14,15 +14,17 @@ export default resolver({
   requireLogin: true,
   async resolve(params, viewer) {
     const user = await Users.findOne({ _id: viewer.userId })
+
+    let seatId
     try {
       const seat = await createSubscription(user.qvo.customerId, 'asiento')
       if (!seat || seat.status !== 'active') throw new Error('Error creating subscription')
 
-      await createSeat({ ownerId: viewer.userId, subscriptionId: seat.id }, viewer)
+      seatId = await createSeat({ ownerId: viewer.userId, subscriptionId: seat.id }, viewer)
     } catch (error) {
       console.log('Error:', error)
     }
 
-    return true
+    return seatId
   }
 })

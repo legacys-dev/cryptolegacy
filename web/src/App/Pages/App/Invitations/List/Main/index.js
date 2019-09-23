@@ -85,7 +85,7 @@ export default class Main extends React.Component {
 
   render() {
     if (!this.state.items || this.state.loading) return <Loading />
-    if (isEmpty(this.state.items)) return <NoItemsFound message="invitations.notFound" />
+    if (isEmpty(this.state.items)) return <NoItemsFound message="invitations.emptyInvitations" />
     return this.renderItems()
   }
 }

@@ -1,4 +1,5 @@
 export default {
+  emptyInvitations: 'Actualmente no tienes ninguna invitación a bóvedas',
   notFound: 'No se encontraron invitaciones a esta bóveda',
   invitedEmail: 'Email del invitado',
   invitedRole: 'Rol del invitado',
@@ -9,5 +10,6 @@ export default {
   decline: 'Rechazar',
   accept: 'Aceptar invitación',
   acceptConfirmMessage: '¿Confirmas que deseas aceptar esta invitación a la bóveda?',
-  availableSeats: 'Asientos disponibles'
+  availableSeats: 'Asientos disponibles',
+  updateInvitation: 'Actualizar invitación'
 }

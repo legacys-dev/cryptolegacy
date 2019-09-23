@@ -5,12 +5,11 @@ import { withRouter } from 'react-router'
 import AutoForm from 'App/components/AutoForm'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
-import { getEncryptedPassword } from 'App/helpers/user'
+// import { getEncryptedPassword } from 'App/helpers/user'
 import Loading from 'App/components/Parts/Loading'
 import Select from 'App/components/fields/Select'
 import Button from 'App/components/Parts/Button'
 import Header from 'App/components/Parts/Header'
-import Text from 'App/components/fields/Text'
 import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
 import { Field } from 'simple-react-form'
@@ -19,12 +18,12 @@ import gql from 'graphql-tag'
 
 @withGraphQL(
   gql`
-    query getInformation($vaultId: ID) {
+    query getInformation($vaultId: ID, $vaultPolicyId: String) {
       vault(vaultId: $vaultId) {
         _id
         name
       }
-      getAvailableSeats
+      vaultPolicy(vaultPolicyId: $vaultPolicyId)
     }
   `,
   { loading: <Loading /> }
@@ -36,17 +35,15 @@ export default class Create extends React.Component {
     showMessage: PropTypes.func,
     getAvailableSeats: PropTypes.number,
     history: PropTypes.object,
-    vault: PropTypes.object
+    vault: PropTypes.object,
+    vaultPolicy: PropTypes.object
   }
 
   @autobind
   onSuccess() {
-    const { showMessage, vault, history } = this.props
-    showMessage(translate('vaults.createInvitation'))
-    history.push(`/vaults/invitations/${vault._id}`)
+    const { showMessage } = this.props
+    showMessage(translate('vaults.updateInvitation'))
   }
-
-  getEncrypted
 
   renderButtons() {
     const { vault, history } = this.props
@@ -56,48 +53,69 @@ export default class Create extends React.Component {
           {translate('vaults.back')}
         </Button>
         <Button primary onClick={() => this.refs.form.submit()}>
-          {translate('vaults.inviteToVault')}
+          {translate('invitations.updateInvitation')}
         </Button>
       </div>
     )
   }
 
-  renderSeats() {
+  renderForm() {
+    const { vaultPolicy } = this.props
     return (
-      <div className={styles.seatsContainer}>
-        <div className={styles.seats} onClick={() => this.props.history.push('/settings/seats')}>
-          {translate('invitations.availableSeats')}
-          <div className={styles.number}>{this.props.getAvailableSeats}</div>
-        </div>
+      <AutoForm
+        mutation="updateInvitation"
+        ref="form"
+        doc={{ vaultPolicyId: vaultPolicy._id, role: vaultPolicy.role }}
+        onSuccess={this.onSuccess}>
+        <Field
+          label={translate('invitations.invitedRole')}
+          fieldName="role"
+          type={Select}
+          options={options}
+        />
+      </AutoForm>
+    )
+  }
+
+  renderItem(label, value) {
+    return (
+      <div className={styles.information}>
+        <div className={styles.title}>{label}</div>
+        <div className={styles.item}>{value}</div>
       </div>
     )
   }
 
-  render() {
+  renderInformation() {
+    const { vaultPolicy } = this.props
+    return (
+      <div className={styles.info}>
+        {this.renderItem('Vault:', vaultPolicy.vaultName)}
+        {this.renderItem('User email:', vaultPolicy.userEmail)}
+        {this.renderItem('Status', vaultPolicy.status)}
+      </div>
+    )
+  }
+
+  renderHeader() {
     const { vault } = this.props
     return (
+      <Header
+        past={{
+          [`/vaults/invitations/${vault._id}`]: `${translate('vaults.vault')} (${vault.name})`
+        }}
+        title={translate('vaults.invitations')}
+      />
+    )
+  }
+
+  render() {
+    return (
       <div className={styles.container}>
-        <Header
-          past={{
-            [`/vaults/invitations/${vault._id}`]: `${translate('vaults.vault')} (${vault.name})`
-          }}
-          title={translate('vaults.invitations')}
-        />
+        {this.renderHeader()}
         <div className={styles.content}>
-          {this.renderSeats()}
-          <AutoForm
-            mutation="inviteUser"
-            ref="form"
-            doc={{ vaultId: vault._id, credentials: getEncryptedPassword() }}
-            onSuccess={this.onSuccess}>
-            <Field label={translate('invitations.invitedEmail')} fieldName="email" type={Text} />
-            <Field
-              label={translate('invitations.invitedRole')}
-              fieldName="role"
-              type={Select}
-              options={options}
-            />
-          </AutoForm>
+          {this.renderInformation()}
+          {this.renderForm()}
           {this.renderButtons()}
         </div>
       </div>

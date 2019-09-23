@@ -7,12 +7,15 @@ import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
 import privateDecrypt from 'App/helpers/crypto/privateDecrypt'
 import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
+import { withRouter } from 'react-router'
 import statusType from './status'
 import moment from 'moment'
 
 @withMessage
+@withRouter
 export default class Items extends React.Component {
   static propTypes = {
+    router: PropTypes.object,
     showMessage: PropTypes.func,
     history: PropTypes.object,
     items: PropTypes.array,
@@ -27,6 +30,21 @@ export default class Items extends React.Component {
     this.props.showMessage(translate('vaults.deleteHeritageMessage'))
   }
 
+  renderUpdateButton(data) {
+    const { vaultId, vaultPolicyId } = data
+    return (
+      <div className={styles.update}>
+        <div
+          className={styles.updateButton}
+          onClick={() =>
+            this.props.history.push(`/vaults/invitations/${vaultId}/${vaultPolicyId}/update`)
+          }>
+          Update
+        </div>
+      </div>
+    )
+  }
+
   renderTable() {
     const invitations = this.props.items || []
     return invitations.map((invitation, index) => {
@@ -35,7 +53,6 @@ export default class Items extends React.Component {
         toDecrypt: invitation.data,
         privateKey: messages.privateKey
       })
-      console.log({ decryptInvitation })
       return (
         <tr className={styles.cell} key={index}>
           <td>
@@ -45,11 +62,14 @@ export default class Items extends React.Component {
           <td>{statusType[decryptInvitation.status]}</td>
           <td>{moment(decryptInvitation.createdAt).format('LL')}</td>
           <td>
-            <DeletePolicy
-              vaultPolicyId={decryptInvitation.vaultPolicyId}
-              userId={decryptInvitation.userId}
-              onDeleteSuccess={this.onDeleteSuccess}
-            />
+            <div className={styles.buttons}>
+              {this.renderUpdateButton(decryptInvitation)}
+              <DeletePolicy
+                vaultPolicyId={decryptInvitation.vaultPolicyId}
+                userId={decryptInvitation.userId}
+                onDeleteSuccess={this.onDeleteSuccess}
+              />
+            </div>
           </td>
         </tr>
       )

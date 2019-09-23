@@ -5,14 +5,17 @@ import vaultPolicies from './vaultPolicies'
 import deleteHeritage from './deleteHeritage'
 import createVaultOwnerPolicy from './createVaultOwnerPolicy'
 import deleteVaultPolicy from './deleteVaultPolicy'
-import claimInvitation from './claimInvitation'
-import inviteUser from './inviteUser'
-import validHeirs from './validHeirs'
 import myPendingInvitations from './myPendingInvitations'
 import getUncheckedPolicies from './getUncheckedPolicies'
 import declineInvitation from './declineInvitation'
+import updateInvitation from './updateInvitation'
+import claimInvitation from './claimInvitation'
+import inviteUser from './inviteUser'
+import validHeirs from './validHeirs'
+import vaultPolicy from './vaultPolicy'
 
 export default {
+  vaultPolicy,
   declineInvitation,
   getUncheckedPolicies,
   myPendingInvitations,
@@ -25,5 +28,6 @@ export default {
   createHeritage,
   createVaultOwnerPolicy,
   inviteUser,
-  claimInvitation
+  claimInvitation,
+  updateInvitation
 }
