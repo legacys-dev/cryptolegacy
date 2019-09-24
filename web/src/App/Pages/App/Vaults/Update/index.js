@@ -9,11 +9,11 @@ import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import Header from 'App/components/Parts/Header'
 import Button from 'App/components/Parts/Button'
 import Loading from 'App/components/Parts/Loading'
-import gql from 'graphql-tag'
-import Delete from './Delete'
 import translate from 'App/i18n/translate'
 import { Field } from 'simple-react-form'
 import Text from 'App/components/fields/Text'
+import Delete from './Delete'
+import gql from 'graphql-tag'
 
 @withGraphQL(
   gql`
@@ -21,6 +21,7 @@ import Text from 'App/components/fields/Text'
       vault(vaultId: $vaultId) {
         _id
         name
+        userCredentials
       }
     }
   `,
@@ -48,13 +49,20 @@ export default class Update extends React.Component {
     history.push('/vaults')
   }
 
+  renderHeritageButton() {
+    if (this.props.vault.userCredentials !== 'owner') return
+    return (
+      <Button onClick={() => history.push(`/vaults/heritages/${this.props.vault._id}`)}>
+        {translate('vaults.heritages')}
+      </Button>
+    )
+  }
+
   renderHeritageOptions() {
     const { vault, history } = this.props
     return (
       <div className={styles.heritageButton}>
-        <Button onClick={() => history.push(`/vaults/heritages/${vault._id}`)}>
-          {translate('vaults.heritages')}
-        </Button>
+        {this.renderHeritageButton()}
         <Button onClick={() => history.push(`/vaults/invitations/${vault._id}`)}>
           {translate('vaults.invitations')}
         </Button>

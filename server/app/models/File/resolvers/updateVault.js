@@ -7,6 +7,7 @@ export default resolver({
   returns: Boolean,
   private: true,
   async resolve(file, params, viewer) {
+    console.log({ file })
     const userVault = await Vaults.findOne({ _id: file.vaultId })
     await filesVaultUpdated({ vaultId: file.vaultId }, userVault)
 

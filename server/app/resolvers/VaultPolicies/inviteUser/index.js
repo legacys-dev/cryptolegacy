@@ -39,9 +39,9 @@ export default resolver({
   },
   returns: Boolean,
   mutation: true,
-  vaultOwner: true,
   requireLogin: true,
-  vaultPolicyOwner: true,
+  policyAuthorization: true,
+  requirePlan: true,
   async resolve({ vaultId, email, role, credentials }, viewer) {
     const vaultOwner = await Users.findOne({ _id: viewer.userId })
     const invitedUser = await Users.findOne({ 'emails.address': email })

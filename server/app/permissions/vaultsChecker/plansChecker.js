@@ -1,10 +1,10 @@
 import { PermissionsError } from '@orion-js/app'
 import Users from 'app/collections/Users'
 import VaultPolicies from 'app/collections/VaultPolicies'
-import Vaults from 'app/collections/Vaults'
 import { getVaultsIds } from 'app/helpers/vaults'
-import isEmpty from 'lodash/isEmpty'
 import { getSubscription } from 'app/helpers/qvo'
+import Vaults from 'app/collections/Vaults'
+import isEmpty from 'lodash/isEmpty'
 
 export default async function({ viewer, type }) {
   const user = await Users.findOne({ _id: viewer.userId })

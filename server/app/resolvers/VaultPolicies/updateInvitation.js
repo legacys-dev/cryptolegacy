@@ -13,6 +13,7 @@ export default resolver({
   returns: Boolean,
   mutation: true,
   requireLogin: true,
+  requirePlan: true,
   async resolve({ vaultPolicyId, role }, viewer) {
     const invitation = await VaultPolicies.findOne({
       _id: vaultPolicyId

@@ -26,7 +26,7 @@ export default resolver({
   returns: CreateS3Upload,
   mutation: true,
   requireLogin: true,
-  vaultOwner: true,
+  policyAuthorization: true,
   checkUserStorage: true,
   checkSize: true,
   async resolve(params, viewer) {

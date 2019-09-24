@@ -16,7 +16,7 @@ export default resolver({
   },
   returns: Boolean,
   mutation: true,
-  vaultOwner: true,
+  policyAuthorization: true,
   requireLogin: true,
   checkVaultName: true,
   async resolve({ vaultId, name }, viewer) {
