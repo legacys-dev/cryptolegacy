@@ -16,7 +16,7 @@
   composes: shadow from global;
   background-color: #fff;
   height: 90%;
-  max-height: 190px;
+  max-height: 280px;
   max-width: 550px;
   margin: 20px;
   flex: 1;
@@ -48,4 +48,12 @@
 .progressLine {
   margin-top: 20px;
   padding: 0 20px;
+}
+
+.decrypting {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
 }

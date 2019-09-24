@@ -11,6 +11,7 @@ import translate from 'App/i18n/translate'
 import awsCredentials from './awsCredentials'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import { privateDecrypt, archiveEncryptWithPassword } from 'App/helpers/crypto'
+import EncryptLoading from 'App/components/Parts/EncryptLoading'
 import { generateArchiveIv } from 'App/helpers/keys'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import Warning from './Warning'
@@ -180,13 +181,13 @@ export default class Upload extends React.Component {
   }
 
   renderEncrypting() {
-    if (this.state.encrypting === true) {
-      return (
-        <div className={styles.encrypting}>
-          <p>{translate('fileManager.encrypting')}...</p>
-        </div>
-      )
-    }
+    if (!this.state.encrypting) return
+    return (
+      <div className={styles.encrypting}>
+        <EncryptLoading />
+        <p>{translate('fileManager.encrypting')}...</p>
+      </div>
+    )
   }
 
   renderInput() {

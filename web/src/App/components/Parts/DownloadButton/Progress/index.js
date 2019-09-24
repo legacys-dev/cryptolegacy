@@ -1,12 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './styles.module.css'
 import { MdClose } from 'react-icons/md'
 import IconButton from 'orionsoft-parts/lib/components/IconButton'
+import EncryptLoading from 'App/components/Parts/EncryptLoading'
 import getSize from 'App/helpers/files/getSize'
 import { Line } from '../../LoadProgress'
 import translate from 'App/i18n/translate'
 
-const Progress = ({ total, loaded, close }) => {
+const Progress = ({ total, loaded, close, decrypt }) => {
+  const [decrypting, setDecrypting] = useState(decrypt)
+
+  useEffect(() => {
+    setDecrypting(decrypt)
+  }, [decrypt])
+
+  const renderDecryptingLoader = () => {
+    if (!decrypting) return
+    return (
+      <div className={styles.decrypting}>
+        <EncryptLoading />
+        <p>{translate('fileManager.decrypting')}...</p>
+      </div>
+    )
+  }
+
   const renderProgress = () => {
     const totalProgress = loaded ? Number(((loaded * 100) / total).toFixed(3)) : 0
     return (
@@ -33,6 +50,7 @@ const Progress = ({ total, loaded, close }) => {
           </div>
         </div>
         {renderProgress()}
+        {renderDecryptingLoader()}
       </div>
     </div>
   )
