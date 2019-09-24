@@ -12,11 +12,11 @@ import awsCredentials from './awsCredentials'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import { privateDecrypt, archiveEncryptWithPassword } from 'App/helpers/crypto'
 import { generateArchiveIv } from 'App/helpers/keys'
-import AWS from 'aws-sdk'
+import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import Warning from './Warning'
 import gql from 'graphql-tag'
 import mime from 'mime-types'
-import sleep from 'orionsoft-parts/lib/helpers/sleep'
+import AWS from 'aws-sdk'
 
 @withMutation(gql`
   mutation createS3Upload(

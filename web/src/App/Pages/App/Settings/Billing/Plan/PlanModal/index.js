@@ -1,12 +1,20 @@
 import React from 'react'
-import Button from 'App/components/Parts/Button'
-import Modal from 'react-modal'
+import PropTypes from 'prop-types'
 import styles from './styles.css'
+import Modal from 'react-modal'
 import PlanDetail from './PlanDetail'
-import plans from './plans'
 import autobind from 'autobind-decorator'
+import sleep from 'orionsoft-parts/lib/helpers/sleep'
+import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import Button from 'App/components/Parts/Button'
+import plans from './plans'
 
+@withMessage
 export default class PlanModal extends React.Component {
+  static propTypes = {
+    showMessage: PropTypes.func
+  }
+
   state = {
     modalIsOpen: false,
     plans: plans
@@ -23,6 +31,13 @@ export default class PlanModal extends React.Component {
   }
 
   @autobind
+  async updatedPlan() {
+    this.props.showMessage('Plan actualizado')
+    await sleep(1000)
+    window.location.reload()
+  }
+
+  @autobind
   renderPlanList() {
     let plans = this.state.plans.filter((plan, index, arr) => plan.id !== 'free')
     if (this.props.subscriptionData) {
@@ -34,8 +49,9 @@ export default class PlanModal extends React.Component {
           return (
             <PlanDetail
               key={'planDetail-' + index}
-              {...planData}
               update={this.props.subscriptionData}
+              {...planData}
+              updatedPlan={this.updatedPlan}
             />
           )
         })}
@@ -55,11 +71,15 @@ export default class PlanModal extends React.Component {
   render() {
     const customStyles = {
       content: {
-        margin: 'auto auto',
-        padding: '2px 2px',
-        width: '60%',
-        height: '80%',
-        border: '0px'
+        height: '100%',
+        width: '100%',
+        top: '0px',
+        right: '0px',
+        left: '0px',
+        bottom: '0px',
+        border: 'none',
+        position: 'relative',
+        'background-color': '#000000bf'
       }
     }
 
@@ -72,7 +92,7 @@ export default class PlanModal extends React.Component {
         width: '30%',
         height: '36%',
         border: '0px',
-        'background-color': '#F4F6FC'
+        'background-color': '#000000bf'
       }
     }
 
@@ -89,9 +109,11 @@ export default class PlanModal extends React.Component {
           contentLabel="">
           <div className={styles.modalContent}>
             {this.props.cardId ? this.renderPlanList() : this.renderNoCard()}
-            <Button className={styles.closeButtonContainer} onClick={this.closeModal} danger>
-              Cerrar
-            </Button>
+            <div className={styles.button}>
+              <Button className={styles.closeButtonContainer} onClick={this.closeModal} danger>
+                Cerrar
+              </Button>
+            </div>
           </div>
         </Modal>
       </div>

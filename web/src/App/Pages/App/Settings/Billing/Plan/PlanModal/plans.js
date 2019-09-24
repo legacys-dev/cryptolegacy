@@ -4,16 +4,14 @@ const plans = [
     title: 'Gratuito',
     size: '100 MB',
     seatsPrice: 'No seats',
-    vaultsNum: 1,
-    integration: 'Integrations'
+    vaultsNum: 1
   },
   {
     id: 'individual',
     title: 'Personal',
     size: '200 GB',
     seatsPrice: '$1.99',
-    vaultsNum: 3,
-    integration: 'No integrations'
+    vaultsNum: 3
   },
   {
     id: 'multiple',

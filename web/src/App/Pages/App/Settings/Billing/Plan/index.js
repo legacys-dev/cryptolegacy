@@ -4,6 +4,8 @@ import styles from './styles.css'
 import PlanModal from './PlanModal'
 import MutationButton from 'App/components/MutationButton'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
+import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import Loading from 'App/components/Parts/Loading'
 import plans from './PlanModal/plans'
 import gql from 'graphql-tag'
@@ -16,13 +18,21 @@ import gql from 'graphql-tag'
   `,
   { loading: <Loading /> }
 )
+@withMessage
 export default class Plan extends React.Component {
   static propTypes = {
+    showMessage: PropTypes.func,
     getSubscription: PropTypes.object,
     cardId: PropTypes.string
   }
 
   state = {}
+
+  async onCancelPlan() {
+    this.props.showMessage('The plan was canceled successfully')
+    await sleep(1000)
+    window.location.reload()
+  }
 
   renderFreePlan = () => (
     <div>
@@ -66,7 +76,7 @@ export default class Plan extends React.Component {
             params={{ data: 'cancel' }} // Para que funcione.
             confirmText={'Cancelar plan'}
             mutation={'cancelPlan'}
-            onSuccess={() => console.log('He cancelado el plan!')}
+            onSuccess={() => this.onCancelPlan()}
             label="Cancelar plan"
             danger
           />
@@ -76,8 +86,7 @@ export default class Plan extends React.Component {
   }
 
   renderGetPlan() {
-    const { getSubscription } = this.props
-    if (getSubscription) return
+    if (this.props.getSubscription) return
     return (
       <div className={styles.noData}>
         {this.renderPlan('free')}
