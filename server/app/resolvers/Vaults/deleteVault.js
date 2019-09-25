@@ -10,8 +10,8 @@ export default resolver({
   },
   returns: Boolean,
   mutation: true,
-  requireLogin: true,
   vaultOwner: true,
+  requireLogin: true,
   vaultForDelete: true,
   async resolve({ vaultId }, viewer) {
     const vault = await Vaults.findOne(vaultId)

@@ -3,15 +3,16 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import Header from 'App/components/Parts/Header'
 import FileManager from 'App/components/Parts/FileManager'
-import {VaultProvider} from 'App/helpers/contexts/vaultContext'
+import { VaultProvider } from 'App/helpers/contexts/vaultContext'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
+import { isOwnerOrAdministrator } from 'App/helpers/user'
+import { setVaultPasswords } from 'App/helpers/keys'
 import Loading from 'App/components/Parts/Loading'
 import Text from 'App/components/fields/Text'
 import VaultWatcher from './VaultWatcher'
+import translate from 'App/i18n/translate'
 import gql from 'graphql-tag'
 import Main from './Main'
-import translate from 'App/i18n/translate'
-import {setVaultPasswords} from 'App/helpers/keys'
 
 @withGraphQL(
   gql`
@@ -27,8 +28,7 @@ import {setVaultPasswords} from 'App/helpers/keys'
       }
     }
   `,
-
-  {loading: <Loading />}
+  { loading: <Loading /> }
 )
 export default class Files extends React.Component {
   static propTypes = {
@@ -37,14 +37,14 @@ export default class Files extends React.Component {
   }
 
   componentDidMount() {
-    const {vault} = this.props
+    const { vault } = this.props
     setVaultPasswords(vault._id, vault.password)
   }
 
   state = {}
 
   onFilterChange(searchValue) {
-    this.setState({searchValue})
+    this.setState({ searchValue })
   }
 
   renderSearch() {
@@ -58,17 +58,16 @@ export default class Files extends React.Component {
   }
 
   renderFileManager() {
-    const {_id, type} = this.props.vault
+    const { _id, type } = this.props.vault
     return (
-      <VaultProvider value={{vaultId: _id, vaultType: type}}>
+      <VaultProvider value={{ vaultId: _id, vaultType: type }}>
         <FileManager />
       </VaultProvider>
     )
   }
 
   fileManagerAccess() {
-    const {vault} = this.props
-    if (vault.userCredentials !== 'owner') return
+    if (!isOwnerOrAdministrator(this.props.vault.userCredentials)) return
     return this.renderFileManager()
   }
 
@@ -82,13 +81,13 @@ export default class Files extends React.Component {
   }
 
   render() {
-    const {vault} = this.props
+    const { vault } = this.props
     if (!vault) return <span />
     return (
       <div className={styles.container}>
         <VaultWatcher vaultId={vault._id} />
         <Header
-          past={{[`/vaults`]: translate('vaults.vaults')}}
+          past={{ [`/vaults`]: translate('vaults.vaults') }}
           right={this.renderRight()}
           title={`${vault.name} - (${translate('vaults.files')})`}
         />

@@ -18,5 +18,6 @@ export default {
   warning: 'Advertencia',
   of: 'de',
   filesUpload: 'Subida de archivos',
-  encrypting: 'Encriptando'
+  encrypting: 'Encriptando',
+  decrypting: 'Desencriptando'
 }

@@ -22,6 +22,10 @@ export default paginatedResolver({
       type: String,
       optional: true
     },
+    type: {
+      type: String,
+      optional: true
+    },
     credentialType: {
       type: String,
       optional: true
@@ -29,7 +33,7 @@ export default paginatedResolver({
   },
   requireLogin: true,
   vaultPoliciesPaginatedPermissions: true,
-  async getCursor({ vaultId, filter, adminPanel, status, credentialType }, viewer) {
+  async getCursor({ vaultId, filter, adminPanel, status, type, credentialType }, viewer) {
     const filterSearch = filter ? { userEmail: { $regex: new RegExp(`^${escape(filter)}`) } } : {}
     const query = { ...filterSearch }
 
@@ -38,7 +42,10 @@ export default paginatedResolver({
       query.credentialType = credentialType || 'heritage'
     } else {
       query.vaultId = vaultId
-      query.status = 'waiting'
+
+      if (type === 'heritage') query.status = 'waiting'
+
+      query.credentialType = type
     }
 
     return VaultPolicies.find(query).sort({ createdAt: -1 }) // await not necessary

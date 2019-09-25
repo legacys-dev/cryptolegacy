@@ -8,13 +8,9 @@ export default resolver({
   requireLogin: true,
   async resolve(params, viewer) {
     const user = await Users.findOne({ _id: viewer.userId })
-    try {
-      const seats = await Seats.find({ ownerId: user['_id'] }).toArray()
-      console.log('Numero: ', seats)
-      return seats.length
-    } catch (error) {
-      console.log('Error:', error)
-      return 0
-    }
+
+    const seats = await Seats.find({ ownerId: user._id, available: true }).toArray()
+
+    return seats.length
   }
 })

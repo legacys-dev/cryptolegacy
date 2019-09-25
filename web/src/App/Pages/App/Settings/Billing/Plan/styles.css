@@ -1,24 +1,24 @@
-:local(.noData){
-    
+:local(.noData) {
 }
 
-:local(.addPlanButton){
-
-}
-:local(.buttonsContainer){
-    display: flex;
+:local(.addPlanButton) {
 }
 
-:local(.cancelPlan){
-    width: 150px;
-    font-size: 15px;
-    color: #fff;
-    background-color: red;
-    border-radius: 8px;
-    -webkit-transition-property: font-weight, cursor;
-    -webkit-transition-duration: 300ms;
+:local(.buttonsContainer) {
+  display: flex;
 }
-:local(.noCardTitle){
-    font-size: 40px;
-    text-align: center;
+
+:local(.cancelPlan) {
+  width: 150px;
+  font-size: 15px;
+  color: #fff;
+  background-color: red;
+  border-radius: 8px;
+  -webkit-transition-property: font-weight, cursor;
+  -webkit-transition-duration: 300ms;
+}
+
+:local(.noCardTitle) {
+  font-size: 40px;
+  text-align: center;
 }

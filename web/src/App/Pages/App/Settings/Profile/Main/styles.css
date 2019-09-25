@@ -1,0 +1,7 @@
+:local(.container) {
+}
+
+:local(.button) {
+  margin: 15px 0;
+  text-align: right;
+}

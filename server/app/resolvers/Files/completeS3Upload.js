@@ -14,9 +14,15 @@ export default resolver({
   filePermissions: true,
   async resolve({ fileId }, viewer) {
     const file = await Files.findOne({ _id: fileId })
-    const status = file.storage.includes('b2')
-      ? { 'b2Data.status': 'pending' }
-      : { 'glacierData.status': 'pending' }
+
+    let status
+    if (file.storage.includes('b2')) {
+      status = { 'b2Data.status': 'pending' }
+    } else if (file.storage.includes('glacier')) {
+      status = { 'glacierData.status': 'pending' }
+    } else {
+      status = { 'driveData.status': 'pending' }
+    }
 
     const updateData = {
       ...{ 's3Data.status': 'uploaded' },

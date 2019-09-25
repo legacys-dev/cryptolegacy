@@ -4,6 +4,8 @@ import heritageCreated from './heritageCreated'
 import heritageAvailable from './heritageAvailable'
 import claimedHeritage from './claimedHeritage'
 import missedPassword from './missedPassword'
+import vaultInvitation from './vaultInvitation'
+import claimedInvitation from './claimedInvitation'
 
 export {
   verifyEmail,
@@ -11,5 +13,7 @@ export {
   heritageCreated,
   claimedHeritage,
   heritageAvailable,
-  missedPassword
+  missedPassword,
+  vaultInvitation,
+  claimedInvitation
 }

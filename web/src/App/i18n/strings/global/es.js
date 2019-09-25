@@ -4,5 +4,6 @@ export default {
   confirm: 'Confirmar',
   disable: 'Desactivar',
   cancel: 'Cancelar',
-  close: 'Cerrar'
+  close: 'Cerrar',
+  updatedAt: 'Actualizado el'
 }

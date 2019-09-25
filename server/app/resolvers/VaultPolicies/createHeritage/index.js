@@ -74,11 +74,10 @@ export default resolver({
 
     if (heritage) await heritage.remove() // await not necessary
 
-    let hasError
     try {
       await VaultPolicies.insert(insertParams)
     } catch (error) {
-      if (hasError) throw new Error('Error creating a heritage')
+      throw new Error('Error creating a heritage')
     }
 
     const inheritor = await Users.findOne({ 'emails.address': userEmail })

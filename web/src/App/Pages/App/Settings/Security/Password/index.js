@@ -65,10 +65,11 @@ export default class ChangePassword extends React.Component {
             <div className="label">{translate('settings.confirmYourPassword')}</div>
             <Field fieldName="confirm" fieldType="password" type={Text} />
           </AutoForm>
-          <br />
-          <Button icon={MdLockOutline} onClick={() => this.refs.form.submit()} primary>
-            {translate('settings.changePassword')}
-          </Button>
+          <div className={styles.button}>
+            <Button icon={MdLockOutline} onClick={() => this.refs.form.submit()} primary>
+              {translate('settings.changePassword')}
+            </Button>
+          </div>
         </Section>
       </div>
     )

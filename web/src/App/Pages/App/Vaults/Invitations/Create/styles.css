@@ -1,0 +1,42 @@
+:local(.container) {
+  padding: 20px;
+}
+
+:local(.seatsContainer) {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+:local(.seats) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #061b41;
+  border-radius: 20px;
+  font-weight: 700;
+  padding: 10px;
+  width: 200px;
+  color: #fff;
+  -webkit-transition-property: background-color;
+  -webkit-transition-duration: 300ms;
+}
+
+:local(.seats):hover {
+  cursor: pointer;
+  background-color: #045efc;
+}
+
+:local(.number) {
+  margin-left: 10px;
+}
+
+:local(.content) {
+  padding: 20px;
+}
+
+:local(.buttons) {
+  flex: 1;
+  text-align: right;
+  margin-top: 30px;
+}
