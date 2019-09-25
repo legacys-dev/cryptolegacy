@@ -1,0 +1,20 @@
+.container {
+  max-height: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.delete {
+  width: 150px;
+  font-size: 15px;
+  color: #fff;
+  background-color: red;
+  border-radius: 8px;
+  -webkit-transition-property: font-weight, cursor;
+  -webkit-transition-duration: 300ms;
+}
+
+.delete:hover {
+  cursor: pointer;
+  font-weight: 700;
+}

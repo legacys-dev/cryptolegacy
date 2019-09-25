@@ -8,12 +8,12 @@ import Loading from 'orionsoft-parts/lib/components/Loading'
 import Tooltip from 'orionsoft-parts/lib/components/Tooltip'
 import sleep from 'orionsoft-parts/lib/helpers/sleep'
 import { MdCloudDownload } from 'react-icons/md'
+import translate from 'App/i18n/translate'
 import autobind from 'autobind-decorator'
 import downloadFile from './downloadFile'
 import Progress from './Progress'
 import messages from './messages'
 import gql from 'graphql-tag'
-import translate from 'App/i18n/translate'
 
 @withMutation(gql`
   mutation createDownload($fileId: ID) {
@@ -71,7 +71,8 @@ export default class DownloadButton extends React.Component {
         fileId: this.props.file._id,
         downloadUrl: downloadUrl,
         fileName: fileName,
-        downloadProgress: this.downloadProgress
+        downloadProgress: this.downloadProgress,
+        decryptingHandler: this.decryptingHandler
       })
       await finishDownload({ activityId, status: true })
     } catch (error) {
@@ -79,10 +80,23 @@ export default class DownloadButton extends React.Component {
     }
   }
 
+  @autobind
+  decryptingHandler(decrypting) {
+    if (decrypting) this.setState({ decrypt: true })
+    if (!decrypting) this.setState({ decrypt: false })
+  }
+
   renderDownloading() {
     if (!this.state.open) return
-    const { total, loaded } = this.state
-    return <Progress total={total} loaded={loaded} close={() => this.setState({ open: false })} />
+    const { total, loaded, decrypt } = this.state
+    return (
+      <Progress
+        total={total}
+        loaded={loaded}
+        decrypt={decrypt}
+        close={() => this.setState({ open: false })}
+      />
+    )
   }
 
   renderButton() {

@@ -11,3 +11,8 @@
   color: red;
   margin-bottom: 24px;
 }
+
+:local(.button) {
+  margin: 15px 0;
+  text-align: right;
+}

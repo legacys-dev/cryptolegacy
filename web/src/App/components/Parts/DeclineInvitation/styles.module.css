@@ -1,0 +1,22 @@
+.container {
+  max-height: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.decline {
+  width: 150px;
+  font-size: 15px;
+  color: #fff;
+  background-color: #ff0000cc;
+  border-radius: 8px;
+  -webkit-transition-property: font-weight, cursor;
+  -webkit-transition-duration: 300ms;
+}
+
+.decline:hover {
+  cursor: pointer;
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+  font-weight: bold;
+}

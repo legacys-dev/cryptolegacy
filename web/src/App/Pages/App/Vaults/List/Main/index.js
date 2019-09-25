@@ -3,35 +3,14 @@ import PropTypes from 'prop-types'
 import styles from './styles.css'
 import autobind from 'autobind-decorator'
 import NoItemsFound from 'App/components/Parts/NoItemsFound'
-import { metaDataDecryptWithPassword as decrypt } from 'App/helpers/crypto'
-import encryptedVaultsQuery from './encryptedVaultsQuery'
 import Pagination from 'App/components/Parts/Pagination'
 import { getPageItems } from 'App/functions/paginated'
 import Loading from 'App/components/Parts/Loading'
+import { nameSearch } from 'App/helpers/search'
 import { withApollo } from 'react-apollo'
 import isEmpty from 'lodash/isEmpty'
+import getQuery from './getQuery'
 import Items from './Items'
-import { nameSearch } from 'App/helpers/search'
-
-async function getQuery(client, credentialType) {
-  const encrypted = await client.query({
-    query: encryptedVaultsQuery,
-    variables: credentialType,
-    fetchPolicy: 'network-only'
-  })
-
-  const { getEncryptedVaults } = encrypted.data
-  if (!getEncryptedVaults.items) {
-    return []
-  }
-
-  const messages = JSON.parse(window.localStorage.getItem('messages'))
-  const dataArray = decrypt({
-    encryptedItem: getEncryptedVaults.items,
-    cipherPassword: messages.communicationPassword
-  })
-  return dataArray
-}
 
 @withApollo
 export default class Main extends React.Component {

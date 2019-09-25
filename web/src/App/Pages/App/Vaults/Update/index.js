@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './styles.css'
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 import AutoForm from 'App/components/AutoForm'
 import autobind from 'autobind-decorator'
 import withMessage from 'orionsoft-parts/lib/decorators/withMessage'
@@ -9,11 +9,11 @@ import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import Header from 'App/components/Parts/Header'
 import Button from 'App/components/Parts/Button'
 import Loading from 'App/components/Parts/Loading'
-import gql from 'graphql-tag'
-import Delete from './Delete'
 import translate from 'App/i18n/translate'
-import {Field} from 'simple-react-form'
+import { Field } from 'simple-react-form'
 import Text from 'App/components/fields/Text'
+import Delete from './Delete'
+import gql from 'graphql-tag'
 
 @withGraphQL(
   gql`
@@ -21,10 +21,11 @@ import Text from 'App/components/fields/Text'
       vault(vaultId: $vaultId) {
         _id
         name
+        userCredentials
       }
     }
   `,
-  {loading: <Loading />}
+  { loading: <Loading /> }
 )
 @withRouter
 @withMessage
@@ -37,30 +38,40 @@ export default class Update extends React.Component {
 
   @autobind
   onSuccess() {
-    const {showMessage} = this.props
+    const { showMessage } = this.props
     showMessage(translate('vaults.vaultUpdatedSuccessfully'))
   }
 
   @autobind
   onDeleteSuccess() {
-    const {showMessage, history} = this.props
+    const { showMessage, history } = this.props
     showMessage(translate('vaults.vaultDeletedSuccessfully'))
     history.push('/vaults')
   }
 
+  renderHeritageButton() {
+    if (this.props.vault.userCredentials !== 'owner') return
+    return (
+      <Button onClick={() => history.push(`/vaults/heritages/${this.props.vault._id}`)}>
+        {translate('vaults.heritages')}
+      </Button>
+    )
+  }
+
   renderHeritageOptions() {
-    const {vault, history} = this.props
+    const { vault, history } = this.props
     return (
       <div className={styles.heritageButton}>
-        <Button onClick={() => history.push(`/vaults/heritages/${vault._id}`)}>
-          {translate('vaults.heritages')}
+        {this.renderHeritageButton()}
+        <Button onClick={() => history.push(`/vaults/invitations/${vault._id}`)}>
+          {translate('vaults.invitations')}
         </Button>
       </div>
     )
   }
 
   renderButtons() {
-    const {vault, history} = this.props
+    const { vault, history } = this.props
     return (
       <div className={styles.buttons}>
         <Button onClick={() => history.push('/vaults')}>{translate('vaults.back')}</Button>
@@ -73,11 +84,11 @@ export default class Update extends React.Component {
   }
 
   render() {
-    const {vault} = this.props
+    const { vault } = this.props
     return (
       <div className={styles.container}>
         <Header
-          past={{[`/vaults`]: translate('vaults.vaults')}}
+          past={{ [`/vaults`]: translate('vaults.vaults') }}
           right={this.renderHeritageOptions()}
           title={`${translate('vaults.updateVault')} (${vault.name})`}
         />
@@ -85,7 +96,7 @@ export default class Update extends React.Component {
           <AutoForm
             mutation="updateVault"
             ref="form"
-            doc={{vaultId: vault._id, name: vault.name}}
+            doc={{ vaultId: vault._id, name: vault.name }}
             onSuccess={this.onSuccess}>
             <Field label={translate('vaults.vaultName')} fieldName="name" type={Text} />
           </AutoForm>

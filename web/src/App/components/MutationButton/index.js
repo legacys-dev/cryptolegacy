@@ -27,7 +27,8 @@ export default class FormModal extends React.Component {
     fragment: PropTypes.any,
     disabled: PropTypes.bool,
     renderChildren: PropTypes.func,
-    children: PropTypes.any
+    children: PropTypes.any,
+    fullWidth: PropTypes.bool
   }
 
   static defaultProps = {
@@ -104,6 +105,7 @@ export default class FormModal extends React.Component {
                   disabled={this.props.disabled}
                   danger={this.props.danger}
                   primary={this.props.primary}
+                  fullWidth={this.props.fullWidth}
                   onClick={() => this.open(mutate)}>
                   {this.props.label}
                 </Button>

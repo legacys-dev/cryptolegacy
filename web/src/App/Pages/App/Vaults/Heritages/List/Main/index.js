@@ -39,10 +39,12 @@ export default class Main extends React.Component {
     const { vaultId, filter, client } = this.props
     const result = await client.query({
       query: heritagesQuery,
-      variables: { vaultId, filter, page, limit: 6 },
+      variables: { vaultId, type: 'heritage', filter, page, limit: 6 },
       fetchPolicy: 'network-only'
     })
+
     const { items, totalPages, hasNextPage, hasPreviousPage } = result.data.vaultPolicies
+
     this.setState({
       items,
       currentPage: page,

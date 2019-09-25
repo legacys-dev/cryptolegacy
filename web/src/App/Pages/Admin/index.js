@@ -5,11 +5,11 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import withGraphQL from 'react-apollo-decorators/lib/withGraphQL'
 import InactivityTimer from 'App/components/InactivityTimer'
 import forceLogin from 'App/helpers/auth/forceLogin'
+import translate from 'App/i18n/translate'
 import Heritages from './Heritages'
 import SideMenu from './SideMenu'
 import gql from 'graphql-tag'
 import links from './links'
-import translate from 'App/i18n/translate'
 
 @forceLogin
 @withGraphQL(gql`

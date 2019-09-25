@@ -13,7 +13,7 @@ export default resolver({
   },
   returns: Boolean,
   mutation: true,
-  vaultOwner: true,
+  policyAuthorization: true,
   requireLogin: true,
   filePermissions: true,
   async resolve({ fileId, vaultId }, viewer) {

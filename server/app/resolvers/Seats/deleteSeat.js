@@ -1,5 +1,6 @@
 import { resolver } from '@orion-js/app'
 import Seats from 'app/collections/Seats'
+import { cancelSubscription } from 'app/helpers/qvo'
 
 export default resolver({
   params: {
@@ -7,7 +8,7 @@ export default resolver({
       type: String
     }
   },
-  returns: String,
+  returns: Boolean,
   mutation: true,
   private: true,
   requireLogin: true,
@@ -16,7 +17,15 @@ export default resolver({
 
     if (!seat) throw new Error('Error deleting seat')
 
-    await seat.remove()
+    if (!seat.available) throw new Error('The seat is in use')
+
+    try {
+      await cancelSubscription(seat.subscriptionId)
+      await seat.remove()
+    } catch (error) {
+      console.log('Error:', error)
+      return
+    }
 
     return true
   }
