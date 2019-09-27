@@ -35,5 +35,6 @@ export default {
   hide: 'Ocultar',
   plan: 'Plan',
   planDescription: 'Agrega, revisa o actualiza tu plan.',
-  seats: 'Asientos'
+  seats: 'Asientos',
+  loadingKey: 'Cargando pdf ...'
 }

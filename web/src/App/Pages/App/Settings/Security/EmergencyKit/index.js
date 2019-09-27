@@ -91,7 +91,7 @@ export default class EmergencyKit extends React.Component {
             <Button primary>
               <PDFDownloadLink document={this.renderDoc()} fileName="somename.pdf" className={styles.downloadButton}>
                 {({ blob, url, loading, error }) =>
-                  loading ? 'Loading document...' : `${translate('settings.downloadKey')}`
+                  loading ? `${translate('settings.loadingKey')}` : `${translate('settings.downloadKey')}`
                 }
               </PDFDownloadLink>
             </Button>
