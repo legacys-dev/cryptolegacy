@@ -13,6 +13,7 @@ import AddVault from './AddVault'
 import Update from './Update'
 import Upload from './Upload'
 import Contract from './Contract'
+import Seat from './Seat'
 
 export {
   AddFile,
@@ -25,6 +26,7 @@ export {
   Download,
   MagnifyingGlass,
   Options,
+  Seat,
   Trash,
   Update,
   Upload,

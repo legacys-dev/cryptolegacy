@@ -1,4 +1,4 @@
-export default{
-    delete: 'Eliminar',
-    deleteHeritageMessage: '¿Confirmas que quieres eliminar esta herencia?'
+export default {
+  delete: 'Eliminar',
+  deleteHeritageMessage: '¿Confirmas que quieres eliminar esta herencia?'
 }

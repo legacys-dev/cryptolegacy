@@ -13,7 +13,7 @@ export default resolver({
   mutation: true,
   requireLogin: true,
   async resolve({ seatId }, viewer) {
-    const seat = await Seats.findOne({ _id: seatId, creatorId: viewer.userId })
+    const seat = await Seats.findOne({ _id: seatId, ownerId: viewer.userId })
 
     if (!seat) throw new Error('Seat not found')
 
@@ -29,5 +29,7 @@ export default resolver({
     } catch (error) {
       console.log('Error:', error)
     }
+
+    return seatId
   }
 })

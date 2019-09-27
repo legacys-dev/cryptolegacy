@@ -1,7 +1,8 @@
 import { archiveDecryptWithPassword } from 'App/helpers/crypto'
 import { generateArchiveIv } from 'App/helpers/keys'
+import sleep from 'orionsoft-parts/lib/helpers/sleep'
 
-async function download(url, name, opts, fileId, _global) {
+async function download(url, name, opts, fileId, _global, decryptingHandler) {
   const xhr = new XMLHttpRequest()
   xhr.addEventListener('progress', opts)
   xhr.open('GET', url)
@@ -26,12 +27,16 @@ async function download(url, name, opts, fileId, _global) {
     const url = window.location.pathname.split('/').slice(-1)[0]
     const vault = JSON.parse(localStorage.getItem('vault'))
     const cipherPassword = vault[url]
+    decryptingHandler(true)
+    await sleep(100)
+
     const decrypted = archiveDecryptWithPassword({
       encryptedItem: file,
       cipherPassword: cipherPassword,
       archiveIv: iv
     })
 
+    decryptingHandler(false)
     const fileDownload = require('react-file-download')
     fileDownload(decrypted, name)
     saveAs(xhr.response, name, opts, fileId, _global)
@@ -43,7 +48,7 @@ async function download(url, name, opts, fileId, _global) {
   xhr.send()
 }
 
-async function saveAs(blob, name, opts, fileId, _global) {
+async function saveAs(blob, name, opts, fileId, _global, decryptingHandler) {
   const URL = _global.URL || _global.webkitURL
   const a = document.createElement('a')
   name = name || blob.name || 'download'
@@ -52,13 +57,13 @@ async function saveAs(blob, name, opts, fileId, _global) {
 
   if (typeof blob === 'string') {
     a.href = blob
-    await download(blob, name, opts, fileId, _global)
+    await download(blob, name, opts, fileId, _global, decryptingHandler)
   } else {
     a.href = URL.createObjectURL(blob)
   }
 }
 
-export default async ({ fileId, downloadUrl, fileName, downloadProgress }) => {
+export default async ({ fileId, downloadUrl, fileName, downloadProgress, decryptingHandler }) => {
   const _global =
     typeof window === 'object' && window.window === window
       ? window
@@ -68,5 +73,5 @@ export default async ({ fileId, downloadUrl, fileName, downloadProgress }) => {
       ? global
       : this
 
-  saveAs(downloadUrl, fileName, downloadProgress, fileId, _global)
+  saveAs(downloadUrl, fileName, downloadProgress, fileId, _global, decryptingHandler)
 }

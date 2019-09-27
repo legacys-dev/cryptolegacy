@@ -35,7 +35,7 @@ export default class List extends React.Component {
   @autobind
   onSuccess() {
     const { showMessage, vault, history } = this.props
-    showMessage(translate('vaults.createHeritage'))
+    showMessage(translate('vaults.createHeritageMessage'))
     history.push(`/vaults/storage-update/${vault._id}`)
   }
 
@@ -44,7 +44,7 @@ export default class List extends React.Component {
     return (
       <div className={styles.buttons}>
         <Button primary onClick={() => history.push(`/vaults/heritages/${vault._id}/create`)}>
-          {translate('vaults.create')}
+          {translate('vaults.createHeritage')}
         </Button>
       </div>
     )

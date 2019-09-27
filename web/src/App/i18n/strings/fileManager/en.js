@@ -18,5 +18,6 @@ export default {
   warning: 'Warning',
   of: 'of',
   filesUpload: 'Files Upload',
-  encrypting: 'Encrypting'
+  encrypting: 'Encrypting',
+  decrypting: 'Decrypting'
 }

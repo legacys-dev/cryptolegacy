@@ -8,12 +8,17 @@ export default resolver({
   async resolve(vaultPolicy, params, viewer) {
     const data = {
       vaultPolicyId: vaultPolicy._id,
+      userId: vaultPolicy.userId,
       vaultId: vaultPolicy.vaultId,
       vaultName: await vaultPolicy.vaultName(),
       userEmail: vaultPolicy.userEmail,
-      createdAt: vaultPolicy.createdAt
+      createdAt: vaultPolicy.createdAt,
+      status: vaultPolicy.status,
+      role: vaultPolicy.role
     }
+
     const user = await Users.findOne({ _id: viewer.userId })
+
     const { publicKey } = user.messageKeys
     const encryptData = publicEncrypt({ toEncrypt: data, publicKey })
 

@@ -19,6 +19,8 @@ export default resolver({
       if (subscription.status !== 'active') throw new Error('Error canceling subscription')
 
       await user.update({ $set: { 'qvo.subscriptionId': null } })
+
+      await user.updateUserData()
     } catch (error) {
       console.log('Error:', error)
     }

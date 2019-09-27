@@ -38,7 +38,7 @@ export default class Create extends React.Component {
   @autobind
   onSuccess() {
     const { showMessage, vault, history } = this.props
-    showMessage(translate('vaults.createHeritage'))
+    showMessage(translate('vaults.createHeritageMessage'))
     history.push(`/vaults/heritages/${vault._id}`)
   }
 

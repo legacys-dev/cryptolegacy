@@ -1,5 +1,5 @@
-import userCreditCardUpdated from './userCreditCardUpdated'
+import userDataUpdate from './userDataUpdate'
 
 export default {
-  userCreditCardUpdated
+  userDataUpdate
 }
